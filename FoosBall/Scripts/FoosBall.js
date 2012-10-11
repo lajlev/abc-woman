@@ -25,9 +25,16 @@
     });
     
     /* ******************************************************************
-     * Player View
+     * Match & MatchResult View
      */
-    
+    var $teamRedScore = $('#team-red-score');
+    $('#team-red-score-slider').on('change', function (e) {
+        $teamRedScore.val(e.target.value);
+    });
+    var $teamBlueScore = $('#team-blue-score');
+    $('#team-blue-score-slider').on('change', function (e) {
+        $teamBlueScore.val(e.target.value);
+    });
 });
 
 /* ******************************************************************

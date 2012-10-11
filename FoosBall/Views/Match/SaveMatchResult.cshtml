@@ -9,16 +9,21 @@
     <fieldset>
         <legend>Match Result</legend>
         <div id="validation-message"></div>
+
         <div class="form-input" id="fighting-team-red">
-            @Html.LabelFor(m => Model.RedScore, @Model.RedPlayer1.Name + " (Red Teams) Score: ")
-            @Html.TextBox("team-red-score", null, new {placeholder = "Red Teams final score"}) 
-            <input id="red-score-slider" type="range" min="0" max="20" step="1" onchange="document.getElementById('abc').innerHTML = this.value;">
-            <span id="abc"></span>
+            @Html.LabelFor(m => Model.RedScore, "Red team")
+            <br/>
+            @Html.TextBox("team-red-score", null, new {@class = "team-score", placeholder = "0"}) 
+            <br/>
+            <input id="team-red-score-slider" class="score-slider" type="range" min="0" max="10" step="1" autocomplete="off" value="0">
         </div>    
         
-        <div class="form-input" id="fighting-team-red">
-            @Html.LabelFor(m => Model.BlueScore, @Model.BluePlayer1.Name + " (Blue Teams) Score: ")
-            @Html.TextBox("team-blue-score", null, new {placeholder = "Blue Teams final score"})    
+        <div class="form-input" id="fighting-team-blue">
+            @Html.LabelFor(m => Model.RedScore, "Blue team")
+            <br/>
+            @Html.TextBox("team-blue-score", null, new {@class = "team-score", placeholder = "0"}) 
+            <br/>
+            <input id="team-blue-score-slider" class="score-slider" type="range" min="0" max="10" step="1" autocomplete="off" value="0">
         </div>    
     
         <div class="form-button">
