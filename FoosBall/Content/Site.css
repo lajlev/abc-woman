@@ -5,7 +5,7 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body {
   background-color: #007000;
-  font-size: .85em;
+  font-size: 1.0em;
   font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
   margin: 0;
   padding: 0;
@@ -198,8 +198,6 @@ a.toggle-create-player {
 
 #create-player-form {
   display: none; }
-  #create-player-form legend {
-    text-decoration: none; }
 
 /* Match View
 ----------------------------------------------------------*/
@@ -209,7 +207,7 @@ a.toggle-create-player {
 
 .vs {
   width: 9%;
-  margin-top: 35px;
+  margin-top: 45px;
   text-align: center;
   vertical-align: middle; }
 
@@ -263,22 +261,24 @@ fieldset {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   margin: 0 0 1.5em 0; }
   fieldset legend {
-    border: 1px solid #DDD;
+    border: inherit;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
     margin: 0px auto;
-    padding: 1px 3px; }
+    padding: 3px 5px; }
 
 select {
   border: 1px solid #ccc;
   padding: 2px;
+  margin: 2px;
   color: #444;
+  height: 35px;
   width: 100%; }
 
 .submit-button {
@@ -302,7 +302,8 @@ input[type="text"], input[type="password"] {
   width: 98%; }
 
 input[type="submit"], input[type="button"], button {
-  height: 2.0em;
+  height: 3.0em;
+  font-size: 1.0em;
   width: 100%; }
 
 /* TABLE

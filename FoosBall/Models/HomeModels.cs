@@ -16,7 +16,7 @@ namespace FoosBall.Models
                                              {
                                                  "Welcome to the FoosBall Tournament App!!",
                                                  "Are you ready to score The Goal Of The Year?",
-                                                 "Hello FoosBall Fighter, We've been expecting you.",
+                                                 "Welcome FoosBall Fighter, We've been expecting you.",
                                                  "Ready to challenge another FoosBall Fighter?",
                                                  "Come in, set up a match, enjoy!",
                                              };
