@@ -56,33 +56,44 @@ namespace FoosBall.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection formValues)
         {
-            // var teamRedId = BsonObjectId.Create(formValues.GetValue("TeamRed").AttemptedValue);
-            // var teamBlueId = BsonObjectId.Create(formValues.GetValue("TeamBlue").AttemptedValue);
-            // 
-            // // only try to create a match if properties are set correctly
-            // if (teamRedId.IsBsonNull == false && teamBlueId.IsBsonNull == false)
-            // {
-            //     var dbh = Db.GetDataBaseHandle();
-            // 
-            //     var matchCollection = dbh.GetCollection<Match>("Matches");
-            //     var teamCollection = dbh.GetCollection<Team>("Teams");
-            //     
-            //     var teamRed = teamCollection.FindOne(Query.EQ("_id", teamRedId));
-            //     var teamBlue = teamCollection.FindOne(Query.EQ("_id", teamBlueId));
-            // 
-            //     var newMatch = new Match()
-            //                         {
-            //                             TeamRed = teamRed,
-            //                             TeamBlue = teamBlue,
-            //                             TeamRedScore = 0,
-            //                             TeamBlueScore = 0,
-            //                             CreationTime = new BsonDateTime(DateTime.Now),
-            //                             GameOverTime = new BsonDateTime(DateTime.MinValue),
-            //                         };
-            // 
-            //     matchCollection.Save(newMatch);
-            // }
-            // 
+            BsonObjectId r1 = null;
+            BsonObjectId r2 = null;
+            BsonObjectId b1 = null;
+            BsonObjectId b2 = null;
+
+            try
+            {
+                r1 = BsonObjectId.Create(formValues.GetValue("red-player-1").AttemptedValue);
+                r2 = BsonObjectId.Create(formValues.GetValue("red-player-2").AttemptedValue);
+                b1 = BsonObjectId.Create(formValues.GetValue("blue-player-1").AttemptedValue);
+                b2 = BsonObjectId.Create(formValues.GetValue("blue-player-2").AttemptedValue);
+            } 
+            catch (ArgumentOutOfRangeException e) { /* ignore when no player is selected - this is can be expected */ }
+            
+            // only try to create a match if properties are set correctly
+            if ((r1 != null || r2 != null) && (b1 != null || b2 != null))
+            {
+                var matchCollection = _dbh.GetCollection<Match>("Matches");
+                var playerCollection = _dbh.GetCollection<Player>("Players");
+
+                var redPlayer1 = playerCollection.FindOne(Query.EQ("_id", r1));
+                var redPlayer2 = playerCollection.FindOne(Query.EQ("_id", r2));
+                var bluePlayer1 = playerCollection.FindOne(Query.EQ("_id", b1));
+                var bluePlayer2 = playerCollection.FindOne(Query.EQ("_id", b2));
+            
+                var newMatch = new Match()
+                                    {
+                                        RedPlayer1 = redPlayer1,
+                                        RedPlayer2 = redPlayer2,
+                                        BluePlayer1 = bluePlayer1,
+                                        BluePlayer2 = bluePlayer2,
+                                        CreationTime = new BsonDateTime(DateTime.Now),
+                                        GameOverTime = new BsonDateTime(DateTime.MinValue),
+                                    };
+            
+                matchCollection.Save(newMatch);
+            }
+            
             return RedirectToAction("Index");
         }
         

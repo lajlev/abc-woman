@@ -57,13 +57,13 @@
                     <span class="department">(@player.Department)</span>
                 }
             }
-            <span class="legend float-right clear-right" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</span>
-            <span class="rating float-left clear-left" title="Rating: @player.Rating.ToString("F")">@player.Rating.ToString("F0")</span>
+            <span class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</span>
+            <span class="rating" title="Rating: @player.Rating.ToString("F")">@player.Rating.ToString("F0")</span>
             <span class="won-lost-played float-right clear-right" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</span>
             @if (Request.IsAuthenticated && User.Identity.Name == "admin")
             {
-                <span class="editor-icon edit-player">  <a href="Players/Edit/@player.Id">  <img src="Content/images/edit_32x32.png"/></a></span>
-                <span class="editor-icon delete-player"><a href="Players/Delete/@player.Id"><img src="Content/images/delete_32x32.png"/></a></span>
+                <span id="edit-player" class="editor-icon"><a href="Players/Edit/@player.Id"><img src="Content/images/edit_32x32.png"/></a></span>
+                <span id="delete-player" class="editor-icon"><a href="Players/Delete/@player.Id"><img src="Content/images/delete_32x32.png"/></a></span>
             }
         </div>
     }

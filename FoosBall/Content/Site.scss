@@ -197,15 +197,24 @@ a.toggle-create-player {
 		display: none;
 		padding-left: 5px;}
 	.legend{
+		float: right;
+		clear: right;
 		font-size: 10px;
 		letter-spacing: 0px;}
+	.rating {
+		float: left;
+		clear: left;
+	}
 }
 
-.editor-icon{
+.editor-icon {
 	float: right;
-	margin-right: 10px;
 	a img { 
 		height: 15px; }
+	&#edit-player {
+		margin-right: 10px;}
+	&#delete-player {
+		margin-right: 10px;}
 }
 
 #create-player-form {
@@ -218,6 +227,7 @@ a.toggle-create-player {
 ----------------------------------------------------------*/
 .team {
 	width: 45%; 
+	text-align: center;
 }
 .vs { 
 	width: 9%;
@@ -229,7 +239,16 @@ a.toggle-create-player {
 	text-align: center;
 	width: 99%; 
 }
-
+#list-of-matches{
+	.match {
+		background-color: #C7FFC2;
+		border: 1px solid #DDD;
+		padding: 1px;
+		margin: 1px;}
+}
+div#delete-match {
+	margin: 0;
+}
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 fieldset {

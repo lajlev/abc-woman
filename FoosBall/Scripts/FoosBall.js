@@ -1,5 +1,7 @@
 ﻿jQuery(window).load(function () {
-    // jQuery Ajax default configuration
+    /* ******************************************************************
+     * jQuery Ajax default configuration
+     */
     $.ajaxSetup({
         type: 'post',
         error: function (jqHxr, statusText, errorThrown){
@@ -7,8 +9,7 @@
         }
     });
     
-
-    /* **********************
+    /* ******************************************************************
      * Player View
      */
     var $playerForm = $('#create-player-form');
@@ -22,22 +23,18 @@
             $('.toggle-create-player').not($this).toggle();
         }
     });
-
-    //$('.delete-player a').on('click', function(e) {
-    //    e.preventDefault();
-    //    $.ajax({
-    //        type: 'get',
-    //        url: 'Players/Delete/' + $(this).parent().attr('id'),
-    //        success: function () {
-    //            alert('yay');
-    //        }
-    //    });
-    //});
+    
+    /* ******************************************************************
+     * Player View
+     */
     
 });
 
+/* ******************************************************************
+ * Custom js functions
+ */
 function displayErrorMessage(errorMessage) {
-    if (!$("#validation-message").size() == false) {
+    if ($("#validation-message").size() !== false) {
         $("#validation-message").html(errorMessage + "<br/>");
     } else {
         alert(errorMessage);

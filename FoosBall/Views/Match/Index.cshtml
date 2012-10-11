@@ -13,7 +13,7 @@
             <div class="team-name">Red Team</div>
             <div class="form-input">
                 <select name="red-player-1">
-                    <option disabled="disabled" selected value="">Player 1</option>
+                    <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
                         <option value="@player.Value">@player.Text</option>
@@ -37,7 +37,7 @@
             <div class="team-name">Blue Team</div>
             <div class="form-input">
                 <select name="blue-player-1">
-                    <option disabled="disabled" selected value="">Player 1</option>
+                    <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
                         <option value="@player.Value">@player.Text</option>
@@ -62,21 +62,42 @@
     
 }
 
-<fieldset>
-    <legend>Upcoming Kung FoosBall Fights</legend>
+<fieldset id="list-of-matches">
+    <legend>Upcoming FoosBall Fights</legend>
     @*<a class="toggle-create-match" href="#">Create a FoosBall match</a>*@
     @if (Model.PendingMatches.Any())
     {
         foreach (var match in Model.PendingMatches)
         {
             <div id="@match.Id" class="match round-border-small clearfix">
-                <span class="red-team float-left clear-left">@match.RedPlayer1 & @match.RedPlayer2</span>
-                <span class="vs float-left">vs.</span>
-                <span class="blue-team float-right clear-right">@match.BluePlayer1 & @match.BluePlayer2</span>
-                @if (Request.IsAuthenticated && User.Identity.Name == "admin")
-                {
-                    <span class="editor-icon delete-match"><a href="Players/Delete/@match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
-                }
+                
+                <div id="team-red-players" class="team float-left clear-left">
+                    @match.RedPlayer1.Name
+                    @if (match.RedPlayer2.Name.IsEmpty() == false) {
+                        <br/><text>&</text><br/>@match.RedPlayer2.Name
+                    }
+                </div>
+            
+                <div class="float-left">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <span id="resolve-match" class="editor-icon"><a title="Resolve the match" href="Match/SaveMatchResult/@match.Id"><img src="Content/images/checkmark_32x32.png" alt="A delete button"/></a></span>
+                    }
+                    <br/>VS<br/>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <span id="delete-match" class="editor-icon"><a title="Delete the match" href="Match/Delete/@match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
+                    }
+                </div>
+        
+                <div id="team-blue-players" class="team float-right clear-right">
+                    @match.BluePlayer1.Name 
+                    @if (match.BluePlayer2.Name.IsEmpty() == false) {
+                        <br/><text>&</text><br/>@match.BluePlayer2.Name
+                    }
+                </div>
+
+                
             </div>
         }
     }
@@ -93,13 +114,13 @@
         foreach (var match in Model.PlayedMatches)
         {
             <div id="@match.Id" class="match round-border-small clearfix">
-                <span class="red-team float-left clear-left">@match.RedPlayer1 & @match.RedPlayer2</span>
+                <span class="red-team float-left clear-left">@match.RedPlayer1.Name & @match.RedPlayer2.Name</span>
                 <span class="vs float-left">vs.</span>
-                <span class="blue-team float-right clear-right">@match.BluePlayer1 & @match.BluePlayer2</span>
+                <span class="blue-team float-right clear-right">@match.BluePlayer1.Name & @match.BluePlayer2.Name</span>
 
                 @if (Request.IsAuthenticated && User.Identity.Name == "admin")
                 {
-                    <span class="editor-icon delete-player"><a href="Players/Delete/@match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
+                    <span class="editor-icon float-right"><a href="Players/Delete/@match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
                 }
             </div>
         }

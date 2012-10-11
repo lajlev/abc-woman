@@ -179,14 +179,22 @@ a.toggle-create-player {
   display: none;
   padding-left: 5px; }
 #list-of-players .legend {
+  float: right;
+  clear: right;
   font-size: 10px;
   letter-spacing: 0px; }
+#list-of-players .rating {
+  float: left;
+  clear: left; }
 
 .editor-icon {
-  float: right;
-  margin-right: 10px; }
+  float: right; }
   .editor-icon a img {
     height: 15px; }
+  .editor-icon#edit-player {
+    margin-right: 10px; }
+  .editor-icon#delete-player {
+    margin-right: 10px; }
 
 #create-player-form {
   display: none; }
@@ -196,7 +204,8 @@ a.toggle-create-player {
 /* Match View
 ----------------------------------------------------------*/
 .team {
-  width: 45%; }
+  width: 45%;
+  text-align: center; }
 
 .vs {
   width: 9%;
@@ -207,6 +216,15 @@ a.toggle-create-player {
 .team-name {
   text-align: center;
   width: 99%; }
+
+#list-of-matches .match {
+  background-color: #C7FFC2;
+  border: 1px solid #DDD;
+  padding: 1px;
+  margin: 1px; }
+
+div#delete-match {
+  margin: 0; }
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
