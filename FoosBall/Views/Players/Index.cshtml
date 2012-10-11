@@ -1,0 +1,70 @@
+﻿@using System.Web.Mvc.Html
+@using FoosBall.Models
+@model FoosBall.Models.PlayerModel
+@{
+    ViewBag.Title = "FoosBall Players";
+}
+
+@using (Html.BeginForm("Create", "Players", FormMethod.Post, new { id = "create-player"}))
+{
+    <fieldset id="create-player-form">
+        <legend>Create a FoosBall player</legend>
+        <div class="form-input">
+            @Html.LabelFor(m => Model.Players.First().Name, "Name")
+            <br/>
+            @Html.TextBox("Name", "", new { placeholder = "Players name" })
+        </div>
+        <div class="form-input"> 
+            @Html.LabelFor(m => Model.Players.First().Email, "Email")
+            <br/>
+            @Html.TextBox("Email", "", new { placeholder = "Players email" })
+        </div>
+        <div class="form-input">
+            @Html.LabelFor(m => Model.Players.First().Department, "Department")
+            <br/>
+            <select name="Department">
+                @foreach (var department in Company.Departments)
+                {
+                    // set default option
+                    var sel = (department == "Technology") ? Html.Raw("selected") : Html.Raw("");
+                    <option @sel value="@department">@department</option>
+                }
+            </select>
+        </div>
+        <div class="form-input">
+            @Html.LabelFor(m => Model.Players.First().ImageUrl, "Image url")
+            <br/>
+            @Html.TextBox("ImageUrl", "", new { placeholder = "Players picture (url)" })
+        </div>
+        <div class="form-button">
+            <input type="submit" value="Save Player" class="submit-button" id="create-player-button"/>
+        </div>
+        <div id="validation-message"></div>
+        <a class="toggle-create-player close" href="#">Close</a>
+    </fieldset> 
+}
+
+<fieldset id="list-of-players">
+    <legend>List of FoosBall players</legend>
+    <a class="toggle-create-player" href="#">Create player</a>
+    @foreach (var player in Model.Players)
+    {
+        <div id="@player.Id" class="player round-border-small clearfix">
+            <span class="name float-left clear-left">@player.Name</span>
+            @{
+                if (!@player.Department.IsEmpty())
+                {
+                    <span class="department">(@player.Department)</span>
+                }
+            }
+            <span class="legend float-right clear-right" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</span>
+            <span class="rating float-left clear-left" title="Rating: @player.Rating.ToString("F")">@player.Rating.ToString("F0")</span>
+            <span class="won-lost-played float-right clear-right" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</span>
+            @if (Request.IsAuthenticated && User.Identity.Name == "admin")
+            {
+                <span class="editor-icon edit-player">  <a href="Players/Edit/@player.Id">  <img src="Content/images/edit_32x32.png"/></a></span>
+                <span class="editor-icon delete-player"><a href="Players/Delete/@player.Id"><img src="Content/images/delete_32x32.png"/></a></span>
+            }
+        </div>
+    }
+</fieldset>

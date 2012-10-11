@@ -1,0 +1,324 @@
+/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+    background-color: #007000;
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+
+a:link {
+    color: #007000;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #505abc;
+}
+
+a:hover {
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active {
+    color: #12eb87;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #000;
+    margin: 20px 0px 10px 0px;
+}
+
+h1 {
+    font-size: 3em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 10px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer, 
+#footer {
+    background-color: #fff;
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0 0 30px 0;
+    font-size: .9em;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu {
+    border-bottom: 1px #007000 solid;
+    line-height: 1.6em;
+    margin: 0;
+    padding: 0 0 2px;
+    position: relative;
+    text-align: right;
+	
+	li {
+		display: inline;
+		list-style: none;
+		
+		a {
+			padding: 5px 10px;
+			font-weight: bold;
+			text-decoration: none;
+			background-color: #c3ffc3;
+			color: #085f00;
+			-webkit-border-radius: 4px 4px 0 0;
+			-moz-border-radius: 4px 4px 0 0;
+			border-radius: 4px 4px 0 0;
+			
+			&:hover {
+				background-color: #fff;
+				text-decoration: none;}
+
+		}
+	}
+
+}
+
+ul#menu li a:active {
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+ul#menu li.selected a {
+    background-color: #fff;
+    color: #000;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+/* --- FoosBall --- v v v 
+/* ---------------------------------------------------------*/
+.round-border-small { -moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;}
+.round-border-medium { -moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
+.round-border-large { -moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius: 15px;}
+header, footer, nav, section {
+    display: block;
+}
+nav, #menucontainer {
+    margin-top: 5px;
+}
+#app-title {
+    font-size: 30px;
+    padding: 5px 0px;
+    margin: 0;
+    color: #fff;
+    border: none;
+    text-shadow: 1px 1px 2px #111;
+}
+#logindisplay {
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    margin: 4px;
+    color: White;
+	a:link {
+		color: white;
+		text-decoration: underline; }
+	a:visited {
+		color: white;
+		text-decoration: underline; }
+	a:hover {
+		color: white;
+		text-decoration: none;}
+}
+#main {
+    padding: 10px 10px 5px 10px;
+    background-color: #fff;
+    -webkit-border-radius: 4px 0 0 0;
+    -moz-border-radius: 4px 0 0 0;
+    border-radius: 4px 0 0 0;
+}
+
+/* Player View
+----------------------------------------------------------*/
+a.toggle-create-player {
+	display: block;
+	margin: 0 0 5px 5px;
+	text-decoration: none; 
+	&.close {
+		margin: 0;
+		float: right;
+	}
+}
+
+#list-of-players {
+	.player {
+		border: 1px solid #DDD;
+		padding: 1px;
+		margin: 1px;}
+	.department {
+		display: none;
+		padding-left: 5px;}
+	.legend{
+		font-size: 10px;
+		letter-spacing: 0px;}
+}
+
+.editor-icon{
+	float: right;
+	margin-right: 10px;
+	a img { 
+		height: 15px; }
+}
+
+#create-player-form {
+	display: none;
+	legend {
+		text-decoration: none; }
+}
+
+/* Match View
+----------------------------------------------------------*/
+.team {
+	width: 45%; 
+}
+.vs { 
+	width: 9%;
+	margin-top: 35px;
+	text-align: center;
+	vertical-align: middle;
+}
+.team-name {
+	text-align: center;
+	width: 99%; 
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+fieldset {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin: 0 0 1.5em 0; 
+	legend {
+		border: 1px solid #DDD;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; 
+	    font-size: 1.2em;
+		font-weight: bold;
+		margin: 0px auto; 
+		padding: 1px 3px;}
+}
+select {
+    border: 1px solid #ccc;
+    padding: 2px;
+    color: #444;
+    width: 100%; }
+.submit-button {
+    margin: 5px 0px; }
+.form-input {
+    width:90%; 
+	margin: 0px auto; }
+.form-button{
+    clear: both;
+    float: none;
+    margin:10px auto 5px auto; 
+	width: 90%;}
+input[type="text"], input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 1.1	em;
+    color: #444;
+    width: 98%; }
+input[type="submit"], input[type="button"], button {
+	height: 2.0em;
+	width: 100%;
+}
+/* TABLE
+----------------------------------------------------------*/
+table {
+    border: solid 1px #d6dbe1;
+    border-collapse: collapse;
+	td {
+		border: solid 1px #d6dbe1; 
+		padding: 2px 5px 3px 5px;
+		.number {
+			text-align: right;}
+	}
+	th {
+		border: solid 1px #d6dbe1;
+		font-weight: bold;
+		padding: 6px 5px;
+		text-align: left; }
+}
+/* MISC  
+----------------------------------------------------------*/
+.float-right { float: right; }
+.float-left { float: left; }
+.clear-right { clear: right; }
+.clear-left { clear: left; }
+.clear-both { clear: both; }
+.clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+}
+html[xmlns] .clearfix {
+	display: block;
+}
+* html .clearfix {
+	height: 1%;
+}
+.error, #validation-message {
+    width:90%; 
+	margin: 0px auto;  
+    color: Red; }
+
+
+/* Example of media query 
+   
+@media only screen and (min-width : 960px) { }
+   
+   */	

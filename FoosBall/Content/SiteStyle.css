@@ -1,0 +1,383 @@
+/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+  background-color: #5c87b2;
+  font-size: .85em;
+  font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+  margin: 0;
+  padding: 0;
+  color: #696969; }
+
+a:link {
+  color: #034af3;
+  text-decoration: underline; }
+
+a:visited {
+  color: #505abc; }
+
+a:hover {
+  color: #1d60ff;
+  text-decoration: none; }
+
+a:active {
+  color: #12eb87; }
+
+p, ul {
+  margin-bottom: 20px;
+  line-height: 1.6em; }
+
+header,
+footer,
+nav,
+section {
+  display: block; }
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1.5em;
+  color: #000;
+  margin: 20px 0px 10px 0px; }
+
+h1 {
+  font-size: 3em;
+  padding-bottom: 0;
+  margin-bottom: 0; }
+
+h2 {
+  padding: 0 0 10px 0; }
+
+h3 {
+  font-size: 1.2em; }
+
+h4 {
+  font-size: 1.1em; }
+
+h5, h6 {
+  font-size: 1em; }
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto; }
+
+header, #header {
+  position: relative;
+  margin-bottom: 0px;
+  color: #000;
+  padding: 0; }
+
+#main {
+  padding: 30px 30px 15px 30px;
+  background-color: #fff;
+  -webkit-border-radius: 4px 0 0 0;
+  -moz-border-radius: 4px 0 0 0;
+  border-radius: 4px 0 0 0; }
+
+footer,
+#footer {
+  background-color: #fff;
+  color: #999;
+  padding: 10px 0;
+  text-align: center;
+  line-height: normal;
+  margin: 0 0 30px 0;
+  font-size: .9em;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px; }
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu {
+  border-bottom: 1px #5C87B2 solid;
+  padding: 0 0 2px;
+  position: relative;
+  margin: 0;
+  text-align: right; }
+
+ul#menu li {
+  display: inline;
+  list-style: none; }
+
+ul#menu li#greeting {
+  padding: 10px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 2.8em;
+  color: #fff; }
+
+ul#menu li a {
+  padding: 10px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 2.8em;
+  background-color: #d6dbe1;
+  color: #034af3;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0; }
+
+ul#menu li a:hover {
+  background-color: #fff;
+  text-decoration: none; }
+
+ul#menu li a:active {
+  background-color: #a6e2a6;
+  text-decoration: none; }
+
+ul#menu li.selected a {
+  background-color: #fff;
+  color: #000; }
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+fieldset {
+  border: 1px solid #ddd;
+  padding: 10px 1.4em 10px 1.4em;
+  margin: 0 0 1.5em 0; }
+
+legend {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+textarea {
+  min-height: 75px; }
+
+input[type="text"],
+input[type="password"] {
+  border: 1px solid #ccc;
+  padding: 2px;
+  font-size: 1.2em;
+  color: #444;
+  width: 190px; }
+
+select {
+  border: 1px solid #ccc;
+  padding: 2px;
+  font-size: 1.2em;
+  color: #444;
+  width: 190px; }
+
+/* TABLE
+----------------------------------------------------------*/
+table {
+  border: solid 1px #d6dbe1;
+  border-collapse: collapse; }
+
+table td {
+  padding: 2px 5px 3px 5px;
+  border: solid 1px #d6dbe1; }
+
+tbody td {
+  padding: 2px 15px 3px 5px; }
+
+table th {
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #d6dbe1;
+  border: solid 1px #d6dbe1; }
+
+/* MISC  
+----------------------------------------------------------*/
+.clear {
+  clear: both; }
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+html[xmlns] .clearfix {
+  display: block; }
+
+* html .clearfix {
+  height: 1%; }
+
+.error {
+  color: Red; }
+
+nav,
+#menucontainer {
+  margin-top: 40px; }
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+  color: #ff0000; }
+
+.field-validation-valid {
+  display: none; }
+
+.input-validation-error {
+  border: 1px solid #ff0000;
+  background-color: #ffeeee; }
+
+.validation-summary-errors {
+  font-weight: bold;
+  color: #ff0000; }
+
+.validation-summary-valid {
+  display: none; }
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label {
+  margin: 1em 0 0 0; }
+
+.display-field,
+.editor-field {
+  margin: 0.5em 0 0 0; }
+
+.text-box {
+  width: 30em; }
+
+.text-box.multi-line {
+  height: 6.5em; }
+
+.tri-state {
+  width: 6em; }
+
+/* --- FoosBall --- v v v 
+/* ---------------------------------------------------------*/
+.round-border-small {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
+
+.round-border-medium {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
+
+.round-border-large {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px; }
+
+#app-title {
+  font-size: 30px;
+  padding: 5px 0px;
+  margin: 0;
+  color: #fff;
+  border: none;
+  text-shadow: 1px 1px 2px #111; }
+
+#logindisplay {
+  font-size: 1.1em;
+  display: block;
+  text-align: right;
+  margin: 10px;
+  color: White; }
+
+#logindisplay a:link {
+  color: white;
+  text-decoration: underline; }
+
+#logindisplay a:visited {
+  color: white;
+  text-decoration: underline; }
+
+#logindisplay a:hover {
+  color: white;
+  text-decoration: none; }
+
+fieldset {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
+
+fieldset legend {
+  padding: 1px 3px;
+  border: 1px solid #DDD;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
+
+.submit-button {
+  margin: 5px 0px; }
+
+.form-input {
+  /*height: 50px;*/
+  float: left;
+  margin-right: 20px;
+  width: 200px; }
+
+.form-button {
+  clear: both;
+  float: none;
+  margin: 10px 20px 5px 0px; }
+
+table thead {
+  font-weight: bold; }
+
+td.number {
+  text-align: right; }
+
+/* Player */
+@media only screen and (max-width: 519px) {
+  #list-of-players .non-mobile {
+    display: none; } }
+#list-of-players .image img {
+  max-height: 20px;
+  vertical-align: bottom; }
+
+#validation-message {
+  color: red; }
+
+#create-player fieldset {
+  display: block; }
+
+#create-player fieldset input[type="text"] {
+  font-size: .9em; }
+
+/* Teams */
+#team-member-list {
+  margin-bottom: 5px; }
+
+#list-of-teams .image img {
+  max-height: 40px;
+  vertical-align: bottom; }
+
+.team-member {
+  background-color: #EFEAFF;
+  margin: 0px 2px 5px 2px;
+  padding: 1px 7px;
+  vertical-align: middle; }
+
+/*#list-of-pending-matches .team-member, #list-of-played-matches .team-member {
+    background-color: white;
+    font-size: 10px;
+    padding: 1px 0px;
+    text-decoration: underline;
+    vertical-align: middle;
+}
+#list-of-pending-matches .team-member:first-child:before, #list-of-played-matches .team-member:first-child:before {
+    content: "(";
+}
+#list-of-pending-matches .team-member:last-child:after, #list-of-played-matches .team-member:last-child:after {
+    content: ")";
+}*/
+#add-player-button {
+  margin: 0px 10px; }
+
+.remove-team-member {
+  display: inline;
+  height: 15px;
+  margin-left: 10px;
+  vertical-align: middle; }
+

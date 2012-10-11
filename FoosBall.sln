@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoosBall", "FoosBall\FoosBall.csproj", "{B36AD739-0F93-438F-98C7-F182E7D6395B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoosBall.Tests", "FoosBall.Tests\FoosBall.Tests.csproj", "{BCC3A24B-7A2E-4E49-93DD-DB8E02640949}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B36AD739-0F93-438F-98C7-F182E7D6395B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B36AD739-0F93-438F-98C7-F182E7D6395B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B36AD739-0F93-438F-98C7-F182E7D6395B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B36AD739-0F93-438F-98C7-F182E7D6395B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCC3A24B-7A2E-4E49-93DD-DB8E02640949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC3A24B-7A2E-4E49-93DD-DB8E02640949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCC3A24B-7A2E-4E49-93DD-DB8E02640949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCC3A24B-7A2E-4E49-93DD-DB8E02640949}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

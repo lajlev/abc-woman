@@ -1,0 +1,16 @@
+﻿@using FoosBall.Models;
+@{
+    ViewBag.Title = "Home of FoosBall'ers";
+}
+
+<h2>@ViewBag.Message</h2>
+
+@* Admin stuff here: *@
+
+@if(Request.IsAuthenticated)
+{
+    <p>Do some Admin stuff here:</p>
+    <ul>
+        <li>@Html.ActionLink("Register", "Register", "Account") a NEW user.</li>
+    </ul>
+}

@@ -1,0 +1,46 @@
+﻿@using FoosBall.Models
+@model FoosBall.Models.Player
+@{
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+    ViewBag.Title = "Edit Player Data";
+}
+
+@using (Html.BeginForm("Edit", "Players", FormMethod.Post, new { id = "edit-player"}))
+{
+    <input type="hidden" name="player-id" value="@Model.Id"/>
+    <fieldset id="edit-player-form">
+        <legend>Create a FoosBall player</legend>
+        <div class="form-input">
+            @Html.LabelFor(m => Model.Name, "Name")
+            <br/>
+            @Html.TextBox("Name", Model.Name, new { placeholder = "Players name" })
+        </div>
+        <div class="form-input">
+            @Html.LabelFor(m => Model.Email, "Email")
+            <br/>
+            @Html.TextBox("Email", Model.Email, new { placeholder = "Players email" })
+        </div>
+        <div class="form-input">
+            @Html.LabelFor(m => Model.Department, "Department")
+            <br/>
+            <select name="Department">
+                @foreach (var department in Company.Departments)
+                {
+                    // set default option
+                    var sel = (department == Model.Department) ? Html.Raw("selected") : Html.Raw("");
+                    <option @sel value="@department">@department</option>
+                }
+            </select>
+        </div>
+        <div class="form-input">
+            @Html.LabelFor(m => Model.ImageUrl, "Image url")
+            <br/>
+            @Html.TextBox("ImageUrl", "", new { placeholder = "Players picture (url)" })
+        </div>
+        <div class="form-button">
+            <input type="submit" value="Save Player" class="submit-button" id="edit-player-button"/>
+        </div>
+        <div id="validation-message"></div>
+        <a class="toggle-edit-player close" href="/Players">Close</a>
+    </fieldset> 
+}
