@@ -9,20 +9,51 @@ namespace FoosBall.Main
 {
     public static class Db
     {
+        private static MongoDatabase Dbh { get; set; }
+        private static string ConnectionString { get; set; }
+        private static string DatabaseName { get; set; }
+        private static MongoServer Server { get; set; }
+        
         public static MongoDatabase GetDataBaseHandle()
         {
+            // If there is no db handle then create one
             if (Dbh == null)
             {
-                //var connectionString = ConfigurationManager.ConnectionStrings["AppHarborMongoHQ"].ConnectionString;
-                var connectionString = ConfigurationManager.ConnectionStrings["AppHarborMongoLab"].ConnectionString;
-                var _databaseName = MongoUrl.Create(connectionString).DatabaseName;
-                var server = MongoServer.Create(connectionString);
-                // server.Ping();
-                Dbh = server.GetDatabase(_databaseName);   
+                // initialize remote connection
+                ConnectionString = ConfigurationManager.ConnectionStrings["AppHarborMongoLab"].ConnectionString;
+                DatabaseName = MongoUrl.Create(ConnectionString).DatabaseName;
+                Server = MongoServer.Create(ConnectionString);
+                
+                // if remote server responds then assume success and return handle, 
+                // if not then try local server
+                try
+                {
+                    Server.Ping();
+                }
+                catch
+                {
+                    ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;
+                    DatabaseName = MongoUrl.Create(ConnectionString).DatabaseName;
+                    Server = MongoServer.Create(ConnectionString);
+                }
+                Dbh = Server.GetDatabase(DatabaseName);   
+            } else {
+
+                // If there IS already a db handle then check if it's responding
+                // If not then try to create new connection
+                try
+                {
+                    Server.Ping();
+                }
+                catch
+                {
+                    Dbh = null;
+                    GetDataBaseHandle();
+                }
+
             }
+
             return Dbh;
         }
-
-        private static MongoDatabase Dbh { get; set; }
     }
 }

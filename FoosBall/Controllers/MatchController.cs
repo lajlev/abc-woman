@@ -68,10 +68,10 @@ namespace FoosBall.Controllers
                 b1 = BsonObjectId.Create(formValues.GetValue("blue-player-1").AttemptedValue);
                 b2 = BsonObjectId.Create(formValues.GetValue("blue-player-2").AttemptedValue);
             } 
-            catch (ArgumentOutOfRangeException e) { /* ignore when no player is selected - this is can be expected */ }
+            catch (ArgumentOutOfRangeException e) { /* ignore when no player is selected - this can be expected */ }
             
             // only try to create a match if properties are set correctly
-            if ((r1 != null || r2 != null) && (b1 != null || b2 != null))
+            if (r1 != null && b1 != null)
             {
                 var matchCollection = _dbh.GetCollection<Match>("Matches");
                 var playerCollection = _dbh.GetCollection<Player>("Players");

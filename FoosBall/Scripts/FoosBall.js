@@ -12,20 +12,52 @@
     /* ******************************************************************
      * Player View
      */
+    //var $playerForm = $('#create-player-form');
     var $playerForm = $('#create-player-form');
-    $('.toggle-create-player').on('click', function (e) {
+    var $wrapper = $('#create-player-form .wrapper');
+    $('.open-create-player').on('click', function (e) {
         e.preventDefault();
-        $this = $(this);
-        $playerForm.slideToggle();
-        if (!$this.hasClass('close')) {
-            $this.toggle();
-        } else {
-            $('.toggle-create-player').not($this).toggle();
-        }
+        $playerForm.toggle();
+        $wrapper.slideToggle(500);
+    });
+    $('.close-create-player').on('click', function (e) {
+        e.preventDefault();
+        $wrapper.slideToggle(500, function () {
+            $playerForm.toggle();
+        });
     });
     
+    // Validation
+    var $name = $('#Name');
+    var $email = $('#Email');
+    $('#create-player-button').on('click',function (e) {
+        var errm = "";
+        if (!!$email.val() === false || !!$name.val() === false) {
+            errm = 'Please fill out both name and email';
+        }
+        if (!!errm === true) {
+            e.preventDefault();
+            displayErrorMessage(errm);
+        }
+    });
+
     /* ******************************************************************
-     * Match & MatchResult View
+     * Match View
+     */
+    var $r1 = $('#red-player-1');
+    var $b1 = $('#blue-player-1');
+    $('#create-match-button').on('click', function (e) {
+        var errm = "";
+        if (!!$r1.val() === false || !!$b1.val() === false) {
+            errm = 'Please choose at least 2 Players';
+        }
+        if (!!errm === true) {
+            e.preventDefault();
+            displayErrorMessage(errm);
+        }
+    });
+    /* ******************************************************************
+     * SaveMatchResult View
      */
     var $teamRedScore = $('#team-red-score');
     $('#team-red-score-slider').on('change', function (e) {
@@ -35,6 +67,7 @@
     $('#team-blue-score-slider').on('change', function (e) {
         $teamBlueScore.val(e.target.value);
     });
+
 });
 
 /* ******************************************************************
