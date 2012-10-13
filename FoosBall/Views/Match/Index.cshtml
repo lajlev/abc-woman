@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Register a FoosBall Fight!";
 }
+@section Javascript{ <script async src="/Scripts/Match.js"></script> }
+
+
 @using (Html.BeginForm("Create", "Match", FormMethod.Post, new { id = "create-match" }))
 {
     <fieldset id="create-match-form">

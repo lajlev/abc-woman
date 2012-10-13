@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "FoosBall Players";
 }
+@section Javascript{ <script async src="/Scripts/Players.js"></script> }
 
 @using (Html.BeginForm("Create", "Players", FormMethod.Post, new { id = "create-player"}))
 {
