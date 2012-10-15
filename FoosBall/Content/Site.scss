@@ -101,15 +101,13 @@ page width. Or, you can specify an exact pixel width. */
     margin-right: auto;
 }
 
-footer, 
-#footer {
+footer, #footer {
     background-color: #fff;
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0 0 30px 0;
-    font-size: .9em;
+    color: $darkest;
+    padding: 0px 10px 3px 10px;
+    text-align: left;
+    margin: 0;
+    font-size: 12px;
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
@@ -236,6 +234,7 @@ nav, #menucontainer {
 	&#delete-player {
 		margin-right: 10px;}
 }
+
 /* Player View
 ----------------------------------------------------------*/
 a.open-create-player {
@@ -339,14 +338,33 @@ div#delete-match {
 	width: 30px;
 	margin: 10px auto 15px auto;
 }
+#team-titles {
+	clear: both;
+	width: 99%;
+	.team {
+		font-size: 0.85em;
+		font-weight: lighter;
+		text-align: center;
+		label {
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+	}
+	#team-red-players {
+		float: left;}
+	#team-blue-players {	
+		float: right;}
+}
+#team-results {
+	clear: both;
+}
 #fighting-team-red {
 	float: left;
 	width: 45%;
 	input, label {
 		float: left;
 		clear: both;
-		margin-left: 20px;
-	}
+		margin-left: 20px;}
 }
 #fighting-team-blue {
 	float: right;
@@ -354,10 +372,11 @@ div#delete-match {
 	input, label {
 		float: right;
 		clear: both;
-		margin-right: 20px;
-	}
+		margin-right: 20px;}
 }
-
+#back-to-match {
+	text-decoration: underline;
+}
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 fieldset {
@@ -430,11 +449,6 @@ table {
 }
 /* MISC  
 ----------------------------------------------------------*/
-.float-right { float: right; }
-.float-left { float: left; }
-.clear-right { clear: right; }
-.clear-left { clear: left; }
-.clear-both { clear: both; }
 .clearfix:after {
 	clear: both;
 	content: ".";

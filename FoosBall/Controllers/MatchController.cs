@@ -22,16 +22,17 @@ namespace FoosBall.Controllers
 
         //
         // GET: /Match/
-
         public ActionResult Index()
         {
             // Fetch all players to display in a <select>
             var playerCollection = _dbh.GetCollection<Player>("Players").FindAll().ToList();
-            // Fetch all FoosBall fights, finished and unfinished. 
+            
+            // Fetch all FoosBall matches. 
             var matchCollection = _dbh.GetCollection<Match>("Matches").FindAll().ToList();
             var playedMatches = new List<Match>();
             var pendingMatches = new List<Match>();
             
+            // Divide mathes into resolved and unresolved matches
             foreach (var match in matchCollection)
             {
                 if (match.GameOverTime != BsonDateTime.Create(DateTime.MinValue))
@@ -44,6 +45,7 @@ namespace FoosBall.Controllers
                 }
             }
 
+            // Create content for the <select> 
             var selectItems = playerCollection
                 .Select(team => new SelectListItem() { Selected = false, Text = team.Name, Value = team.Id.ToString() })
                 .ToList();
@@ -56,31 +58,22 @@ namespace FoosBall.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection formValues)
         {
-            BsonObjectId r1 = null;
-            BsonObjectId r2 = null;
-            BsonObjectId b1 = null;
-            BsonObjectId b2 = null;
+            var r1 = formValues.GetValue("red-player-1").AttemptedValue;
+            var r2 = formValues.GetValue("red-player-2").AttemptedValue;
+            var b1 = formValues.GetValue("blue-player-1").AttemptedValue;
+            var b2 = formValues.GetValue("blue-player-2").AttemptedValue;
 
-            try
-            {
-                r1 = BsonObjectId.Create(formValues.GetValue("red-player-1").AttemptedValue);
-                r2 = BsonObjectId.Create(formValues.GetValue("red-player-2").AttemptedValue);
-                b1 = BsonObjectId.Create(formValues.GetValue("blue-player-1").AttemptedValue);
-                b2 = BsonObjectId.Create(formValues.GetValue("blue-player-2").AttemptedValue);
-            } 
-            catch (ArgumentOutOfRangeException e) { /* ignore when no player is selected - this can be expected */ }
-            
             // only try to create a match if properties are set correctly
-            if (r1 != null && b1 != null)
+            if (!String.IsNullOrEmpty(r1) && !String.IsNullOrEmpty(b1))
             {
                 var matchCollection = _dbh.GetCollection<Match>("Matches");
                 var playerCollection = _dbh.GetCollection<Player>("Players");
 
-                var redPlayer1 = playerCollection.FindOne(Query.EQ("_id", r1));
-                var redPlayer2 = playerCollection.FindOne(Query.EQ("_id", r2));
-                var bluePlayer1 = playerCollection.FindOne(Query.EQ("_id", b1));
-                var bluePlayer2 = playerCollection.FindOne(Query.EQ("_id", b2));
-            
+                var redPlayer1 = (String.IsNullOrEmpty(r1)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r1)));
+                var redPlayer2 = (String.IsNullOrEmpty(r2)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r2)));
+                var bluePlayer1 = (String.IsNullOrEmpty(b1)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b1)));
+                var bluePlayer2 = (String.IsNullOrEmpty(b2)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b2)));
+
                 var newMatch = new Match()
                                     {
                                         RedPlayer1 = redPlayer1,
@@ -114,80 +107,73 @@ namespace FoosBall.Controllers
         [HttpPost]
         public ActionResult SaveMatchResult(FormCollection formValues)
         {
-            // var redScore = formValues.GetValue("team-red-score").AttemptedValue;
-            // var blueScore = formValues.GetValue("team-blue-score").AttemptedValue;
-            // 
-            // if (String.IsNullOrEmpty(redScore) == false && String.IsNullOrEmpty(blueScore) == false)
-            // {
-            //     var dbh = Db.GetDataBaseHandle();
-            //     var matchCollection = dbh.GetCollection<Match>("Matches");
-            //     var teamCollection = dbh.GetCollection<Team>("Teams");
-            //     var playerCollection = dbh.GetCollection<Player>("Players");
-            // 
-            //     var query = Query.EQ("_id", ObjectId.Parse(formValues.GetValue("match-id").AttemptedValue));
-            //     var match = matchCollection.FindOne(query);
-            //     
-            //     // Fetch the team collections of the two opposing teams 
-            //     var teamRed = teamCollection.FindOne(Query.EQ("_id", match.TeamRed.Id));
-            //     var teamBlue = teamCollection.FindOne(Query.EQ("_id", match.TeamBlue.Id));
-            // 
-            //     var intRedScore = System.Int32.Parse(redScore, NumberStyles.Float);
-            //     var intBlueScore = System.Int32.Parse(blueScore, NumberStyles.Float);
-            // 
-            //     // Determine the winner and the loser 
-            //     Team winner;
-            //     Team loser;
-            //     if (intRedScore > intBlueScore)
-            //     {
-            //         winner = teamRed;
-            //         match.TeamRed = winner;
-            //         loser = teamBlue;
-            //         match.TeamBlue = loser;
-            //     } else
-            //     {
-            //         winner = teamBlue;
-            //         match.TeamBlue = winner;
-            //         loser = teamRed;
-            //         match.TeamRed = loser;
-            //     }
-            // 
-            //     // Get the new team/member ratings
-            //     var ratingModifier = Rating.GetRatingModifier(winner.GetTeamRating(), loser.GetTeamRating());
-            //     
-            //     // Propagate the rating and stats to the team members of both teams
-            //     foreach (var member in winner.Members)
-            //     {
-            //         member.Rating += ratingModifier;
-            //         member.Won++;
-            //         member.Played++;
-            //         playerCollection.Save(member);
-            //     }
-            // 
-            //     foreach (var member in loser.Members)
-            //     {
-            //         member.Rating -= ratingModifier;
-            //         member.Lost++;
-            //         member.Played++;
-            //         playerCollection.Save(member);
-            //     }
-            // 
-            //     // Update match score/time stats
-            //     match.TeamRedScore = System.Convert.ToInt32(formValues.GetValue("team-red-score").AttemptedValue, 10);
-            //     match.TeamBlueScore = System.Convert.ToInt32(formValues.GetValue("team-blue-score").AttemptedValue, 10);
-            //     match.GameOverTime = new BsonDateTime(DateTime.Now);
-            //     
-            //     // Update teams won/lost/played stats
-            //     winner.Won++; 
-            //     winner.Played++;
-            //     loser.Lost++;
-            //     loser.Played++;
-            // 
-            //     // Save the data to Db
-            //     matchCollection.Save(match);
-            //     teamCollection.Save(winner);
-            //     teamCollection.Save(loser);
-            // }
-            // 
+            // Score = The teams score from the played FoosBall match
+            // Rating = The players (Elo)rating based on won and lost games.
+            // Modifier = The number with which a rating will go up or down based on match outcaome
+
+            var redScore = formValues.GetValue("team-red-score").AttemptedValue;
+            var blueScore = formValues.GetValue("team-blue-score").AttemptedValue;
+            
+            if (String.IsNullOrEmpty(redScore) == false && String.IsNullOrEmpty(blueScore) == false)
+            {
+                var matchCollection = _dbh.GetCollection<Match>("Matches");
+                var playerCollection = _dbh.GetCollection<Player>("Players");
+            
+                var query = Query.EQ("_id", ObjectId.Parse(formValues.GetValue("match-id").AttemptedValue));
+                var match = matchCollection.FindOne(query);
+                
+                // Get the scores
+                var intRedScore = System.Int32.Parse(redScore, NumberStyles.Float);
+                var intBlueScore = System.Int32.Parse(blueScore, NumberStyles.Float);
+                // Get average rating of the team
+                var redAvgRating  = match.RedPlayer2.Name == null ? match.RedPlayer1.Rating : (match.RedPlayer1.Rating + match.RedPlayer2.Rating)/2;
+                var blueAvgRating = match.BluePlayer2.Name == null ? match.BluePlayer1.Rating : (match.BluePlayer1.Rating + match.BluePlayer2.Rating)/2;
+                // Determine the winners and the losers
+                var winners = new List<Player>();
+                var losers = new List<Player>();
+                if (match.RedScore > match.BlueScore)
+                {
+                    winners.Add(match.RedPlayer1);
+                    winners.Add(match.RedPlayer2);
+                    losers.Add(match.BluePlayer1);
+                    losers.Add(match.BluePlayer1);
+                } else
+                {
+                    winners.Add(match.BluePlayer1);
+                    winners.Add(match.BluePlayer1);
+                    losers.Add(match.RedPlayer1);
+                    losers.Add(match.RedPlayer2);
+                }
+
+                var abc = "abc";
+//                // Get the rating modifier
+//                var ratingModifier = Rating.GetRatingModifier(winner.GetTeamRating(), loser.GetTeamRating());
+//                // Propagate the rating and stats to the team members of both teams
+//                foreach (var member in winners)
+//                {
+//                    member.Rating += ratingModifier;
+//                    member.Won++;
+//                    member.Played++;
+//                    playerCollection.Save(member);
+//                }
+//            
+//                foreach (var member in losers)
+//                {
+//                    member.Rating -= ratingModifier;
+//                    member.Lost++;
+//                    member.Played++;
+//                    playerCollection.Save(member);
+//                }
+//            
+//                // Update match score/time stats
+//                match.RedScore = System.Convert.ToInt32(formValues.GetValue("team-red-score").AttemptedValue, 10);
+//                match.BlueScore = System.Convert.ToInt32(formValues.GetValue("team-blue-score").AttemptedValue, 10);
+//                match.GameOverTime = new BsonDateTime(DateTime.Now);
+//                
+//                // Save the data to Db
+//                matchCollection.Save(match);
+            }
+            
             return RedirectToAction("Index");
         }
         

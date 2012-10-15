@@ -61,15 +61,13 @@ page width. Or, you can specify an exact pixel width. */
   margin-left: auto;
   margin-right: auto; }
 
-footer,
-#footer {
+footer, #footer {
   background-color: #fff;
-  color: #999;
-  padding: 10px 0;
-  text-align: center;
-  line-height: normal;
-  margin: 0 0 30px 0;
-  font-size: .9em;
+  color: #223322;
+  padding: 0px 10px 3px 10px;
+  text-align: left;
+  margin: 0;
+  font-size: 12px;
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px; }
@@ -298,6 +296,24 @@ div#delete-match {
   width: 30px;
   margin: 10px auto 15px auto; }
 
+#team-titles {
+  clear: both;
+  width: 99%; }
+  #team-titles .team {
+    font-size: 0.85em;
+    font-weight: lighter;
+    text-align: center; }
+    #team-titles .team label {
+      font-size: 1.5em;
+      font-weight: bold; }
+  #team-titles #team-red-players {
+    float: left; }
+  #team-titles #team-blue-players {
+    float: right; }
+
+#team-results {
+  clear: both; }
+
 #fighting-team-red {
   float: left;
   width: 45%; }
@@ -313,6 +329,9 @@ div#delete-match {
     float: right;
     clear: both;
     margin-right: 20px; }
+
+#back-to-match {
+  text-decoration: underline; }
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
@@ -388,21 +407,6 @@ table {
 
 /* MISC  
 ----------------------------------------------------------*/
-.float-right {
-  float: right; }
-
-.float-left {
-  float: left; }
-
-.clear-right {
-  clear: right; }
-
-.clear-left {
-  clear: left; }
-
-.clear-both {
-  clear: both; }
-
 .clearfix:after {
   clear: both;
   content: ".";

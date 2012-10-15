@@ -12,7 +12,7 @@
         <div id="team-red-players" class="team">
             <div class="team-name">Red Team</div>
             <div class="form-input">
-                <select id="red-player-1" name="red-player-1">
+                <select class="select-player" id="red-player-1" name="red-player-1">
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="form-input">
-                <select id="red-player-2" name="red-player-2">
+                <select class="select-player" id="red-player-2" name="red-player-2">
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
@@ -36,7 +36,7 @@
         <div id="team-blue-players" class="team">
             <div class="team-name">Blue Team</div>
             <div class="form-input">
-                <select id="blue-player-1" name="blue-player-1">
+                <select class="select-player" id="blue-player-1" name="blue-player-1">
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
@@ -45,7 +45,7 @@
                 </select>
             </div>
             <div class="form-input">
-                <select id="blue-player-2" name="blue-player-2">
+                <select class="select-player" id="blue-player-2" name="blue-player-2">
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
@@ -65,7 +65,7 @@
 
 <fieldset id="list-of-matches">
     <legend>Upcoming FoosBall Fights</legend>
-    @*<a class="toggle-create-match" href="#">Create a FoosBall match</a>*@
+
     @if (Model.PendingMatches.Any())
     {
         foreach (var match in Model.PendingMatches)
@@ -74,7 +74,8 @@
                 
                 <div id="team-red-players" class="team">
                     @match.RedPlayer1.Name
-                    @if (match.RedPlayer2.Name.IsEmpty() == false) {
+                    @if (!match.RedPlayer2.Name.IsEmpty()) 
+                    {
                         <br/><text>&</text><br/>@match.RedPlayer2.Name
                     }
                 </div>
@@ -97,8 +98,6 @@
                         <br/><text>&</text><br/>@match.BluePlayer2.Name
                     }
                 </div>
-
-                
             </div>
         }
     }
@@ -131,140 +130,3 @@
         <text>- none - </text>
     }
 </fieldset>        
-
-@*
-
-@using (Html.BeginForm("Create", "Match", FormMethod.Post, new { id = "create-match"}))
-{
-    <fieldset id="create-match-wrapper">
-        <legend>Choose Fighting Teams</legend>      
-        <div id="validation-message"></div>
-        <div class="form-input" id="red-player-1">
-            @Html.LabelFor(m => Model.SelectTeams, "Red Team")
-            @Html.DropDownListFor(m => Model.PendingMatches.First().TeamRed, Model.SelectTeams, "", new { @class = "select-team"})
-        </div>    
-        <div class="form-input" id="red-player-2">
-            @Html.LabelFor(m => Model.SelectTeams, "Red Team")
-            @Html.DropDownListFor(m => Model.PendingMatches.First().TeamRed, Model.SelectTeams, "", new { @class = "select-team"})
-        </div>    
-        <div class="form-input" id="blue-player-1">
-            @Html.LabelFor(m => Model.SelectTeams, "Red Team")
-            @Html.DropDownListFor(m => Model.PendingMatches.First().TeamRed, Model.SelectTeams, "", new { @class = "select-team"})
-        </div>    
-        <div class="form-input" id="blue-player-2">
-            @Html.LabelFor(m => Model.SelectTeams, "Red Team")
-            @Html.DropDownListFor(m => Model.PendingMatches.First().TeamRed, Model.SelectTeams, "", new { @class = "select-team"})
-        </div>    
-        <div class="form-button">
-            <input type="submit" value="Begin battle" class="submit-button" id="create-match-button"/>
-        </div>    
-    </fieldset>
-}
-<fieldset>
-    <legend>Upcoming Kung FoosBall Fights</legend>
-    @if (Model.PendingMatches.Any())
-    {
-        <table id="list-of-pending-matches">
-            <thead>
-                <tr>
-                    <td>Red Team</td>
-                    <td>Red Team members</td>
-                    <td>Blue Team</td>
-                    <td>Blue Team members</td>
-                    <td>Match created</td>
-                    @if(Request.IsAuthenticated)
-                    {
-                        <td></td>
-                    }
-                    <td></td>
-                </tr>        
-            </thead>
-            <tbody>
-                @foreach (var match in Model.PendingMatches)
-                {
-                    <tr>
-                        <td class="team-red">@match.TeamRed.Name</td> 
-                        <td class="team-red-players">
-                            @foreach (var player in match.TeamRed.Members)
-                            {
-                                <span class="team-member round-border-small">@player.Name</span> 
-                            }
-                        </td>
-                        <td class="team-blue">@match.TeamBlue.Name</td>
-                        <td class="team-blue-players">
-                            @foreach (var player in match.TeamBlue.Members)
-                            {
-                                <span class="team-member round-border-small">@player.Name</span> 
-                            }
-                        </td>
-                        <td class="registered">@match.CreationTime.ToLocalTime().ToString("dd MMM yyyy HH:mm:ss")</td>
-                        @if(Request.IsAuthenticated)
-                        {
-                            <td><a class="delete-match-button" href="#" title="Delete match, no fun!">Delete match</a></td>
-                        }
-                        <td class="conclude-match">@Html.ActionLink("Match result", "SaveMatchResult", new {id = match.Id})</td>
-                    </tr>
-                }   
-            </tbody>
-        </table>
-    } else
-    {
-        <text>- none - </text>
-    }
-</fieldset>
-
-<fieldset>
-    <legend>A list of Legendary Kung FoosBall Fights</legend>
-    @if (Model.PlayedMatches.Any())
-    {
-        <table id="list-of-played-matches">
-            <thead>
-                <tr>
-                    <td>Red Team</td>
-                    <td>Red Team members</td>
-                    <td>Blue Team</td>
-                    <td>Blue Team members</td>
-                    <td>Red Score</td>
-                    <td>Blue Score</td>
-                    <td>Played at</td>
-                    @if(Request.IsAuthenticated)
-                    {
-                        <td></td>
-                    }
-                </tr>        
-            </thead>
-            <tbody>
-                @foreach (var match in Model.PlayedMatches)
-                {
-                    <tr>
-                        <td class="team-red" title="@foreach (var player in match.TeamRed.Members) { @player.Name }">@match.TeamRed.Name</td>
-                        <td class="team-red-players">
-                            @foreach (var player in match.TeamRed.Members)
-                            {
-                                <span class="team-member round-border-small">@player.Name</span> 
-                            }
-                        </td>
-                        <td class="team-blue">@match.TeamBlue.Name</td>
-                        <td class="team-blue-players">
-                            @foreach (var player in match.TeamBlue.Members)
-                            {
-                                <span class="team-member round-border-small">@player.Name</span> 
-                            }
-                        </td>
-                        <td class="number team-red-score">@match.TeamRedScore</td>
-                        <td class="number team-blue-score">@match.TeamBlueScore</td>
-                        <td class="time">@match.GameOverTime.ToLocalTime().ToString("dd MMM yyyy HH:mm:ss")</td>
-                        @if(Request.IsAuthenticated)
-                        {
-                            <td>@Html.ActionLink("Delete match","Delete", new { id = match.Id })</td>   
-                        }
-                    </tr>
-                }   
-            </tbody>
-        </table>
-    } else
-    {
-        <text>- none - </text>
-    }    
-</fieldset>
-        *@

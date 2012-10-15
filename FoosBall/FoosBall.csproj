@@ -132,6 +132,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\FoosBall.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\Match.js" />
+    <Content Include="Scripts\Players.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
