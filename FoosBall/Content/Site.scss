@@ -31,6 +31,11 @@ $std-border: 2px solid #6A6;
 	@include round-border-small;
 }
 	
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
 body {
     background-color: $dark;
     color: $dark;
@@ -65,7 +70,7 @@ a:active {
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
     color: #000;
-    margin: 20px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 h1 {
@@ -196,11 +201,12 @@ nav, #menucontainer {
 		text-decoration: none;}
 }
 #main {
-    padding: 10px 10px 5px 10px;
     background-color: #fff;
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
     border-radius: 4px 0 0 0;
+	min-height: 280px;
+    padding: 10px 10px 5px 10px;
 }
 .button {
 	background: $light;
@@ -235,8 +241,27 @@ nav, #menucontainer {
 		margin-right: 10px;}
 }
 
+/* Home/Version View
+----------------------------------------------------------*/
+#version-feature-list {
+	padding-left: 20px;
+	list-style: none;
+	& li {
+		color: black;
+		font-size: .85em;
+		ul li a {
+			text-decoration: underline;
+		}
+	}
+
+
+}
 /* Player View
 ----------------------------------------------------------*/
+.select-player {
+	margin: 2px;		
+}
+
 a.open-create-player {
 	display: block;
 	&.close {
@@ -250,7 +275,10 @@ a.open-create-player {
 		border: 2px solid #6a6;
 		padding: 1px 3px 1px 1px;
 		margin: 2px;
-		@include round-border-small;}
+		@include round-border-small;
+		.name {
+		clear: left;
+		float: left;}}
 	.department {
 		display: none;
 		padding-left: 5px;}
@@ -401,14 +429,14 @@ fieldset {
 	}
 }
 select {
-    border: 1px solid #ccc;
-    padding: 2px;
-    margin: 2px;
+    border: 2px solid #ccc;
     color: #444;
+    font-size: 1.1em;
 	height: 35px;
-    width: 100%; }
+    margin: 0px;
+    padding: 2px;
+    width: 98%; }
 .submit-button {
-
     margin: 5px 0px; }
 .form-input {
     width:90%; 
@@ -430,23 +458,6 @@ input[type="submit"], input[type="button"], button {
 	width: 100%;
 	margin: 1px 0px;
 }
-/* TABLE
-----------------------------------------------------------*/
-table {
-    border: solid 1px #d6dbe1;
-    border-collapse: collapse;
-	td {
-		border: solid 1px #d6dbe1; 
-		padding: 2px 5px 3px 5px;
-		.number {
-			text-align: right;}
-	}
-	th {
-		border: solid 1px #d6dbe1;
-		font-weight: bold;
-		padding: 6px 5px;
-		text-align: left; }
-}
 /* MISC  
 ----------------------------------------------------------*/
 .clearfix:after {
@@ -463,10 +474,27 @@ html[xmlns] .clearfix {
 * html .clearfix {
 	height: 1%;
 }
-.error, #validation-message {
-    width:90%; 
+.error, .validation-message {
+	background: rgba(255, 0, 0, .3);
+	border: 2px solid red;
+    color: black; 
+	display: none;
+	margin: 10px 0 0 0;  
+	padding: 2px;
+	width:98%; 
+	&.small {
+		font-size: .85em;
+		margin: 2px 0 0 0;  
+	}
+	&.show {
+		display: block;
+	}
+}
+.field-validation-error {
+	font-size: .85em;
+	width:90%; 
 	margin: 0px auto;  
-    color: Red; }
+	color: Red;	}
 
 
 /* Example of media query 

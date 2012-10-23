@@ -11,10 +11,16 @@ namespace FoosBall.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to the FoosBall Tournament App!!";
-            ViewBag.Message = WelcomeMessages.GetMessage();
+            ViewBag.Message = HomeModels.GetMessage();
 
             return View();
         }
+        
+        public ActionResult Version()
+        {
+            ViewBag.Message = HomeModels.GetVersion();
+            return View();
+        }
+        
     }
 }

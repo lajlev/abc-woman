@@ -31,16 +31,11 @@
                     <option @sel value="@department">@department</option>
                 }
             </select>
-        </div>
-        <div class="form-input">
-            @Html.LabelFor(m => Model.ImageUrl, "Image url")
-            <br/>
-            @Html.TextBox("ImageUrl", "", new { placeholder = "Players picture (url)" })
-        </div>
+        </div
         <div class="form-button">
             <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
         </div>
-        <div id="validation-message"></div>
+        <div class="validation-message"></div>
         <a class="toggle-edit-player close" href="/Players">Close</a>
     </fieldset> 
 }

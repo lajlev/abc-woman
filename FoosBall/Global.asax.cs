@@ -42,5 +42,6 @@ namespace FoosBall
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
+
     }
 }

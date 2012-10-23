@@ -31,32 +31,6 @@ namespace FoosBall.Controllers
         }
 
         //
-        // POST: /Player/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection formValues)
-        {
-            // only try to insert new player if name is not null or empty
-            if (String.IsNullOrEmpty(formValues.GetValue("Name").AttemptedValue) == false)
-            {
-                var playerCollection = _dbh.GetCollection<Player>("Players");
-
-                var player = new Player
-                                    {
-                                        Name = formValues.GetValue("Name").AttemptedValue,
-                                        Email = formValues.GetValue("Email").AttemptedValue,
-                                        Department = formValues.GetValue("Department").AttemptedValue,
-                                        ImageUrl = formValues.GetValue("ImageUrl").AttemptedValue,
-                                        Won = 0,
-                                        Lost = 0,
-                                        Played = 0
-                                    };
-
-                playerCollection.Save(player);
-            }
-            return RedirectToAction("Index");
-        }
-
-        //
         // GET: /Player/Delete/{id}
         [HttpGet]
         public ActionResult Delete(string id)
@@ -96,7 +70,6 @@ namespace FoosBall.Controllers
             player.Name = formValues.GetValue("Name").AttemptedValue;
             player.Email = formValues.GetValue("Email").AttemptedValue;
             player.Department = formValues.GetValue("Department").AttemptedValue;
-            player.ImageUrl = formValues.GetValue("ImageUrl").AttemptedValue;
             
             playerCollection.Save(player);
 

@@ -145,7 +145,6 @@ namespace FoosBall.Controllers
                     losers.Add(match.RedPlayer2);
                 }
 
-                var abc = "abc";
 //                // Get the rating modifier
 //                var ratingModifier = Rating.GetRatingModifier(winner.GetTeamRating(), loser.GetTeamRating());
 //                // Propagate the rating and stats to the team members of both teams

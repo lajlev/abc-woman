@@ -1,7 +1,10 @@
-﻿@if(Request.IsAuthenticated) {
-    <text>Welcome <strong>@User.Identity.Name</strong>!
+﻿@using FoosBall.Models
+@if (Session["IsLoggedIn"].ToString().ToLower() == "true")
+{
+    var user = (Player)Session["User"];
+    <text>Welcome <strong>@user.Name</strong>!
     [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
 }
 else {
-    @:[ @Html.ActionLink("Admin Log On", "LogOn", "Account") ]
+    @Html.ActionLink("Log on", "LogOn", "Account") <text>or</text> @Html.ActionLink("Sign up", "Register", "Account")
 }

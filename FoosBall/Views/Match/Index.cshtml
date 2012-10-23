@@ -16,7 +16,7 @@
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
-                        <option value="@player.Value">@player.Text</option>
+                        <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>
@@ -25,7 +25,7 @@
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
-                        <option value="@player.Value">@player.Text</option>
+                        <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>
@@ -40,7 +40,7 @@
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
-                        <option value="@player.Value">@player.Text</option>
+                        <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>
@@ -49,13 +49,13 @@
                     <option></option>
                     @foreach (var player in Model.SelectPlayers)
                     {
-                        <option value="@player.Value">@player.Text</option>
+                        <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>
         </div>
 
-        <div id="validation-message"></div>
+        <div class="validation-message"></div>
             <div class="form-button">
                 <input type="submit" value="Create match" class="submit-button button" id="create-match-button"/>
             </div>   

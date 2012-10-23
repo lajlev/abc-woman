@@ -1,3 +1,9 @@
-﻿@{
+﻿@using FoosBall.Models
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    if (Session["IsLoggedIn"] == null)
+    {
+        Session["IsLoggedIn"] = "false";
+    } 
 }

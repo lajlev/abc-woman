@@ -37,6 +37,7 @@
         </section>
         <footer>
             @RenderSection("Footer", false)
+            @Html.ActionLink("version "+@FoosBall.Models.HomeModels.GetVersion(), "Version", "Home")
         </footer>
     </div>
     @RenderSection("Javascript", false)

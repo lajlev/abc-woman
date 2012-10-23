@@ -1,69 +1,80 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
+using FoosBall.Main;
 using FoosBall.Models;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 
 namespace FoosBall.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-
-        //
-        // GET: /Account/LogOn
-
-        public ActionResult LogOn()
+        private readonly MongoDatabase _dbh;
+        public AccountController()
         {
-            return View();
+            _dbh = Db.GetDataBaseHandle();
         }
 
         //
-        // POST: /Account/LogOn
-
-        [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        // GET: /Account/LogOn
+        public ActionResult LogOn()
         {
-            if (ModelState.IsValid)
+            if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
             {
-                if (Membership.ValidateUser(model.UserName, model.Password))
+                var authCookie = System.Web.HttpContext.Current.Request.Cookies.Get("FoosBallAuth");
+                if (authCookie != null && authCookie["Token"] != null)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
+                    var autoLoginCollection = _dbh.GetCollection<AutoLogin>("AutoLogin");
+                    var autoLoginToken = autoLoginCollection.FindOne(Query.EQ("Token", authCookie["Token"]));
+                    var playerCollection = _dbh.GetCollection<Player>("Players");
+                    var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email));
+                    
+                    if (Login(player))
                     {
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                else
+
+            } 
+            return View(new LogOnModel());
+        }
+
+        //
+        // POST: /Account/LogOn
+        [HttpPost]
+        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        {
+            var playerCollection = _dbh.GetCollection<Player>("Players");
+            var player = playerCollection.FindOne(Query.EQ("Email", model.Email));
+            
+            // If the email matches a player then check password
+            if (player != null)
+            {
+                // If password is valid
+                if (player.Password == Md5.CalculateMd5(model.Password))
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    if (Login(player)) {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            model.LogOnError = true;
             return View(model);
         }
 
         //
         // GET: /Account/LogOff
-
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
-
+            Session.Clear();
+            RemoveRememberMeCookie();
             return RedirectToAction("Index", "Home");
         }
 
         //
         // GET: /Account/Register
-
         public ActionResult Register()
         {
             return View();
@@ -71,123 +82,66 @@ namespace FoosBall.Controllers
 
         //
         // POST: /Account/Register
-
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(Player model)
         {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+            var email = model.Email;
+            var name = model.Name;
+            var password = Md5.CalculateMd5(model.Password);
+            var department = model.Department;
 
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
-                }
-            }
+            var playerCollection = _dbh.GetCollection<Player>("Players");
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            var newPlayer = new Player
+                                {
+                                    Email = email,
+                                    Name = name,
+                                    Password = password,
+                                    Department = department,
+                                    Won = 0,
+                                    Lost = 0,
+                                    Played = 0
+                                };
+
+            playerCollection.Save(newPlayer);
+
+            Login(newPlayer);
+            return RedirectToAction("Index", "Home");
         }
 
         //
-        // GET: /Account/ChangePassword
-
-        [Authorize]
-        public ActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/ChangePassword
-
-        [Authorize]
+        // POST: /Account/PlayerEmailExists
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
+        public JsonResult PlayerEmailExists(string email)
         {
-            if (ModelState.IsValid)
+            var query = Query.EQ("Email", email);
+            var playerCollection = _dbh.GetCollection<Player>("Players");
+            var player = playerCollection.FindOne(query);
+
+            if (player != null)
             {
-
-                // ChangePassword will throw an exception rather
-                // than return false in certain failure scenarios.
-                bool changePasswordSucceeded;
-                try
-                {
-                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
-                }
-                catch (Exception)
-                {
-                    changePasswordSucceeded = false;
-                }
-
-                if (changePasswordSucceeded)
-                {
-                    return RedirectToAction("ChangePasswordSuccess");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
+                return Json(new ExistsResponse { Exists = true, Name = player.Name, Email = player.Email });
             }
+    
+            return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
         }
 
         //
-        // GET: /Account/ChangePasswordSuccess
-
-        public ActionResult ChangePasswordSuccess()
+        // POST: /Account/PlayerNameExists
+        [HttpPost]
+        public JsonResult PlayerNameExists(string name)
         {
-            return View();
-        }
+            var playerCollection = _dbh.GetCollection<Player>("Players");
+            var query = Query.EQ("Name", name);
+            var player = playerCollection.FindOne(query);
 
-        #region Status Codes
-        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
-        {
-            // See http://go.microsoft.com/fwlink/?LinkID=177550 for
-            // a full list of status codes.
-            switch (createStatus)
+            if (player != null)
             {
-                case MembershipCreateStatus.DuplicateUserName:
-                    return "User name already exists. Please enter a different user name.";
-
-                case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
-
-                case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
-
-                case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                return Json(new ExistsResponse { Exists = true, Name = player.Name, Email = player.Email });
             }
+
+            return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
         }
-        #endregion
     }
 }
