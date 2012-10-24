@@ -83,8 +83,8 @@ namespace FoosBall.Controllers
                                         CreationTime = new BsonDateTime(DateTime.Now),
                                         GameOverTime = new BsonDateTime(DateTime.MinValue),
                                     };
-            
-                matchCollection.Save(newMatch);
+
+                   matchCollection.Save(newMatch);
             }
             
             return RedirectToAction("Index");
@@ -95,11 +95,18 @@ namespace FoosBall.Controllers
         [HttpGet]
         public ActionResult SaveMatchResult(string id)
         {
+
+            var currentUser = (Player)Session["User"];
             var matchCollection = _dbh.GetCollection<Match>("Matches");
             var query = Query.EQ("_id", BsonObjectId.Create(id));
             var match = matchCollection.FindOne(query);
 
-            return View("SaveMatchResult", match);
+            if (currentUser != null && match.ContainsPlayer(currentUser.Id))
+            {
+                return View("SaveMatchResult", match);
+            }
+
+            return RedirectToAction("Index");
         }
 
         // 
@@ -121,56 +128,61 @@ namespace FoosBall.Controllers
             
                 var query = Query.EQ("_id", ObjectId.Parse(formValues.GetValue("match-id").AttemptedValue));
                 var match = matchCollection.FindOne(query);
-                
-                // Get the scores
-                var intRedScore = System.Int32.Parse(redScore, NumberStyles.Float);
-                var intBlueScore = System.Int32.Parse(blueScore, NumberStyles.Float);
-                // Get average rating of the team
-                var redAvgRating  = match.RedPlayer2.Name == null ? match.RedPlayer1.Rating : (match.RedPlayer1.Rating + match.RedPlayer2.Rating)/2;
-                var blueAvgRating = match.BluePlayer2.Name == null ? match.BluePlayer1.Rating : (match.BluePlayer1.Rating + match.BluePlayer2.Rating)/2;
-                // Determine the winners and the losers
-                var winners = new List<Player>();
-                var losers = new List<Player>();
-                if (match.RedScore > match.BlueScore)
-                {
-                    winners.Add(match.RedPlayer1);
-                    winners.Add(match.RedPlayer2);
-                    losers.Add(match.BluePlayer1);
-                    losers.Add(match.BluePlayer1);
-                } else
-                {
-                    winners.Add(match.BluePlayer1);
-                    winners.Add(match.BluePlayer1);
-                    losers.Add(match.RedPlayer1);
-                    losers.Add(match.RedPlayer2);
-                }
 
-//                // Get the rating modifier
-//                var ratingModifier = Rating.GetRatingModifier(winner.GetTeamRating(), loser.GetTeamRating());
-//                // Propagate the rating and stats to the team members of both teams
-//                foreach (var member in winners)
-//                {
-//                    member.Rating += ratingModifier;
-//                    member.Won++;
-//                    member.Played++;
-//                    playerCollection.Save(member);
-//                }
-//            
-//                foreach (var member in losers)
-//                {
-//                    member.Rating -= ratingModifier;
-//                    member.Lost++;
-//                    member.Played++;
-//                    playerCollection.Save(member);
-//                }
-//            
-//                // Update match score/time stats
-//                match.RedScore = System.Convert.ToInt32(formValues.GetValue("team-red-score").AttemptedValue, 10);
-//                match.BlueScore = System.Convert.ToInt32(formValues.GetValue("team-blue-score").AttemptedValue, 10);
-//                match.GameOverTime = new BsonDateTime(DateTime.Now);
-//                
-//                // Save the data to Db
-//                matchCollection.Save(match);
+                var currentUser = (Player)Session["User"];
+                if (currentUser != null && match.ContainsPlayer(currentUser.Id))
+                {
+                    // Get the scores
+                    var intRedScore = System.Int32.Parse(redScore, NumberStyles.Float);
+                    var intBlueScore = System.Int32.Parse(blueScore, NumberStyles.Float);
+                    match.RedScore = intRedScore;
+                    match.BlueScore = intBlueScore;
+
+                    // Determine the winners and the losers
+                    var winners = new Team();
+                    var losers = new Team();
+                    if (match.RedScore > match.BlueScore)
+                    {
+                        winners.MatchTeam.Add(match.RedPlayer1);
+                        winners.MatchTeam.Add(match.RedPlayer2);
+                        losers.MatchTeam.Add(match.BluePlayer1);
+                        losers.MatchTeam.Add(match.BluePlayer2);
+                    } else
+                    {
+                        winners.MatchTeam.Add(match.BluePlayer1);
+                        winners.MatchTeam.Add(match.BluePlayer2);
+                        losers.MatchTeam.Add(match.RedPlayer1);
+                        losers.MatchTeam.Add(match.RedPlayer2);
+                    }
+                   
+                    // Get the rating modifier
+                    var ratingModifier = Rating.GetRatingModifier(winners.GetTeamRating(), losers.GetTeamRating());
+                    
+                    // Propagate the rating and stats to the team members of both teams
+                    foreach (var member in winners.MatchTeam)
+                    {
+                        member.Rating += ratingModifier;
+                        member.Won++;
+                        member.Played++;
+                        playerCollection.Save(member);
+                    }
+                 
+                    foreach (var member in losers.MatchTeam)
+                    {
+                        member.Rating -= ratingModifier;
+                        member.Lost++;
+                        member.Played++;
+                        playerCollection.Save(member);
+                    }
+                 
+                    // Update match score/time stats
+                    match.RedScore = intRedScore;
+                    match.BlueScore = intBlueScore;
+                    match.GameOverTime = new BsonDateTime(DateTime.Now);
+                    
+                    // Save the data to Db
+                    matchCollection.Save(match);
+                }
             }
             
             return RedirectToAction("Index");

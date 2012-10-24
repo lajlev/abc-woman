@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using FoosBall.Main;
 using FoosBall.Models;
 using MongoDB.Driver;
@@ -27,13 +25,18 @@ namespace FoosBall.Controllers
                 {
                     var autoLoginCollection = _dbh.GetCollection<AutoLogin>("AutoLogin");
                     var autoLoginToken = autoLoginCollection.FindOne(Query.EQ("Token", authCookie["Token"]));
-                    var playerCollection = _dbh.GetCollection<Player>("Players");
-                    var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email));
-                    
-                    if (Login(player))
+
+                    if (autoLoginToken != null) 
                     {
-                        return RedirectToAction("Index", "Home");
+                        var playerCollection = _dbh.GetCollection<Player>("Players");
+                        var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email.ToLower()));
+                    
+                        if (Login(player))
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
+
                 }
 
             } 
@@ -46,7 +49,7 @@ namespace FoosBall.Controllers
         public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
             var playerCollection = _dbh.GetCollection<Player>("Players");
-            var player = playerCollection.FindOne(Query.EQ("Email", model.Email));
+            var player = playerCollection.FindOne(Query.EQ("Email", model.Email.ToLower()));
             
             // If the email matches a player then check password
             if (player != null)
@@ -85,7 +88,7 @@ namespace FoosBall.Controllers
         [HttpPost]
         public ActionResult Register(Player model)
         {
-            var email = model.Email;
+            var email = model.Email.ToLower();
             var name = model.Name;
             var password = Md5.CalculateMd5(model.Password);
             var department = model.Department;
@@ -114,7 +117,7 @@ namespace FoosBall.Controllers
         [HttpPost]
         public JsonResult PlayerEmailExists(string email)
         {
-            var query = Query.EQ("Email", email);
+            var query = Query.EQ("Email", email.ToLower());
             var playerCollection = _dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(query);
 

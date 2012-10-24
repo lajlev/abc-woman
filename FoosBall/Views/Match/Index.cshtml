@@ -1,69 +1,73 @@
 ﻿@model FoosBall.Models.MatchModel
 @{
     ViewBag.Title = "Register a FoosBall Fight!";
+    var currentUser = (FoosBall.Models.Player)HttpContext.Current.Session["User"]; 
 }
 @section Javascript{ <script async src="/Scripts/Match.js"></script> }
 
 
-@using (Html.BeginForm("Create", "Match", FormMethod.Post, new { id = "create-match" }))
+@if (currentUser != null)
 {
-    <fieldset id="create-match-form">
-        <legend>Create a FoosBall Match</legend>
-        <div id="team-red-players" class="team">
-            <div class="team-name">Red Team</div>
-            <div class="form-input">
-                <select class="select-player" id="red-player-1" name="red-player-1">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
+    using (Html.BeginForm("Create", "Match", FormMethod.Post, new {id = "create-match"}))
+    {
+        <fieldset id="create-match-form">
+            <legend>Create a FoosBall Match</legend>
+            <div id="team-red-players" class="team">
+                <div class="team-name">Red Team</div>
+                <div class="form-input">
+                    <select class="select-player" id="red-player-1" name="red-player-1">
+                        <option></option>
+                        @foreach (var player in Model.SelectPlayers)
+                        {
+                            <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-input">
+                    <select class="select-player" id="red-player-2" name="red-player-2">
+                        <option></option>
+                        @foreach (var player in Model.SelectPlayers)
+                        {
+                            <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        }
+                    </select>
+                </div>
             </div>
-            <div class="form-input">
-                <select class="select-player" id="red-player-2" name="red-player-2">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
+       
+            <div class="vs">VS</div>
+       
+            <div id="team-blue-players" class="team">
+                <div class="team-name">Blue Team</div>
+                <div class="form-input">
+                    <select class="select-player" id="blue-player-1" name="blue-player-1">
+                        <option></option>
+                        @foreach (var player in Model.SelectPlayers)
+                        {
+                            <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-input">
+                    <select class="select-player" id="blue-player-2" name="blue-player-2">
+                        <option></option>
+                        @foreach (var player in Model.SelectPlayers)
+                        {
+                            <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        }
+                    </select>
+                </div>
             </div>
-        </div>
-        
-        <div class="vs">VS</div>
-        
-        <div id="team-blue-players" class="team">
-            <div class="team-name">Blue Team</div>
-            <div class="form-input">
-                <select class="select-player" id="blue-player-1" name="blue-player-1">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
-            </div>
-            <div class="form-input">
-                <select class="select-player" id="blue-player-2" name="blue-player-2">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
-            </div>
-        </div>
 
-        <div class="validation-message"></div>
+            <div class="validation-message"></div>
             <div class="form-button">
                 <input type="submit" value="Create match" class="submit-button button" id="create-match-button"/>
             </div>   
-    </fieldset>
-    
+        </fieldset>
+
+    }
 }
 
-<fieldset id="list-of-matches">
+<fieldset class="list-of-matches">
     <legend>Upcoming FoosBall Fights</legend>
 
     @if (Model.PendingMatches.Any())
@@ -76,17 +80,17 @@
                     @match.RedPlayer1.Name
                     @if (!match.RedPlayer2.Name.IsEmpty()) 
                     {
-                        <br/><text>&</text><br/>@match.RedPlayer2.Name
+                        <text>+</text> @match.RedPlayer2.Name
                     }
                 </div>
             
-                <div id="vs">
-                    @if (Request.IsAuthenticated)
+                <div class="vs">
+                    @if (currentUser != null && match.ContainsPlayer(currentUser.Id) )
                     {
                         <span id="resolve-match" class="editor-icon"><a title="Resolve the match" href="Match/SaveMatchResult/@match.Id"><img src="Content/images/checkmark_32x32.png" alt="A delete button"/></a></span>
                     }
-                    <br/>VS<br/>
-                    @if (Request.IsAuthenticated)
+                    vs
+                    @if (currentUser != null && match.ContainsPlayer(currentUser.Id) )
                     {
                         <span id="delete-match" class="editor-icon"><a title="Delete the match" href="Match/Delete/@match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
                     }
@@ -95,7 +99,7 @@
                 <div id="team-blue-players" class="team">
                     @match.BluePlayer1.Name 
                     @if (match.BluePlayer2.Name.IsEmpty() == false) {
-                        <br/><text>&</text><br/>@match.BluePlayer2.Name
+                        <text>+</text> @match.BluePlayer2.Name
                     }
                 </div>
             </div>
@@ -107,22 +111,32 @@
     }
 </fieldset>
 
-<fieldset>
+<fieldset class="list-of-matches">
     <legend>Legendary FoosBall Fights</legend>
     @if (Model.PlayedMatches.Any())
     {
         foreach (var match in Model.PlayedMatches)
         {
             <div id="@match.Id" class="match clearfix">
-                <span class="red-team">@match.RedPlayer1.Name & @match.RedPlayer2.Name</span>
-                <span class="vs">vs.</span>
-                <span class="blue-team">@match.BluePlayer1.Name & @match.BluePlayer2.Name</span>
-
-                @if (Request.IsAuthenticated && User.Identity.Name == "admin")
-                {
-                    <span class="editor-icon"><a href="Players/Delete/@match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
-                }
+                
+                <div id="team-red-players" class="team">
+                    @match.RedPlayer1.Name
+                    @if (!match.RedPlayer2.Name.IsEmpty()) 
+                    {
+                        <br/><text>+</text><br/>@match.RedPlayer2.Name
+                    }
+                </div>
+            
+                <div id="vs"><br/>VS<br/></div>
+        
+                <div id="team-blue-players" class="team">
+                    @match.BluePlayer1.Name 
+                    @if (match.BluePlayer2.Name.IsEmpty() == false) {
+                        <br/><text>+</text><br/>@match.BluePlayer2.Name
+                    }
+                </div>
             </div>
+
         }
     }
     else

@@ -3,6 +3,7 @@
 @model FoosBall.Models.PlayerModel
 @{
     ViewBag.Title = "FoosBall Players";
+    var currentUser = (Player)HttpContext.Current.Session["User"];
 }
 @section Javascript{ <script async src="/Scripts/Players.js"></script> }
 
@@ -24,7 +25,7 @@
                 <span class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</span>
                 <span class="rating" title="Rating: @player.Rating.ToString("F")">@player.Rating.ToString("F0")</span>
                 <span class="won-lost-played" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</span>
-                @if (Request.IsAuthenticated && User.Identity.Name == "admin")
+                @if (currentUser != null && currentUser.Id == player.Id)
                 {
                     <span id="edit-player" class="editor-icon"><a href="Players/Edit/@player.Id"><img src="Content/images/edit_32x32.png"/></a></span>
                     <span id="delete-player" class="editor-icon"><a href="Players/Delete/@player.Id"><img src="Content/images/delete_32x32.png"/></a></span>

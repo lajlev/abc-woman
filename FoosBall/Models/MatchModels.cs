@@ -14,6 +14,11 @@ namespace FoosBall.Models
         public Player BluePlayer2 { get; set; }
         public BsonDateTime CreationTime { get; set; }
         public BsonDateTime GameOverTime { get; set; }
+        
+        public bool ContainsPlayer(BsonObjectId id)
+        {
+            return id == RedPlayer1.Id || id == RedPlayer2.Id || id == BluePlayer1.Id || id == BluePlayer2.Id;
+        }
     }
 
     public class MatchModel
@@ -21,5 +26,28 @@ namespace FoosBall.Models
         public IEnumerable<Match> PlayedMatches { get; set; }
         public IEnumerable<Match> PendingMatches { get; set; }
         public IEnumerable<SelectListItem> SelectPlayers { get; set; }
+    }
+
+    public class Team
+    {
+        public Team()
+        {
+            MatchTeam = new List<Player>();
+        }
+
+        public List<Player> MatchTeam { get; set; }
+        
+        public double GetTeamRating()
+        {
+            var i = 0;
+            double rating = 0;
+
+            foreach (var player in MatchTeam)
+            {
+                i++;
+                rating += player.Rating;
+            }
+            return (rating / i);
+        }
     }
 }   

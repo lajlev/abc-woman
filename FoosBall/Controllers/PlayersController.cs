@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using MongoDB.Driver.Linq;
 using MongoDB.Bson;
 using FoosBall.Models;
 using FoosBall.Main;
@@ -27,7 +22,7 @@ namespace FoosBall.Controllers
         {
             var playerCollection = _dbh.GetCollection<Player>("Players").FindAll().SetSortOrder(SortBy.Descending("Rating")).ToList();
 
-            return View(model: new PlayerModel() { Players = playerCollection });
+            return View(new PlayerModel { Players = playerCollection });
         }
 
         //
@@ -35,11 +30,15 @@ namespace FoosBall.Controllers
         [HttpGet]
         public ActionResult Delete(string id)
         {
+            var currentUser = (Player)Session["User"];
             var playerCollection = _dbh.GetCollection<Player>("Players");
 
-            var query = Query.EQ("_id", ObjectId.Parse(id));
-            var safeModeResult = playerCollection.Remove(query);
-            
+            if (currentUser != null && currentUser.Id == id)
+            {
+                var query = Query.EQ("_id", ObjectId.Parse(id));
+                if (playerCollection != null) playerCollection.Remove(query);
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -48,12 +47,18 @@ namespace FoosBall.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
+            var currentUser = (Player)Session["User"];
             var playerCollection = _dbh.GetCollection<Player>("Players");
 
             var query = Query.EQ("_id", ObjectId.Parse(id));
             var player = playerCollection.FindOne(query);
 
-            return View(player);
+            if (currentUser != null && currentUser.Id == player.Id)
+            {
+                return View(player);
+            }
+
+            return RedirectToAction("Index");
         }
 
         //

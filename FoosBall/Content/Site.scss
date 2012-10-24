@@ -108,14 +108,17 @@ page width. Or, you can specify an exact pixel width. */
 
 footer, #footer {
     background-color: #fff;
-    color: $darkest;
-    padding: 0px 10px 3px 10px;
-    text-align: left;
-    margin: 0;
-    font-size: 12px;
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
+    color: $darkest;
+    font-size: 12px;
+    margin: 0;
+    padding: 0px 10px 3px 10px;
+    text-align: left;
+	a, a:link, a:visited {
+		text-decoration: underline;
+	}
 }
 
 /* TAB MENU   
@@ -340,7 +343,7 @@ a.open-create-player {
 #create-match-button {
 	margin-top: 10px;
 }
-#list-of-matches{
+.list-of-matches{
 	.match {
 		border: 2px solid #6A6;
 		padding: 1px;

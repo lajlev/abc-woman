@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -67,10 +65,10 @@ namespace FoosBall.Controllers
 
         // Calculates a MD5 hash from the given string. 
         // (By using the default encoding)
-        public static string CalculateMd5(string Input)
+        public static string CalculateMd5(string input)
         {
             // That's just a shortcut to the base method
-            return CalculateMd5(Input, System.Text.Encoding.Default);
+            return CalculateMd5(input, Encoding.Default);
         }
 
         // COOKIE DOUGH
