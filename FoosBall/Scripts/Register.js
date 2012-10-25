@@ -1,4 +1,6 @@
 ﻿jQuery(window).load(function() {
+    $('#Email').focus();
+
     // Form Validation
     var $inputFields = $('input');
     var emailRegExp = /^.+@trustpilot\.com$/i;

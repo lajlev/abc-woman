@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace FoosBall.Models
 {
@@ -14,7 +12,7 @@ namespace FoosBall.Models
             return Version;
         }
 
-        private static readonly List<string> Messages = new List<string>()
+        private static readonly List<string> Messages = new List<string>
                                              {
                                                  "Welcome to the FoosBall Tournament App!!",
                                                  "Are you ready to score The Goal Of The Year?",

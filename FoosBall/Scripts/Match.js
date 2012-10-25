@@ -23,9 +23,9 @@
     $playerSelects.on('focus', function (e) {
         $thisSelect = $(e.target);
         valueBeforeChange = $thisSelect.find(':selected').val();
-    }).on('change', function (e) {
+    }).on('change', function () {
         var $thisOption = $thisSelect.find(':selected');
-        var $allOptions = $('.select-player > option').not(':first-child');
+
         // reset options 
         $.each($('option[value="' + valueBeforeChange + '"]').not($thisOption), function (idx, element) {
             $(element).removeAttr('disabled');

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MongoDB.Bson;
 
 namespace FoosBall.Models
 {
@@ -15,6 +14,7 @@ namespace FoosBall.Models
         public string Name { get; set; }
         public string Password { get; set; }
         public string Department { get; set; }
+        public string Position { get; set; }
        
         public int Won { get; set; }
         public int Lost { get; set; }

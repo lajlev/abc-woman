@@ -128,6 +128,36 @@
     <Content Include="Content\images\delete_32x32.png" />
     <Content Include="Content\images\delete_button_15x15.png" />
     <Content Include="Content\images\edit_32x32.png" />
+    <Content Include="Content\images\numbers\Number-0-blue.png" />
+    <Content Include="Content\images\numbers\Number-0-green.png" />
+    <Content Include="Content\images\numbers\Number-0-red.png" />
+    <Content Include="Content\images\numbers\Number-1-blue.png" />
+    <Content Include="Content\images\numbers\Number-1-green.png" />
+    <Content Include="Content\images\numbers\Number-1-red.png" />
+    <Content Include="Content\images\numbers\Number-2-blue.png" />
+    <Content Include="Content\images\numbers\Number-2-green.png" />
+    <Content Include="Content\images\numbers\Number-2-red.png" />
+    <Content Include="Content\images\numbers\Number-3-blue.png" />
+    <Content Include="Content\images\numbers\Number-3-green.png" />
+    <Content Include="Content\images\numbers\Number-3-red.png" />
+    <Content Include="Content\images\numbers\Number-4-blue.png" />
+    <Content Include="Content\images\numbers\Number-4-green.png" />
+    <Content Include="Content\images\numbers\Number-4-red.png" />
+    <Content Include="Content\images\numbers\Number-5-blue.png" />
+    <Content Include="Content\images\numbers\Number-5-green.png" />
+    <Content Include="Content\images\numbers\Number-5-red.png" />
+    <Content Include="Content\images\numbers\Number-6-blue.png" />
+    <Content Include="Content\images\numbers\Number-6-green.png" />
+    <Content Include="Content\images\numbers\Number-6-red.png" />
+    <Content Include="Content\images\numbers\Number-7-blue.png" />
+    <Content Include="Content\images\numbers\Number-7-green.png" />
+    <Content Include="Content\images\numbers\Number-7-red.png" />
+    <Content Include="Content\images\numbers\Number-8-blue.png" />
+    <Content Include="Content\images\numbers\Number-8-green.png" />
+    <Content Include="Content\images\numbers\Number-8-red.png" />
+    <Content Include="Content\images\numbers\Number-9-blue.png" />
+    <Content Include="Content\images\numbers\Number-9-green.png" />
+    <Content Include="Content\images\numbers\Number-9-red.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>

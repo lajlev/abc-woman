@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using FoosBall.Models;
 using FoosBall.Main;
@@ -47,9 +46,9 @@ namespace FoosBall.Controllers
 
             // Create content for the <select> 
             var selectItems = playerCollection
-                .Select(team => new SelectListItem() { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
                 .ToList();
-            return View(model: new MatchModel { PlayedMatches = playedMatches, PendingMatches = pendingMatches, SelectPlayers = selectItems });
+            return View(new MatchModel { PlayedMatches = playedMatches, PendingMatches = pendingMatches, SelectPlayers = selectItems });
             
         }
         
@@ -74,7 +73,7 @@ namespace FoosBall.Controllers
                 var bluePlayer1 = (String.IsNullOrEmpty(b1)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b1)));
                 var bluePlayer2 = (String.IsNullOrEmpty(b2)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b2)));
 
-                var newMatch = new Match()
+                var newMatch = new Match
                                     {
                                         RedPlayer1 = redPlayer1,
                                         RedPlayer2 = redPlayer2,
@@ -133,8 +132,8 @@ namespace FoosBall.Controllers
                 if (currentUser != null && match.ContainsPlayer(currentUser.Id))
                 {
                     // Get the scores
-                    var intRedScore = System.Int32.Parse(redScore, NumberStyles.Float);
-                    var intBlueScore = System.Int32.Parse(blueScore, NumberStyles.Float);
+                    var intRedScore = Int32.Parse(redScore, NumberStyles.Float);
+                    var intBlueScore = Int32.Parse(blueScore, NumberStyles.Float);
                     match.RedScore = intRedScore;
                     match.BlueScore = intBlueScore;
 
@@ -161,18 +160,22 @@ namespace FoosBall.Controllers
                     // Propagate the rating and stats to the team members of both teams
                     foreach (var member in winners.MatchTeam)
                     {
-                        member.Rating += ratingModifier;
-                        member.Won++;
-                        member.Played++;
-                        playerCollection.Save(member);
+                        if (member.Id != null) {
+                            member.Rating += ratingModifier;
+                            member.Won++;
+                            member.Played++;
+                            playerCollection.Save(member);
+                        }
                     }
                  
                     foreach (var member in losers.MatchTeam)
                     {
-                        member.Rating -= ratingModifier;
-                        member.Lost++;
-                        member.Played++;
-                        playerCollection.Save(member);
+                        if (member.Id != null) {
+                            member.Rating -= ratingModifier;
+                            member.Lost++;
+                            member.Played++;
+                            playerCollection.Save(member);
+                        }
                     }
                  
                     // Update match score/time stats

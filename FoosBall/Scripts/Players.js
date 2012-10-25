@@ -4,24 +4,6 @@
      * Player View
      */
 
-    var $playerForm = $('#create-player-form');
-    var $wrapper = $('#create-player-form .wrapper');
-
-    $('.open-create-player').on('click', function (e) {
-        e.preventDefault();
-        $playerForm.toggle();
-        $wrapper.slideToggle(500, function () {
-            $name[0].focus();
-        });
-    });
-    
-    $('.close-create-player').on('click', function (e) {
-        e.preventDefault();
-        $wrapper.slideToggle(500, function () {
-            $playerForm.toggle();
-        });
-    });
-
     // Validation
     $('#create-player-button').on('click', function (e) {
         // Trim and get name and email for validation

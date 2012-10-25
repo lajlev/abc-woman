@@ -205,6 +205,9 @@ nav, #menucontainer {
 
 /* Home/Version View
 ----------------------------------------------------------*/
+#welcome-message {
+  text-align: center; }
+
 #version-feature-list {
   padding-left: 20px;
   list-style: none; }
@@ -218,12 +221,6 @@ nav, #menucontainer {
 ----------------------------------------------------------*/
 .select-player {
   margin: 2px; }
-
-a.open-create-player {
-  display: block; }
-  a.open-create-player.close {
-    margin: 0;
-    float: right; }
 
 #list-of-players .player {
   border: 2px solid #6a6;
@@ -284,7 +281,6 @@ a.open-create-player {
 .vs {
   float: left;
   width: 10%;
-  margin-top: 45px;
   text-align: center;
   vertical-align: middle; }
 
@@ -402,7 +398,7 @@ select {
   margin: 10px auto 5px auto;
   width: 90%; }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
   border: 2px solid #ccc;
   color: #444;
   font-size: 1.1em;

@@ -1,7 +1,5 @@
 ﻿jQuery(window).load(function() {
-    // Form Validation
-    var $inputFields = $('input');
-    var emailRegExp = /^.+@trustpilot\.com$/i;
+    $('#Email').focus();
 
     $('form[name="logon-player"]').on('submit', function (e) {
         var email = $('#Email').val();
