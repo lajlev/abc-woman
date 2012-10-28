@@ -31,7 +31,6 @@
 
         // Validate emails field
         if (emailRegExp.test(email) === true) {
-            log("email contains an '@'");
             displayErrorMessage("You must submit a valid trustpilot email.", "Email");
         } else {
             emailExists(email);

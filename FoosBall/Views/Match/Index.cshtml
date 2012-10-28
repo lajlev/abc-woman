@@ -84,10 +84,7 @@
     <legend>Legendary FoosBall Fights</legend>
     @if (Model.PlayedMatches.Any())
     {
-        foreach (var match in Model.PlayedMatches)
-        {
-            Html.RenderPartial("_LegendaryMatchTable", new FoosBall.Models.MatchTable { Matches = Model.PlayedMatches, User = currentUser });
-        }
+        Html.RenderPartial("_LegendaryMatchTable", new FoosBall.Models.MatchTable { Matches = Model.PlayedMatches, User = currentUser });
     }
     else
     {

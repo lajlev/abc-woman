@@ -39,29 +39,77 @@
 	line-height: 1.0em;
 }
 table {
-	border: 1px solid $light;
 	border-collapse: collapse;
 	width: 100%; 
+	thead { 
+		border-color: $darkest;
+		border-bottom: 2px solid $darkest;
+	}
 	th,td {
 		border: 1px solid $dark;
-		letter-spacing: -1px;
-		padding: 1px 3px;
+		letter-spacing: 0px;
+		padding: 3px 3px 1px 3px;
 		text-align: left;
+		&.names, &.nicknames, &.score { text-align: center;}
+		&.rating, &.played, &.created { text-align: right;}
 	}
 	td {
 		font-weight: normal;
+		&.score, &.played, &.created { white-space: nowrap;}
 	}
 	th {
 		color: $darkest;
-		&.red { color: red; }
-		&.blue { color: blue; }
+		font-size: .8em;
+		text-align: center;
+		&.red { color: #C00; }
+		&.blue { color: #00A; }
 	}
-	.names, .odds { display: none; }
-	.nicknames { text-align: center;}
-	.rating { text-align: right; } 
+	.winner { 
+		color: black;
+		font-weight: bold;
+	}
+}
+
+#pending-matches {
+	.names, .odds, .created { display: none;}
 	.delete, .resolve {
-		img { 
-			height: 15px; }
+		div {
+			width: 15px;
+			margin: 0px auto;}
+	}
+}
+
+#legendary-matches {
+	.names, .created { display: none;}
+	.red.winner { color: #C00;}
+	.blue.winner { color: #00A;}
+}
+
+/* @MediaQuery: iPad / Tablet */
+@media only screen and (min-width : 470px) { 
+	table {
+		th { font-size: 1.0em;}
+	}
+}
+/* @MediaQuery: iPad / Tablet */
+@media only screen and (min-width : 750px) { 
+	table {
+		thead {
+			border-color: $darkest;}
+		th,td {
+			border: 2px solid $dark;
+		}
+	}
+	.list-of-matches{
+		line-height: 1.0em;
+	}
+	#pending-matches {
+		.nicknames { display: none;}
+		.names, .created { display: table-cell;}
+	}
+	#legendary-matches {
+		.nicknames { display: none; }
+		.names, .created { display: table-cell; }
 	}
 }
 
