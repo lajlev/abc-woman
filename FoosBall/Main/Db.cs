@@ -24,13 +24,16 @@ namespace FoosBall.Main
                 // if not then try local server
                 try
                 {
-                    Server.Ping();
+                    if (Server != null) Server.Ping();
                 }
                 catch
                 {
                     ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;
-                    DatabaseName = MongoUrl.Create(ConnectionString).DatabaseName;
-                    Server = MongoServer.Create(ConnectionString);
+                    if (ConnectionString != null)
+                    {
+                        DatabaseName = MongoUrl.Create(ConnectionString).DatabaseName;
+                        Server = MongoServer.Create(ConnectionString);
+                    }
                 }
                 Dbh = Server.GetDatabase(DatabaseName);   
             } else {

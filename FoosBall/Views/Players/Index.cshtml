@@ -6,6 +6,7 @@
     var currentUser = (Player)HttpContext.Current.Session["User"];
 }
 @section Javascript{ <script async src="/Scripts/Players.js"></script> }
+@section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
 
 <fieldset id="list-of-players">
     <legend>List of FoosBall players</legend>
@@ -15,20 +16,15 @@
         foreach (var player in Model.Players)
         {
             <div id="@player.Id" class="player clearfix">
-                <span class="name">@player.Name</span>
-                @{
-                    if (!@player.Department.IsEmpty())
-                    {
-                        <span class="department">(@player.Department)</span>
-                    }
-                }
-                <span class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</span>
-                <span class="rating" title="Rating: @player.Rating.ToString("F")">@player.Rating.ToString("F0")</span>
-                <span class="won-lost-played" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</span>
+                <div class="name ellipsis-1" title="Nickname: @player.NickName">@player.Name <span class="nickname">(@player.NickName)</span></div>
+                <div class="department">(@player.Department)</div>
+                <div class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</div>
+                <div class="rating" title="Rating: @player.Rating.ToString("F")"><span class="rating-prefix">Rating: </span>@player.Rating.ToString("F0")</div>
+                <div class="won-lost-played" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</div>
                 @if (currentUser != null && currentUser.Id == player.Id)
                 {
-                    <span id="edit-player" class="editor-icon"><a href="Players/Edit/@player.Id"><img src="Content/images/edit_32x32.png"/></a></span>
-                    <span id="delete-player" class="editor-icon"><a href="Players/Delete/@player.Id"><img src="Content/images/delete_32x32.png"/></a></span>
+                    <span id="edit-player" class="editor-icon" title="Edit player"><a href="Players/Edit/@player.Id"><img src="Content/images/edit_32x32.png"/></a></span>
+                    <span id="delete-player" class="editor-icon" title="Delete player"><a href="Players/Delete/@player.Id"><img src="Content/images/delete_32x32.png"/></a></span>
                 }
             </div>
         }

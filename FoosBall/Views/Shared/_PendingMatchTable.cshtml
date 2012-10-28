@@ -1,0 +1,140 @@
+﻿@model FoosBall.Models.MatchTable
+
+ <table>
+    <thead>
+        <tr>
+            <th class="delete">
+                @*<img src="Content/images/delete_32x32.png" alt="A delete button"/>*@
+            </th>
+            <th class="red names">Players</th>
+            <th class="red nicknames">Players</th>
+            <th class="red rating">Rating</th>
+            <th class="odds">Odds</th>
+            <th class="blue names">Players</th>
+            <th class="blue nicknames">Players</th>
+            <th class="blue rating">Rating</th>
+            <th class="resolve">
+                @*<img src="Content/images/checkmark_32x32.png" alt="A delete button"/>*@
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var match in Model.Matches)
+        {
+            <tr>
+                <td class="delete">
+                    @if (Model.User != null && match.ContainsPlayer(Model.User.Id))
+                    {
+                        <a title="Delete the match" href="/Match/Delete/@match.Id">
+                            <img src="Content/images/delete_32x32.png" alt="A delete button"/>
+                        </a>
+                    }
+                </td>
+
+                @* Red Teams names and Nicknames *@
+                <td class="red names">
+                    @match.RedPlayer1.Name
+                    @if (match.CountRedPlayers() == 2) 
+                    {
+                        <text> & </text>@match.RedPlayer2.Name
+                    }
+                </td>
+                <td class="red nicknames">
+                    @match.RedPlayer1.NickName
+                    @if (match.CountRedPlayers() == 2)
+                    {
+                        <text> & </text>@match.RedPlayer2.NickName
+                    }
+                </td>
+
+                @* Red Teams Rating *@
+                <td class="red rating">@match.GetRedTeamRating().ToString("F0")</td>
+                
+                <td class="odds">1.1</td>               
+
+                @* Blue Teams names and Nicknames *@
+                <td class="blue names">
+                    <span class="name">@match.BluePlayer1.Name
+                    @if (match.CountBluePlayers() == 2)
+                    {
+                        <text> & </text>@match.BluePlayer2.Name
+                    }
+                </td>
+                <td class="blue nicknames">
+                    @match.BluePlayer1.NickName
+                    @if (match.CountBluePlayers() == 2) 
+                    {
+                        <text> & </text>@match.BluePlayer2.NickName
+                    }
+                </td>
+
+                @* Blue Teams Rating *@
+                <td class="red rating">@match.GetBlueTeamRating().ToString("F0")</td>
+
+                <td class="resolve">
+                    @if (Model.User != null && match.ContainsPlayer(Model.User.Id))
+                    {
+                        <a title="Resolve the match" href="Match/SaveMatchResult/@match.Id">
+                            <img src="Content/images/checkmark_32x32.png" alt="A delete button"/>
+                        </a>
+                    }
+                </td>
+            </tr>
+       }
+    </tbody>
+</table>
+
+
+
+
+
+@*
+<div id="@Model.Match.Id" class="match clearfix">
+    <div id="team-red-players" class="team">
+        <span class="name">@Model.Match.RedPlayer1.Name</span><span class="nickname">@Model.Match.RedPlayer1.NickName</span>
+        @if (!Model.Match.RedPlayer2.Name.IsEmpty()) 
+        {
+            <span class="and">&</span> <span class="name">@Model.Match.RedPlayer2.Name</span><span class="nickname">@Model.Match.RedPlayer2.NickName</span>
+        }
+        
+        @if (@Model.Match.GameOverTime != DateTime.MinValue)
+        {
+            <div class="red-score">
+                @Model.Match.RedScore
+            </div>
+        }   
+
+    </div>
+
+
+
+    <div class="vs">
+        @if (Model.User != null && Model.Match.ContainsPlayer(Model.User.Id))
+        {
+            <span id="resolve-match" class="editor-icon"><a title="Resolve the match" href="Match/SaveMatchResult/@Model.Match.Id"><img src="Content/images/checkmark_32x32.png" alt="A delete button"/></a></span>
+        }
+        vs
+        @if (Model.User != null && Model.Match.ContainsPlayer(Model.User.Id))
+        {
+            <span id="delete-match" class="editor-icon"><a title="Delete the match" href="/Match/Delete/@Model.Match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
+        }
+    </div>
+        
+    <div id="team-blue-players" class="team">
+        <span class="name">@Model.Match.BluePlayer1.Name</span><span class="nickname">@Model.Match.BluePlayer1.NickName</span>
+        @if (Model.Match.BluePlayer2.Name.IsEmpty() == false)
+        {
+            <span class="and">&</span> <span class="name">@Model.Match.BluePlayer2.Name</span><span class="nickname">@Model.Match.BluePlayer2.NickName</span>
+        }
+        
+        @if (@Model.Match.GameOverTime != DateTime.MinValue)
+        {
+            <div class="blue-score">
+                @Model.Match.BlueScore
+            </div>
+        }
+    </div>
+</div>
+    
+*@

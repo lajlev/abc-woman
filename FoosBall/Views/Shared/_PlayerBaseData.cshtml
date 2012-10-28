@@ -1,0 +1,42 @@
+﻿@using FoosBall.Models
+@model FoosBall.Models.Player
+
+@using (Html.BeginForm("Register","Account",FormMethod.Post,new{name = "register-player"})) 
+{
+    @Html.LabelFor(m => Model.Email, "Email")
+    @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email"})<text>@@trustpilot.com</text>
+
+    @Html.LabelFor(m => Model.Name)
+    @Html.TextBoxFor(m => Model.Name, new { placeholder = "Name"})
+
+    @Html.LabelFor(m => Model.NickName, "Nickname (max 5 char.)")
+    @Html.TextBoxFor(m => Model.NickName, new { placeholder = "Nickname", maxlength = "5"})
+
+    @Html.LabelFor(m => FoosBallLists.Positions[0], "Preferred position")
+    
+    <select name="Position">
+        @foreach (var position in FoosBallLists.Positions)
+        {
+            var selected = Model != null ? Model.Position : "None";
+            // set default option
+            var sel = (position == selected) ? Html.Raw("selected") : Html.Raw("");
+            <option @sel value="@position">@position</option>
+        }
+    </select>
+
+    <div class="editor-label">@Html.LabelFor(m => FoosBallLists.Departments[0], "Department")</div>
+    <div class="editor-field">
+        <select name="Department">
+            @foreach (var department in FoosBallLists.Departments)
+            {
+                var selected = Model != null ? Model.Department : "Technology";
+                // set default option
+                var sel = (department == selected) ? Html.Raw("selected") : Html.Raw("");
+                <option @sel value="@department">@department</option>
+            }
+        </select>
+    </div>
+
+    <div class="editor-label">@Html.LabelFor(m => Model.Password)</div>
+    <div class="editor-field">@Html.PasswordFor(m => Model.Password, new { placeholder = "Password"})</div>
+}

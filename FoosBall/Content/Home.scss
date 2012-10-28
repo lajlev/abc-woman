@@ -1,0 +1,16 @@
+/* Home/Version View
+----------------------------------------------------------*/
+#welcome-message {
+	text-align: center;
+}
+#version-feature-list {
+	padding-left: 20px;
+	list-style: none;
+	& li {
+		color: black;
+		font-size: .85em;
+		ul li a {
+			text-decoration: underline;
+		}
+	}
+}

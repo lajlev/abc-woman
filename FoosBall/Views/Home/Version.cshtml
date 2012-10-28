@@ -1,6 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Version";
+    ViewBag.Title = "App version " + ViewBag.Message;
 }
+
+@section Css{ <link rel="stylesheet" href="/Content/Home.css"/>}
 
 <h4>FoosBall v@(ViewBag.Message) contains the following features:</h4>
 
@@ -35,10 +37,10 @@
             <li>A Looserboard / Crawl of Shame</li>
             <li>Custom sorting of lists and tables</li>
             <li>A Feature to change account info</li>
+            <li>Odds on fights / Expected outcome</li>
             <li>More statistics on games and players</li>
             <li>A Tournament setup feature</li>
             <li>Image upload feature</li>
-            <li></li>
         </ul>
     </li>
 </ul>

@@ -1,0 +1,110 @@
+/* Match View
+----------------------------------------------------------*/
+#create-match-form .select-player {
+  margin: 2px 0px; }
+
+.team {
+  margin-top: 3px;
+  width: 45%;
+  text-align: center; }
+
+.red-team, #team-red-players {
+  float: left;
+  clear: left; }
+
+.vs {
+  float: left;
+  margin-top: 3px;
+  text-align: center;
+  vertical-align: middle;
+  width: 10%; }
+
+.blue-team, #team-blue-players, .blue-score {
+  float: right;
+  clear: right; }
+
+#create-match-button {
+  margin-top: 10px; }
+
+.list-of-matches {
+  font-size: .9em;
+  line-height: 1.0em; }
+
+table {
+  border: 1px solid #c3ffc3;
+  border-collapse: collapse;
+  width: 100%; }
+  table th, table td {
+    border: 1px solid #007000;
+    letter-spacing: -1px;
+    padding: 1px 3px;
+    text-align: left; }
+  table td {
+    font-weight: normal; }
+  table th {
+    color: #223322; }
+    table th.red {
+      color: red; }
+    table th.blue {
+      color: blue; }
+  table .names, table .odds {
+    display: none; }
+  table .nicknames {
+    text-align: center; }
+  table .rating {
+    text-align: right; }
+  table .delete img, table .resolve img {
+    height: 15px; }
+
+/* SaveMatchResult View
+----------------------------------------------------------*/
+.team-score {
+  height: 40px;
+  width: 40px!important;
+  font-size: 22px;
+  text-align: center;
+  margin: 5px auto 0px auto; }
+
+.score-slider {
+  -webkit-appearance: slider-vertical;
+  height: 100px;
+  width: 30px;
+  margin: 10px auto 15px auto; }
+
+#team-titles {
+  clear: both;
+  width: 99%; }
+  #team-titles .team {
+    font-size: 0.85em;
+    font-weight: lighter;
+    text-align: center; }
+    #team-titles .team label {
+      font-size: 1.5em;
+      font-weight: bold; }
+  #team-titles #team-red-players {
+    float: left; }
+  #team-titles #team-blue-players {
+    float: right; }
+
+#team-results {
+  clear: both; }
+
+#fighting-team-red {
+  float: left;
+  width: 45%; }
+  #fighting-team-red input, #fighting-team-red label {
+    float: left;
+    clear: both;
+    margin-left: 20px; }
+
+#fighting-team-blue {
+  float: right;
+  width: 45%; }
+  #fighting-team-blue input, #fighting-team-blue label {
+    float: right;
+    clear: both;
+    margin-right: 20px; }
+
+#back-to-match {
+  text-decoration: underline; }
+

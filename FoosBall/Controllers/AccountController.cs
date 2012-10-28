@@ -33,20 +33,21 @@ namespace FoosBall.Controllers
                     
                         if (Login(player))
                         {
-                            return RedirectToAction("Index", "Home");
+                            // Go back to where we were before logging in
+                            return Redirect(Request.UrlReferrer.ToString());
                         }
                     }
 
                 }
 
-            } 
-            return View(new LogOnModel());
+            }
+            return View(new LogOnModel { RefUrl = Request.UrlReferrer.ToString() });
         }
 
         //
         // POST: /Account/LogOn
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogOn(LogOnModel model)
         {
             var playerCollection = _dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(Query.EQ("Email", model.Email.ToLower()));
@@ -58,7 +59,8 @@ namespace FoosBall.Controllers
                 if (player.Password == Md5.CalculateMd5(model.Password))
                 {
                     if (Login(player)) {
-                        return RedirectToAction("Index", "Home");
+                        // Go back to where we were before logging in
+                        return Redirect(model.RefUrl);
                     }
                 }
             }
@@ -73,7 +75,8 @@ namespace FoosBall.Controllers
         {
             Session.Clear();
             RemoveRememberMeCookie();
-            return RedirectToAction("Index", "Home");
+            // Go back to where we were before logging in
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         //
@@ -92,6 +95,8 @@ namespace FoosBall.Controllers
             var name = model.Name;
             var password = Md5.CalculateMd5(model.Password);
             var department = model.Department;
+            var position = model.Position;
+            var nickname = model.NickName;
 
             var playerCollection = _dbh.GetCollection<Player>("Players");
 
@@ -101,6 +106,8 @@ namespace FoosBall.Controllers
                                     Name = name,
                                     Password = password,
                                     Department = department,
+                                    NickName = nickname,
+                                    Position = position,
                                     Won = 0,
                                     Lost = 0,
                                     Played = 0

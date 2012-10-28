@@ -1,36 +1,7 @@
-/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
-to use a different color start by replacing all instances of
-#5c87b2 with your new color.
-----------------------------------------------------------*/
-/* Variable declarations */
+// Import mixins
+@import "_mixins";
 
-$light: #C3FFC3;
-$dark: #007000;
-$darkest: #232;
-$std-border: 2px solid #6A6;
-
-/* mixin declarations */
-@mixin round-border-small { 
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-}
-@mixin round-border-medium { 
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-}
-@mixin round-border-large {
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-}
-@mixin std-round-border {
-	border: 2px solid #6A6;
-	@include round-border-small;
-}
-	
+/* The box-model */
 * { 
 	-moz-box-sizing: border-box; 
 	-webkit-box-sizing: border-box; 
@@ -100,7 +71,7 @@ h5, h6 {
 
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
-.page {
+#page {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -123,7 +94,7 @@ footer, #footer {
 
 /* TAB MENU   
 ----------------------------------------------------------*/
-ul#menu {
+#main-menu {
     border-bottom: 1px $dark solid;
     line-height: 1.6em;
     margin: 0;
@@ -154,12 +125,12 @@ ul#menu {
 
 }
 
-ul#menu li a:active {
+#main-menu li a:active {
     background-color: #a6e2a6;
     text-decoration: none;
 }
 
-ul#menu li.selected a {
+#main-menu li.selected a {
     background-color: #fff;
     color: #000;
 }
@@ -170,9 +141,6 @@ textarea {
 
 /* --- FoosBall --- v v v 
 /* ---------------------------------------------------------*/
-.round-border-small { -moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;}
-.round-border-medium { -moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
-.round-border-large { -moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius: 15px;}
 header, footer, nav, section {
     display: block;
 }
@@ -187,7 +155,7 @@ nav, #menucontainer {
     border: none;
     text-shadow: 1px 1px 2px #111;
 }
-#logindisplay {
+#login-display {
     font-size: 0.85em;
     display: block;
     text-align: right;
@@ -244,161 +212,6 @@ nav, #menucontainer {
 		margin-right: 10px;}
 }
 
-/* Home/Version View
-----------------------------------------------------------*/
-#welcome-message {
-	text-align: center;
-}
-#version-feature-list {
-	padding-left: 20px;
-	list-style: none;
-	& li {
-		color: black;
-		font-size: .85em;
-		ul li a {
-			text-decoration: underline;
-		}
-	}
-}
-/* Player View
-----------------------------------------------------------*/
-.select-player {
-	margin: 2px;		
-}
-#list-of-players {
-	.player {
-		border: 2px solid #6a6;
-		padding: 1px 3px 1px 1px;
-		margin: 2px;
-		@include round-border-small;
-		.name {
-		clear: left;
-		float: left;}}
-	.department {
-		display: none;
-		padding-left: 5px;}
-	.legend{
-		float: right;
-		clear: right;
-		font-size: 10px;
-		letter-spacing: 0px;}
-	.rating {
-		float: left;
-		clear: left;}
-	.won-lost-played {
-		float: right;
-		clear: right;}
-}
-#create-player-form {
-	display: none;
-	& .wrapper {
-		display: none;
-	}
-}
-
-/* Match View
-----------------------------------------------------------*/
-.team {
-	margin-top: 3px;
-	width: 45%; 
-	text-align: center;
-}
-.red-team {
-	float: left; 
-	clear: left;
-}
-.blue-team {
-	float: right; 
-	clear: right;
-}
-#team-red-players {
-	float: left; 
-	clear: left;
-}
-#vs {
-		float: left;}
-#team-blue-players {
-	float: right; 
-	clear: right;
-}
-.vs { 
-	float: left;
-	width: 10%;
-	text-align: center;
-	vertical-align: middle;
-}
-.team-name {
-	text-align: center;
-	width: 99%; 
-}
-#create-match-button {
-	margin-top: 10px;
-}
-.list-of-matches{
-	.match {
-		border: 2px solid #6A6;
-		padding: 1px;
-		margin: 2px;
-		@include round-border-small; }
-}
-div#delete-match {
-	margin: 0;
-}
-
-/* SaveMatchResult View
-----------------------------------------------------------*/
-.team-score {
-	height: 40px;
-	width: 40px!important;
-	font-size: 22px;
-	text-align: center;
-	margin: 5px auto 0px auto;
-}
-.score-slider {
-	-webkit-appearance: slider-vertical;
-	height: 100px;
-	width: 30px;
-	margin: 10px auto 15px auto;
-}
-#team-titles {
-	clear: both;
-	width: 99%;
-	.team {
-		font-size: 0.85em;
-		font-weight: lighter;
-		text-align: center;
-		label {
-			font-size: 1.5em;
-			font-weight: bold;
-		}
-	}
-	#team-red-players {
-		float: left;}
-	#team-blue-players {	
-		float: right;}
-}
-#team-results {
-	clear: both;
-}
-#fighting-team-red {
-	float: left;
-	width: 45%;
-	input, label {
-		float: left;
-		clear: both;
-		margin-left: 20px;}
-}
-#fighting-team-blue {
-	float: right;
-	width: 45%;
-	input, label {
-		float: right;
-		clear: both;
-		margin-right: 20px;}
-}
-#back-to-match {
-	text-decoration: underline;
-}
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 fieldset {
@@ -412,7 +225,7 @@ fieldset {
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 		border-radius: 5px; 
-	    font-size: 1.1em;
+	    font-size: 1.0em;
 		font-weight: bold;
 		margin: 0px auto; 
 		padding: 3px 5px;
@@ -446,7 +259,11 @@ input[type="text"], input[type="password"], input[type="email"] {
     font-size: 1.1em;
 	height: 1.5em;
     padding: 2px;
-    width: 98%; }
+    width: 98%;
+
+	&#Email {
+	width: 60px!important;}
+}
 input[type="submit"], input[type="button"], button {
 	font-size: 1.0em;
 	width: 100%;
@@ -454,6 +271,15 @@ input[type="submit"], input[type="button"], button {
 }
 /* MISC  
 ----------------------------------------------------------*/
+.hide { display: none; }
+
+.ellipsis-1 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;	
+}
+
+/* Clear-fix */
 .clearfix:after {
 	clear: both;
 	content: ".";
@@ -468,6 +294,8 @@ html[xmlns] .clearfix {
 * html .clearfix {
 	height: 1%;
 }
+
+/* Errors and Validation */ 
 .error, .validation-message {
 	background: rgba(255, 0, 0, .3);
 	border: 2px solid red;
@@ -489,10 +317,3 @@ html[xmlns] .clearfix {
 	width:90%; 
 	margin: 0px auto;  
 	color: Red;	}
-
-
-/* Example of media query 
-   
-@media only screen and (min-width : 960px) { }
-   
-   */	

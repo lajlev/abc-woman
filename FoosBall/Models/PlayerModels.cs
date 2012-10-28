@@ -12,6 +12,7 @@ namespace FoosBall.Models
         }
         public string Email { get; set; }
         public string Name { get; set; }
+        public string NickName { get; set; }
         public string Password { get; set; }
         public string Department { get; set; }
         public string Position { get; set; }

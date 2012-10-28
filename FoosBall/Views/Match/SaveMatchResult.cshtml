@@ -4,12 +4,12 @@
     ViewBag.Title = "Save Match Result";
 }
 @section Javascript{ <script async src="/Scripts/Match.js"></script> }
+@section Css{ <link rel="stylesheet" href="/Content/Match.css"/>}
 
 @using (Html.BeginForm("SaveMatchResult", "Match", FormMethod.Post))
 {   <input type="hidden" name="match-id" value="@Model.Id"/>
     <fieldset>
         <legend>Match Result</legend>
-        <div class="validation-message"></div>
 
         <div id="team-titles">
             <div id="team-red-players" class="team">
@@ -45,10 +45,13 @@
             </div>
         </div>
     
+
         <div class="form-button">
             <input type="submit" value="Submit score" class="submit-button button" id="submit-score-button"/>
         </div>
         
+        <div class="validation-message small All"></div>
+
         <div class="form-button">
             @Html.ActionLink("Go back","Index",null,new{@id="back-to-match"})
         </div>

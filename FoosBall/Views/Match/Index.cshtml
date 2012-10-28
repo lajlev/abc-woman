@@ -1,10 +1,10 @@
-﻿@model FoosBall.Models.MatchModel
+﻿@model FoosBall.Models.MatchModel   
 @{
     ViewBag.Title = "Register a FoosBall Fight!";
     var currentUser = (FoosBall.Models.Player)HttpContext.Current.Session["User"]; 
 }
 @section Javascript{ <script async src="/Scripts/Match.js"></script> }
-
+@section Css{ <link rel="stylesheet" href="/Content/Match.css"/>}
 
 @if (currentUser != null)
 {
@@ -72,38 +72,7 @@
 
     @if (Model.PendingMatches.Any())
     {
-        foreach (var match in Model.PendingMatches)
-        {
-            <div id="@match.Id" class="match clearfix">
-                
-                <div id="team-red-players" class="team">
-                    @match.RedPlayer1.Name
-                    @if (!match.RedPlayer2.Name.IsEmpty()) 
-                    {
-                        <text>+</text> @match.RedPlayer2.Name
-                    }
-                </div>
-            
-                <div class="vs">
-                    @if (currentUser != null && match.ContainsPlayer(currentUser.Id) )
-                    {
-                        <span id="resolve-match" class="editor-icon"><a title="Resolve the match" href="Match/SaveMatchResult/@match.Id"><img src="Content/images/checkmark_32x32.png" alt="A delete button"/></a></span>
-                    }
-                    vs
-                    @if (currentUser != null && match.ContainsPlayer(currentUser.Id) )
-                    {
-                        <span id="delete-match" class="editor-icon"><a title="Delete the match" href="Match/Delete/@match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
-                    }
-                </div>
-        
-                <div id="team-blue-players" class="team">
-                    @match.BluePlayer1.Name 
-                    @if (match.BluePlayer2.Name.IsEmpty() == false) {
-                        <text>+</text> @match.BluePlayer2.Name
-                    }
-                </div>
-            </div>
-        }
+        Html.RenderPartial("_PendingMatchTable", new FoosBall.Models.MatchTable { Matches = Model.PendingMatches, User = currentUser });
     }
     else
     {
@@ -117,26 +86,7 @@
     {
         foreach (var match in Model.PlayedMatches)
         {
-            <div id="@match.Id" class="match clearfix">
-                
-                <div id="team-red-players" class="team">
-                    @match.RedPlayer1.Name
-                    @if (!match.RedPlayer2.Name.IsEmpty()) 
-                    {
-                        <br/><text>+</text><br/>@match.RedPlayer2.Name
-                    }
-                </div>
-            
-                <div id="vs"><br/>vs<br/></div>
-        
-                <div id="team-blue-players" class="team">
-                    @match.BluePlayer1.Name 
-                    @if (match.BluePlayer2.Name.IsEmpty() == false) {
-                        <br/><text>+</text><br/>@match.BluePlayer2.Name
-                    }
-                </div>
-            </div>
-
+            Html.RenderPartial("_LegendaryMatchTable", new FoosBall.Models.MatchTable { Matches = Model.PlayedMatches, User = currentUser });
         }
     }
     else

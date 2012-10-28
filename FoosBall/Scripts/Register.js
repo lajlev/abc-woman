@@ -3,11 +3,16 @@
 
     // Form Validation
     var $inputFields = $('input');
-    var emailRegExp = /^.+@trustpilot\.com$/i;
+    var emailRegExp = /[@]/i;
 
     $('form[name="register-player"]').on('submit', function (e) {
         var email = $('#Email').val(),
             missingFields = false;
+
+        $.each($('input[type="text"], input[type="email"]'), function () {
+            var $this = $(this);
+            $this.val($this.val().trim());
+        });
 
         // Validate that all fields are filled out
         $.each($inputFields, function () {
@@ -25,8 +30,9 @@
         }
 
         // Validate emails field
-        if (emailRegExp.test(email) === false) {
-            displayErrorMessage("You must submit a trustpilot email.", "Email");
+        if (emailRegExp.test(email) === true) {
+            log("email contains an '@'");
+            displayErrorMessage("You must submit a valid trustpilot email.", "Email");
         } else {
             emailExists(email);
         }
@@ -44,6 +50,13 @@
         // Check if errors occured 
         if (errorState()) {
             e.preventDefault();
+        }
+    });
+
+    $('#Email').on('change', function() {
+        var $nickName = $('#NickName');
+        if (!!$nickName.val() === false) {
+            $nickName.val($(this).val().substr(0,5));
         }
     });
 });

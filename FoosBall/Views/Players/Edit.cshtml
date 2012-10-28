@@ -4,34 +4,17 @@
     Layout = "~/Views/Shared/_SimpleLayout.cshtml";
     ViewBag.Title = "Edit Player Data";
 }
+@section Javascript{ <script async src="/Scripts/Register.js"></script> }
+@section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
 
 @using (Html.BeginForm("Edit", "Players", FormMethod.Post, new { id = "edit-player"}))
 {
     <input type="hidden" name="player-id" value="@Model.Id"/>
     <fieldset id="edit-player-form">
         <legend>Create a FoosBall player</legend>
-        <div class="form-input">
-            @Html.LabelFor(m => Model.Name, "Name")
-            <br/>
-            @Html.TextBox("Name", Model.Name, new { placeholder = "Players name" })
-        </div>
-        <div class="form-input">
-            @Html.LabelFor(m => Model.Email, "Email")
-            <br/>
-            @Html.TextBox("Email", Model.Email, new { placeholder = "Players email" })
-        </div>
-        <div class="form-input">
-            @Html.LabelFor(m => Model.Department, "Department")
-            <br/>
-            <select name="Department">
-                @foreach (var department in Company.Departments)
-                {
-                    // set default option
-                    var sel = (department == Model.Department) ? Html.Raw("selected") : Html.Raw("");
-                    <option @sel value="@department">@department</option>
-                }
-            </select>
-        </div>
+        
+        @Html.Partial("_PlayerBaseData", Model)
+
         <div class="form-button">
             <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
         </div>

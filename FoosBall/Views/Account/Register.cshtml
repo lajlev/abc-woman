@@ -1,41 +1,23 @@
-﻿@using FoosBall.Models
-@model FoosBall.Models.Player
+﻿@model FoosBall.Models.Player
 
 @{
     ViewBag.Title = "Register";
 }
 
 @section Javascript{ <script async src="/Scripts/Register.js"></script> }
+@section Css{ <link rel="stylesheet" href="/Content/Account.css"/>}
 
 
 <h3>Register a New User</h3>
 <p>All fields are required to register.</p>
 
-@using (Html.BeginForm("Register","Account",FormMethod.Post,new{name = "register-player"})) {
+@using (Html.BeginForm("Register","Account",FormMethod.Post,new{name = "register-player"})) 
+{
     <div>
         <fieldset>
             <legend>New user info</legend>
-
-            <div class="editor-label">@Html.LabelFor(m => Model.Email, "Email (trustpilot email)")</div>
-            <div class="editor-field">@Html.TextBoxFor(m => Model.Email, new { placeholder = "Email address"})</div>
-
-            <div class="editor-label">@Html.LabelFor(m => Model.Name)</div>
-            <div class="editor-field">@Html.TextBoxFor(m => Model.Name, new { placeholder = "Name"})</div>
-
-            <div class="editor-label">@Html.LabelFor(m => Company.Departments[0], "Department")</div>
-            <div class="editor-field">
-                <select name="Department">
-                    @foreach (var department in Company.Departments)
-                    {
-                        // set default option
-                        var sel = (department == "Technology") ? Html.Raw("selected") : Html.Raw("");
-                        <option @sel value="@department">@department</option>
-                    }
-                </select>
-            </div>
-
-            <div class="editor-label">@Html.LabelFor(m => Model.Password)</div>
-            <div class="editor-field">@Html.PasswordFor(m => Model.Password, new { placeholder = "Password"})</div>
+            
+            @Html.Partial("_PlayerBaseData", Model)
 
             <div class="editor-label">@Html.LabelFor(m => Model.Password, "Repeat password")</div>
             <div class="editor-field">@Html.Password("Password", null, new { placeholder = "Repeat password", @id = "Repeat-Password"})</div>

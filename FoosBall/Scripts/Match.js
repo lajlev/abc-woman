@@ -37,10 +37,34 @@
             });
         }
     });
+
+    $('.delete').on('click', 'a', function (e) {
+        if (confirm("Delete this match?") === false ) {
+            e.preventDefault();
+            return false;
+        }
+    });
     
     /* ******************************************************************
      * SaveMatchResult View
      */
+    // Validation
+    $('#submit-score-button').on('click', function (e) {
+        clearErrorMessage();
+        
+        var $teamRedScore = $('#team-red-score');
+        var $teamBlueScore = $('#team-blue-score');
+        
+        if ($teamRedScore.val() === $teamBlueScore.val()) {
+            displayErrorMessage("A FoosBall Fight must have a winner and a loser. Please resolve.");
+        }
+
+        // Check if errors occured 
+        if (errorState()) {
+            e.preventDefault();
+        }
+    });
+
     var $teamRedScore = $('#team-red-score');
     $('#team-red-score-slider').on('change', function (e) {
         $teamRedScore.val(e.target.value);

@@ -7,7 +7,7 @@ namespace FoosBall.Models
         public BsonObjectId Id;
     }
 
-    public class Company
+    public class FoosBallLists
     {
         public static string[] Departments =
             {
@@ -17,6 +17,13 @@ namespace FoosBall.Models
                 "Marketing",
                 "Sales",
                 "Support"
+            };
+
+        public static string[] Positions =
+            {
+                "None",
+                "Defense",
+                "Offense"
             };
     }
 }

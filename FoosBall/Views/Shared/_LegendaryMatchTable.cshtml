@@ -1,0 +1,98 @@
+﻿@model FoosBall.Models.MatchTable
+
+ <table>
+@*    <thead>
+        <tr>
+            <th class="red players">Players</th>
+            <th class="red rating">Rating</th>
+            <th class="blue players">Players</th>
+            <th class="blue rating">Rating</th>
+            <th class="score">Score</th>
+            <th class="odds">Odds</th>
+            <th class="created">Created</th>
+            <th class="played">Played</th>
+            <th class="resolve">Resolve</th>
+            <th class="delete">Delete</th>
+
+        </tr>
+    </thead>*@
+    <tbody>
+        @foreach (var match in Model.Matches)
+        {
+            <tr>
+                <td>
+                    <span class="name">@match.RedPlayer1.Name</span>
+                    <span class="nickname">@match.RedPlayer1.NickName</span>
+                    @if (!match.RedPlayer2.Name.IsEmpty()) 
+                    {
+                        <span class="and">&</span>
+                        <span class="name">@match.RedPlayer2.Name</span>
+                        <span class="nickname">@match.RedPlayer2.NickName</span>
+                    }
+                </td>
+
+                <td>Red Rating</td>
+                <td>Blue Players</td>
+                <td>Blue Rating</td>
+                <td>Odds</td>
+                <td>Score</td>
+                <td>Created</td>
+                <td>Played</td>
+                <td>Resolve</td>
+                <td>Delete</td>
+            </tr>
+       }
+    </tbody>
+</table>
+
+
+
+@*
+<div id="@Model.Match.Id" class="match clearfix">
+    <div id="team-red-players" class="team">
+        <span class="name">@Model.Match.RedPlayer1.Name</span><span class="nickname">@Model.Match.RedPlayer1.NickName</span>
+        @if (!Model.Match.RedPlayer2.Name.IsEmpty()) 
+        {
+            <span class="and">&</span> <span class="name">@Model.Match.RedPlayer2.Name</span><span class="nickname">@Model.Match.RedPlayer2.NickName</span>
+        }
+        
+        @if (@Model.Match.GameOverTime != DateTime.MinValue)
+        {
+            <div class="red-score">
+                @Model.Match.RedScore
+            </div>
+        }   
+
+    </div>
+
+
+
+    <div class="vs">
+        @if (Model.User != null && Model.Match.ContainsPlayer(Model.User.Id))
+        {
+            <span id="resolve-match" class="editor-icon"><a title="Resolve the match" href="Match/SaveMatchResult/@Model.Match.Id"><img src="Content/images/checkmark_32x32.png" alt="A delete button"/></a></span>
+        }
+        vs
+        @if (Model.User != null && Model.Match.ContainsPlayer(Model.User.Id))
+        {
+            <span id="delete-match" class="editor-icon"><a title="Delete the match" href="/Match/Delete/@Model.Match.Id"><img src="Content/images/delete_32x32.png" alt="A delete button"/></a></span>
+        }
+    </div>
+        
+    <div id="team-blue-players" class="team">
+        <span class="name">@Model.Match.BluePlayer1.Name</span><span class="nickname">@Model.Match.BluePlayer1.NickName</span>
+        @if (Model.Match.BluePlayer2.Name.IsEmpty() == false)
+        {
+            <span class="and">&</span> <span class="name">@Model.Match.BluePlayer2.Name</span><span class="nickname">@Model.Match.BluePlayer2.NickName</span>
+        }
+        
+        @if (@Model.Match.GameOverTime != DateTime.MinValue)
+        {
+            <div class="blue-score">
+                @Model.Match.BlueScore
+            </div>
+        }
+    </div>
+</div>
+    
+*@

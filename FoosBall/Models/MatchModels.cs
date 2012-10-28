@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using MongoDB.Bson;
 
@@ -19,6 +21,28 @@ namespace FoosBall.Models
         {
             return id == RedPlayer1.Id || id == RedPlayer2.Id || id == BluePlayer1.Id || id == BluePlayer2.Id;
         }
+        public int CountRedPlayers()
+        {
+            return (RedPlayer2.Id == null) ? 1 : 2;
+        }
+        public int CountBluePlayers()
+        {
+            return (BluePlayer2.Id == null) ? 1 : 2;
+        }
+        public double GetRedTeamRating()
+        {
+            return (RedPlayer2.Id == null) ? RedPlayer1.Rating : (RedPlayer1.Rating+RedPlayer2.Rating);
+        }
+        public double GetBlueTeamRating()
+        {
+            return (BluePlayer2.Id == null) ? BluePlayer1.Rating : (BluePlayer1.Rating + BluePlayer2.Rating);
+        }
+    }
+
+    public class MatchTable
+    {
+        public IEnumerable<Match> Matches { get; set; }
+        public Player User { get; set; }
     }
 
     public class MatchModel
@@ -39,15 +63,7 @@ namespace FoosBall.Models
         
         public double GetTeamRating()
         {
-            var i = 0;
-            double rating = 0;
-
-            foreach (var player in MatchTeam)
-            {
-                i++;
-                rating += player.Rating;
-            }
-            return (rating / i);
+            return MatchTeam.Sum(player => player.Rating);
         }
     }
 }   

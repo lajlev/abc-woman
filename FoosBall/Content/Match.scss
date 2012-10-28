@@ -1,0 +1,123 @@
+// Import mixins
+@import "_mixins";
+
+/* Match View
+----------------------------------------------------------*/
+// Create Match
+#create-match-form {
+	.select-player {
+		margin: 2px 0px;
+	}
+}
+.team {
+	margin-top: 3px;
+	width: 45%; 
+	text-align: center;
+}
+.red-team, #team-red-players {
+	float: left; 
+	clear: left;
+}
+.vs { 
+	float: left;
+	margin-top: 3px;
+	text-align: center;
+	vertical-align: middle;
+	width: 10%;
+}
+.blue-team, #team-blue-players, .blue-score {
+	float: right; 
+	clear: right;
+}
+#create-match-button {
+	margin-top: 10px;
+}
+
+// List
+.list-of-matches{
+	font-size: .9em;
+	line-height: 1.0em;
+}
+table {
+	border: 1px solid $light;
+	border-collapse: collapse;
+	width: 100%; 
+	th,td {
+		border: 1px solid $dark;
+		letter-spacing: -1px;
+		padding: 1px 3px;
+		text-align: left;
+	}
+	td {
+		font-weight: normal;
+	}
+	th {
+		color: $darkest;
+		&.red { color: red; }
+		&.blue { color: blue; }
+	}
+	.names, .odds { display: none; }
+	.nicknames { text-align: center;}
+	.rating { text-align: right; } 
+	.delete, .resolve {
+		img { 
+			height: 15px; }
+	}
+}
+
+
+
+/* SaveMatchResult View
+----------------------------------------------------------*/
+.team-score {
+	height: 40px;
+	width: 40px!important;
+	font-size: 22px;
+	text-align: center;
+	margin: 5px auto 0px auto;
+}
+.score-slider {
+	-webkit-appearance: slider-vertical;
+	height: 100px;
+	width: 30px;
+	margin: 10px auto 15px auto;
+}
+#team-titles {
+	clear: both;
+	width: 99%;
+	.team {
+		font-size: 0.85em;
+		font-weight: lighter;
+		text-align: center;
+		label {
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+	}
+	#team-red-players {
+		float: left;}
+	#team-blue-players {	
+		float: right;}
+}
+#team-results {
+	clear: both;
+}
+#fighting-team-red {
+	float: left;
+	width: 45%;
+	input, label {
+		float: left;
+		clear: both;
+		margin-left: 20px;}
+}
+#fighting-team-blue {
+	float: right;
+	width: 45%;
+	input, label {
+		float: right;
+		clear: both;
+		margin-right: 20px;}
+}
+#back-to-match {
+	text-decoration: underline;
+}

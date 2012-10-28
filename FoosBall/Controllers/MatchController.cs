@@ -48,7 +48,11 @@ namespace FoosBall.Controllers
             var selectItems = playerCollection
                 .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
                 .ToList();
-            return View(new MatchModel { PlayedMatches = playedMatches, PendingMatches = pendingMatches, SelectPlayers = selectItems });
+
+            var played = playedMatches.OrderByDescending(a => a.GameOverTime);
+            var pending = pendingMatches.OrderByDescending(a => a.CreationTime);
+
+            return View(new MatchModel { PlayedMatches = played, PendingMatches = pending, SelectPlayers = selectItems });
             
         }
         
@@ -109,7 +113,7 @@ namespace FoosBall.Controllers
         }
 
         // 
-        // POST: /Match/SaveMatchResult/
+        // POST: /Match/SaveMatchResult/{FormCollection}
         [HttpPost]
         public ActionResult SaveMatchResult(FormCollection formValues)
         {
@@ -192,7 +196,7 @@ namespace FoosBall.Controllers
         }
         
         //
-        // POST: /Match/Delete/5
+        // POST: /Match/Delete/{id}
         [HttpGet]
         public ActionResult Delete(string id)
         {

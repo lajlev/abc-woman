@@ -13,6 +13,14 @@
             displayErrorMessage(statusText + ': ' + errorThrown);
         }
     });
+    
+    /* Menu highlighting */
+    var activeTab = $('#page').attr('class');
+    if (!!activeTab !== false) {
+        var $menu = $('#main-menu');
+        $menu.find('li').removeClass('selected');
+        $('.' + activeTab, $menu).addClass('selected');
+    }
 });
 
 /* ******************************************************************
