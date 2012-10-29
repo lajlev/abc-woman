@@ -119,7 +119,7 @@ namespace FoosBall.Controllers
         {
             // Score = The teams score from the played FoosBall match
             // Rating = The players (Elo)rating based on won and lost games.
-            // Modifier = The number with which a rating will go up or down based on match outcaome
+            // Modifier = The value which a rating will go up or down based on match outcome
 
             var redScore = formValues.GetValue("team-red-score").AttemptedValue;
             var blueScore = formValues.GetValue("team-blue-score").AttemptedValue;
@@ -131,6 +131,24 @@ namespace FoosBall.Controllers
             
                 var query = Query.EQ("_id", ObjectId.Parse(formValues.GetValue("match-id").AttemptedValue));
                 var match = matchCollection.FindOne(query);
+
+                // Update players from the match with players from the Db.
+                if (match.RedPlayer1.Id != null)
+                {
+                    match.RedPlayer1 = playerCollection.FindOne(Query.EQ("_id", match.RedPlayer1.Id));
+                }
+                if (match.RedPlayer2.Id != null)
+                {
+                    match.RedPlayer2 = playerCollection.FindOne(Query.EQ("_id", match.RedPlayer2.Id));
+                }
+                if (match.BluePlayer1.Id != null)
+                {
+                    match.BluePlayer1 = playerCollection.FindOne(Query.EQ("_id", match.BluePlayer1.Id));
+                }
+                if (match.BluePlayer2.Id != null)
+                {
+                    match.BluePlayer2 = playerCollection.FindOne(Query.EQ("_id", match.BluePlayer2.Id));
+                } 
 
                 var currentUser = (Player)Session["User"];
                 if (currentUser != null && match.ContainsPlayer(currentUser.Id))
@@ -150,43 +168,46 @@ namespace FoosBall.Controllers
                         winners.MatchTeam.Add(match.RedPlayer2);
                         losers.MatchTeam.Add(match.BluePlayer1);
                         losers.MatchTeam.Add(match.BluePlayer2);
-                    } else
+                    }
+                    else
                     {
                         winners.MatchTeam.Add(match.BluePlayer1);
                         winners.MatchTeam.Add(match.BluePlayer2);
                         losers.MatchTeam.Add(match.RedPlayer1);
                         losers.MatchTeam.Add(match.RedPlayer2);
                     }
-                   
+
                     // Get the rating modifier
                     var ratingModifier = Rating.GetRatingModifier(winners.GetTeamRating(), losers.GetTeamRating());
-                    
+
                     // Propagate the rating and stats to the team members of both teams
                     foreach (var member in winners.MatchTeam)
                     {
-                        if (member.Id != null) {
+                        if (member.Id != null)
+                        {
                             member.Rating += ratingModifier;
                             member.Won++;
                             member.Played++;
                             playerCollection.Save(member);
                         }
                     }
-                 
+
                     foreach (var member in losers.MatchTeam)
                     {
-                        if (member.Id != null) {
+                        if (member.Id != null)
+                        {
                             member.Rating -= ratingModifier;
                             member.Lost++;
                             member.Played++;
                             playerCollection.Save(member);
                         }
                     }
-                 
+
                     // Update match score/time stats
                     match.RedScore = intRedScore;
                     match.BlueScore = intBlueScore;
                     match.GameOverTime = new BsonDateTime(DateTime.Now);
-                    
+
                     // Save the data to Db
                     matchCollection.Save(match);
                 }

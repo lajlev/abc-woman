@@ -14,3 +14,5 @@ C:\source\FoosBall\FoosBall.Tests\bin\Debug\EntityFramework.xml
 C:\source\FoosBall\FoosBall.Tests\obj\Debug\FoosBall.Tests.csprojResolveAssemblyReference.cache
 C:\source\FoosBall\FoosBall.Tests\obj\Debug\FoosBall.Tests.dll
 C:\source\FoosBall\FoosBall.Tests\obj\Debug\FoosBall.Tests.pdb
+C:\source\FoosBall\FoosBall.Tests\bin\Debug\nunit.framework.dll
+C:\source\FoosBall\FoosBall.Tests\bin\Debug\nunit.framework.xml

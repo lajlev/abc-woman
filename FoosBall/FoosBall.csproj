@@ -117,6 +117,7 @@
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BaseModels.cs" />
+    <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\HomeModels.cs" />
     <Compile Include="Models\MatchModels.cs" />
     <Compile Include="Models\PlayerModels.cs" />
