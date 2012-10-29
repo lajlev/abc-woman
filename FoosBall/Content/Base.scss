@@ -35,7 +35,6 @@ a:active {
     color: #black;
 }
 
-
 /* HEADINGS   
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
@@ -65,6 +64,32 @@ h4 {
 h5, h6 {
     font-size: 1em;
 }
+
+/* TABLE
+----------------------------------------------------------*/
+table {
+	border-collapse: collapse;
+	width: 100%; 
+	thead { 
+		border-color: $darkest;
+		border-bottom: 2px solid $darkest;
+	}
+	th,td {
+		border: 1px solid $dark;
+		letter-spacing: 0px;
+		padding: 3px 3px 1px 3px;
+		text-align: left;
+	}
+	td {
+		font-weight: normal;
+	}
+	th {
+		color: $darkest;
+		font-size: .8em;
+		text-align: center;
+	}
+}
+
 
 /* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/

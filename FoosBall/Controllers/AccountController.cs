@@ -8,13 +8,6 @@ namespace FoosBall.Controllers
 {
     public class AccountController : BaseController
     {
-        private readonly MongoDatabase _dbh;
-        public AccountController()
-        {
-            _dbh = Db.GetDataBaseHandle();
-        }
-
-        //
         // GET: /Account/LogOn
         public ActionResult LogOn()
         {
@@ -23,12 +16,12 @@ namespace FoosBall.Controllers
                 var authCookie = System.Web.HttpContext.Current.Request.Cookies.Get("FoosBallAuth");
                 if (authCookie != null && authCookie["Token"] != null)
                 {
-                    var autoLoginCollection = _dbh.GetCollection<AutoLogin>("AutoLogin");
+                    var autoLoginCollection = this.Dbh.GetCollection<AutoLogin>("AutoLogin");
                     var autoLoginToken = autoLoginCollection.FindOne(Query.EQ("Token", authCookie["Token"]));
 
                     if (autoLoginToken != null) 
                     {
-                        var playerCollection = _dbh.GetCollection<Player>("Players");
+                        var playerCollection = this.Dbh.GetCollection<Player>("Players");
                         var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email.ToLower()));
                     
                         if (Login(player))
@@ -49,7 +42,7 @@ namespace FoosBall.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnModel model)
         {
-            var playerCollection = _dbh.GetCollection<Player>("Players");
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(Query.EQ("Email", model.Email.ToLower()));
             
             // If the email matches a player then check password
@@ -98,7 +91,7 @@ namespace FoosBall.Controllers
             var position = model.Position;
             var nickname = model.NickName;
 
-            var playerCollection = _dbh.GetCollection<Player>("Players");
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
 
             var newPlayer = new Player
                                 {
@@ -125,7 +118,7 @@ namespace FoosBall.Controllers
         public JsonResult PlayerEmailExists(string email)
         {
             var query = Query.EQ("Email", email.ToLower());
-            var playerCollection = _dbh.GetCollection<Player>("Players");
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(query);
 
             if (player != null)
@@ -142,7 +135,7 @@ namespace FoosBall.Controllers
         [HttpPost]
         public JsonResult PlayerNameExists(string name)
         {
-            var playerCollection = _dbh.GetCollection<Player>("Players");
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var query = Query.EQ("Name", name);
             var player = playerCollection.FindOne(query);
 

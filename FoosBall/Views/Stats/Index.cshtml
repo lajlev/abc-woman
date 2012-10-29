@@ -1,33 +1,31 @@
-﻿@{
+﻿@model FoosBall.Models.StatsModel
+@{
     ViewBag.Title = "Stats";
 }
-
+@section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
 <h3>Statistics</h3>
 
-<table id="player-stats">
-    <thead>
-        <tr>
-            <th colspan="2">Players</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td>Most Played</td>    <td></td></tr>
-        <tr><td>Most Wins</td>      <td></td></tr>
-        <tr><td>Most Losses</td>    <td></td></tr>
-        <tr><td>Most Goals</td>     <td></td></tr>
-    </tbody>
-</table>
+<fieldset>
+    <legend>Player stats</legend>
+    <table id="player-stats">
+        <tbody>
+            <tr><td>No of players</td>  <td>@Model.NoOfPlayers.ToString()</td></tr>
+            <tr><td>Most Played</td>    <td></td></tr>
+            <tr><td>Most Wins</td>      <td></td></tr>
+            <tr><td>Most Losses</td>    <td></td></tr>
+            <tr><td>Most Goals</td>     <td></td></tr>
+        </tbody>
+    </table>
+</fieldset>
 
-<table id="match-stats">
-    <thead>
-        <tr>
-            <th colspan="2">Matches</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td>Total Played</td>    <td></td></tr>
-        <tr><td>Total Wins</td>      <td></td></tr>
-        <tr><td>Total Losses</td>    <td></td></tr>
-        <tr><td>Total Goals</td>     <td></td></tr>
-    </tbody>
-</table>
+<fieldset>
+    <legend>Match stats</legend>
+    <table id="match-stats">
+        <tbody>        
+            <tr><td>Latest Match</td>    <td></td></tr>
+            <tr><td>Total Played</td>    <td></td></tr>
+            <tr><td>Total Goals</td>     <td></td></tr>
+        </tbody>
+    </table>
+</fieldset>
+

@@ -30,36 +30,19 @@
   font-size: .9em;
   line-height: 1.0em; }
 
-table {
-  border-collapse: collapse;
-  width: 100%; }
-  table thead {
-    border-color: #223322;
-    border-bottom: 2px solid #223322; }
-  table th, table td {
-    border: 1px solid #007000;
-    letter-spacing: 0px;
-    padding: 3px 3px 1px 3px;
-    text-align: left; }
-    table th.names, table th.nicknames, table th.score, table td.names, table td.nicknames, table td.score {
-      text-align: center; }
-    table th.rating, table th.played, table th.created, table td.rating, table td.played, table td.created {
-      text-align: right; }
-  table td {
-    font-weight: normal; }
-    table td.score, table td.played, table td.created {
-      white-space: nowrap; }
-  table th {
-    color: #223322;
-    font-size: .8em;
-    text-align: center; }
-    table th.red {
-      color: #C00; }
-    table th.blue {
-      color: #00A; }
-  table .winner {
-    color: black;
-    font-weight: bold; }
+table th.names, table th.nicknames, table th.score, table td.names, table td.nicknames, table td.score {
+  text-align: center; }
+table th.rating, table th.played, table th.created, table td.rating, table td.played, table td.created {
+  text-align: right; }
+table td.score, table td.played, table td.created {
+  white-space: nowrap; }
+table th.red {
+  color: #C00; }
+table th.blue {
+  color: #00A; }
+table .winner {
+  color: black;
+  font-weight: bold; }
 
 #pending-matches .names, #pending-matches .odds, #pending-matches .created {
   display: none; }

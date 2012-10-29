@@ -1,33 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web.Mvc;
-using FoosBall.Models;
-using FoosBall.Main;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MatchController.cs" company="Trustpilot">
+//   Trustpilot A/S 2012
+// </copyright>
+// <summary>
+//   Defines the MatchController type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace FoosBall.Controllers
 {
-    public class MatchController : Controller
-    {       
-        private readonly MongoDatabase _dbh;
-        public MatchController()
-        {
-            _dbh = Db.GetDataBaseHandle();
-        }
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Web.Mvc;
 
-        //
+    using FoosBall.Main;
+    using FoosBall.Models;
+
+    using MongoDB.Bson;
+    using MongoDB.Driver.Builders;
+
+    public class MatchController : BaseController
+    {       
         // GET: /Match/
         public ActionResult Index()
         {
             // Fetch all players to display in a <select>
-            var playerCollection = _dbh.GetCollection<Player>("Players").FindAll().ToList();
+            var playerCollection = this.Dbh.GetCollection<Player>("Players").FindAll().ToList();
             
             // Fetch all FoosBall matches. 
-            var matchCollection = _dbh.GetCollection<Match>("Matches").FindAll().ToList();
+            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().ToList();
             var playedMatches = new List<Match>();
             var pendingMatches = new List<Match>();
             
@@ -69,8 +71,8 @@ namespace FoosBall.Controllers
             // only try to create a match if properties are set correctly
             if (!String.IsNullOrEmpty(r1) && !String.IsNullOrEmpty(b1))
             {
-                var matchCollection = _dbh.GetCollection<Match>("Matches");
-                var playerCollection = _dbh.GetCollection<Player>("Players");
+                var matchCollection = this.Dbh.GetCollection<Match>("Matches");
+                var playerCollection = this.Dbh.GetCollection<Player>("Players");
 
                 var redPlayer1 = (String.IsNullOrEmpty(r1)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r1)));
                 var redPlayer2 = (String.IsNullOrEmpty(r2)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r2)));
@@ -100,7 +102,7 @@ namespace FoosBall.Controllers
         {
 
             var currentUser = (Player)Session["User"];
-            var matchCollection = _dbh.GetCollection<Match>("Matches");
+            var matchCollection = this.Dbh.GetCollection<Match>("Matches");
             var query = Query.EQ("_id", BsonObjectId.Create(id));
             var match = matchCollection.FindOne(query);
 
@@ -126,8 +128,8 @@ namespace FoosBall.Controllers
             
             if (String.IsNullOrEmpty(redScore) == false && String.IsNullOrEmpty(blueScore) == false)
             {
-                var matchCollection = _dbh.GetCollection<Match>("Matches");
-                var playerCollection = _dbh.GetCollection<Player>("Players");
+                var matchCollection = this.Dbh.GetCollection<Match>("Matches");
+                var playerCollection = this.Dbh.GetCollection<Player>("Players");
             
                 var query = Query.EQ("_id", ObjectId.Parse(formValues.GetValue("match-id").AttemptedValue));
                 var match = matchCollection.FindOne(query);
@@ -221,7 +223,7 @@ namespace FoosBall.Controllers
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            var matchCollection = _dbh.GetCollection<Match>("Matches");
+            var matchCollection = this.Dbh.GetCollection<Match>("Matches");
 
             var query = Query.EQ("_id", BsonObjectId.Create(id));
             matchCollection.Remove(query);

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatsController.cs" company="">
-//   
+// <copyright file="StatsController.cs" company="Trustpilot">
+//   Trustpilot A/S 2012
 // </copyright>
 // <summary>
 //   Defines the StatsController type.
@@ -9,13 +9,16 @@
 
 namespace FoosBall.Controllers
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
+
+    using FoosBall.Models;
+
+    using MongoDB.Driver.Builders;
 
     /// <summary>
     /// The stats controller.
     /// </summary>
-    public class StatsController : Controller
+    public class StatsController : BaseController
     {
         /// <summary>
         /// GET: /Stats/
@@ -27,8 +30,16 @@ namespace FoosBall.Controllers
         /// </returns>
         public ActionResult Index()
         {
-            return this.View();
-        }
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+            var noOfPlayers = playerCollection.Count();
 
+            var model = new StatsModel()
+                {
+                    NoOfPlayers = noOfPlayers
+                };
+
+
+            return this.View(model);
+        }
     }
 }

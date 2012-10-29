@@ -1,20 +1,34 @@
-﻿using System;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using FoosBall.Main;
-using FoosBall.Models;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BaseController.cs" company="Trustpilot">
+//   Trustpilot A/S 2012
+// </copyright>
+// <summary>
+//   Defines the BaseController type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace FoosBall.Controllers
 {
+    using System;
+    using System.Text;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using FoosBall.Main;
+    using FoosBall.Models;
+
+    using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
+
     public class BaseController : Controller
     {
-        private readonly MongoDatabase _dbh;
+        /// <summary>
+        /// The MongoDb database handle.
+        /// </summary>
+        protected readonly MongoDatabase Dbh;
         public BaseController()
         {
-            _dbh = Db.GetDataBaseHandle();
+            this.Dbh = Db.GetDataBaseHandle();
         }
 
        public bool Login(Player player)
@@ -23,8 +37,8 @@ namespace FoosBall.Controllers
             if (player.RememberMe)
             {
                 // Save an autologin token as cookie and in the Db
-                var playerCollection = _dbh.GetCollection<Player>("Players");
-                var autoLoginCollection = _dbh.GetCollection<AutoLogin>("AutoLogin");
+                var playerCollection = this.Dbh.GetCollection<Player>("Players");
+                var autoLoginCollection = this.Dbh.GetCollection<AutoLogin>("AutoLogin");
                 var autoLogin = autoLoginCollection.FindOne(Query.EQ("Email", player.Email));
 
                 if (autoLogin == null)

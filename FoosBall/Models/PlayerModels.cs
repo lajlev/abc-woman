@@ -1,7 +1,16 @@
-﻿using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PlayerModels.cs" company="Trustpilot">
+//   Trustpilot A/S 2012
+// </copyright>
+// <summary>
+//   The player.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace FoosBall.Models
 {
+    using System.Collections.Generic;
+
     public class Player : FoosBallDoc
     {
         public Player()

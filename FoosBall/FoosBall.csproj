@@ -117,7 +117,7 @@
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BaseModels.cs" />
-    <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\StatsModels.cs" />
     <Compile Include="Models\HomeModels.cs" />
     <Compile Include="Models\MatchModels.cs" />
     <Compile Include="Models\PlayerModels.cs" />
@@ -148,6 +148,9 @@
     </Content>
     <Content Include="Content\Players.css">
       <DependentUpon>Players.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Stats.css">
+      <DependentUpon>Stats.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\LogOn.js" />
@@ -230,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Stats\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Stats.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
