@@ -1,43 +1,27 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StatsController.cs" company="Trustpilot">
-//   Trustpilot A/S 2012
-// </copyright>
-// <summary>
-//   Defines the StatsController type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
-
     using FoosBall.Models;
-
+    using FoosBall.Main;
     using MongoDB.Driver.Builders;
 
-    /// <summary>
-    /// The stats controller.
-    /// </summary>
     public class StatsController : BaseController
     {
-        /// <summary>
-        /// GET: /Stats/
-        /// Fetch all kinds of statistics on the FoosBall players and matches.
-        /// Return the data in the index view
-        /// </summary>
-        /// <returns>
-        /// The <see cref="ActionResult"/>.
-        /// </returns>
         public ActionResult Index()
         {
+
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var noOfPlayers = playerCollection.Count();
+            var mostPlayed = DataAccessLayer.GetMostPlayed(playerCollection);
+            // var mostWins = playerCollection.Find(Query.Exists("Won")).SetSortOrder(SortBy.Descending("Won")).First();
+            // var mostLosses = playerCollection.Find(Query.Exists("Lost")).SetSortOrder(SortBy.Descending("Lost")).First();
 
             var model = new StatsModel()
                 {
-                    NoOfPlayers = noOfPlayers
+                    NoOfPlayers = noOfPlayers,
+                    MostPlayed = mostPlayed
                 };
-
 
             return this.View(model);
         }

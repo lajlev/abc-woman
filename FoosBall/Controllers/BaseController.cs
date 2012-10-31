@@ -22,9 +22,6 @@ namespace FoosBall.Controllers
 
     public class BaseController : Controller
     {
-        /// <summary>
-        /// The MongoDb database handle.
-        /// </summary>
         protected readonly MongoDatabase Dbh;
         public BaseController()
         {
