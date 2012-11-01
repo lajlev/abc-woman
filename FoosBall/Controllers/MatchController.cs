@@ -18,7 +18,7 @@
         public ActionResult Index()
         {
             // Fetch all players to display in a <select>
-            var playerCollection = this.Dbh.GetCollection<Player>("Players").FindAll().ToList();
+            var playerCollection = this.Dbh.GetCollection<Player>("Players").FindAll().SetSortOrder(SortBy.Ascending("Name")).ToList();
             
             // Fetch all FoosBall matches. 
             var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().ToList();
