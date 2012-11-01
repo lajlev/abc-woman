@@ -10,10 +10,19 @@
     margin: 2px 0px;
     padding: 1px 3px 1px 1px;
     width: 99%; }
-    #list-of-players .player .name {
+    #list-of-players .player .ranking {
       clear: left;
       float: left;
-      width: 55%; }
+      width: 25px; }
+    #list-of-players .player .avatar {
+      clear: left;
+      float: left;
+      margin-right: 5px; }
+      #list-of-players .player .avatar .gravatar {
+        height: 20px; }
+    #list-of-players .player .name {
+      float: left;
+      width: 50%; }
     #list-of-players .player .nickname {
       display: none; }
   #list-of-players .department {
@@ -26,8 +35,7 @@
     letter-spacing: 0px;
     width: 85px; }
   #list-of-players .rating {
-    float: left;
-    clear: left; }
+    float: left; }
   #list-of-players .won-lost-played {
     float: right;
     clear: right; }

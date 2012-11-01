@@ -18,6 +18,7 @@
             return this.View(new PlayerViewModel { Players = playerCollection });
         }
 
+        /*
         [HttpGet]
         public ActionResult Delete(string id)
         {
@@ -35,6 +36,7 @@
 
             return this.RedirectToAction("Index");
         }
+        */
 
         [HttpGet]
         public ActionResult Edit(string id)

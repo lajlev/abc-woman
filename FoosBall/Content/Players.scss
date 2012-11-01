@@ -12,10 +12,22 @@
 		margin: 2px 0px;
 		padding: 1px 3px 1px 1px;
 		width: 99%;
-		.name {
+		.ranking {
 			clear: left;
 			float: left;
-			width: 55%;
+			width: 25px;
+		}
+		.avatar {
+			clear: left;
+			float: left;
+			margin-right: 5px;
+			.gravatar {
+				height: 20px;
+			}
+		}
+		.name {
+			float: left;
+			width: 50%;
 		}
 		.nickname {
 			display: none;
@@ -32,7 +44,7 @@
 		width: 85px;}
 	.rating {
 		float: left;
-		clear: left;}
+	}
 	.won-lost-played {
 		float: right;
 		clear: right;}

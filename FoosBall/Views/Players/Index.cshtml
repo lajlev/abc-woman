@@ -1,4 +1,5 @@
 ﻿@using FoosBall.Models
+@using FoosBall.Main
 @model PlayerViewModel
 @{
     ViewBag.Title = "FoosBall Players";
@@ -12,23 +13,24 @@
 
     @if (Model.Players.Any())
     {
+        var index = 1;
         foreach (var player in Model.Players)
-        {
+        { 
             <div id="@player.Id" class="player clearfix">
-                <div class="name ellipsis-1" title="Nickname: @player.NickName">@player.Name <span class="nickname">(@player.NickName)</span></div>
-                <div class="department">(@player.Department)</div>
-                <div class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</div>
+                <div class="ranking" title="Players ranking">@index</div>
                 <div class="rating" title="Rating: @player.Rating.ToString("F")">
                     Rating: @player.Rating.ToString("F0")
                 </div>
+                <div class="department">(@player.Department)</div>
+                <div class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</div>
+                <div class="avatar">
+                    <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email + "@trustpilot.com")"/>
+                </div>
+                <div class="name ellipsis-1" title="Nickname: @player.NickName">@player.Name <span class="nickname">(@player.NickName)</span></div>
                 <div class="won-lost-played" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</div>
-                @if (currentUser != null && currentUser.Id == player.Id)
-                {
-                    <span id="edit-player" class="editor-icon" title="Edit player">
-                        <a href="Players/Edit/@player.Id"><img src="/Content/images/edit_32x32.png" alt="Edit icon"/></a>
-                    </span>
-                }
             </div>
+
+            index++;
         }
     } else
     {
