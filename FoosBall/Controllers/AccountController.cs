@@ -12,7 +12,7 @@
         {
             if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
             {
-                var authCookie = System.Web.HttpContext.Current.Request.Cookies.Get("FoosBallAuth");
+                var authCookie = this.Request.Cookies.Get("FoosBallAuth");
                 if (authCookie != null && authCookie["Token"] != null)
                 {
                     var autoLoginCollection = this.Dbh.GetCollection<AutoLogin>("AutoLogin");
@@ -31,7 +31,7 @@
                             {
                                 return this.Redirect(referrer.ToString());
                             }
-                        }
+                        } 
                     }
                 }
             }
