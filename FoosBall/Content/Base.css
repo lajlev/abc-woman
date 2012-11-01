@@ -77,9 +77,13 @@ table {
 page width. Or, you can specify an exact pixel width. */
 #page {
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto; }
+  margin-left: 5px;
+  margin-right: 5px; }
 
+@media only screen and (min-width: 810px) {
+  #page {
+    margin-left: auto;
+    margin-right: auto; } }
 footer, #footer {
   background-color: #fff;
   -webkit-border-radius: 0 0 4px 4px;
