@@ -118,10 +118,14 @@
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BaseModels.cs" />
+    <Compile Include="Models\MatchTable.cs" />
+    <Compile Include="Models\MatchViewModel.cs" />
+    <Compile Include="Models\PlayerViewModel.cs" />
     <Compile Include="Models\StatsModels.cs" />
     <Compile Include="Models\HomeModels.cs" />
     <Compile Include="Models\MatchModels.cs" />
-    <Compile Include="Models\PlayerModels.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

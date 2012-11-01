@@ -97,7 +97,7 @@ table {
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
 #page {
-    width: 90%;
+	max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -230,11 +230,14 @@ nav, #menucontainer {
 	float: right;
 	margin-top: 3px;
 	a img { 
-		height: 18px; }
+		height: 18px; 
+	}
 	&#edit-player {
-		margin-right: 10px;}
+		margin-right: 10px;
+	}
 	&#delete-player {
-		margin-right: 10px;}
+		margin-right: 10px;
+	}
 }
 
 /* FORM LAYOUT ELEMENTS   
@@ -254,7 +257,8 @@ fieldset {
 		font-weight: bold;
 		margin: 0px auto; 
 		padding: 3px 5px;
-		text-shadow: 2px 2px 2px #DDD;}
+		text-shadow: 2px 2px 2px #DDD;
+	}
 	.wrapper {
 		height: 100%;
 		width: 100%;
@@ -267,17 +271,21 @@ select {
 	height: 35px;
     margin: 0px;
     padding: 2px;
-    width: 98%; }
+    width: 98%; 
+}
 .submit-button {
-    margin: 5px 0px; }
+    margin: 5px 0px; 
+}
 .form-input {
     width:90%; 
-	margin: 0px auto; }
+	margin: 0px auto; 
+}
 .form-button{
     clear: both;
     float: none;
     margin:10px auto 5px auto; 
-	width: 90%;}
+	width: 90%;
+}
 input[type="text"], input[type="password"], input[type="email"] {
     border: 2px solid #ccc;
     color: #444;
@@ -287,7 +295,8 @@ input[type="text"], input[type="password"], input[type="email"] {
     width: 98%;
 
 	&#Email {
-	width: 60px!important;}
+		width: 60px!important;
+	}
 }
 input[type="submit"], input[type="button"], button {
 	font-size: 1.0em;
@@ -341,4 +350,5 @@ html[xmlns] .clearfix {
 	font-size: .85em;
 	width:90%; 
 	margin: 0px auto;  
-	color: Red;	}
+	color: Red;	
+}

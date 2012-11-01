@@ -32,6 +32,18 @@
     float: right;
     clear: right; }
 
+#edit-player-form label, #edit-player-form input {
+  display: block; }
+#edit-player-form #Email {
+  display: inline; }
+#edit-player-form input[type="text"], #edit-player-form input[type="email"], #edit-player-form input[type="password"] {
+  margin: 2px 0; }
+#edit-player-form #profile-gravatar {
+  border: 4px solid #c3ffc3;
+  float: right;
+  height: 58px;
+  margin: 4px; }
+
 @media only screen and (min-width: 470px) {
   #list-of-players .player .name {
     width: 70%; }

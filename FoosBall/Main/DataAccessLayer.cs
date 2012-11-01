@@ -19,19 +19,6 @@
             this.Dbh = Db.GetDataBaseHandle();
         }
 
-        public static string GetMostPlayed(MongoCollection<Player> playerCollection)
-        {
-            var orderedList = playerCollection.Find(Query.Exists("Played")).SetSortOrder(SortBy.Descending("Played"));
-            var numberOfPlayed = orderedList.First().Played;
-            var sb = new StringBuilder();
-            var mostPlayed = string.Empty;
-
-            foreach (var player in orderedList)
-            {
-            }
-
-            return string;
-        }
     }
 
 }

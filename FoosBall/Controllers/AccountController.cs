@@ -1,11 +1,10 @@
-﻿using System.Web.Mvc;
-using FoosBall.Main;
-using FoosBall.Models;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
+    using System.Web.Mvc;
+    using FoosBall.Main;
+    using FoosBall.Models;
+    using MongoDB.Driver.Builders;
+    
     public class AccountController : BaseController
     {
         // GET: /Account/LogOn
@@ -27,17 +26,25 @@ namespace FoosBall.Controllers
                         if (Login(player))
                         {
                             // Go back to where we were before logging in
-                            return Redirect(Request.UrlReferrer.ToString());
+                            var referrer = this.Request.UrlReferrer;
+                            if (referrer != null)
+                            {
+                                return this.Redirect(referrer.ToString());
+                            }
                         }
                     }
-
                 }
-
             }
-            return View(new LogOnModel { RefUrl = Request.UrlReferrer.ToString() });
+
+            var urlReferrer = this.Request.UrlReferrer;
+            if (urlReferrer != null)
+            {
+                return this.View(new LogOnModel { RefUrl = urlReferrer.ToString() });
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
-        //
         // POST: /Account/LogOn
         [HttpPost]
         public ActionResult LogOn(LogOnModel model)
@@ -51,7 +58,8 @@ namespace FoosBall.Controllers
                 // If password is valid
                 if (player.Password == Md5.CalculateMd5(model.Password))
                 {
-                    if (Login(player)) {
+                    if (Login(player))
+                    {
                         // Go back to where we were before logging in
                         return Redirect(model.RefUrl);
                     }
@@ -62,24 +70,28 @@ namespace FoosBall.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/LogOff
         public ActionResult LogOff()
         {
             Session.Clear();
             RemoveRememberMeCookie();
+            
             // Go back to where we were before logging in
-            return Redirect(Request.UrlReferrer.ToString());
+            var urlReferrer = this.Request.UrlReferrer;
+            if (urlReferrer != null)
+            {
+                return this.Redirect(urlReferrer.ToString());
+            } 
+                
+            return RedirectToAction("Index", "Home");
         }
 
-        //
         // GET: /Account/Register
         public ActionResult Register()
         {
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         public ActionResult Register(Player model)
@@ -109,10 +121,10 @@ namespace FoosBall.Controllers
             playerCollection.Save(newPlayer);
 
             Login(newPlayer);
+
             return RedirectToAction("Index", "Home");
         }
 
-        //
         // POST: /Account/PlayerEmailExists
         [HttpPost]
         public JsonResult PlayerEmailExists(string email)
@@ -127,10 +139,8 @@ namespace FoosBall.Controllers
             }
     
             return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
-
         }
 
-        //
         // POST: /Account/PlayerNameExists
         [HttpPost]
         public JsonResult PlayerNameExists(string name)
@@ -145,6 +155,20 @@ namespace FoosBall.Controllers
             }
 
             return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
+        }
+
+        // GET Account/GetGravatarUrl/{emailPrefix}
+        [HttpGet]
+        public JsonResult GetGravatarUrl(string emailPrefix)
+        {
+            if (!string.IsNullOrEmpty(emailPrefix))
+            {
+                var email = emailPrefix + "@trustpilot.com";
+                var gravatarUrl = Md5.GetGravatarEmailHash(email);
+                return Json(new { url = gravatarUrl }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { url = string.Empty }, JsonRequestBehavior.AllowGet);
         }
     }
 }

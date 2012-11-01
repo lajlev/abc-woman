@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PlayersController.cs" company="Trustpilot">
-//   Trustpilot A/S 2012
-// </copyright>
-// <summary>
-//   Defines the PlayersController type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -18,33 +9,15 @@ namespace FoosBall.Controllers
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
-    /// <summary>
-    /// The players controller.
-    /// </summary>
     public class PlayersController : BaseController
     {
-        /// <summary>
-        /// GET: /Player/
-        /// </summary>
-        /// <returns>
-        /// The <see cref="ActionResult"/>.
-        /// </returns>
         public ActionResult Index()
         {
             var playerCollection = this.Dbh.GetCollection<Player>("Players").FindAll().SetSortOrder(SortBy.Descending("Rating")).ToList();
 
-            return this.View(new PlayerModel { Players = playerCollection });
+            return this.View(new PlayerViewModel { Players = playerCollection });
         }
 
-        /// <summary>
-        /// GET: /Player/Delete/{id}
-        /// </summary>
-        /// <param name="id">
-        /// The id of a player from the Players mongo collection.
-        /// </param>
-        /// <returns>
-        /// The <see cref="ActionResult"/>.
-        /// </returns>
         [HttpGet]
         public ActionResult Delete(string id)
         {
@@ -63,15 +36,6 @@ namespace FoosBall.Controllers
             return this.RedirectToAction("Index");
         }
 
-        /// <summary>
-        /// GET: /Player/Edit/{id}
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// The <see cref="ActionResult"/>.
-        /// </returns>
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -89,15 +53,6 @@ namespace FoosBall.Controllers
             return this.RedirectToAction("Index");
         }
 
-        /// <summary>
-        /// POST: /Player/Edit/{id}
-        /// </summary>
-        /// <param name="formValues">
-        /// The form values.
-        /// </param>
-        /// <returns>
-        /// The <see cref="ActionResult"/>.
-        /// </returns>
         [HttpPost]
         public ActionResult Edit(FormCollection formValues)
         {

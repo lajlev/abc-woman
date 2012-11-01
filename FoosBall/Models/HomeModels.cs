@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FoosBall.Models
+﻿namespace FoosBall.Models
 {
+    using System;
+    using System.Collections.Generic;
+
     public class HomeModels
     {
-        private const string Version = "0.1";
-
-        public static string GetVersion()
-        {
-            return Version;
-        }
+        private const string Version = "0.2";
 
         private static readonly List<string> Messages = new List<string>
                                              {
@@ -20,6 +15,11 @@ namespace FoosBall.Models
                                                  "Ready to challenge another FoosBall Fighter?",
                                                  "Come on in, set up a match, enjoy!",
                                              };
+        
+        public static string GetVersion()
+        {
+            return Version;
+        }
 
         public static string GetMessage(int index = -1)
         {

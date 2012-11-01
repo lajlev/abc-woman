@@ -1,12 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MatchController.cs" company="Trustpilot">
-//   Trustpilot A/S 2012
-// </copyright>
-// <summary>
-//   Defines the MatchController type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -54,11 +46,9 @@ namespace FoosBall.Controllers
             var played = playedMatches.OrderByDescending(a => a.GameOverTime);
             var pending = pendingMatches.OrderByDescending(a => a.CreationTime);
 
-            return View(new MatchModel { PlayedMatches = played, PendingMatches = pending, SelectPlayers = selectItems });
-            
+            return View(new MatchViewModel { PlayedMatches = played, PendingMatches = pending, SelectPlayers = selectItems });
         }
         
-        //
         // POST: /Match/Create/{FormCollection}
         [HttpPost]
         public ActionResult Create(FormCollection formValues)
@@ -69,15 +59,15 @@ namespace FoosBall.Controllers
             var b2 = formValues.GetValue("blue-player-2").AttemptedValue;
 
             // only try to create a match if properties are set correctly
-            if (!String.IsNullOrEmpty(r1) && !String.IsNullOrEmpty(b1))
+            if (!string.IsNullOrEmpty(r1) && !string.IsNullOrEmpty(b1))
             {
                 var matchCollection = this.Dbh.GetCollection<Match>("Matches");
                 var playerCollection = this.Dbh.GetCollection<Player>("Players");
 
-                var redPlayer1 = (String.IsNullOrEmpty(r1)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r1)));
-                var redPlayer2 = (String.IsNullOrEmpty(r2)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r2)));
-                var bluePlayer1 = (String.IsNullOrEmpty(b1)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b1)));
-                var bluePlayer2 = (String.IsNullOrEmpty(b2)) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b2)));
+                var redPlayer1 = string.IsNullOrEmpty(r1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r1)));
+                var redPlayer2 = string.IsNullOrEmpty(r2) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r2)));
+                var bluePlayer1 = string.IsNullOrEmpty(b1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b1)));
+                var bluePlayer2 = string.IsNullOrEmpty(b2) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b2)));
 
                 var newMatch = new Match
                                     {
@@ -95,12 +85,10 @@ namespace FoosBall.Controllers
             return RedirectToAction("Index");
         }
         
-        // 
         // GET: /Match/SaveMatchResult/{id}
         [HttpGet]
         public ActionResult SaveMatchResult(string id)
         {
-
             var currentUser = (Player)Session["User"];
             var matchCollection = this.Dbh.GetCollection<Match>("Matches");
             var query = Query.EQ("_id", BsonObjectId.Create(id));
@@ -114,19 +102,14 @@ namespace FoosBall.Controllers
             return RedirectToAction("Index");
         }
 
-        // 
         // POST: /Match/SaveMatchResult/{FormCollection}
         [HttpPost]
         public ActionResult SaveMatchResult(FormCollection formValues)
         {
-            // Score = The teams score from the played FoosBall match
-            // Rating = The players (Elo)rating based on won and lost games.
-            // Modifier = The value which a rating will go up or down based on match outcome
-
             var redScore = formValues.GetValue("team-red-score").AttemptedValue;
             var blueScore = formValues.GetValue("team-blue-score").AttemptedValue;
             
-            if (String.IsNullOrEmpty(redScore) == false && String.IsNullOrEmpty(blueScore) == false)
+            if (string.IsNullOrEmpty(redScore) == false && string.IsNullOrEmpty(blueScore) == false)
             {
                 var matchCollection = this.Dbh.GetCollection<Match>("Matches");
                 var playerCollection = this.Dbh.GetCollection<Player>("Players");
@@ -139,14 +122,17 @@ namespace FoosBall.Controllers
                 {
                     match.RedPlayer1 = playerCollection.FindOne(Query.EQ("_id", match.RedPlayer1.Id));
                 }
+
                 if (match.RedPlayer2.Id != null)
                 {
                     match.RedPlayer2 = playerCollection.FindOne(Query.EQ("_id", match.RedPlayer2.Id));
                 }
+                
                 if (match.BluePlayer1.Id != null)
                 {
                     match.BluePlayer1 = playerCollection.FindOne(Query.EQ("_id", match.BluePlayer1.Id));
                 }
+                
                 if (match.BluePlayer2.Id != null)
                 {
                     match.BluePlayer2 = playerCollection.FindOne(Query.EQ("_id", match.BluePlayer2.Id));
@@ -156,8 +142,8 @@ namespace FoosBall.Controllers
                 if (currentUser != null && match.ContainsPlayer(currentUser.Id))
                 {
                     // Get the scores
-                    var intRedScore = Int32.Parse(redScore, NumberStyles.Float);
-                    var intBlueScore = Int32.Parse(blueScore, NumberStyles.Float);
+                    var intRedScore = int.Parse(redScore, NumberStyles.Float);
+                    var intBlueScore = int.Parse(blueScore, NumberStyles.Float);
                     match.RedScore = intRedScore;
                     match.BlueScore = intBlueScore;
 
@@ -218,7 +204,6 @@ namespace FoosBall.Controllers
             return RedirectToAction("Index");
         }
         
-        //
         // POST: /Match/Delete/{id}
         [HttpGet]
         public ActionResult Delete(string id)
@@ -230,6 +215,5 @@ namespace FoosBall.Controllers
     
             return RedirectToAction("Index");
         }
-
     }
 }

@@ -11,6 +11,8 @@
 .red-team, #team-red-players {
   float: left;
   clear: left; }
+  .red-team .team-name, #team-red-players .team-name {
+    color: #cc0000; }
 
 .vs {
   float: left;
@@ -22,6 +24,8 @@
 .blue-team, #team-blue-players, .blue-score {
   float: right;
   clear: right; }
+  .blue-team .team-name, #team-blue-players .team-name, .blue-score .team-name {
+    color: #0000aa; }
 
 #create-match-button {
   margin-top: 10px; }
@@ -37,9 +41,9 @@ table th.rating, table th.played, table th.created, table td.rating, table td.pl
 table td.score, table td.played, table td.created {
   white-space: nowrap; }
 table th.red {
-  color: #C00; }
+  color: #cc0000; }
 table th.blue {
-  color: #00A; }
+  color: #0000aa; }
 table .winner {
   color: black;
   font-weight: bold; }
@@ -53,9 +57,9 @@ table .winner {
 #legendary-matches .names, #legendary-matches .created {
   display: none; }
 #legendary-matches .red.winner {
-  color: #C00; }
+  color: #cc0000; }
 #legendary-matches .blue.winner {
-  color: #00A; }
+  color: #0000aa; }
 
 /* @MediaQuery: iPad / Tablet */
 @media only screen and (min-width: 470px) {

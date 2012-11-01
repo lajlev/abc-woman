@@ -1,7 +1,8 @@
-﻿@model FoosBall.Models.MatchModel   
+﻿@using FoosBall.Models
+@model MatchViewModel   
 @{
     ViewBag.Title = "Register a FoosBall Fight!";
-    var currentUser = (FoosBall.Models.Player)HttpContext.Current.Session["User"]; 
+    var currentUser = (Player)HttpContext.Current.Session["User"]; 
 }
 @section Javascript{ <script async src="/Scripts/Match.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Match.css"/>}
@@ -72,7 +73,7 @@
 
     @if (Model.PendingMatches.Any())
     {
-        Html.RenderPartial("_PendingMatchTable", new FoosBall.Models.MatchTable { Matches = Model.PendingMatches, User = currentUser });
+        Html.RenderPartial("_PendingMatchTable", new MatchTable { Matches = Model.PendingMatches, User = currentUser });
     }
     else
     {
@@ -84,7 +85,7 @@
     <legend>Legendary FoosBall Fights</legend>
     @if (Model.PlayedMatches.Any())
     {
-        Html.RenderPartial("_LegendaryMatchTable", new FoosBall.Models.MatchTable { Matches = Model.PlayedMatches, User = currentUser });
+        Html.RenderPartial("_LegendaryMatchTable", new MatchTable { Matches = Model.PlayedMatches, User = currentUser });
     }
     else
     {

@@ -10,20 +10,7 @@
     {
         public ActionResult Index()
         {
-
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
-            var noOfPlayers = playerCollection.Count();
-            var mostPlayed = DataAccessLayer.GetMostPlayed(playerCollection);
-            // var mostWins = playerCollection.Find(Query.Exists("Won")).SetSortOrder(SortBy.Descending("Won")).First();
-            // var mostLosses = playerCollection.Find(Query.Exists("Lost")).SetSortOrder(SortBy.Descending("Lost")).First();
-
-            var model = new StatsModel()
-                {
-                    NoOfPlayers = noOfPlayers,
-                    MostPlayed = mostPlayed
-                };
-
-            return this.View(model);
+            return this.View();
         }
     }
 }

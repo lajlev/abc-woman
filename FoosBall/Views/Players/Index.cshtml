@@ -1,6 +1,5 @@
-﻿@using System.Web.Mvc.Html
-@using FoosBall.Models
-@model FoosBall.Models.PlayerModel
+﻿@using FoosBall.Models
+@model PlayerViewModel
 @{
     ViewBag.Title = "FoosBall Players";
     var currentUser = (Player)HttpContext.Current.Session["User"];
@@ -19,12 +18,15 @@
                 <div class="name ellipsis-1" title="Nickname: @player.NickName">@player.Name <span class="nickname">(@player.NickName)</span></div>
                 <div class="department">(@player.Department)</div>
                 <div class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</div>
-                <div class="rating" title="Rating: @player.Rating.ToString("F")"><span class="rating-prefix">Rating: </span>@player.Rating.ToString("F0")</div>
+                <div class="rating" title="Rating: @player.Rating.ToString("F")">
+                    Rating: @player.Rating.ToString("F0")
+                </div>
                 <div class="won-lost-played" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</div>
                 @if (currentUser != null && currentUser.Id == player.Id)
                 {
-                    <span id="edit-player" class="editor-icon" title="Edit player"><a href="Players/Edit/@player.Id"><img src="Content/images/edit_32x32.png"/></a></span>
-                    <span id="delete-player" class="editor-icon" title="Delete player"><a href="Players/Delete/@player.Id"><img src="Content/images/delete_32x32.png"/></a></span>
+                    <span id="edit-player" class="editor-icon" title="Edit player">
+                        <a href="Players/Edit/@player.Id"><img src="/Content/images/edit_32x32.png" alt="Edit icon"/></a>
+                    </span>
                 }
             </div>
         }

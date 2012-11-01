@@ -53,9 +53,32 @@
     });
 
     $('#Email').on('change', function() {
+        var playerEmail = $(this).val();
+
         var $nickName = $('#NickName');
         if (!!$nickName.val() === false) {
-            $nickName.val($(this).val().substr(0,5));
+            $nickName.val(playerEmail.substr(0,5));
+        }
+        
+        if (!playerEmail === false) {
+            var playerId = $("#player-id").val();
+
+            $.ajax({
+                type: "get",
+                cache: true,
+                url: "/Account/GetGravatarUrl/",
+                data: { emailPrefix: playerEmail},
+                success: function (jsonObj) {
+                    $("#profile-gravatar").attr("src",jsonObj.url);
+                }
+            });
+        }
+    });
+
+    $('#delete-player').on('click', 'a', function (e) {
+        if (confirm("Delete your Player?") === false) {
+            e.preventDefault();
+            return false;
         }
     });
 });

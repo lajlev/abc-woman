@@ -1,5 +1,5 @@
 ﻿@using FoosBall.Models
-@model FoosBall.Models.Player
+@model Player
 @{
     Layout = "~/Views/Shared/_SimpleLayout.cshtml";
     ViewBag.Title = "Edit Player Data";
@@ -7,7 +7,7 @@
 @section Javascript{ <script async src="/Scripts/Register.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
 
-@using (Html.BeginForm("Edit", "Players", FormMethod.Post, new { id = "edit-player"}))
+@using (Html.BeginForm("Edit", "Players", FormMethod.Post, new { id = "edit-player" }))
 {
     <input type="hidden" name="player-id" value="@Model.Id"/>
     <fieldset id="edit-player-form">
@@ -19,6 +19,11 @@
             <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
         </div>
         <div class="validation-message"></div>
-        <a class="toggle-edit-player close" href="/Players">Close</a>
+        <a href="/Players">Close</a>
+        <span id="delete-player" class="editor-icon" title="Delete player">
+            <a href="/Players/Delete/@Model.Id">
+                <img src="/Content/images/delete_32x32.png"/>
+            </a>
+        </span>
     </fieldset> 
 }
