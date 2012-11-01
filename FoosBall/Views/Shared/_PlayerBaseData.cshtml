@@ -1,10 +1,10 @@
 ﻿@using FoosBall.Models
 @using FoosBall.Main
 @model FoosBall.Models.Player
-
+           
 @using (Html.BeginForm("Register","Account",FormMethod.Post,new{name = "register-player"})) 
 {
-    <img id="profile-gravatar" alt="Gravatar picture for @(Model.Email)" src="@Md5.GetGravatarEmailHash(Model.Email + "@trustpilot.com")"/>
+    <img id="profile-gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(Model != null ? Model.Email + "@trustpilot.com" : "")"/>
 
     @Html.LabelFor(m => Model.Email, "Email")
     @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email"})<text>@@trustpilot.com</text><br/>
