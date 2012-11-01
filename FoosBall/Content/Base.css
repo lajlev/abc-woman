@@ -93,7 +93,7 @@ footer, #footer {
   font-size: 12px;
   margin: 0;
   padding: 0px 10px 3px 10px;
-  text-align: left; }
+  text-align: center; }
   footer a, footer a:link, footer a:visited, #footer a, #footer a:link, #footer a:visited {
     text-decoration: underline; }
 
@@ -242,7 +242,7 @@ select {
 
 .form-input {
   width: 90%;
-  margin: 0px auto; }
+  margin: 5px auto; }
 
 .form-button {
   clear: both;

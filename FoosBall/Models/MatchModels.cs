@@ -19,10 +19,35 @@
         public BsonDateTime CreationTime { get; set; }
         
         public BsonDateTime GameOverTime { get; set; }
-        
+
         public bool ContainsPlayer(BsonObjectId id)
         {
             return id == RedPlayer1.Id || id == RedPlayer2.Id || id == BluePlayer1.Id || id == BluePlayer2.Id;
+        }
+
+        public Player GetPartner(BsonObjectId id)
+        {
+            if (id == RedPlayer1.Id)
+            {
+                return RedPlayer2;
+            }
+
+            if (id == RedPlayer2.Id)
+            {
+                return RedPlayer1;
+            }
+            
+            if (id == BluePlayer1.Id)
+            {
+                return BluePlayer2;
+            }
+            
+            if (id == BluePlayer2.Id)
+            {
+                return BluePlayer1;
+            }
+            
+            return null;
         }
 
         public int CountRedPlayers()

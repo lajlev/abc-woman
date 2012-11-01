@@ -1,0 +1,58 @@
+﻿@using FoosBall.Models
+@model PlayerDetails
+@{
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+    ViewBag.Title = "Player Details";
+    var currentUser = (Player)HttpContext.Current.Session["User"];
+    var dateFormat = "yyyyMMdd";
+    var date = DateTime.MinValue.ToString(dateFormat);
+    
+}
+@section Javascript{ <script async src="/Scripts/Players.js"></script> }
+@section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
+
+<h3 id="stats-title">Details for @Model.Player.Name</h3>
+
+<fieldset id="player-stats">
+    <legend>Player Statistics</legend>
+    
+    <div class="label" id="played-label">Played: </div>
+    <div class="value" id="played">@Model.Player.Played</div>
+    
+    <div class="label" id="won-label">Won: </div>
+    <div class="value" id="won">@Model.Player.Won</div>
+    
+    <div class="label" id="lost-label">Lost: </div>
+    <div class="value" id="lost">@Model.Player.Lost</div>
+</fieldset>
+
+<fieldset id="player-match-history">
+    <legend>Player Match History</legend>
+
+    @foreach(var playedMatch in Model.PlayedMatches)
+    {
+        var matchDate = playedMatch.GameOverTime.ToLocalTime().ToString(dateFormat);
+    
+        if (date != matchDate)
+        {
+            <div class="date" title="@playedMatch.GameOverTime.ToLocalTime()">@playedMatch.GameOverTime.ToLocalTime().ToString("D")</div>               
+        }
+        
+        <div class="player-self">
+            <span class="nickname">@Model.Player.NickName</span>
+            <span class="name">@Model.Player.Name</span>
+        </div>
+        <div class="time">@playedMatch.GameOverTime.ToLocalTime().ToString("t")</div>
+        <div class="with">
+            @if (playedMatch.GetPartner(@Model.Player.Id).Name != null)
+            {
+                <text> and @playedMatch.GetPartner(@Model.Player.Id).Name </text>
+            }
+        </div>
+        <div> played against </div>
+
+        date = playedMatch.GameOverTime.ToLocalTime().ToString(dateFormat);
+    }
+</fieldset>
+
+@Html.ActionLink("Go Back", "Index", null , new { @id = "go-back" })

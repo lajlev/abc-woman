@@ -1,5 +1,6 @@
 ﻿namespace FoosBall.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -17,26 +18,6 @@
 
             return this.View(new PlayerViewModel { Players = playerCollection });
         }
-
-        /*
-        [HttpGet]
-        public ActionResult Delete(string id)
-        {
-            var currentUser = (Player)Session["User"];
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
-
-            if (currentUser != null && currentUser.Id.ToString() == id)
-            {
-                var query = Query.EQ("_id", ObjectId.Parse(id));
-                if (playerCollection != null)
-                {
-                    playerCollection.Remove(query);
-                }
-            }
-
-            return this.RedirectToAction("Index");
-        }
-        */
 
         [HttpGet]
         public ActionResult Edit(string id)
@@ -87,6 +68,27 @@
             }
 
             return this.RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Details(string playerId)
+        {
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+            var query = Query.EQ("_id", ObjectId.Parse(playerId));
+            var player = playerCollection.FindOne(query);
+
+            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().SetSortOrder(SortBy.Descending("GameOverTime")).ToList();
+            var playedMatches = new List<Match>();
+
+            foreach (var match in matchCollection)
+            {
+                if (match.ContainsPlayer(player.Id))
+                {
+                    playedMatches.Add(match);
+                }
+            }
+
+            return this.View(new PlayerDetails() { Player = player, PlayedMatches = playedMatches });
         }
     }
 }

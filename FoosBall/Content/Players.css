@@ -17,7 +17,8 @@
     #list-of-players .player .avatar {
       clear: left;
       float: left;
-      margin-right: 5px; }
+      margin-right: 5px;
+      margin-left: 2px; }
       #list-of-players .player .avatar .gravatar {
         height: 20px; }
     #list-of-players .player .name {
@@ -58,4 +59,32 @@
     width: 70%; }
   #list-of-players .player .nickname {
     display: inline; } }
+/* Player Details View
+----------------------------------------------------------*/
+#stats-title {
+  width: 99%;
+  text-align: center; }
+
+#player-stats div {
+  float: left; }
+#player-stats .label {
+  clear: left;
+  width: 80px; }
+
+#player-match-history {
+  font-size: .85em;
+  font-weight: normal; }
+  #player-match-history div {
+    float: left; }
+  #player-match-history .player-self {
+    clear: left; }
+  #player-match-history .date {
+    clear: both; }
+  #player-match-history .time {
+    clear: left; }
+  #player-match-history .with {
+    margin-left: 3px; }
+
+#go-back {
+  text-decoration: underline; }
 

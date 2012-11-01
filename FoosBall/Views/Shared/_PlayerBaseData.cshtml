@@ -4,7 +4,7 @@
            
 @using (Html.BeginForm("Register","Account",FormMethod.Post,new{name = "register-player"})) 
 {
-    <img id="profile-gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(Model != null ? Model.Email + "@trustpilot.com" : "")"/>
+    <a href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(Model != null ? Model.Email + "@trustpilot.com" : "")"/></a>
 
     @Html.LabelFor(m => Model.Email, "Email")
     @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email"})<text>@@trustpilot.com</text><br/>

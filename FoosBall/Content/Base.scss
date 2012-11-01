@@ -118,7 +118,7 @@ footer, #footer {
     font-size: 12px;
     margin: 0;
     padding: 0px 10px 3px 10px;
-    text-align: left;
+    text-align: center;
 	a, a:link, a:visited {
 		text-decoration: underline;
 	}
@@ -176,9 +176,11 @@ textarea {
 header, footer, nav, section {
     display: block;
 }
+
 nav, #menucontainer {
     margin-top: 5px;
 }
+
 #app-title {
     font-size: 30px;
     padding: 5px 0px;
@@ -187,6 +189,7 @@ nav, #menucontainer {
     border: none;
     text-shadow: 1px 1px 2px #111;
 }
+
 #login-display {
     font-size: 0.85em;
     display: block;
@@ -203,6 +206,7 @@ nav, #menucontainer {
 		color: white;
 		text-decoration: none;}
 }
+
 #main {
     background-color: #fff;
     -webkit-border-radius: 4px 0 0 0;
@@ -211,6 +215,7 @@ nav, #menucontainer {
 	min-height: 280px;
     padding: 10px 10px 5px 10px;
 }
+
 .button {
 	background: $light;
 	background: -moz-linear-gradient(top, $light 0%, $dark 100%);
@@ -285,7 +290,7 @@ select {
 }
 .form-input {
     width:90%; 
-	margin: 0px auto; 
+	margin: 5px auto; 
 }
 .form-button{
     clear: both;

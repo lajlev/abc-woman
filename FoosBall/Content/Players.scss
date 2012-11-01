@@ -21,6 +21,7 @@
 			clear: left;
 			float: left;
 			margin-right: 5px;
+			margin-left: 2px;
 			.gravatar {
 				height: 20px;
 			}
@@ -76,4 +77,44 @@
 			.nickname { display: inline; }
 		}
 	}
+}
+
+/* Player Details View
+----------------------------------------------------------*/
+#stats-title {
+	width: 99%;
+	text-align: center;
+}
+#player-stats {
+	div {
+		float: left;
+	}
+	.label {
+		clear: left;
+		width: 80px;
+	}
+
+}
+#player-match-history {
+	font-size: .85em;
+	font-weight: normal;
+	div {
+		float: left;
+	}
+	.player-self {
+		clear: left;
+	}
+	.date {
+		clear: both;
+	}
+	.time {
+		clear: left;
+	}
+	.with {
+		margin-left: 3px;
+	}
+}
+
+#go-back {
+	text-decoration: underline;	
 }

@@ -32,7 +32,7 @@
         </section>
         <footer>
             @RenderSection("Footer", false)
-            @Html.ActionLink("version "+@FoosBall.Models.HomeModels.GetVersion(), "Version", "Home")
+            @Html.ActionLink("version "+@FoosBall.Models.HomeModels.GetVersion(), "Version", "Home",new {@id = "version-link" })
         </footer>
     </div>
     <!-- Deferred Javascript -->
