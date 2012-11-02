@@ -1,0 +1,311 @@
+/* The box-model */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  background-color: #007000;
+  color: #007000;
+  font-size: 1.0em;
+  font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0; }
+
+a:link {
+  color: #223322;
+  text-decoration: none; }
+
+a:visited {
+  color: #223322; }
+
+a:hover {
+  color: black;
+  text-decoration: none; }
+
+a:active {
+  color: #black; }
+
+/* HEADINGS
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1.5em;
+  color: #000;
+  margin: 10px 0px 10px 0px; }
+
+h1 {
+  font-size: 3em;
+  padding-bottom: 0;
+  margin-bottom: 0; }
+
+h2 {
+  padding: 0 0 10px 0; }
+
+h3 {
+  font-size: 1.2em; }
+
+h4 {
+  font-size: 1.1em; }
+
+h5, h6 {
+  font-size: 1em; }
+
+/* TABLE
+----------------------------------------------------------*/
+table {
+  border-collapse: collapse;
+  width: 100%; }
+  table thead {
+    border-color: #223322;
+    border-bottom: 2px solid #223322; }
+  table th, table td {
+    border: 1px solid #007000;
+    letter-spacing: 0px;
+    padding: 3px 3px 1px 3px;
+    text-align: left; }
+  table td {
+    font-weight: normal; }
+  table th {
+    color: #223322;
+    font-size: .8em;
+    text-align: center; }
+
+/* PRIMARY LAYOUT ELEMENTS
+----------------------------------------------------------*/
+/* you can specify a greater or lesser percentage for the
+page width. Or, you can specify an exact pixel width. */
+#page {
+  max-width: 800px;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+@media only screen and (min-width: 810px) {
+  #page {
+    margin-left: auto;
+    margin-right: auto; } }
+footer, #footer {
+  background-color: #fff;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  color: #223322;
+  font-size: 12px;
+  margin: 0;
+  padding: 0px 10px 3px 10px;
+  text-align: center; }
+  footer a, footer a:link, footer a:visited, #footer a, #footer a:link, #footer a:visited {
+    text-decoration: underline; }
+
+/* TAB MENU
+----------------------------------------------------------*/
+#main-menu {
+  border-bottom: 1px #007000 solid;
+  line-height: 1.6em;
+  margin: 0;
+  padding: 0 0 2px;
+  position: relative;
+  text-align: right; }
+  #main-menu li {
+    display: inline;
+    list-style: none; }
+    #main-menu li a {
+      padding: 5px 10px;
+      font-weight: bold;
+      text-decoration: none;
+      background-color: #c3ffc3;
+      color: #085f00;
+      -webkit-border-radius: 4px 4px 0 0;
+      -moz-border-radius: 4px 4px 0 0;
+      border-radius: 4px 4px 0 0; }
+      #main-menu li a:hover {
+        background-color: #fff;
+        text-decoration: none; }
+
+#main-menu li a:active {
+  background-color: #a6e2a6;
+  text-decoration: none; }
+
+#main-menu li.selected a {
+  background-color: #fff;
+  color: #000; }
+
+textarea {
+  min-height: 75px; }
+
+/* --- FoosBall --- v v v
+/* ---------------------------------------------------------*/
+header, footer, nav, section {
+  display: block; }
+
+nav, #menucontainer {
+  margin-top: 5px; }
+
+#app-title {
+  font-size: 30px;
+  padding: 5px 0px;
+  margin: 0;
+  color: #fff;
+  border: none;
+  text-shadow: 1px 1px 2px #111; }
+
+#login-display {
+  font-size: 0.85em;
+  display: block;
+  text-align: right;
+  margin: 4px;
+  color: White; }
+  #login-display a:link {
+    color: white;
+    text-decoration: underline; }
+  #login-display a:visited {
+    color: white;
+    text-decoration: underline; }
+  #login-display a:hover {
+    color: white;
+    text-decoration: none; }
+
+#main {
+  background-color: #fff;
+  -webkit-border-radius: 4px 0 0 0;
+  -moz-border-radius: 4px 0 0 0;
+  border-radius: 4px 0 0 0;
+  min-height: 280px;
+  padding: 10px 10px 5px 10px; }
+
+.button {
+  background: #c3ffc3;
+  background: -moz-linear-gradient(top, #c3ffc3 0%, #007000 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b4e391), color-stop(100%, #007000));
+  background: -webkit-linear-gradient(top, #c3ffc3 0%, #007000 100%);
+  background: -o-linear-gradient(top, #c3ffc3 0%, #007000 100%);
+  background: -ms-linear-gradient(top, #c3ffc3 0%, #007000 100%);
+  background: linear-gradient(to bottom, #c3ffc3 0%, #007000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$light', endColorstr='$dark',GradientType=0 );
+  border: 1px solid #007000;
+  color: #223322;
+  font-weight: bold;
+  margin: 5px;
+  padding: 4px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px 1px 2px #c3ffc3;
+  cursor: pointer;
+  cursor: hand;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px; }
+
+.editor-icon {
+  float: right;
+  margin-top: 3px; }
+  .editor-icon a img {
+    height: 18px; }
+  .editor-icon#edit-player {
+    margin-right: 10px; }
+  .editor-icon#delete-player {
+    margin-right: 10px; }
+
+/* FORM LAYOUT ELEMENTS
+----------------------------------------------------------*/
+fieldset {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #007000;
+  margin: 0 0 1.5em 0; }
+  fieldset legend {
+    border: inherit;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 1.0em;
+    font-weight: bold;
+    margin: 0px auto;
+    padding: 3px 5px;
+    text-shadow: 2px 2px 2px #DDD; }
+  fieldset .wrapper {
+    height: 100%;
+    width: 100%; }
+
+select {
+  border: 2px solid #ccc;
+  color: #444;
+  font-size: 1.1em;
+  height: 35px;
+  margin: 0px;
+  padding: 2px;
+  width: 98%; }
+
+.submit-button {
+  margin: 5px 0px; }
+
+.form-input {
+  width: 90%;
+  margin: 5px auto; }
+
+.form-button {
+  clear: both;
+  float: none;
+  margin: 10px auto 5px auto;
+  width: 90%; }
+
+input[type="text"], input[type="password"], input[type="email"] {
+  border: 2px solid #ccc;
+  color: #444;
+  font-size: 1.1em;
+  height: 1.5em;
+  padding: 2px;
+  width: 98%; }
+  input[type="text"]#Email, input[type="password"]#Email, input[type="email"]#Email {
+    width: 60px!important; }
+
+input[type="submit"], input[type="button"], button {
+  font-size: 1.0em;
+  width: 100%;
+  margin: 1px 0px; }
+
+/* MISC
+----------------------------------------------------------*/
+.hide {
+  display: none; }
+
+.ellipsis-1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+/* Clear-fix */
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden; }
+
+html[xmlns] .clearfix {
+  display: block; }
+
+* html .clearfix {
+  height: 1%; }
+
+/* Errors and Validation */
+.error, .validation-message {
+  background: rgba(255, 0, 0, 0.3);
+  border: 2px solid red;
+  color: black;
+  display: none;
+  margin: 10px 0 0 0;
+  padding: 2px;
+  width: 98%; }
+  .error.small, .validation-message.small {
+    font-size: .85em;
+    margin: 2px 0 0 0; }
+  .error.show, .validation-message.show {
+    display: block; }
+
+.field-validation-error {
+  font-size: .85em;
+  width: 90%;
+  margin: 0px auto;
+  color: Red; }
