@@ -180,11 +180,11 @@ nav, #menucontainer {
 
 #app-title {
     font-size: 30px;
+    font-weight: bold;
     padding: 5px 0px;
     margin: 0;
-    color: #444;
+    color: #000;
     border: none;
-    text-shadow: 1px 1px 2px #111;
 }
 
 #login-display {
@@ -192,14 +192,18 @@ nav, #menucontainer {
     display: block;
     text-align: right;
     margin: 4px;
+    color: #999;
+
+  a {
     color: #222;
+    text-decoration: underline; }
 
   a:link {
 		color: #222;
 		text-decoration: underline; }
 
 	a:visited {
-		color: white;
+		color: #222;
 		text-decoration: underline; }
 
 	a:hover {
@@ -271,31 +275,31 @@ select {
     border: 2px solid #ccc;
     color: #444;
     font-size: 1.1em;
-	height: 35px;
+	height: 40px;
     margin: 0px;
     padding: 2px;
-    width: 98%;
+  width: 98%;
 }
 .submit-button {
-    margin: 5px 0px;
+  margin: 5px 0px;
 }
 .form-input {
-    width:90%;
+  width:90%;
 	margin: 5px auto;
 }
 .form-button{
-    clear: both;
-    float: none;
-    margin:10px auto 5px auto;
+  clear: both;
+  float: none;
+  margin:10px auto 5px auto;
 	width: 90%;
 }
 input[type="text"], input[type="password"], input[type="email"] {
-    border: 2px solid #ccc;
-    color: #444;
-    font-size: 1.1em;
+  border: 2px solid #ccc;
+  color: #444;
+  font-size: 1.1em;
 	height: 1.5em;
-    padding: 2px;
-    width: 98%;
+  padding: 2px;
+  width: 98%;
 
 	&#Email {
 		width: 60px!important;
