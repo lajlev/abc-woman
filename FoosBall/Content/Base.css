@@ -5,20 +5,19 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #007000;
-  color: #007000;
+  background-color: #222222;
+  color: #222222;
   font-size: 1.0em;
-  font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-  font-weight: bold;
+  font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0; }
 
 a:link {
-  color: #223322;
+  color: black;
   text-decoration: none; }
 
 a:visited {
-  color: #223322; }
+  color: black; }
 
 a:hover {
   color: black;
@@ -27,7 +26,7 @@ a:hover {
 a:active {
   color: #black; }
 
-/* HEADINGS   
+/* HEADINGS
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
   font-size: 1.5em;
@@ -57,23 +56,23 @@ table {
   border-collapse: collapse;
   width: 100%; }
   table thead {
-    border-color: #223322;
-    border-bottom: 2px solid #223322; }
+    border-color: black;
+    border-bottom: 2px solid black; }
   table th, table td {
-    border: 1px solid #007000;
+    border: 1px solid #222222;
     letter-spacing: 0px;
     padding: 3px 3px 1px 3px;
     text-align: left; }
   table td {
     font-weight: normal; }
   table th {
-    color: #223322;
+    color: black;
     font-size: .8em;
     text-align: center; }
 
-/* PRIMARY LAYOUT ELEMENTS   
+/* PRIMARY LAYOUT ELEMENTS
 ----------------------------------------------------------*/
-/* you can specify a greater or lesser percentage for the 
+/* you can specify a greater or lesser percentage for the
 page width. Or, you can specify an exact pixel width. */
 #page {
   max-width: 800px;
@@ -89,7 +88,7 @@ footer, #footer {
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
-  color: #223322;
+  color: black;
   font-size: 12px;
   margin: 0;
   padding: 0px 10px 3px 10px;
@@ -97,10 +96,10 @@ footer, #footer {
   footer a, footer a:link, footer a:visited, #footer a, #footer a:link, #footer a:visited {
     text-decoration: underline; }
 
-/* TAB MENU   
+/* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
-  border-bottom: 1px #007000 solid;
+  border-bottom: 1px #222222 solid;
   line-height: 1.6em;
   margin: 0;
   padding: 0 0 2px;
@@ -133,7 +132,7 @@ footer, #footer {
 textarea {
   min-height: 75px; }
 
-/* --- FoosBall --- v v v 
+/* --- FoosBall --- v v v
 /* ---------------------------------------------------------*/
 header, footer, nav, section {
   display: block; }
@@ -175,15 +174,15 @@ nav, #menucontainer {
 
 .button {
   background: #c3ffc3;
-  background: -moz-linear-gradient(top, #c3ffc3 0%, #007000 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b4e391), color-stop(100%, #007000));
-  background: -webkit-linear-gradient(top, #c3ffc3 0%, #007000 100%);
-  background: -o-linear-gradient(top, #c3ffc3 0%, #007000 100%);
-  background: -ms-linear-gradient(top, #c3ffc3 0%, #007000 100%);
-  background: linear-gradient(to bottom, #c3ffc3 0%, #007000 100%);
+  background: -moz-linear-gradient(top, #c3ffc3 0%, #222222 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b4e391), color-stop(100%, #222222));
+  background: -webkit-linear-gradient(top, #c3ffc3 0%, #222222 100%);
+  background: -o-linear-gradient(top, #c3ffc3 0%, #222222 100%);
+  background: -ms-linear-gradient(top, #c3ffc3 0%, #222222 100%);
+  background: linear-gradient(to bottom, #c3ffc3 0%, #222222 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$light', endColorstr='$dark',GradientType=0 );
-  border: 1px solid #007000;
-  color: #223322;
+  border: 1px solid #222222;
+  color: black;
   font-weight: bold;
   margin: 5px;
   padding: 4px;
@@ -206,13 +205,13 @@ nav, #menucontainer {
   .editor-icon#delete-player {
     margin-right: 10px; }
 
-/* FORM LAYOUT ELEMENTS   
+/* FORM LAYOUT ELEMENTS
 ----------------------------------------------------------*/
 fieldset {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  border: 2px solid #007000;
+  border: 2px solid #222222;
   margin: 0 0 1.5em 0; }
   fieldset legend {
     border: inherit;
@@ -265,7 +264,7 @@ input[type="submit"], input[type="button"], button {
   width: 100%;
   margin: 1px 0px; }
 
-/* MISC  
+/* MISC
 ----------------------------------------------------------*/
 .hide {
   display: none; }
@@ -310,4 +309,3 @@ html[xmlns] .clearfix {
   width: 90%;
   margin: 0px auto;
   color: Red; }
-
