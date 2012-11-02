@@ -5,7 +5,7 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #222222;
+  background-color: #eee;
   color: #222222;
   font-size: 1.0em;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -99,7 +99,6 @@ footer, #footer {
 /* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
-  border-bottom: 1px #222222 solid;
   line-height: 1.6em;
   margin: 0;
   padding: 0 0 2px;
@@ -109,14 +108,12 @@ footer, #footer {
     display: inline;
     list-style: none; }
     #main-menu li a {
+      margin: 0 0 2px 2px;
       padding: 5px 10px;
       font-weight: bold;
       text-decoration: none;
       background-color: #eeeeee;
-      color: #085f00;
-      -webkit-border-radius: 4px 4px 0 0;
-      -moz-border-radius: 4px 4px 0 0;
-      border-radius: 4px 4px 0 0; }
+      color: #222222; }
       #main-menu li a:hover {
         background-color: #fff;
         text-decoration: none; }

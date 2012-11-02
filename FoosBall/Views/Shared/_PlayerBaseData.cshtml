@@ -11,10 +11,10 @@
     <br/>
     @Html.LabelFor(m => Model.Name)
     @Html.TextBoxFor(m => Model.Name, new { placeholder = "Name"})
-    <br/>
+    <br/><br/>
     @Html.LabelFor(m => Model.NickName, "Nickname (max 5 char.)")
     @Html.TextBoxFor(m => Model.NickName, new { placeholder = "Nickname", maxlength = "5"})
-    <br/>
+    <br/><br/>
     @Html.LabelFor(m => FoosBallLists.Positions[0], "Preferred position")
 
     <select name="Position">
@@ -26,7 +26,7 @@
             <option @sel value="@position">@position</option>
         }
     </select>
-    <br/>
+    <br/><br/>
     <div class="editor-label">@Html.LabelFor(m => FoosBallLists.Departments[0], "Department")</div>
     <div class="editor-field">
         <select name="Department">
@@ -39,8 +39,8 @@
             }
         </select>
     </div>
-    <br/>
+    <br/><br/>
     <div class="editor-label">@Html.LabelFor(m => Model.Password)</div>
     <div class="editor-field">@Html.PasswordFor(m => Model.Password, new { placeholder = "Password"})</div>
-    <br/>
+    <br/><br/>
 }

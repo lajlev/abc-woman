@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: $dark;
+  background-color: #eee;
   color: $dark;
   font-size: 1.0em;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -97,7 +97,7 @@ table {
 /* you can specify a greater or lesser percentage for the
 page width. Or, you can specify an exact pixel width. */
 #page {
-	max-width: 800px;
+	 max-width: 800px;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -127,7 +127,6 @@ footer, #footer {
 /* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
-    border-bottom: 1px $dark solid;
     line-height: 1.6em;
     margin: 0;
     padding: 0 0 2px;
@@ -139,14 +138,12 @@ footer, #footer {
 		list-style: none;
 
 		a {
+      margin: 0 0 2px 2px;
 			padding: 5px 10px;
 			font-weight: bold;
 			text-decoration: none;
 			background-color: $light;
-			color: #085f00;
-			-webkit-border-radius: 4px 4px 0 0;
-			-moz-border-radius: 4px 4px 0 0;
-			border-radius: 4px 4px 0 0;
+			color: $dark;
 
 			&:hover {
 				background-color: #fff;
