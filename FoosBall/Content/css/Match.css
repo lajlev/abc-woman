@@ -68,9 +68,9 @@ table .winner {
 /* @MediaQuery: iPad / Tablet */
 @media only screen and (min-width: 750px) {
   table thead {
-    border-color: #223322; }
+    border-color: black; }
   table th, table td {
-    border: 2px solid #007000; }
+    border: 2px solid #222222; }
 
   .list-of-matches {
     line-height: 1.0em; }
