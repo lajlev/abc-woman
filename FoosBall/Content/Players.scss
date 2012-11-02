@@ -7,9 +7,10 @@
 	width: 99%;
 
 	.player {
-		margin: 5px 0px 10px;
-		border-bottom: 1px solid $dark;
-
+		border: 2px solid #6a6;
+		@include round-border-small;
+		margin: 2px 0px;
+		padding: 1px 3px 1px 1px;
 		width: 99%;
 		.ranking {
 			clear: left;
