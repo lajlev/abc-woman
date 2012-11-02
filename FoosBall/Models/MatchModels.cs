@@ -20,9 +20,24 @@
         
         public BsonDateTime GameOverTime { get; set; }
 
+        public bool WonTheMatch(BsonObjectId id)
+        {
+            return (IsOnRedTeam(id) && RedScore > BlueScore) || (IsOnBlueTeam(id) && BlueScore > RedScore);
+        }
+
         public bool ContainsPlayer(BsonObjectId id)
         {
             return id == RedPlayer1.Id || id == RedPlayer2.Id || id == BluePlayer1.Id || id == BluePlayer2.Id;
+        }
+
+        public bool IsOnRedTeam(BsonObjectId id)
+        {
+            return id == RedPlayer1.Id || id == RedPlayer2.Id;
+        }
+
+        public bool IsOnBlueTeam(BsonObjectId id)
+        {
+            return id == BluePlayer1.Id || id == BluePlayer2.Id;
         }
 
         public Player GetPartner(BsonObjectId id)

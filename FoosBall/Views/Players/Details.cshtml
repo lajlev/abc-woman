@@ -38,19 +38,37 @@
             <div class="date" title="@playedMatch.GameOverTime.ToLocalTime()">@playedMatch.GameOverTime.ToLocalTime().ToString("D")</div>               
         }
         
+        <div class="time">@playedMatch.GameOverTime.ToLocalTime().ToString("t")</div>
+
         <div class="player-self">
             <span class="nickname">@Model.Player.NickName</span>
             <span class="name">@Model.Player.Name</span>
         </div>
-        <div class="time">@playedMatch.GameOverTime.ToLocalTime().ToString("t")</div>
+        
+        
         <div class="with">
             @if (playedMatch.GetPartner(@Model.Player.Id).Name != null)
             {
-                <text> and @playedMatch.GetPartner(@Model.Player.Id).Name </text>
+                <text> & @playedMatch.GetPartner(@Model.Player.Id).Name </text>
             }
         </div>
-        <div> played against </div>
+        
+        <div class="against"> played against </div>
+        
+        <div class="opponents">
+            @if (playedMatch.IsOnRedTeam(@Model.Player.Id))
+            {
+                <span class="nickname">@playedMatch.BluePlayer1.NickName@(@playedMatch.BluePlayer2.Id != null ? " & " + @playedMatch.BluePlayer2.NickName : "")</span>
+                <span class="name">@playedMatch.BluePlayer1.Name@(@playedMatch.BluePlayer2 != null ? " & " + @playedMatch.BluePlayer2.Name : "")</span>
+            } else
+            {
+                <span class="nickname">@playedMatch.RedPlayer1.NickName@(@playedMatch.RedPlayer2.Id != null ? " & " + @playedMatch.RedPlayer2.NickName : "")</span>
+                <span class="name">@playedMatch.RedPlayer1.Name@(@playedMatch.RedPlayer2 != null ? " & " + @playedMatch.RedPlayer2.Name : "")</span>
+            }
+        </div>
 
+        <div class="won-lost">& @(playedMatch.WonTheMatch(@Model.Player.Id) ? "Won" : "Lost")</div>
+        
         date = playedMatch.GameOverTime.ToLocalTime().ToString(dateFormat);
     }
 </fieldset>

@@ -100,20 +100,32 @@
 	font-weight: normal;
 	div {
 		float: left;
-	}
-	.player-self {
-		clear: left;
+		margin-left: 3px;
 	}
 	.date {
 		clear: both;
+		font-weight: bold;
+	}
+	.name {
+		display: none;
 	}
 	.time {
 		clear: left;
-	}
-	.with {
-		margin-left: 3px;
+	}	
+}
+
+@media only screen and (min-width : 470px) { 
+	#player-match-history {
+		.name {
+			display: block;
+		}
+		.nickname {
+			display: none;
+		}
 	}
 }
+
+
 
 #go-back {
 	text-decoration: underline;	

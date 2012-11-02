@@ -75,16 +75,21 @@
   font-size: .85em;
   font-weight: normal; }
   #player-match-history div {
-    float: left; }
-  #player-match-history .player-self {
-    clear: left; }
+    float: left;
+    margin-left: 3px; }
   #player-match-history .date {
-    clear: both; }
+    clear: both;
+    font-weight: bold; }
+  #player-match-history .name {
+    display: none; }
   #player-match-history .time {
     clear: left; }
-  #player-match-history .with {
-    margin-left: 3px; }
 
+@media only screen and (min-width: 470px) {
+  #player-match-history .name {
+    display: block; }
+  #player-match-history .nickname {
+    display: none; } }
 #go-back {
   text-decoration: underline; }
 
