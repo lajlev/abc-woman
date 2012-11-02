@@ -15,14 +15,14 @@
     {
         var index = 1;
         foreach (var player in Model.Players)
-        { 
+        {
             <div id="@player.Id" class="player clearfix">
                 <div class="ranking" title="Players ranking">@index</div>
                 <div class="rating" title="Rating: @player.Rating.ToString("F")">
                     Rating: @player.Rating.ToString("F0")
                 </div>
                 <div class="department">(@player.Department)</div>
-                <div class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won|Lost|Played</div>
+                <div class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won&nbsp;|&nbsp;Lost&nbsp;|&nbsp;Played</div>
                 <div class="avatar">
                     <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email + "@trustpilot.com")"/>
                 </div>

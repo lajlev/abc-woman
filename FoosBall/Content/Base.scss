@@ -2,17 +2,16 @@
 @import "_mixins";
 
 /* The box-model */
-* { 
-	-moz-box-sizing: border-box; 
-	-webkit-box-sizing: border-box; 
-	box-sizing: border-box; 
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 body {
     background-color: $dark;
     color: $dark;
-    font-size: 1.0em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-	font-weight: bold;
+    font-size: 1em;
+    font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -32,10 +31,10 @@ a:hover {
 }
 
 a:active {
-    color: #black;
+    color: #000;
 }
 
-/* HEADINGS   
+/* HEADINGS
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
@@ -69,8 +68,8 @@ h5, h6 {
 ----------------------------------------------------------*/
 table {
 	border-collapse: collapse;
-	width: 100%; 
-	thead { 
+	width: 100%;
+	thead {
 		border-color: $darkest;
 		border-bottom: 2px solid $darkest;
 	}
@@ -91,10 +90,10 @@ table {
 }
 
 
-/* PRIMARY LAYOUT ELEMENTS   
+/* PRIMARY LAYOUT ELEMENTS
 ----------------------------------------------------------*/
 
-/* you can specify a greater or lesser percentage for the 
+/* you can specify a greater or lesser percentage for the
 page width. Or, you can specify an exact pixel width. */
 #page {
 	max-width: 800px;
@@ -102,7 +101,7 @@ page width. Or, you can specify an exact pixel width. */
     margin-right: 5px;
 }
 
-@media only screen and (min-width : 810px) { 
+@media only screen and (min-width : 810px) {
 	#page {
 		margin-left: auto;
 		margin-right: auto;
@@ -124,7 +123,7 @@ footer, #footer {
 	}
 }
 
-/* TAB MENU   
+/* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
     border-bottom: 1px $dark solid;
@@ -133,11 +132,11 @@ footer, #footer {
     padding: 0 0 2px;
     position: relative;
     text-align: right;
-	
+
 	li {
 		display: inline;
 		list-style: none;
-		
+
 		a {
 			padding: 5px 10px;
 			font-weight: bold;
@@ -147,7 +146,7 @@ footer, #footer {
 			-webkit-border-radius: 4px 4px 0 0;
 			-moz-border-radius: 4px 4px 0 0;
 			border-radius: 4px 4px 0 0;
-			
+
 			&:hover {
 				background-color: #fff;
 				text-decoration: none;}
@@ -171,7 +170,7 @@ textarea {
     min-height: 75px;
 }
 
-/* --- FoosBall --- v v v 
+/* --- FoosBall --- v v v
 /* ---------------------------------------------------------*/
 header, footer, nav, section {
     display: block;
@@ -231,7 +230,7 @@ nav, #menucontainer {
 	margin: 5px;
 	padding: 4px;
 	text-align: center;
-	text-decoration: none; 
+	text-decoration: none;
 	text-shadow: 1px 1px 2px $light;
 	cursor: pointer;
 	cursor: hand;
@@ -241,8 +240,8 @@ nav, #menucontainer {
 .editor-icon {
 	float: right;
 	margin-top: 3px;
-	a img { 
-		height: 18px; 
+	a img {
+		height: 18px;
 	}
 	&#edit-player {
 		margin-right: 10px;
@@ -252,24 +251,16 @@ nav, #menucontainer {
 	}
 }
 
-/* FORM LAYOUT ELEMENTS   
+/* FORM LAYOUT ELEMENTS
 ----------------------------------------------------------*/
 fieldset {
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    border: 2px solid $dark;
-    margin: 0 0 1.5em 0; 
+  border: none;
+
 	legend {
-		border: inherit;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px; 
-	    font-size: 1.0em;
+	  font-size: 1.0em;
 		font-weight: bold;
-		margin: 0px auto; 
-		padding: 3px 5px;
-		text-shadow: 2px 2px 2px #DDD;
+		margin: 0px auto;
+		border: none;
 	}
 	.wrapper {
 		height: 100%;
@@ -283,19 +274,19 @@ select {
 	height: 35px;
     margin: 0px;
     padding: 2px;
-    width: 98%; 
+    width: 98%;
 }
 .submit-button {
-    margin: 5px 0px; 
+    margin: 5px 0px;
 }
 .form-input {
-    width:90%; 
-	margin: 5px auto; 
+    width:90%;
+	margin: 5px auto;
 }
 .form-button{
     clear: both;
     float: none;
-    margin:10px auto 5px auto; 
+    margin:10px auto 5px auto;
 	width: 90%;
 }
 input[type="text"], input[type="password"], input[type="email"] {
@@ -315,14 +306,14 @@ input[type="submit"], input[type="button"], button {
 	width: 100%;
 	margin: 1px 0px;
 }
-/* MISC  
+/* MISC
 ----------------------------------------------------------*/
 .hide { display: none; }
 
 .ellipsis-1 {
 	white-space: nowrap;
 	overflow: hidden;
-	text-overflow: ellipsis;	
+	text-overflow: ellipsis;
 }
 
 /* Clear-fix */
@@ -341,18 +332,18 @@ html[xmlns] .clearfix {
 	height: 1%;
 }
 
-/* Errors and Validation */ 
+/* Errors and Validation */
 .error, .validation-message {
 	background: rgba(255, 0, 0, .3);
 	border: 2px solid red;
-    color: black; 
+    color: black;
 	display: none;
-	margin: 10px 0 0 0;  
+	margin: 10px 0 0 0;
 	padding: 2px;
-	width:98%; 
+	width:98%;
 	&.small {
 		font-size: .85em;
-		margin: 2px 0 0 0;  
+		margin: 2px 0 0 0;
 	}
 	&.show {
 		display: block;
@@ -360,7 +351,7 @@ html[xmlns] .clearfix {
 }
 .field-validation-error {
 	font-size: .85em;
-	width:90%; 
-	margin: 0px auto;  
-	color: Red;	
+	width:90%;
+	margin: 0px auto;
+	color: Red;
 }

@@ -1,18 +1,18 @@
 // Variable declarations
 $light: #C3FFC3;
-$dark: #007000;
-$darkest: #232;
+$dark: #222;
+$darkest: #000;
 $std-border: 2px solid #6A6;
 $red-team-color: #C00;
 $blue-team-color: #00A;
 
 // mixin declarations
-@mixin round-border-small { 
+@mixin round-border-small {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
-@mixin round-border-medium { 
+@mixin round-border-medium {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
