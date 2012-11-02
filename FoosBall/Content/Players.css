@@ -5,10 +5,12 @@
   width: 99%; }
   .player .ranking {
     float: left;
-    width: 25px;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
-    color: #eee; }
+    color: #D1D1D1;
+    margin-right: 0;
+    margin-top: 9px;
+    width: 40px; }
   .player .avatar {
     float: left;
     margin-right: 5px;
