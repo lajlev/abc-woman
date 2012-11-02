@@ -7,14 +7,14 @@
     <a href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(Model != null ? Model.Email + "@trustpilot.com" : "")"/></a>
 
     @Html.LabelFor(m => Model.Email, "Email")
-    @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email", autocapitalize = "off", autocorrect = "off"})<text>@@trustpilot.com</text><br/>
-
+    @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email", autocapitalize = "off", autocorrect = "off"})<text>@@trustpilot.com</text><br>
+    <br>
     @Html.LabelFor(m => Model.Name)
     @Html.TextBoxFor(m => Model.Name, new { placeholder = "Name"})
-
+    <br>
     @Html.LabelFor(m => Model.NickName, "Nickname (max 5 char.)")
     @Html.TextBoxFor(m => Model.NickName, new { placeholder = "Nickname", maxlength = "5"})
-
+    <br>
     @Html.LabelFor(m => FoosBallLists.Positions[0], "Preferred position")
 
     <select name="Position">
@@ -26,7 +26,7 @@
             <option @sel value="@position">@position</option>
         }
     </select>
-
+    <br>
     <div class="editor-label">@Html.LabelFor(m => FoosBallLists.Departments[0], "Department")</div>
     <div class="editor-field">
         <select name="Department">
@@ -39,7 +39,8 @@
             }
         </select>
     </div>
-
+    <br>
     <div class="editor-label">@Html.LabelFor(m => Model.Password)</div>
     <div class="editor-field">@Html.PasswordFor(m => Model.Password, new { placeholder = "Password"})</div>
+    <br>
 }
