@@ -65,6 +65,10 @@ h5, h6 {
     font-size: 1em;
 }
 
+.dimmed {
+  color: #999;
+}
+
 /* TABLE
 ----------------------------------------------------------*/
 table {
@@ -129,7 +133,6 @@ footer, #footer {
 #main-menu {
     line-height: 1.6em;
     margin: 0;
-    padding: 0 0 2px;
     position: relative;
     text-align: right;
 
@@ -224,7 +227,7 @@ nav, #menucontainer {
 	color: #efefef;
 	font-weight: bold;
 	margin: 5px;
-	padding: 4px;
+	padding: 10px 4px;
 	text-align: center;
 	text-decoration: none;
 	cursor: pointer;

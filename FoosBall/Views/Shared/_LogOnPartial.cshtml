@@ -2,8 +2,8 @@
 @if (Session["IsLoggedIn"].ToString().ToLower() == "true")
 {
     var user = (Player)Session["User"];
-    <text>Welcome <strong>@user.Name</strong>!
-    [ <a href="Players/Edit/@user.Id">Edit</a> / @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
+    <text>Hi @user.Name
+    [ <a href="Players/Edit/@user.Id">Edit</a> &middot; @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
 }
 else {
     @Html.ActionLink("Log on", "LogOn", "Account") <text>or</text> @Html.ActionLink("Sign up", "Register", "Account")
