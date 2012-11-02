@@ -11,17 +11,17 @@
 }
 .team {
 	margin-top: 3px;
-	width: 45%; 
+	width: 45%;
 	text-align: center;
 }
 .red-team, #team-red-players {
-	float: left; 
+	float: left;
 	clear: left;
 	.team-name {
 		color: $red-team-color;
 	}
 }
-.vs { 
+.vs {
 	float: left;
 	margin-top: 3px;
 	text-align: center;
@@ -29,7 +29,7 @@
 	width: 10%;
 }
 .blue-team, #team-blue-players, .blue-score {
-	float: right; 
+	float: right;
 	clear: right;
 	.team-name {
 		color: $blue-team-color;
@@ -56,9 +56,8 @@ table {
 		&.red { color: $red-team-color; }
 		&.blue { color: $blue-team-color; }
 	}
-	.winner { 
+	.winner {
 		color: black;
-		font-weight: bold;
 	}
 }
 
@@ -78,13 +77,13 @@ table {
 }
 
 /* @MediaQuery: iPad / Tablet */
-@media only screen and (min-width : 470px) { 
+@media only screen and (min-width : 470px) {
 	table {
 		th { font-size: 1.0em;}
 	}
 }
 /* @MediaQuery: iPad / Tablet */
-@media only screen and (min-width : 750px) { 
+@media only screen and (min-width : 750px) {
 	table {
 		thead {
 			border-color: $darkest;}
@@ -136,7 +135,7 @@ table {
 	}
 	#team-red-players {
 		float: left;}
-	#team-blue-players {	
+	#team-blue-players {
 		float: right;}
 }
 #team-results {

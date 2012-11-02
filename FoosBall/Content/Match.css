@@ -45,8 +45,7 @@ table th.red {
 table th.blue {
   color: #0000aa; }
 table .winner {
-  color: black;
-  font-weight: bold; }
+  color: black; }
 
 #pending-matches .names, #pending-matches .odds, #pending-matches .created {
   display: none; }
