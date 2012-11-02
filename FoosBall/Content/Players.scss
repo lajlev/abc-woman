@@ -27,22 +27,27 @@
 	.name {
 		float: left;
 		width: 50%;
+		margin-top: 4px;
+		margin-left: 3px;
+		line-height: 1.3em;
+
+		sup {
+			color: #999;
+			font-size: 10px;
+		}
 	}
 	.nickname {
 		display: none;
 	}
 }
-
-.rating {
-	float: left;
-	margin-left: 5px;
-}
 .won-lost-played {
 	float: right;
 	clear: right;
 	color: #999;
+	font-size: 22px;
 	span {
 		color: #222;
+		font-weight: bold;
 	}
 	.won {
 		color: green;
