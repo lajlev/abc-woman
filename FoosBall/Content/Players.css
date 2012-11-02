@@ -3,12 +3,8 @@
 #list-of-players {
   width: 99%; }
   #list-of-players .player {
-    border: 2px solid #6a6;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    margin: 2px 0px;
-    padding: 1px 3px 1px 1px;
+    margin: 5px 0px 10px;
+    border-bottom: 1px solid #222222;
     width: 99%; }
     #list-of-players .player .ranking {
       clear: left;
