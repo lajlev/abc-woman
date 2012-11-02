@@ -1,8 +1,9 @@
 /* Player View
 ----------------------------------------------------------*/
 .player {
-  margin: 0 0 20px;
-  width: 99%; }
+  margin: 15px 0;
+  width: 99%;
+  border-bottom: 1px solid #efefef; }
   .player .ranking {
     float: left;
     font-size: 26px;

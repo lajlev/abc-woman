@@ -5,8 +5,10 @@
 ----------------------------------------------------------*/
 
 .player {
-	margin: 0 0 20px;
+	margin: 15px 0;
 	width: 99%;
+	border-bottom: 1px solid #efefef;
+
 	.ranking {
 		float: left;
 		font-size: 26px;

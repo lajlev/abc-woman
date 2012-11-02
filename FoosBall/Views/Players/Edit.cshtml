@@ -9,16 +9,14 @@
 
 @using (Html.BeginForm("Edit", "Players", FormMethod.Post, new { id = "edit-player" }))
 {
+    <h3>Create a FoosBall player</h3>
     <input type="hidden" name="player-id" value="@Model.Id"/>
-    <fieldset id="edit-player-form">
-        <legend>Create a FoosBall player</legend>
-        
-        @Html.Partial("_PlayerBaseData", Model)
 
-        <div class="form-button">
-            <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
-        </div>
-        <div class="validation-message"></div>
-        <a id="go-back" href="/Players">Go Back</a>
-    </fieldset> 
+    @Html.Partial("_PlayerBaseData", Model)
+
+    <div class="form-button">
+        <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
+    </div>
+    <div class="validation-message"></div>
+    <a id="go-back" href="/Players">Go Back</a>
 }
