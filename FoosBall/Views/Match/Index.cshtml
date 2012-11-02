@@ -23,6 +23,7 @@
                     }
                 </select>
             </div>
+            <br>
             <div class="form-input">
                 <select class="select-player" id="red-player-2" name="red-player-2">
                     <option></option>
@@ -47,6 +48,7 @@
                     }
                 </select>
             </div>
+            <br>
             <div class="form-input">
                 <select class="select-player" id="blue-player-2" name="blue-player-2">
                     <option></option>
@@ -59,12 +61,14 @@
         </div>
 
         <div class="validation-message"></div>
+        <br>
         <div class="form-button">
             <input type="submit" value="Create match" class="submit-button button" id="create-match-button"/>
         </div>
+        <br>
     }
 }
-
+    <br><br><br>
     <h3>Upcoming Matches</h3>
 
     @if (Model.PendingMatches.Any())
@@ -75,6 +79,7 @@
     {
         <text>- None :( ... Guess Foosball table is availiable then :D - </text>
     }
+    <br><br><br>
     <h3>Latest Matches</h3>
     @if (Model.PlayedMatches.Any())
     {
