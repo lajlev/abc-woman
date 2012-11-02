@@ -4,31 +4,22 @@
   margin: 0 0 20px;
   width: 99%; }
   .player .ranking {
-    clear: left;
     float: left;
-    width: 25px; }
+    width: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #eee; }
   .player .avatar {
-    clear: left;
     float: left;
     margin-right: 5px;
     margin-left: 2px; }
     .player .avatar .gravatar {
-      height: 20px; }
+      height: 48px; }
   .player .name {
     float: left;
     width: 50%; }
   .player .nickname {
     display: none; }
-
-.department {
-  display: none;
-  padding-left: 5px; }
-
-.legend {
-  float: right;
-  clear: right;
-  font-size: 10px;
-  color: #999; }
 
 .rating {
   float: left; }

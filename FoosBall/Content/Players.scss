@@ -8,17 +8,18 @@
 	margin: 0 0 20px;
 	width: 99%;
 	.ranking {
-		clear: left;
 		float: left;
 		width: 25px;
+		font-size: 24px;
+		font-weight: bold;
+		color: #eee;
 	}
 	.avatar {
-		clear: left;
 		float: left;
 		margin-right: 5px;
 		margin-left: 2px;
 		.gravatar {
-			height: 20px;
+			height: 48px;
 		}
 	}
 	.name {
@@ -29,21 +30,14 @@
 		display: none;
 	}
 }
-.department {
-	display: none;
-	padding-left: 5px;}
-.legend{
-	float: right;
-	clear: right;
-	font-size: 10px;
-	color: #999;
-	}
+
 .rating {
 	float: left;
 }
 .won-lost-played {
 	float: right;
-	clear: right;}
+	clear: right;
+}
 
 #edit-player-form {
 	label, input {
