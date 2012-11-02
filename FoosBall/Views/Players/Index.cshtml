@@ -22,7 +22,10 @@
                 <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email + "@trustpilot.com")"/>
             </div>
             <div class="name ellipsis-1" title="Nickname: @player.NickName">
-            @player.Name [@player.Rating.ToString("F0")p]
+            @player.Name
+            </div>
+            <div class="rating" title="Points">
+                @player.Rating.ToString("F0")
             </div>
             <div class="won-lost-played" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">
             <span class="won">@player.Won</span> &middot; <span class="lost">@player.Lost</span> &middot; <span class="played">@player.Played</span>
