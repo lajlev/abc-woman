@@ -40,6 +40,10 @@
 .won-lost-played {
 	float: right;
 	clear: right;
+	color: #999;
+	span {
+		color: #222;
+	}
 	.won {
 		color: green;
 	}

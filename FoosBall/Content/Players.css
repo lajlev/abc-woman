@@ -29,7 +29,10 @@
 
 .won-lost-played {
   float: right;
-  clear: right; }
+  clear: right;
+  color: #999; }
+  .won-lost-played span {
+    color: #222; }
   .won-lost-played .won {
     color: green; }
   .won-lost-played .lost {
