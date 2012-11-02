@@ -37,6 +37,12 @@
 .won-lost-played {
 	float: right;
 	clear: right;
+	.won {
+		color: green;
+	}
+	.lost {
+		color: red;
+	}
 }
 
 #edit-player-form {
