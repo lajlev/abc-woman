@@ -16,7 +16,8 @@
     margin-right: 5px;
     margin-left: 2px; }
     .player .avatar .gravatar {
-      height: 48px; }
+      height: 48px;
+      border-radius: 3px; }
   .player .name {
     float: left;
     width: 65%;
