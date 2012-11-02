@@ -101,14 +101,15 @@ footer, #footer {
 #main-menu {
   line-height: 1.6em;
   margin: 0;
+  padding: 0 0 2px;
   position: relative;
   text-align: right; }
   #main-menu li {
     display: inline;
     list-style: none; }
     #main-menu li a {
-      margin: 0 0 2px 2px;
-      padding: 5px 10px;
+      margin: 0 0 0 2px;
+      padding: 5px 8px;
       font-weight: bold;
       text-decoration: none;
       background-color: #eeeeee;
