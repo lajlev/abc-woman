@@ -26,7 +26,7 @@
 	}
 	.name {
 		float: left;
-		width: 50%;
+		width: 65%;
 		margin-top: 4px;
 		margin-left: 3px;
 		line-height: 1.3em;
@@ -34,6 +34,8 @@
 		sup {
 			color: #999;
 			font-size: 10px;
+			margin-left: 2px;
+			margin-right: 5px;
 		}
 	}
 	.nickname {
@@ -41,13 +43,10 @@
 	}
 }
 .won-lost-played {
-	float: right;
-	clear: right;
+	display: inline;
 	color: #999;
-	font-size: 22px;
 	span {
 		color: #222;
-		font-weight: bold;
 	}
 	.won {
 		color: green;

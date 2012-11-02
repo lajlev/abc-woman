@@ -19,24 +19,23 @@
       height: 48px; }
   .player .name {
     float: left;
-    width: 50%;
+    width: 65%;
     margin-top: 4px;
     margin-left: 3px;
     line-height: 1.3em; }
     .player .name sup {
       color: #999;
-      font-size: 10px; }
+      font-size: 10px;
+      margin-left: 2px;
+      margin-right: 5px; }
   .player .nickname {
     display: none; }
 
 .won-lost-played {
-  float: right;
-  clear: right;
-  color: #999;
-  font-size: 22px; }
+  display: inline;
+  color: #999; }
   .won-lost-played span {
-    color: #222;
-    font-weight: bold; }
+    color: #222; }
   .won-lost-played .won {
     color: green; }
   .won-lost-played .lost {
