@@ -3,53 +3,50 @@
 
 /* Player View
 ----------------------------------------------------------*/
-#list-of-players {
-	width: 99%;
 
-	.player {
-		border: 2px solid #6a6;
-		@include round-border-small;
-		margin: 2px 0px;
-		padding: 1px 3px 1px 1px;
-		width: 99%;
-		.ranking {
-			clear: left;
-			float: left;
-			width: 25px;
-		}
-		.avatar {
-			clear: left;
-			float: left;
-			margin-right: 5px;
-			margin-left: 2px;
-			.gravatar {
-				height: 20px;
-			}
-		}
-		.name {
-			float: left;
-			width: 50%;
-		}
-		.nickname {
-			display: none;
-		}
-	}
-	.department {
-		display: none;
-		padding-left: 5px;}
-	.legend{
-		float: right;
-		clear: right;
-		font-size: 10px;
-		letter-spacing: 0px;
-		width: 85px;}
-	.rating {
+.player {
+	border: 2px solid #6a6;
+	@include round-border-small;
+	margin: 2px 0px;
+	padding: 1px 3px 1px 1px;
+	width: 99%;
+	.ranking {
+		clear: left;
 		float: left;
+		width: 25px;
 	}
-	.won-lost-played {
-		float: right;
-		clear: right;}
+	.avatar {
+		clear: left;
+		float: left;
+		margin-right: 5px;
+		margin-left: 2px;
+		.gravatar {
+			height: 20px;
+		}
+	}
+	.name {
+		float: left;
+		width: 50%;
+	}
+	.nickname {
+		display: none;
+	}
 }
+.department {
+	display: none;
+	padding-left: 5px;}
+.legend{
+	float: right;
+	clear: right;
+	font-size: 10px;
+	letter-spacing: 0px;
+	width: 85px;}
+.rating {
+	float: left;
+}
+.won-lost-played {
+	float: right;
+	clear: right;}
 
 #edit-player-form {
 	label, input {
