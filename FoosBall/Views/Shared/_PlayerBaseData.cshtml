@@ -7,7 +7,7 @@
     <a href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(Model != null ? Model.Email + "@trustpilot.com" : "")"/></a>
 
     @Html.LabelFor(m => Model.Email, "Email")
-    @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email", autocapitalize = "off", autocorrect = "off"})<text>@@trustpilot.com</text><br>
+    @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email", autocapitalize = "off", autocorrect = "off"})<text>@@trustpilot.com</text><br/>
     <br>
     @Html.LabelFor(m => Model.Name)
     @Html.TextBoxFor(m => Model.Name, new { placeholder = "Name"})
