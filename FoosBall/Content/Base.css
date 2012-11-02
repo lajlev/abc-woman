@@ -112,7 +112,7 @@ footer, #footer {
       padding: 5px 10px;
       font-weight: bold;
       text-decoration: none;
-      background-color: #c3ffc3;
+      background-color: #eeeeee;
       color: #085f00;
       -webkit-border-radius: 4px 4px 0 0;
       -moz-border-radius: 4px 4px 0 0;
@@ -173,13 +173,13 @@ nav, #menucontainer {
   padding: 10px 10px 5px 10px; }
 
 .button {
-  background: #c3ffc3;
-  background: -moz-linear-gradient(top, #c3ffc3 0%, #222222 100%);
+  background: #eeeeee;
+  background: -moz-linear-gradient(top, #eeeeee 0%, #222222 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b4e391), color-stop(100%, #222222));
-  background: -webkit-linear-gradient(top, #c3ffc3 0%, #222222 100%);
-  background: -o-linear-gradient(top, #c3ffc3 0%, #222222 100%);
-  background: -ms-linear-gradient(top, #c3ffc3 0%, #222222 100%);
-  background: linear-gradient(to bottom, #c3ffc3 0%, #222222 100%);
+  background: -webkit-linear-gradient(top, #eeeeee 0%, #222222 100%);
+  background: -o-linear-gradient(top, #eeeeee 0%, #222222 100%);
+  background: -ms-linear-gradient(top, #eeeeee 0%, #222222 100%);
+  background: linear-gradient(to bottom, #eeeeee 0%, #222222 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$light', endColorstr='$dark',GradientType=0 );
   border: 1px solid #222222;
   color: black;
@@ -188,7 +188,7 @@ nav, #menucontainer {
   padding: 4px;
   text-align: center;
   text-decoration: none;
-  text-shadow: 1px 1px 2px #c3ffc3;
+  text-shadow: 1px 1px 2px #eeeeee;
   cursor: pointer;
   cursor: hand;
   -webkit-border-radius: 15px;

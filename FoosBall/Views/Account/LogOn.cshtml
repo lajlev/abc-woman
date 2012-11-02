@@ -17,10 +17,10 @@
 
             <div>@Html.LabelFor(m => m.Email)</div>
             <div>@Html.TextBoxFor(m => m.Email, new { placeholder = "Email"})@@trustpilot.com</div>
-
+            <br>
             <div>@Html.LabelFor(m => m.Password)</div>
             <div>@Html.PasswordFor(m => m.Password, new { placeholder = "Password"})</div>
-            
+            <br>
             <div class="validation-message small All"></div>
             @if (Model.LogOnError)
             {
