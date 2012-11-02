@@ -147,22 +147,22 @@ footer, #footer {
 
 			&:hover {
 				background-color: #fff;
-				text-decoration: none;}
+				text-decoration: none;
+      }
 
+      &:active {
+        background-color: #a6e2a6;
+        text-decoration: none;
+      }
 		}
+
+    &.selected a {
+      background-color: #fff;
+      color: #000;
+    }
 	}
-
 }
 
-#main-menu li a:active {
-    background-color: #a6e2a6;
-    text-decoration: none;
-}
-
-#main-menu li.selected a {
-    background-color: #fff;
-    color: #000;
-}
 
 textarea {
     min-height: 75px;
@@ -182,7 +182,7 @@ nav, #menucontainer {
     font-size: 30px;
     padding: 5px 0px;
     margin: 0;
-    color: #fff;
+    color: #444;
     border: none;
     text-shadow: 1px 1px 2px #111;
 }
@@ -192,44 +192,38 @@ nav, #menucontainer {
     display: block;
     text-align: right;
     margin: 4px;
-    color: White;
-	a:link {
-		color: white;
+    color: #222;
+
+  a:link {
+		color: #222;
 		text-decoration: underline; }
+
 	a:visited {
 		color: white;
 		text-decoration: underline; }
+
 	a:hover {
-		color: white;
-		text-decoration: none;}
+		color: #000;
+		text-decoration: none;
+  }
 }
 
 #main {
     background-color: #fff;
-    -webkit-border-radius: 4px 0 0 0;
-    -moz-border-radius: 4px 0 0 0;
-    border-radius: 4px 0 0 0;
-	min-height: 280px;
-    padding: 10px 10px 5px 10px;
+    min-height: 280px;
+    padding: 10px 10px 5px;
 }
 
 .button {
-	background: $light;
-	background: -moz-linear-gradient(top, $light 0%, $dark 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B4E391), color-stop(100%,$dark));
-	background: -webkit-linear-gradient(top, $light 0%, $dark 100%);
-	background: -o-linear-gradient(top, $light 0%, $dark 100%);
-	background: -ms-linear-gradient(top, $light 0%, $dark 100%);
-	background: linear-gradient(to bottom, $light 0%, $dark 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$light', endColorstr='$dark',GradientType=0 );
-	border: 1px solid $dark;
-	color: $darkest;
+	background: $dark;
+	border: 1px solid $darkest;
+	color: $light;
 	font-weight: bold;
 	margin: 5px;
 	padding: 4px;
 	text-align: center;
 	text-decoration: none;
-	text-shadow: 1px 1px 2px $light;
+	text-shadow: 1px 1px 2px #eee;
 	cursor: pointer;
 	cursor: hand;
 	@include round-border-large;

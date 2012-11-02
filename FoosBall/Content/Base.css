@@ -117,14 +117,12 @@ footer, #footer {
       #main-menu li a:hover {
         background-color: #fff;
         text-decoration: none; }
-
-#main-menu li a:active {
-  background-color: #a6e2a6;
-  text-decoration: none; }
-
-#main-menu li.selected a {
-  background-color: #fff;
-  color: #000; }
+      #main-menu li a:active {
+        background-color: #a6e2a6;
+        text-decoration: none; }
+    #main-menu li.selected a {
+      background-color: #fff;
+      color: #000; }
 
 textarea {
   min-height: 75px; }
@@ -141,7 +139,7 @@ nav, #menucontainer {
   font-size: 30px;
   padding: 5px 0px;
   margin: 0;
-  color: #fff;
+  color: #444;
   border: none;
   text-shadow: 1px 1px 2px #111; }
 
@@ -150,42 +148,32 @@ nav, #menucontainer {
   display: block;
   text-align: right;
   margin: 4px;
-  color: White; }
+  color: #222; }
   #login-display a:link {
-    color: white;
+    color: #222;
     text-decoration: underline; }
   #login-display a:visited {
     color: white;
     text-decoration: underline; }
   #login-display a:hover {
-    color: white;
+    color: #000;
     text-decoration: none; }
 
 #main {
   background-color: #fff;
-  -webkit-border-radius: 4px 0 0 0;
-  -moz-border-radius: 4px 0 0 0;
-  border-radius: 4px 0 0 0;
   min-height: 280px;
-  padding: 10px 10px 5px 10px; }
+  padding: 10px 10px 5px; }
 
 .button {
-  background: #eeeeee;
-  background: -moz-linear-gradient(top, #eeeeee 0%, #222222 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b4e391), color-stop(100%, #222222));
-  background: -webkit-linear-gradient(top, #eeeeee 0%, #222222 100%);
-  background: -o-linear-gradient(top, #eeeeee 0%, #222222 100%);
-  background: -ms-linear-gradient(top, #eeeeee 0%, #222222 100%);
-  background: linear-gradient(to bottom, #eeeeee 0%, #222222 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$light', endColorstr='$dark',GradientType=0 );
-  border: 1px solid #222222;
-  color: black;
+  background: #222222;
+  border: 1px solid black;
+  color: #eeeeee;
   font-weight: bold;
   margin: 5px;
   padding: 4px;
   text-align: center;
   text-decoration: none;
-  text-shadow: 1px 1px 2px #eeeeee;
+  text-shadow: 1px 1px 2px #eee;
   cursor: pointer;
   cursor: hand;
   -webkit-border-radius: 15px;
