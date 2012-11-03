@@ -6,6 +6,7 @@
 
     using FoosBall.Main;
     using FoosBall.Models;
+    using FoosBall.Models.Views;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -78,17 +79,9 @@
             var player = playerCollection.FindOne(query);
 
             var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().SetSortOrder(SortBy.Descending("GameOverTime")).ToList();
-            var playedMatches = new List<Match>();
+            var playedMatches = matchCollection.Where(match => match.ContainsPlayer(player.Id)).ToList();
 
-            foreach (var match in matchCollection)
-            {
-                if (match.ContainsPlayer(player.Id))
-                {
-                    playedMatches.Add(match);
-                }
-            }
-
-            return this.View(new PlayerDetails() { Player = player, PlayedMatches = playedMatches });
+            return this.View(new PlayerDetailsViewModel { Player = player, PlayedMatches = playedMatches });
         }
     }
 }

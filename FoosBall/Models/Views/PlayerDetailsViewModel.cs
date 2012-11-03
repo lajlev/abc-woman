@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace FoosBall.Models
+﻿namespace FoosBall.Models.Views
 {
-    public class PlayerDetails
+    using System.Collections.Generic;
+
+    public class PlayerDetailsViewModel
     {
         public Player Player { get; set; }
 

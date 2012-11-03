@@ -8,6 +8,7 @@
 
     using FoosBall.Main;
     using FoosBall.Models;
+    using FoosBall.Models.Views;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;

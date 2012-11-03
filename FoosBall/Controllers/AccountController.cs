@@ -3,11 +3,12 @@
     using System.Web.Mvc;
     using FoosBall.Main;
     using FoosBall.Models;
+    using FoosBall.Models.Views;
+
     using MongoDB.Driver.Builders;
     
     public class AccountController : BaseController
     {
-        // GET: /Account/LogOn
         public ActionResult LogOn()
         {
             if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
@@ -39,15 +40,14 @@
             var urlReferrer = this.Request.UrlReferrer;
             if (urlReferrer != null)
             {
-                return this.View(new LogOnModel { RefUrl = urlReferrer.ToString() });
+                return this.View(new LogOnViewModel { RefUrl = urlReferrer.ToString() });
             }
 
             return RedirectToAction("Index", "Home");
         }
 
-        // POST: /Account/LogOn
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model)
+        public ActionResult LogOn(LogOnViewModel model)
         {
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(Query.EQ("Email", model.Email.ToLower()));

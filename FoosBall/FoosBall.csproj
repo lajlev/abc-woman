@@ -108,7 +108,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
-    <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -116,15 +115,17 @@
     <Compile Include="Main\Db.cs" />
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BaseModels.cs" />
+    <Compile Include="Models\Base\FoosBallLists.cs" />
+    <Compile Include="Models\Views\ExistsResponse.cs" />
+    <Compile Include="Models\Base\FoosBallDoc.cs" />
     <Compile Include="Models\PlayerMatchHistory.cs" />
     <Compile Include="Models\MatchTable.cs" />
-    <Compile Include="Models\MatchViewModel.cs" />
-    <Compile Include="Models\PlayerDetails.cs" />
-    <Compile Include="Models\PlayerViewModel.cs" />
-    <Compile Include="Models\StatsModels.cs" />
-    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\AutoLogin.cs" />
+    <Compile Include="Models\Views\LogOnViewModel.cs" />
+    <Compile Include="Models\Views\MatchViewModel.cs" />
+    <Compile Include="Models\Views\PlayerDetailsViewModel.cs" />
+    <Compile Include="Models\Views\PlayerViewModel.cs" />
+    <Compile Include="Models\Views\HomeViewModel.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Team.cs" />
@@ -238,9 +239,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LegendaryMatchTable.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Stats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Stats.scss" />

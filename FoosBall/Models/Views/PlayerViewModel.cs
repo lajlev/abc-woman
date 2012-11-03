@@ -1,4 +1,4 @@
-﻿namespace FoosBall.Models
+﻿namespace FoosBall.Models.Views
 {
     using System.Collections.Generic;
 

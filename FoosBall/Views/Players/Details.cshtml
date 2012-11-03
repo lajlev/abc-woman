@@ -1,11 +1,12 @@
 ﻿@using FoosBall.Models
-@model PlayerDetails
+@using FoosBall.Models.Views
+@model PlayerDetailsViewModel
 @{
     Layout = "~/Views/Shared/_SimpleLayout.cshtml";
     ViewBag.Title = "Player Details";
     var currentUser = (Player)HttpContext.Current.Session["User"];
-    var dateFormat = "yyyyMMdd";
-    var date = DateTime.MinValue.ToString(dateFormat);
+    const string DateFormat = "yyyyMMdd";
+    var date = DateTime.MinValue.ToString(DateFormat);
     
 }
 @section Javascript{ <script async src="/Scripts/Players.js"></script> }
@@ -31,7 +32,7 @@
 
     @foreach(var playedMatch in Model.PlayedMatches)
     {
-        var matchDate = playedMatch.GameOverTime.ToLocalTime().ToString(dateFormat);
+        var matchDate = playedMatch.GameOverTime.ToLocalTime().ToString(DateFormat);
     
         if (date != matchDate)
         {
@@ -69,7 +70,7 @@
 
         <div class="won-lost">& @(playedMatch.WonTheMatch(@Model.Player.Id) ? "Won" : "Lost")</div>
         
-        date = playedMatch.GameOverTime.ToLocalTime().ToString(dateFormat);
+        date = playedMatch.GameOverTime.ToLocalTime().ToString(DateFormat);
     }
 </fieldset>
  

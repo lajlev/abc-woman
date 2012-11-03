@@ -1,9 +1,9 @@
-﻿namespace FoosBall.Models
+﻿namespace FoosBall.Models.Views
 {
     using System;
     using System.Collections.Generic;
 
-    public class HomeModel
+    public class HomeViewModel
     {
         private const string Version = "0.2";
 

@@ -1,13 +1,6 @@
-﻿using MongoDB.Bson;
-
-namespace FoosBall.Models
+﻿namespace FoosBall.Models.Base
 {
-    public abstract class FoosBallDoc
-    {
-        public BsonObjectId Id;
-    }
-
-    public class FoosBallLists
+    public static class FoosBallLists
     {
         public static string[] Departments =
             {

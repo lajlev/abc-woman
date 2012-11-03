@@ -1,5 +1,7 @@
 ﻿namespace FoosBall.Models
 {
+    using FoosBall.Models.Base;
+
     using MongoDB.Bson;
     
     public class Match : FoosBallDoc
