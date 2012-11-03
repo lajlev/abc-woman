@@ -22,7 +22,7 @@
       border-radius: 48px; }
   .player .name {
     float: left;
-    width: 65%;
+    width: 60%;
     margin-top: 4px;
     margin-left: 3px;
     line-height: 1.3em; }
@@ -95,3 +95,4 @@
     display: none; } }
 #go-back {
   text-decoration: underline; }
+

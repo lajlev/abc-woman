@@ -118,13 +118,14 @@
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BaseModels.cs" />
+    <Compile Include="Models\PlayerMatchHistory.cs" />
     <Compile Include="Models\MatchTable.cs" />
     <Compile Include="Models\MatchViewModel.cs" />
     <Compile Include="Models\PlayerDetails.cs" />
     <Compile Include="Models\PlayerViewModel.cs" />
     <Compile Include="Models\StatsModels.cs" />
-    <Compile Include="Models\HomeModels.cs" />
-    <Compile Include="Models\MatchModels.cs" />
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -185,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Main\Maintenance\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -245,6 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Players\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Match\Show.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

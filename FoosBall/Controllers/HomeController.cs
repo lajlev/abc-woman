@@ -7,14 +7,14 @@ namespace FoosBall.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = HomeModels.GetMessage();
+            ViewBag.Message = HomeModel.GetMessage();
 
             return View();
         }
         
         public ActionResult Version()
         {
-            ViewBag.Message = HomeModels.GetVersion();
+            ViewBag.Message = HomeModel.GetVersion();
             return View();
         }
         

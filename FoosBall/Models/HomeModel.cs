@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class HomeModels
+    public class HomeModel
     {
         private const string Version = "0.2";
 
