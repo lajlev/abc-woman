@@ -22,12 +22,4 @@ namespace FoosBall.Models
         public string Name { get; set; }
         public bool Exists { get; set; }
     }
-
-    public class AutoLogin : FoosBallDoc
-    {
-        public string Email { get; set; }
-        public string Token { get; set; }
-        public DateTime Created { get; set; }
-    }
-
 }
