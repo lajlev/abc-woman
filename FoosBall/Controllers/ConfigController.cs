@@ -4,7 +4,7 @@
 
     public class ConfigController : BaseController
     {
-        public ActionResult Show()
+        public ActionResult Index()
         {
             var configCollection = Dbh.GetCollection<Models.Config>("Config").FindOne();
 
@@ -27,7 +27,7 @@
 
             configCollection.Save(config);
 
-            return this.RedirectToAction("Show", "Config");
+            return this.RedirectToAction("Index", "Config");
         }
     }
 }
