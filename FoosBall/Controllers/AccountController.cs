@@ -169,11 +169,10 @@
 
         // GET Account/GetGravatarUrl/{emailPrefix}
         [HttpGet]
-        public JsonResult GetGravatarUrl(string emailPrefix)
+        public JsonResult GetGravatarUrl(string email)
         {
-            if (!string.IsNullOrEmpty(emailPrefix))
+            if (!string.IsNullOrEmpty(email))
             {
-                var email = emailPrefix + "@trustpilot.com";
                 var gravatarUrl = Md5.GetGravatarEmailHash(email);
                 return Json(new { url = gravatarUrl }, JsonRequestBehavior.AllowGet);
             }

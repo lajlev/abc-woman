@@ -24,11 +24,12 @@
         public ActionResult Edit(string id)
         {
             var currentUser = (Player)Session["User"];
-            var settingsCollection = this.Dbh.GetCollection<Config>("Config").FindOne();
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
 
             var query = Query.EQ("_id", ObjectId.Parse(id));
             var player = playerCollection.FindOne(query);
+
+            ViewBag.Settings = Settings;
 
             if ((currentUser != null && currentUser.Id == player.Id) || currentUser.Email == this.Settings.AdminAccount)
             {
@@ -44,6 +45,10 @@
             var currentUser = (Player)Session["User"];
             var playerId = formValues.GetValue("player-id").AttemptedValue;
             var email = formValues.GetValue("Email").AttemptedValue.ToLower();
+            if (this.Settings.RequireDomainValidation)
+            {
+                email += "@" + this.Settings.Domain;
+            }
             var name = formValues.GetValue("Name").AttemptedValue;
             var password = formValues.GetValue("Password").AttemptedValue;
             var department = formValues.GetValue("Department").AttemptedValue;

@@ -33,11 +33,11 @@
         </section>
         <footer>
             @RenderSection("Footer", false)
-            @Html.ActionLink("version "+@HomeViewModel.GetVersion(), "Version", "Home",new {@id = "version-link" })
+            @Html.ActionLink("version " + @HomeViewModel.GetVersion(), "Version", "Home", new {@id = "version-link" })
         </footer>
     </div>
     <!-- Deferred Javascript -->
     <script src="@Url.Content("~/Scripts/FoosBall.js")"></script>
-    @RenderSection("Javascript", false)
+    @RenderSection("Javascript", false) 
 </body>
 </html>

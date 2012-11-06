@@ -5,7 +5,7 @@
 
     public static class AppConfig
     {
-        private static readonly string XmlFileName = System.Web.HttpContext.Current.Server.MapPath("/Config/App.Config");
+        private static readonly string XmlFileName = System.Web.HttpContext.Current.Server.MapPath("/Config/AppDefault.Config");
 
         public static void InitalizeConfig()
         {

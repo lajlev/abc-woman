@@ -12,14 +12,21 @@
     {
         public ActionResult Index()
         {
-            var playerCollection = Dbh.GetCollection<Player>("Players")
-                    .FindAll()
-                    .SetSortOrder(SortBy.Ascending("Name"))
-                    .ToList()
-                    .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
-                    .ToList();
+            var currentUser = (Player)Session["User"];
+            
+            if (currentUser != null && currentUser.Email == this.Settings.AdminAccount)
+            {
+                var playerCollection = Dbh.GetCollection<Player>("Players")
+                        .FindAll()
+                        .SetSortOrder(SortBy.Ascending("Name"))
+                        .ToList()
+                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                        .ToList();
 
-            return View(new ConfigViewModel { Settings = this.Settings, Users = playerCollection });
+                return View(new ConfigViewModel { Settings = this.Settings, Users = playerCollection });
+            }
+
+            return this.Redirect("/Home/Index");
         }
 
         [HttpPost]

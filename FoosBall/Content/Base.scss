@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #eee;
+  background-color: $light;
   color: $dark;
   font-size: 1.0em;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -132,7 +132,7 @@ footer, #footer {
 ----------------------------------------------------------*/
 #main-menu {
     line-height: 1.6em;
-    margin: 0;
+    margin: 0 0 1px 0;
     position: relative;
     text-align: right;
 	-webkit-padding-start: 10px;

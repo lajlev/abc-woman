@@ -9,7 +9,7 @@
 @section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
 
 <h3>Scoreboard</h3>
-@if (Model.Players.Any())
+@if (Model.Players.Any()) 
 {
     var index = 1;
     foreach (var player in Model.Players)
@@ -19,7 +19,7 @@
             @index.
             </div>
             <div class="avatar">
-                <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email + "@trustpilot.com")?d=mm"/>
+                <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email)?d=mm"/>
             </div>
             <div class="name ellipsis-1" title="Nickname: @player.NickName">
             @player.Name

@@ -38,13 +38,6 @@
             </div>
             <nav>
                 <ul id="main-menu">
-                    @if (Session["IsLoggedIn"].ToString().ToLower() == "true")
-                    {
-                        if (Session["Admin"].ToString().ToLower() == "true")
-                        {
-                            <li class="Admin">@Html.ActionLink("Admin", "Index", "Admin")</li>                        
-                        }                           
-                    }
                     <li class="Home">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="Players">@Html.ActionLink("Scoreboard", "Index", "Players")</li>
                     <li class="Match">@Html.ActionLink("Matches", "Index", "Match")</li>
@@ -56,7 +49,7 @@
         </section>
         <footer>
             @RenderSection("Footer", false)
-            @Html.ActionLink("version " + @HomeViewModel.GetVersion(), "Version", "Home", new { @id = "version-link" })
+            @Html.ActionLink("version " + @HomeViewModel.GetVersion(), "Version", "Home", null, new { @id = "version-link" })
         </footer>
     </div>
     <!-- Deferred Javascript -->

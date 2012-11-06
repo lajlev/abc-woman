@@ -5,7 +5,7 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #eee;
+  background-color: #dddddd;
   color: #222222;
   font-size: 1.0em;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -24,7 +24,7 @@ a:hover {
   text-decoration: none; }
 
 a:active {
-  color: black; }
+  color: #black; }
 
 /* HEADINGS
 ----------------------------------------------------------*/
@@ -103,7 +103,7 @@ footer, #footer {
 ----------------------------------------------------------*/
 #main-menu {
   line-height: 1.6em;
-  margin: 0;
+  margin: 0 0 1px 0;
   position: relative;
   text-align: right;
   -webkit-padding-start: 10px; }
@@ -115,7 +115,7 @@ footer, #footer {
       padding: 5px 8px 4px;
       font-weight: bold;
       text-decoration: none;
-      background-color: #eeeeee;
+      background-color: #dddddd;
       color: #222222; }
       #main-menu li a:hover {
         background-color: #fff;

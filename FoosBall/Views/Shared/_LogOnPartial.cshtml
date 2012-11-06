@@ -3,7 +3,16 @@
 {
     var user = (Player)Session["User"];
     <text>Hi @user.Name
-    [ <a href="Players/Edit/@user.Id">Edit</a> &middot; @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
+    [ 
+        @if (Session["IsLoggedIn"].ToString().ToLower() == "true")
+        {
+            if (Session["Admin"].ToString().ToLower() == "true")
+            {
+                @Html.ActionLink("Admin", "Index", "Admin") 
+            }                           
+        }
+        &middot; @Html.ActionLink("Edit", "Edit", "Players", new {id = user.Id}, null) &middot; @Html.ActionLink("Log Off", "LogOff", "Account") 
+    ]</text>
 }
 else {
     @Html.ActionLink("Log on", "LogOn", "Account") <text>or</text> @Html.ActionLink("Sign up", "Register", "Account")
