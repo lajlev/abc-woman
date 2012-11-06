@@ -1,5 +1,7 @@
 ﻿namespace FoosBall.Models
 {
+    using FoosBall.Models.Base;
+
     public class Player : FoosBallDoc
     {
         public Player()

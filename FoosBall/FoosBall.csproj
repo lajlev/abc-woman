@@ -105,33 +105,43 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
-    <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Main\Config.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Main\DataAccessLayer.cs" />
     <Compile Include="Main\Db.cs" />
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BaseModels.cs" />
+    <Compile Include="Models\Base\FoosBallLists.cs" />
+    <Compile Include="Models\Views\ConfigViewModel.cs" />
+    <Compile Include="Models\Views\ExistsResponse.cs" />
+    <Compile Include="Models\Base\FoosBallDoc.cs" />
+    <Compile Include="Models\PlayerMatchHistory.cs" />
     <Compile Include="Models\MatchTable.cs" />
-    <Compile Include="Models\MatchViewModel.cs" />
-    <Compile Include="Models\PlayerDetails.cs" />
-    <Compile Include="Models\PlayerViewModel.cs" />
-    <Compile Include="Models\StatsModels.cs" />
-    <Compile Include="Models\HomeModels.cs" />
-    <Compile Include="Models\MatchModels.cs" />
+    <Compile Include="Models\AutoLogin.cs" />
+    <Compile Include="Models\Views\LogOnViewModel.cs" />
+    <Compile Include="Models\Views\MatchViewModel.cs" />
+    <Compile Include="Models\Views\PlayerDetailsViewModel.cs" />
+    <Compile Include="Models\Views\PlayerViewModel.cs" />
+    <Compile Include="Models\Views\HomeViewModel.cs" />
+    <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config\AppDefault.config" />
     <Content Include="Content\Account.css">
       <DependentUpon>Account.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Admin.css">
+      <DependentUpon>Admin.scss</DependentUpon>
     </Content>
     <Content Include="Content\Base.css">
       <DependentUpon>Base.scss</DependentUpon>
@@ -159,6 +169,7 @@
       <DependentUpon>Stats.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\LogOn.js" />
     <Content Include="Scripts\FoosBall.js" />
     <Content Include="Scripts\jquery.min.js" />
@@ -182,6 +193,8 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Content\Admin.scss" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -236,9 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LegendaryMatchTable.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Stats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Stats.scss" />

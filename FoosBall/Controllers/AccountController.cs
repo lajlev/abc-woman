@@ -3,11 +3,12 @@
     using System.Web.Mvc;
     using FoosBall.Main;
     using FoosBall.Models;
+    using FoosBall.Models.Views;
+
     using MongoDB.Driver.Builders;
     
     public class AccountController : BaseController
     {
-        // GET: /Account/LogOn
         public ActionResult LogOn()
         {
             if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
@@ -39,18 +40,23 @@
             var urlReferrer = this.Request.UrlReferrer;
             if (urlReferrer != null)
             {
-                return this.View(new LogOnModel { RefUrl = urlReferrer.ToString() });
+                return this.View(new LogOnViewModel { RefUrl = urlReferrer.ToString() });
             }
 
             return RedirectToAction("Index", "Home");
         }
 
-        // POST: /Account/LogOn
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model)
+        public ActionResult LogOn(LogOnViewModel model)
         {
+            var email = model.Email.ToLower();
+            if (this.Settings.RequireDomainValidation)
+            {
+                email += "@" + this.Settings.Domain;
+            }
+
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
-            var player = playerCollection.FindOne(Query.EQ("Email", model.Email.ToLower()));
+            var player = playerCollection.FindOne(Query.EQ("Email", email));
             
             // If the email matches a player then check password
             if (player != null)
@@ -97,6 +103,10 @@
         public ActionResult Register(Player model)
         {
             var email = model.Email.ToLower();
+            if (this.Settings.RequireDomainValidation)
+            {
+                email += "@" + this.Settings.Domain;
+            }
             var name = model.Name;
             var password = Md5.CalculateMd5(model.Password);
             var department = model.Department;
@@ -159,11 +169,10 @@
 
         // GET Account/GetGravatarUrl/{emailPrefix}
         [HttpGet]
-        public JsonResult GetGravatarUrl(string emailPrefix)
+        public JsonResult GetGravatarUrl(string email)
         {
-            if (!string.IsNullOrEmpty(emailPrefix))
+            if (!string.IsNullOrEmpty(email))
             {
-                var email = emailPrefix + "@trustpilot.com";
                 var gravatarUrl = Md5.GetGravatarEmailHash(email);
                 return Json(new { url = gravatarUrl }, JsonRequestBehavior.AllowGet);
             }

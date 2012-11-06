@@ -3,11 +3,11 @@
  <table id="legendary-matches">
     <thead>
         <tr>
-            <th class="red names">Players</th>
-            <th class="red nicknames">Players</th>
-            <th class="blue names">Players</th>
-            <th class="blue nicknames">Players</th>
-            <th class="score">Score</th>
+            <th class="red names">Red team</th>
+            <th class="red nicknames">Red team</th>
+            <th class="blue names">Blue team</th>
+            <th class="blue nicknames">Blue team</th>
+            <th class="score">Result</th>
             <th class="created">Created</th>
             <th class="played">Played</th>
         </tr>
@@ -19,7 +19,7 @@
                 @* Red Teams names and Nicknames *@
                 <td class="red names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
                     @match.RedPlayer1.Name
-                    @if (match.CountRedPlayers() == 2) 
+                    @if (match.CountRedPlayers() == 2)
                     {
                         <text> & </text>@match.RedPlayer2.Name
                     }
@@ -41,14 +41,14 @@
                 </td>
                 <td class="blue nicknames @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
                     @match.BluePlayer1.NickName
-                    @if (match.CountBluePlayers() == 2) 
+                    @if (match.CountBluePlayers() == 2)
                     {
                         <text> & </text>@match.BluePlayer2.NickName
                     }
                 </td>
                 <td class="score">
                     <span class="red @if (match.RedScore > match.BlueScore) { <text>winner</text> }">@match.RedScore</span>
-                    - 
+                    -
                     <span class="blue @if (match.BlueScore > match.RedScore) { <text>winner</text> }">@match.BlueScore</span>
                 </td>
                 <td class="created" title="@match.CreationTime.ToLocalTime()">@match.CreationTime.ToLocalTime().ToString("dd MMM")</td>

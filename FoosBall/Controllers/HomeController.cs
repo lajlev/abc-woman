@@ -1,20 +1,20 @@
-﻿using System.Web.Mvc;
-using FoosBall.Models;
-
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
+    using System.Web.Mvc;
+    using FoosBall.Models.Views;
+
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            ViewBag.Message = HomeModels.GetMessage();
+            ViewBag.Message = HomeViewModel.GetMessage();
 
             return View();
         }
         
         public ActionResult Version()
         {
-            ViewBag.Message = HomeModels.GetVersion();
+            ViewBag.Message = HomeViewModel.GetVersion();
             return View();
         }
         

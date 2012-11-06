@@ -14,7 +14,7 @@
         
         public double GetTeamRating()
         {
-            return this.MatchTeam.Sum(player => player.Rating);
+            return this.MatchTeam.Where(player => player.Id != null).Sum(player => player.Rating);
         }
     }
 }

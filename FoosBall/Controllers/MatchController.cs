@@ -8,6 +8,7 @@
 
     using FoosBall.Main;
     using FoosBall.Models;
+    using FoosBall.Models.Views;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -150,6 +151,7 @@
                     // Determine the winners and the losers
                     var winners = new Team();
                     var losers = new Team();
+
                     if (match.RedScore > match.BlueScore)
                     {
                         winners.MatchTeam.Add(match.RedPlayer1);
@@ -215,5 +217,39 @@
     
             return RedirectToAction("Index");
         }
+
+        /*
+        [HttpGet]
+        public ActionResult MigrateToHistory()
+        {
+            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().ToList();
+            var matchHistoryCollection = this.Dbh.GetCollection<PlayerMatchHistory>("PlayerMatchHistory");
+
+            foreach (var match in matchCollection)
+            {
+                if (match.RedPlayer1.Id != null)
+                {
+                    var a = new PlayerMatchHistory { PlayerId = match.RedPlayer1.Id, MatchId = match.Id, Player = match.RedPlayer1, Match = match };
+                }
+
+                if (match.RedPlayer2.Id != null)
+                {
+                    var a = new PlayerMatchHistory { PlayerId = match.RedPlayer2.Id, MatchId = match.Id, Player = match.RedPlayer2, Match = match };
+                }
+
+                if (match.BluePlayer1.Id != null)
+                {
+                    var a = new PlayerMatchHistory { PlayerId = match.BluePlayer1.Id, MatchId = match.Id, Player = match.BluePlayer1, Match = match };
+                }
+
+                if (match.BluePlayer2.Id != null)
+                {
+                    var a = new PlayerMatchHistory { PlayerId = match.BluePlayer2.Id, MatchId = match.Id, Player = match.BluePlayer2, Match = match };
+                }
+            }
+
+            return this.View(matchCollection);
+        }
+         */
     }
 }

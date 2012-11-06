@@ -1,6 +1,6 @@
 ﻿@using FoosBall.Models
 @using FoosBall.Main
-@model PlayerViewModel
+@model FoosBall.Models.Views.PlayerViewModel
 @{
     ViewBag.Title = "FoosBall Players";
     var currentUser = (Player)HttpContext.Current.Session["User"];
@@ -8,32 +8,33 @@
 @section Javascript{ <script async src="/Scripts/Players.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
 
-<fieldset id="list-of-players">
-    <legend>List of FoosBall players</legend>
-
-    @if (Model.Players.Any())
+<h3>Scoreboard</h3>
+@if (Model.Players.Any()) 
+{
+    var index = 1;
+    foreach (var player in Model.Players)
     {
-        var index = 1;
-        foreach (var player in Model.Players)
-        {
-            <div id="@player.Id" class="player clearfix">
-                <div class="ranking" title="Players ranking">@index</div>
-                <div class="rating" title="Rating: @player.Rating.ToString("F")">
-                    Rating: @player.Rating.ToString("F0")
+        <div id="@player.Id" class="player clearfix">
+            <div class="ranking" title="Players ranking">
+            @index.
+            </div>
+            <div class="avatar">
+                <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email)?d=mm"/>
+            </div>
+            <div class="name ellipsis-1" title="Nickname: @player.NickName">
+            @player.Name
+            <br>
+            @player.Rating.ToString("F0")<sup>points</sup>
+                <div class="won-lost-played" title="Won: @player.Won &middot; Lost: @player.Lost &middot; Played: @player.Played">
+                    <span class="won">@player.Won</span> &middot; <span class="lost">@player.Lost</span> &middot; <span class="played">@player.Played</span>
                 </div>
-                <div class="department">(@player.Department)</div>
-                <div class="legend" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">Won&nbsp;|&nbsp;Lost&nbsp;|&nbsp;Played</div>
-                <div class="avatar">
-                    <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email + "@trustpilot.com")"/>
-                </div>
-                <div class="name ellipsis-1" title="Nickname: @player.NickName">@player.Name <span class="nickname">(@player.NickName)</span></div>
-                <div class="won-lost-played" title="Won: @player.Won: , Lost: @player.Lost, Played: @player.Played">@player.Won | @player.Lost | @player.Played</div>
             </div>
 
-            index++;
-        }
-    } else
-    {
-        <text>- none - </text>
+        </div>
+
+        index++;
     }
-</fieldset>
+} else
+{
+    <text>- none - </text>
+}

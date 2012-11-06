@@ -6,6 +6,7 @@
 
     using FoosBall.Main;
     using FoosBall.Models;
+    using FoosBall.Models.Views;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -28,7 +29,9 @@
             var query = Query.EQ("_id", ObjectId.Parse(id));
             var player = playerCollection.FindOne(query);
 
-            if (currentUser != null && currentUser.Id == player.Id)
+            ViewBag.Settings = Settings;
+
+            if ((currentUser != null && currentUser.Id == player.Id) || currentUser.Email == this.Settings.AdminAccount)
             {
                 return this.View(player);
             }
@@ -42,13 +45,17 @@
             var currentUser = (Player)Session["User"];
             var playerId = formValues.GetValue("player-id").AttemptedValue;
             var email = formValues.GetValue("Email").AttemptedValue.ToLower();
+            if (this.Settings.RequireDomainValidation)
+            {
+                email += "@" + this.Settings.Domain;
+            }
             var name = formValues.GetValue("Name").AttemptedValue;
             var password = formValues.GetValue("Password").AttemptedValue;
             var department = formValues.GetValue("Department").AttemptedValue;
             var position = formValues.GetValue("Position").AttemptedValue;
             var nickname = formValues.GetValue("NickName").AttemptedValue;
 
-            if (currentUser != null && currentUser.Id.ToString() == playerId)
+            if ((currentUser != null && currentUser.Id.ToString() == playerId) || currentUser.Email == this.Settings.AdminAccount)
             {
                 var playerCollection = this.Dbh.GetCollection<Player>("Players");
                 var query = Query.EQ("_id", ObjectId.Parse(playerId));
@@ -78,17 +85,9 @@
             var player = playerCollection.FindOne(query);
 
             var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().SetSortOrder(SortBy.Descending("GameOverTime")).ToList();
-            var playedMatches = new List<Match>();
+            var playedMatches = matchCollection.Where(match => match.ContainsPlayer(player.Id)).ToList();
 
-            foreach (var match in matchCollection)
-            {
-                if (match.ContainsPlayer(player.Id))
-                {
-                    playedMatches.Add(match);
-                }
-            }
-
-            return this.View(new PlayerDetails() { Player = player, PlayedMatches = playedMatches });
+            return this.View(new PlayerDetailsViewModel { Player = player, PlayedMatches = playedMatches });
         }
     }
 }
