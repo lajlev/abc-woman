@@ -33,7 +33,7 @@ namespace FoosBall
             AreaRegistration.RegisterAllAreas();
 
             // Initialize App configuration
-            Config.InitalizeConfig();
+            AppConfig.InitalizeConfig();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);

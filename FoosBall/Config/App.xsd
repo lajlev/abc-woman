@@ -6,6 +6,7 @@
         <xs:element name="name" type="xs:string" />
         <xs:element name="version" type="xs:decimal" />
         <xs:element name="domain" type="xs:string" />
+        <xs:element name="adminAccount" type="xs:string" />
         <xs:element name="requireDepartment" type="xs:boolean" />
         <xs:element name="requireDomainValidation" type="xs:boolean" />
         <xs:element name="allowOneOnOneMatches" type="xs:boolean" />

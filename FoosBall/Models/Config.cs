@@ -10,6 +10,8 @@
 
         public string Domain { get; set; }
 
+        public string AdminAccount { get; set; } 
+
         public bool RequireDepartment { get; set; }
 
         public bool RequireDomainValidation { get; set; }

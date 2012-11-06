@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseController.cs" company="Trustpilot">
-//   Trustpilot A/S 2012
-// </copyright>
-// <summary>
-//   Defines the BaseController type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
     using System;
     using System.Text;
@@ -23,12 +14,64 @@ namespace FoosBall.Controllers
     public class BaseController : Controller
     {
         protected readonly MongoDatabase Dbh;
+
         public BaseController()
         {
             this.Dbh = Db.GetDataBaseHandle();
+            this.Settings = this.Dbh.GetCollection<Config>("Config").FindOne();
         }
 
-       public bool Login(Player player)
+        protected Config Settings { get; set; }
+
+        public static string CalculateMd5(string input, Encoding useEncoding)
+        {
+            var cryptoService = new System.Security.Cryptography.MD5CryptoServiceProvider();
+
+            var inputBytes = useEncoding.GetBytes(input);
+            inputBytes = cryptoService.ComputeHash(inputBytes);
+            return BitConverter.ToString(inputBytes).Replace("-", string.Empty);
+        }
+
+        // Calculates a MD5 hash from the given string. 
+        // (By using the default encoding)
+        public static string CalculateMd5(string input)
+        {
+            // That's just a shortcut to the base method
+            return CalculateMd5(input, Encoding.Default);
+        }
+
+        public static string GetAuthToken(Player player)
+        {
+            return Md5.CalculateMd5(player.Id + player.Email + "FoosBall4Ever");
+        }
+
+        // COOKIE DOUGH
+        public void CreateRememberMeCookie(Player player)
+        {
+            HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
+            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
+            if (httpCookie != null)
+            {
+                httpCookie["Token"] = GetAuthToken(player);
+            }
+
+            if (httpCookie != null)
+            {
+                httpCookie.Expires = DateTime.Now.AddDays(30);
+            }
+        }
+
+        public void RemoveRememberMeCookie()
+        {
+            ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
+            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
+            if (httpCookie != null)
+            {
+                httpCookie.Expires = DateTime.Now.AddDays(-1);
+            }
+        }
+
+        public bool Login(Player player)
         {
             // Set or remove cookie for future auto-login
             if (player.RememberMe)
@@ -52,57 +95,17 @@ namespace FoosBall.Controllers
                 CreateRememberMeCookie(player);
                 player.RememberMe = player.RememberMe;
                 playerCollection.Save(player);
-
             }
             else
             {
                 RemoveRememberMeCookie();
             }
 
-            Session["IsLoggedIn"] = true;
-            Session["User"] = player;
+            this.Session["Admin"] = this.Settings.AdminAccount == player.Email;
+            this.Session["IsLoggedIn"] = true;
+            this.Session["User"] = player;
 
             return true;
         }
-
-        public static string CalculateMd5(string input, Encoding useEncoding)
-        {
-            var cryptoService = new System.Security.Cryptography.MD5CryptoServiceProvider();
-
-            var inputBytes = useEncoding.GetBytes(input);
-            inputBytes = cryptoService.ComputeHash(inputBytes);
-            return BitConverter.ToString(inputBytes).Replace("-", "");
-        }
-
-        // Calculates a MD5 hash from the given string. 
-        // (By using the default encoding)
-        public static string CalculateMd5(string input)
-        {
-            // That's just a shortcut to the base method
-            return CalculateMd5(input, Encoding.Default);
-        }
-
-        // COOKIE DOUGH
-        public void CreateRememberMeCookie(Player player)
-        {
-            HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
-            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
-            if (httpCookie != null) httpCookie["Token"] = GetAuthToken(player);
-            if (httpCookie != null) httpCookie.Expires = DateTime.Now.AddDays(30);
-        }
-
-        public void RemoveRememberMeCookie()
-        {
-            ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
-            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
-            if (httpCookie != null)
-                httpCookie.Expires = DateTime.Now.AddDays(-1);
-        }
-        
-        public static string GetAuthToken(Player player)
-        {
-            return Md5.CalculateMd5(player.Id + player.Email + "FoosBall4Ever");
-        }
-        
     }
 }

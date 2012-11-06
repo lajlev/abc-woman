@@ -49,8 +49,14 @@
         [HttpPost]
         public ActionResult LogOn(LogOnViewModel model)
         {
+            var email = model.Email.ToLower();
+            if (this.Settings.RequireDomainValidation)
+            {
+                email += "@" + this.Settings.Domain;
+            }
+
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
-            var player = playerCollection.FindOne(Query.EQ("Email", model.Email.ToLower()));
+            var player = playerCollection.FindOne(Query.EQ("Email", email));
             
             // If the email matches a player then check password
             if (player != null)
@@ -97,6 +103,10 @@
         public ActionResult Register(Player model)
         {
             var email = model.Email.ToLower();
+            if (this.Settings.RequireDomainValidation)
+            {
+                email += "@" + this.Settings.Domain;
+            }
             var name = model.Name;
             var password = Md5.CalculateMd5(model.Password);
             var department = model.Department;

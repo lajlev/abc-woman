@@ -1,0 +1,55 @@
+﻿    @model FoosBall.Models.Views.ConfigViewModel
+@{
+    ViewBag.Title = "Configuration";
+}
+
+@section Javascript{ <script async src="/Scripts/Admin.js"></script> }
+@section Css { <link rel="stylesheet" href="/Content/Admin.css"/> }
+
+<fieldset>
+    <legend>Configuration</legend>
+    @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
+    {
+        <label for="Name">Application name:</label>
+        <input type="text" name="Name" value="@Model.Settings.Name"/>
+
+        <label for="Name">Application Version:</label>
+        <input type="text" name="Version" value="@Model.Settings.Version"/>
+
+        <label for="Name">Domain:</label>
+        <input type="text" name="Domain" value="@Model.Settings.Domain"/>
+
+        <label for="Name">Admin Account/Email:</label>
+        <input type="text" name="AdminAccount" value="@Model.Settings.AdminAccount"/>
+    
+        @Html.LabelFor(m => Model.Settings.RequireDepartment, "Require Department?")
+        <input name="RequireDepartment" type="checkbox" value="true" @(Model.Settings.RequireDepartment ? "checked=\"checked\"" : "")/>
+        
+        @Html.LabelFor(m => Model.Settings.RequireDomainValidation, "Validate domain?")
+        <input name="RequireDomainValidation" type="checkbox" value="true" @(Model.Settings.RequireDomainValidation ? "checked=\"checked\"" : "")/>
+
+        @Html.LabelFor(m => Model.Settings.AllowOneOnOneMatches, "Allow one-on-one matches?")
+        <input name="AllowOneOnOneMatches" type="checkbox" value="true" @(Model.Settings.AllowOneOnOneMatches ? "checked=\"checked\"" : "")/>
+
+        @Html.LabelFor(m => Model.Settings.GenderSpecificMatches, "Require gender specific matches?")
+        <input name="GenderSpecificMatches" type="checkbox" value="true" @(Model.Settings.GenderSpecificMatches ? "checked=\"checked\"" : "")/>
+
+        <input name="save-config" type="submit" value="Save" class="button"/>
+    }
+</fieldset>
+
+
+<fieldset>
+    <legend>Players</legend>
+    
+    @Html.LabelFor(m => Model.Users, "Choose a player")
+    <select id="select-player" name="select-player">
+        <option></option>
+        @foreach (var user in Model.Users)
+        {
+            <option id="@user.Value" value="@user.Value">@user.Text</option>
+        }
+    </select>
+    
+    <div id="player-data"></div>
+</fieldset>

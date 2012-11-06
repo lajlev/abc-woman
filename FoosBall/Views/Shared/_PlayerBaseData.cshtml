@@ -3,8 +3,6 @@
 @using FoosBall.Models.Base
 @model FoosBall.Models.Player
 
-@using (Html.BeginForm("Register","Account",FormMethod.Post,new{name = "register-player"}))
-{
     <a href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(Model != null ? Model.Email + "@trustpilot.com" : "")"/></a>
 
     @Html.LabelFor(m => Model.Email, "Email")
@@ -44,4 +42,3 @@
     <div class="editor-label">@Html.LabelFor(m => Model.Password)</div>
     <div class="editor-field">@Html.PasswordFor(m => Model.Password, new { placeholder = "Password"})</div>
     <br/><br/>
-}
