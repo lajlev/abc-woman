@@ -3,12 +3,9 @@
  <table id="legendary-matches">
     <thead>
         <tr>
-            <th class="red names">Red team</th>
-            <th class="red nicknames">Red team</th>
-            <th class="blue names">Blue team</th>
-            <th class="blue nicknames">Blue team</th>
+            <th class="red team-names">Red team</th>
+            <th class="blue team-names">Blue team</th>
             <th class="score">Result</th>
-            @*<th class="created">Created</th>*@
             <th class="played">Played</th>
         </tr>
     </thead>
@@ -17,7 +14,7 @@
         {
             <tr>
                 @* Red Teams names and Nicknames *@
-                <td class="red names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
+                <td class="red team-names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
                     <span class="names">
                         @match.RedPlayer1.Name
                         @if (match.CountRedPlayers() == 2)
@@ -35,7 +32,7 @@
                 </td>
                 
                 @* Blue Teams names and Nicknames *@
-                <td class="blue names @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
+                <td class="blue team-names @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
                     <span class="names">
                         @match.BluePlayer1.Name
                         @if (match.CountBluePlayers() == 2)
@@ -60,11 +57,6 @@
                         @match.BlueScore
                     </span>
                 </td>
-                @*
-                <td class="created" title="@match.CreationTime.ToLocalTime()">
-                    <span class="short-time">@match.CreationTime.ToLocalTime().ToString("dd MMM")</span>
-                    <span class="long-time">@match.CreationTime.ToLocalTime().ToString()</span>
-                </td>*@
                 <td class="played" title="@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
                     <span class="short-time">@match.GameOverTime.ToLocalTime().ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
                     <span class="long-time">@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>

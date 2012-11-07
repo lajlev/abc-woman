@@ -45,11 +45,15 @@
 	line-height: 1.0em;
 }
 table {
+	thead {
+		border-color: $darkest;
+		border-bottom: 2px solid $dark;
+	}
 	tbody tr:nth-child(even) {
 		background-color: $light;
 	}
 	th,td {
-		&.names, &.nicknames, &.score { text-align: left;}
+		&.team-names, &.nicknames, &.score { text-align: left;}
 		&.rating, &.played, &.created { text-align: right;}
 		&.rating {padding-right: 10px;}
 	}
@@ -83,12 +87,6 @@ table {
 	.short-time, .long-time { float: right;}
 }
 
-/* @MediaQuery: iPad / Tablet */
-@media only screen and (min-width : 470px) {
-	table {
-		th { font-size: 1.0em;}
-	}
-}
 /* @MediaQuery: iPad / Tablet */
 @media only screen and (min-width : 750px) {
 	table {

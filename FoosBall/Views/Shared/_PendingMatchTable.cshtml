@@ -6,12 +6,9 @@
             <th class="delete">
                 <div><img src="Content/images/delete_15x15_grayscale.png" alt="A delete button"/></div>
             </th>
-            <th class="red names">Players</th>
-            <th class="red rating">Rating</th>
-            <th class="odds">Odds</th>
-            <th class="blue names">Players</th>
-            <th class="blue rating">Rating</th>
-            <th class="created">Created</th>
+            <th class="red team-names">Players</th>
+            <th class="blue team-names">Players</th>
+            @*<th class="created">Created</th>*@
             <th class="resolve">
                 <div><img src="Content/images/checkmark_15x15_grayscale.png" alt="A delete button"/></div>
             </th>
@@ -32,7 +29,7 @@
                 </td>
 
                 @* Red Teams names and Nicknames *@
-                <td class="red names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
+                <td class="red team-names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
                     <span class="names">
                         @match.RedPlayer1.Name <sup>@match.RedPlayer1.Rating.ToString("F0")</sup>
                         @if (match.CountRedPlayers() == 2)
@@ -41,38 +38,31 @@
                         }
                     </span>
                     <span class="nicknames">
-                        @match.RedPlayer1.NickName
+                        @match.RedPlayer1.NickName <sup>@match.RedPlayer1.Rating.ToString("F0")</sup>
                         @if (match.CountRedPlayers() == 2)
                         {
-                            <br/>@match.RedPlayer2.NickName  
+                            <br/>@match.RedPlayer2.NickName <sup>@match.RedPlayer2.Rating.ToString("F0")</sup>
                         }
                     </span>
                 </td>
                 
-                @* Red Teams Rating *@
-                <td class="red rating" title="@match.GetRedTeamRating().ToString("F")">@match.GetRedTeamRating().ToString("F0")</td>
-                
                 @* Blue Teams names and Nicknames *@
-                <td class="blue names">
+                <td class="blue team-names">
                     <span class="names">
-                        @match.BluePlayer1.Name
+                        @match.BluePlayer1.Name <sup>@match.BluePlayer1.Rating.ToString("F0")</sup>
                         @if (match.CountBluePlayers() == 2)
                         {
-                            <br/>@match.BluePlayer2.Name
+                            <br/>@match.BluePlayer2.Name <sup>@match.BluePlayer2.Rating.ToString("F0")</sup>
                         }
                     </span>
                     <span class="nicknames">
-                        @match.BluePlayer1.NickName
-                        @if (match.CountBluePlayers() == 2) 
+                        @match.BluePlayer1.NickName <sup>@match.BluePlayer1.Rating.ToString("F0")</sup>
+                        @if (match.CountBluePlayers() == 2)
                         {
-                            <br/>@match.BluePlayer2.NickName
+                            <br/>@match.BluePlayer2.NickName <sup>@match.BluePlayer2.Rating.ToString("F0")</sup>
                         }
                     </span>
                 </td>
-
-                @* Blue Teams Rating *@
-                <td class="red rating" title="@match.GetBlueTeamRating().ToString("F")">@match.GetBlueTeamRating().ToString("F0")</td>
-                <td class="created" title="@match.CreationTime.ToLocalTime()">@match.CreationTime.ToLocalTime().ToString("dd MMM")</td>
 
                 <td class="resolve">
                     @if (Model.User != null && match.ContainsPlayer(Model.User.Id))
@@ -80,7 +70,6 @@
                         <a title="Resolve the match" href="Match/SaveMatchResult/@match.Id">
                             <div><img src="Content/images/checkmark_15x15.png" alt="A delete button"/></div>
                         </a>
-                        
                     }
                 </td>
             </tr>
