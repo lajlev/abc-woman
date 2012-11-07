@@ -18,7 +18,7 @@
 	float: left;
 	clear: left;
 	.team-name {
-		color: $red-team-color;
+		color: $team-red-color;
 	}
 }
 .vs {
@@ -32,7 +32,7 @@
 	float: right;
 	clear: right;
 	.team-name {
-		color: $blue-team-color;
+		color: $team-blue-color;
 	}
 }
 #create-match-button {
@@ -54,14 +54,17 @@ table {
 		&.rating {padding-right: 10px;}
 	}
 	td {
+		color: $font-color-grey;
+		font-weight: normal;
 		&.score, &.played, &.created { white-space: nowrap;}
 	}
 	th {
-		&.red { color: $red-team-color; }
-		&.blue { color: $blue-team-color; }
+		&.red { color: $team-red-color; }
+		&.blue { color: $team-blue-color; }
 	}
 	.winner {
-		color: black;
+		color: $dark;
+		font-weight: bold;
 	}
 }
 
@@ -70,15 +73,14 @@ table {
 	.delete, .resolve {
 		div {
 			width: 15px;
-			margin: 0px auto;}
+			margin: 0px auto;
+		}
 	}
 }
 
 #legendary-matches {
 	.names, .created, .long-time { display: none;}
 	.short-time, .long-time { float: right;}
-	.red.winner { color: $red-team-color;}
-	.blue.winner { color: $blue-team-color;}
 }
 
 /* @MediaQuery: iPad / Tablet */

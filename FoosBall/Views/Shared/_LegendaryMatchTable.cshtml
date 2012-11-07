@@ -35,7 +35,7 @@
                 </td>
                 
                 @* Blue Teams names and Nicknames *@
-                <td class="blue names">
+                <td class="blue names @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
                     <span class="names">
                         @match.BluePlayer1.Name
                         @if (match.CountBluePlayers() == 2)

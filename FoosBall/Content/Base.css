@@ -51,7 +51,7 @@ h5, h6 {
   font-size: 1em; }
 
 .dimmed {
-  color: #999; }
+  color: #999999; }
 
 /* TABLE
 ----------------------------------------------------------*/
@@ -148,7 +148,7 @@ nav, #menucontainer {
   display: block;
   text-align: right;
   margin: 4px;
-  color: #999; }
+  color: #999999; }
   #login-display a {
     color: #222;
     text-decoration: underline; }
@@ -169,7 +169,7 @@ nav, #menucontainer {
 
 .button {
   background: black;
-  border: 1px solid #999;
+  border: 1px solid #999999;
   color: #efefef;
   font-weight: bold;
   margin: 5px;
