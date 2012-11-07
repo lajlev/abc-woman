@@ -11,7 +11,10 @@
     
     if (ViewBag.Settings.RequireDomainValidation)
     {
-        email = Regex.Replace(Model.Email, "@trustpilot.com", "");
+        if (Model != null)
+        {
+            email = Regex.Replace(Model.Email, "@trustpilot.com", "");
+        }
     }
 }
 

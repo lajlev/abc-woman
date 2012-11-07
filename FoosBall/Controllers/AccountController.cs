@@ -95,6 +95,7 @@
         // GET: /Account/Register
         public ActionResult Register()
         {
+            ViewBag.Settings = this.Settings;
             return View();
         }
 

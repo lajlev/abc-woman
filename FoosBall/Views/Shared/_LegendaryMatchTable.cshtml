@@ -18,50 +18,59 @@
             <tr>
                 @* Red Teams names and Nicknames *@
                 <td class="red names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
-                    @match.RedPlayer1.Name
-                    @if (match.CountRedPlayers() == 2)
-                    {
-                        <text> & </text>@match.RedPlayer2.Name
-                    }
+                    <span class="names">
+                        @match.RedPlayer1.Name
+                        @if (match.CountRedPlayers() == 2)
+                        {
+                            <br/>@match.RedPlayer2.Name
+                        }
+                    </span>
+                    <span class="nicknames">
+                        @match.RedPlayer1.NickName
+                        @if (match.CountRedPlayers() == 2)
+                        {
+                            <br/>@match.RedPlayer2.NickName  
+                        }
+                    </span>
                 </td>
-                <td class="red nicknames @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
-                    @match.RedPlayer1.NickName
-                    @if (match.CountRedPlayers() == 2)
-                    {
-                        <text> & </text>@match.RedPlayer2.NickName
-                    }
-                </td>
+                
                 @* Blue Teams names and Nicknames *@
-                <td class="blue names @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
-                    <span class="name">@match.BluePlayer1.Name
-                    @if (match.CountBluePlayers() == 2)
-                    {
-                        <text> & </text>@match.BluePlayer2.Name
-                    }
-                </td>
-                <td class="blue nicknames @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
-                    @match.BluePlayer1.NickName
-                    @if (match.CountBluePlayers() == 2)
-                    {
-                        <text> & </text>@match.BluePlayer2.NickName
-                    }
+                <td class="blue names">
+                    <span class="names">
+                        @match.BluePlayer1.Name
+                        @if (match.CountBluePlayers() == 2)
+                        {
+                            <br/>@match.BluePlayer2.Name
+                        }
+                    </span>
+                    <span class="nicknames">
+                        @match.BluePlayer1.NickName
+                        @if (match.CountBluePlayers() == 2) 
+                        {
+                            <br/>@match.BluePlayer2.NickName
+                        }
+                    </span>
                 </td>
                 <td class="score">
-                    <span class="red @if (match.RedScore > match.BlueScore) { <text>winner</text> }">@match.RedScore</span>
+                    <span class="red @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
+                        @match.RedScore
+                    </span>
                     -
-                    <span class="blue @if (match.BlueScore > match.RedScore) { <text>winner</text> }">@match.BlueScore</span>
+                    <span class="blue @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
+                        @match.BlueScore
+                    </span>
                 </td>
                 @*
                 <td class="created" title="@match.CreationTime.ToLocalTime()">
                     <span class="short-time">@match.CreationTime.ToLocalTime().ToString("dd MMM")</span>
                     <span class="long-time">@match.CreationTime.ToLocalTime().ToString()</span>
                 </td>*@
-                <td class="played" title="@match.GameOverTime.ToLocalTime()">
-                    <span class="short-time">@match.GameOverTime.ToLocalTime().ToString("dd MMM")</span>
-                    <span class="long-time">@match.GameOverTime.ToLocalTime().ToString()</span>
+                <td class="played" title="@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
+                    <span class="short-time">@match.GameOverTime.ToLocalTime().ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
+                    <span class="long-time">@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
                 </td>
 
             </tr>
        }
     </tbody>
-</table>
+</table>    

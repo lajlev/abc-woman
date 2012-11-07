@@ -49,8 +49,9 @@ table {
 		background-color: $light;
 	}
 	th,td {
-		&.names, &.nicknames, &.score { text-align: center;}
+		&.names, &.nicknames, &.score { text-align: left;}
 		&.rating, &.played, &.created { text-align: right;}
+		&.rating {padding-right: 10px;}
 	}
 	td {
 		&.score, &.played, &.created { white-space: nowrap;}

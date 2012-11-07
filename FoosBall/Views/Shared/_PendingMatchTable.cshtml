@@ -7,11 +7,9 @@
                 <div><img src="Content/images/delete_15x15_grayscale.png" alt="A delete button"/></div>
             </th>
             <th class="red names">Players</th>
-            <th class="red nicknames">Players</th>
             <th class="red rating">Rating</th>
             <th class="odds">Odds</th>
             <th class="blue names">Players</th>
-            <th class="blue nicknames">Players</th>
             <th class="blue rating">Rating</th>
             <th class="created">Created</th>
             <th class="resolve">
@@ -34,40 +32,42 @@
                 </td>
 
                 @* Red Teams names and Nicknames *@
-                <td class="red names">
-                    @match.RedPlayer1.Name
-                    @if (match.CountRedPlayers() == 2) 
-                    {
-                        <text> & </text>@match.RedPlayer2.Name
-                    }
+                <td class="red names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
+                    <span class="names">
+                        @match.RedPlayer1.Name <sup>@match.RedPlayer1.Rating.ToString("F0")</sup>
+                        @if (match.CountRedPlayers() == 2)
+                        {
+                            <br/>@match.RedPlayer2.Name <sup>@match.RedPlayer2.Rating.ToString("F0")</sup>
+                        }
+                    </span>
+                    <span class="nicknames">
+                        @match.RedPlayer1.NickName
+                        @if (match.CountRedPlayers() == 2)
+                        {
+                            <br/>@match.RedPlayer2.NickName  
+                        }
+                    </span>
                 </td>
-                <td class="red nicknames">
-                    @match.RedPlayer1.NickName
-                    @if (match.CountRedPlayers() == 2)
-                    {
-                        <text> & </text>@match.RedPlayer2.NickName
-                    }
-                </td>
-
+                
                 @* Red Teams Rating *@
                 <td class="red rating" title="@match.GetRedTeamRating().ToString("F")">@match.GetRedTeamRating().ToString("F0")</td>
                 
-                <td class="odds">1.1</td>               
-
                 @* Blue Teams names and Nicknames *@
                 <td class="blue names">
-                    <span class="name">@match.BluePlayer1.Name
-                    @if (match.CountBluePlayers() == 2)
-                    {
-                        <text> & </text>@match.BluePlayer2.Name
-                    }
-                </td>
-                <td class="blue nicknames">
-                    @match.BluePlayer1.NickName
-                    @if (match.CountBluePlayers() == 2) 
-                    {
-                        <text> & </text>@match.BluePlayer2.NickName
-                    }
+                    <span class="names">
+                        @match.BluePlayer1.Name
+                        @if (match.CountBluePlayers() == 2)
+                        {
+                            <br/>@match.BluePlayer2.Name
+                        }
+                    </span>
+                    <span class="nicknames">
+                        @match.BluePlayer1.NickName
+                        @if (match.CountBluePlayers() == 2) 
+                        {
+                            <br/>@match.BluePlayer2.NickName
+                        }
+                    </span>
                 </td>
 
                 @* Blue Teams Rating *@
