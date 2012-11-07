@@ -68,9 +68,6 @@
                 player.Position = position.Length > 0 ? position : player.Position;
                 player.NickName = nickname.Length > 0 ? nickname : player.NickName;
 
-                player.Name = formValues.GetValue("Name").AttemptedValue;
-                player.Email = formValues.GetValue("Email").AttemptedValue;
-                player.Department = formValues.GetValue("Department").AttemptedValue;
                 playerCollection.Save(player);
             }
 
