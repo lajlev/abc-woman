@@ -74,14 +74,9 @@ h5, h6 {
 table {
 	border-collapse: collapse;
 	width: 100%;
-	thead {
-		border-color: $darkest;
-		border-bottom: 2px solid $darkest;
-	}
-	th,td {
-		border: 1px solid $dark;
+	th, td {
 		letter-spacing: 0px;
-		padding: 3px 3px 1px 3px;
+		padding: 6px 3px 6px 3px;
 		text-align: left;
 	}
 	td {
@@ -90,6 +85,7 @@ table {
 	th {
 		color: $darkest;
 		font-size: .8em;
+		padding: 6px 3px 0px 3px;
 		text-align: center;
 	}
 }

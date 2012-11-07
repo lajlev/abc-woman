@@ -58,19 +58,16 @@ h5, h6 {
 table {
   border-collapse: collapse;
   width: 100%; }
-  table thead {
-    border-color: black;
-    border-bottom: 2px solid black; }
   table th, table td {
-    border: 1px solid #222222;
     letter-spacing: 0px;
-    padding: 3px 3px 1px 3px;
+    padding: 6px 3px 6px 3px;
     text-align: left; }
   table td {
     font-weight: normal; }
   table th {
     color: black;
     font-size: .8em;
+    padding: 6px 3px 0px 3px;
     text-align: center; }
 
 /* PRIMARY LAYOUT ELEMENTS
