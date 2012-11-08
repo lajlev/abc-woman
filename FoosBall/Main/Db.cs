@@ -1,6 +1,7 @@
 ﻿namespace FoosBall.Main
 {
     using System.Configuration;
+    using FoosBall.Models.Base;
     using MongoDB.Driver;
     
     public static class Db
@@ -13,14 +14,24 @@
 
         private static MongoServer Server { get; set; }
         
-        public static MongoDatabase GetDataBaseHandle()
+        public static MongoDatabase GetDataBaseHandle(Environment environment = Environment.Production)
         {
             // If there is no db handle then create one
             if (Dbh == null)
             {
                 // initialize remote connection
-                ConnectionString = ConfigurationManager.ConnectionStrings["AppHarborMongoLab"].ConnectionString;
-                // ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;
+                if (environment == Environment.Production)
+                {
+                    ConnectionString = ConfigurationManager.ConnectionStrings["FoosBall.MongoLab"].ConnectionString;                    
+                }
+                if (environment == Environment.Staging)
+                {
+                    ConnectionString = ConfigurationManager.ConnectionStrings["AppHarborMongoLab"].ConnectionString;                    
+                }
+                if (environment == Environment.Local)
+                {
+                    ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;                    
+                }
                 DatabaseName = MongoUrl.Create(ConnectionString).DatabaseName;
                 Server = MongoServer.Create(ConnectionString);
                 

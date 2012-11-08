@@ -113,6 +113,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Main\Config.cs" />
+    <Compile Include="Models\Base\Environment.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Main\DataAccessLayer.cs" />
     <Compile Include="Main\Db.cs" />

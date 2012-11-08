@@ -54,12 +54,11 @@
             return RedirectToAction("Index", "Admin");
         }
 
-        [HttpPost]
-        public ActionResult CopyMongoDb()
-        {
-            var playerCollection = Dbh.GetCollection<Player>("Players");
-            var matchCollection = Dbh.GetCollection<Match>("Match");
-
-        }
+        //[HttpPost]
+        //public ActionResult CopyMongoDb()
+        //{
+        //    var playerCollection = Dbh.GetCollection<Player>("Players");
+        //    var matchCollection = Dbh.GetCollection<Match>("Match");
+        //}
     }
 }
