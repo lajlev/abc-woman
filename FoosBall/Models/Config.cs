@@ -19,5 +19,7 @@
         public bool AllowOneOnOneMatches { get; set; }
 
         public bool GenderSpecificMatches { get; set; }
+
+        public Environment Environment { get; set; }
     }
 }

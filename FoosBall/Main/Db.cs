@@ -4,56 +4,104 @@
     using FoosBall.Models.Base;
     using MongoDB.Driver;
     
-    public static class Db
+    public class Db
     {
-        private static MongoDatabase Dbh { get; set; }
+        public Db(Environment environment = Environment.Production)
+        {
+            // Determine environment
+            if (environment == Environment.Production)
+            {
+                this.ConnectionString = ConfigurationManager.ConnectionStrings["FoosBall.MongoLab"].ConnectionString;
+            }
 
-        private static string ConnectionString { get; set; }
+            if (environment == Environment.Staging)
+            {
+                this.ConnectionString = ConfigurationManager.ConnectionStrings["FoosBallStaging.MongoLab"].ConnectionString;
+            }
 
-        private static string DatabaseName { get; set; }
+            if (environment == Environment.Local)
+            {
+                this.ConnectionString = ConfigurationManager.ConnectionStrings["Local.MongoDb"].ConnectionString;
+            }
 
-        private static MongoServer Server { get; set; }
-        
-        public static MongoDatabase GetDataBaseHandle(Environment environment = Environment.Production)
+            // Try to connect to server
+            this.DatabaseName = MongoUrl.Create(this.ConnectionString).DatabaseName;
+            this.Server = MongoServer.Create(this.ConnectionString);
+
+            if (this.Server != null)
+            {
+                // if remote server responds then assume success and return handle, 
+                // if not then try local server
+                try
+                {
+                    this.Server.Ping();
+                }
+                catch
+                {
+                    this.ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;
+                    if (this.ConnectionString != null)
+                    {
+                        this.DatabaseName = MongoUrl.Create(this.ConnectionString).DatabaseName;
+                        this.Server = MongoServer.Create(this.ConnectionString);
+                    }
+                }
+
+                this.Dbh = this.Server.GetDatabase(this.DatabaseName);
+            }
+        }
+
+        public MongoDatabase Dbh { get; set; }
+
+        private string ConnectionString { get; set; }
+
+        private string DatabaseName { get; set; }
+
+        private MongoServer Server { get; set; }
+
+        /*
+        public MongoDatabase GetDataBaseHandle(Environment environment = Environment.Production)
         {
             // If there is no db handle then create one
-            if (Dbh == null)
+            if (this.Dbh == null)
             {
                 // initialize remote connection
                 if (environment == Environment.Production)
                 {
-                    ConnectionString = ConfigurationManager.ConnectionStrings["FoosBall.MongoLab"].ConnectionString;                    
+                    this.ConnectionString = ConfigurationManager.ConnectionStrings["FoosBall.MongoLab"].ConnectionString;                    
                 }
+
                 if (environment == Environment.Staging)
                 {
-                    ConnectionString = ConfigurationManager.ConnectionStrings["AppHarborMongoLab"].ConnectionString;                    
+                    this.ConnectionString = ConfigurationManager.ConnectionStrings["FoosBallStaging.MongoLab"].ConnectionString;                    
                 }
+                
                 if (environment == Environment.Local)
                 {
-                    ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;                    
+                    this.ConnectionString = ConfigurationManager.ConnectionStrings["Local.MongoDb"].ConnectionString;                    
                 }
-                DatabaseName = MongoUrl.Create(ConnectionString).DatabaseName;
-                Server = MongoServer.Create(ConnectionString);
-                
-                if (Server != null)
+
+                this.DatabaseName = MongoUrl.Create(this.ConnectionString).DatabaseName;
+                this.Server = MongoServer.Create(this.ConnectionString);
+
+                if (this.Server != null)
                 {
                     // if remote server responds then assume success and return handle, 
                     // if not then try local server
                     try
                     {
-                        Server.Ping();
+                        this.Server.Ping();
                     }
                     catch
                     {
-                        ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;
-                        if (ConnectionString != null)
+                        this.ConnectionString = ConfigurationManager.ConnectionStrings["LocalMongoDb"].ConnectionString;
+                        if (this.ConnectionString != null)
                         {
-                            DatabaseName = MongoUrl.Create(ConnectionString).DatabaseName;
-                            Server = MongoServer.Create(ConnectionString);
+                            this.DatabaseName = MongoUrl.Create(this.ConnectionString).DatabaseName;
+                            this.Server = MongoServer.Create(this.ConnectionString);
                         }
                     }
-                    
-                    Dbh = Server.GetDatabase(DatabaseName);
+
+                    this.Dbh = this.Server.GetDatabase(this.DatabaseName);
                 }
             }
             else
@@ -62,16 +110,17 @@
                 // If not then try to create new connection
                 try
                 {
-                    Server.Ping();
+                    this.Server.Ping();
                 }
                 catch
                 {
-                    Dbh = null;
-                    GetDataBaseHandle();
+                    this.Dbh = null;
+                    this.GetDataBaseHandle();
                 }
             }
-            
-            return Dbh;
+
+            return this.Dbh;
         }
+        */
     }
 }

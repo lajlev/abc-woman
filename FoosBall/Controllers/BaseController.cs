@@ -1,6 +1,7 @@
 ﻿namespace FoosBall.Controllers
 {
     using System;
+    using System.Configuration;
     using System.Text;
     using System.Web;
     using System.Web.Mvc;
@@ -11,14 +12,19 @@
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
 
+    using Environment = FoosBall.Models.Base.Environment;
+
     public class BaseController : Controller
     {
         protected readonly MongoDatabase Dbh;
 
         public BaseController()
         {
-            this.Dbh = Db.GetDataBaseHandle();
             this.Settings = this.Dbh.GetCollection<Config>("Config").FindOne();
+            this.Settings.Environment = ConfigurationManager.AppSettings["Environment"] == "Production"
+                                            ? Environment.Production
+                                            : Environment.Staging;
+            this.Dbh = new Db(Settings.Environment).Dbh;
         }
 
         protected Config Settings { get; set; }

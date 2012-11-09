@@ -115,7 +115,6 @@
     <Compile Include="Main\Config.cs" />
     <Compile Include="Models\Base\Environment.cs" />
     <Compile Include="Models\Config.cs" />
-    <Compile Include="Main\DataAccessLayer.cs" />
     <Compile Include="Main\Db.cs" />
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />

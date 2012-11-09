@@ -3,7 +3,9 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using FoosBall.Main;
     using FoosBall.Models;
+    using FoosBall.Models.Base;
     using FoosBall.Models.Views;
 
     using MongoDB.Driver.Builders;
@@ -54,11 +56,31 @@
             return RedirectToAction("Index", "Admin");
         }
 
-        //[HttpPost]
-        //public ActionResult CopyMongoDb()
-        //{
-        //    var playerCollection = Dbh.GetCollection<Player>("Players");
-        //    var matchCollection = Dbh.GetCollection<Match>("Match");
-        //}
+        [HttpGet]
+        public ActionResult CopyProdToStaging()
+        {
+            var dbhStaging = new Db(Environment.Staging).Dbh;
+
+            var allMatches = Dbh.GetCollection<Match>("Matches").FindAll();
+            var allPlayers = Dbh.GetCollection<Player>("Players").FindAll();
+
+            var stagingMatches = dbhStaging.GetCollection<Match>("Matches");
+            var stagingPlayers = dbhStaging.GetCollection<Player>("Players");
+
+            stagingMatches.RemoveAll();
+            stagingPlayers.RemoveAll();
+            
+            foreach (var match in allMatches)
+            {
+                stagingMatches.Save(match);
+            }
+
+            foreach (var player in allPlayers)
+            {
+                stagingPlayers.Save(player);                
+            }
+
+            return RedirectToAction("Index", "Admin");
+        }
     }
 }

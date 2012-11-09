@@ -6,6 +6,8 @@ using System.Web.Routing;
 
 namespace FoosBall
 {
+    using System.Configuration;
+
     using FoosBall.Main;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 

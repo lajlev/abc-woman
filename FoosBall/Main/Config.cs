@@ -1,7 +1,10 @@
 ﻿namespace FoosBall.Main
 {
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Xml;
+
+    using FoosBall.Models.Base;
 
     public static class AppConfig
     {
@@ -9,7 +12,11 @@
 
         public static void InitalizeConfig()
         {
-            var configCollection = Db.GetDataBaseHandle().GetCollection<Models.Config>("Config");
+            var environment = ConfigurationManager.AppSettings["Environment"] == "Production"
+                                ? Environment.Production
+                                : Environment.Staging;
+
+            var configCollection = new Db(environment).Dbh.GetCollection<Models.Config>("Config");
             var config = configCollection.FindOne();
 
             if (config == null)
