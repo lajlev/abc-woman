@@ -25,3 +25,5 @@ C:\source\FoosBall\FoosBall\bin\System.Web.WebPages.Razor.xml
 C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.dll
 C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.pdb
 C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.csprojResolveAssemblyReference.cache
+C:\source\FoosBall\FoosBall\bin\RestSharp.dll
+C:\source\FoosBall\FoosBall\bin\RestSharp.xml

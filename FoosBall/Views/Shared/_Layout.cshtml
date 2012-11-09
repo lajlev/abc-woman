@@ -4,7 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>@ViewBag.Title</title>
+    <title>
+        @if (ViewBag.Environment != "Production")
+        {
+            @ViewBag.Environment
+        }
+        @ViewBag.Title
+    </title>
     <!-- Style Sheets -->
     <link href="@Url.Content("~/Content/Base.css")" rel="stylesheet" type="text/css" />
     @RenderSection("Css", false)
@@ -34,7 +40,13 @@
                 @Html.Partial("_LogOnPartial")
             </div>
             <div id="app-title">
-                <span>FoosBall Fighting</span>
+                <span>
+                    @if (ViewBag.Environment != "Production")
+                    {
+                        @ViewBag.Environment  
+                    }
+                    FoosBall Fighting
+                </span>
             </div>
             <nav>
                 <ul id="main-menu">

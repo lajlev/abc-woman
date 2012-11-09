@@ -1,0 +1,1 @@
+c:\source\mongodb\bin\mongoimport -h ds039467.mongolab.com:39467 -d appharbor_91a02254-b6c1-4f8a-8a8d-8acbeb96c62f -c Players -u admin -p 4va4lbertml --file c:\tmp\Players_20121108.json

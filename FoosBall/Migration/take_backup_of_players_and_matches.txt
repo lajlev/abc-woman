@@ -1,0 +1,2 @@
+c:\source\mongodb\bin\mongoexport -h ds039467.mongolab.com:39467 -d appharbor_91a02254-b6c1-4f8a-8a8d-8acbeb96c62f -c Players -u admin -p 4va4lbertml -o C:\source\FoosBall\FoosBall\Migration\Players_20121109.json
+c:\source\mongodb\bin\mongoexport -h ds039467.mongolab.com:39467 -d appharbor_91a02254-b6c1-4f8a-8a8d-8acbeb96c62f -c Matches -u admin -p 4va4lbertml -o C:\source\FoosBall\FoosBall\Migration\Matches_20121109.json

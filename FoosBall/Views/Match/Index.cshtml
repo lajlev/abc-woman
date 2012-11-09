@@ -7,7 +7,7 @@
 @section Javascript{ <script async src="/Scripts/Match.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Match.css"/>}
 
-@if (currentUser != null)
+@if (currentUser != null) 
 {
     using (Html.BeginForm("Create", "Match", FormMethod.Post, new {id = "create-match"}))
     {

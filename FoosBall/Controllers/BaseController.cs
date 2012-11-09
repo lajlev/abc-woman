@@ -20,11 +20,27 @@
 
         public BaseController()
         {
+            Environment environment;
+            var environmentString = ConfigurationManager.AppSettings["Environment"];
+
+            switch (environmentString)
+            {
+                case "Production":
+                    environment = Environment.Production;
+                    break;
+                case "Staging":
+                    environment = Environment.Staging;
+                    break;
+                default: 
+                    environment = Environment.Local;
+                    break;
+            }
+
+            this.Dbh = new Db(environment).Dbh;
             this.Settings = this.Dbh.GetCollection<Config>("Config").FindOne();
-            this.Settings.Environment = ConfigurationManager.AppSettings["Environment"] == "Production"
-                                            ? Environment.Production
-                                            : Environment.Staging;
-            this.Dbh = new Db(Settings.Environment).Dbh;
+            this.Settings.Environment = environment;
+
+            ViewBag.Environment = environment.ToString();
         }
 
         protected Config Settings { get; set; }
