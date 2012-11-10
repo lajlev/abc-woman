@@ -100,16 +100,19 @@ footer, #footer {
 ----------------------------------------------------------*/
 #main-menu {
   line-height: 1.6em;
-  margin: 0 0 1px 0;
+  margin: 0 0 0px 0;
   position: relative;
   text-align: right;
-  -webkit-padding-start: 10px; }
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-padding-start: 0px; }
   #main-menu li {
     display: inline;
+    float: left;
     list-style: none; }
     #main-menu li a {
-      margin: 0 0 0 2px;
-      padding: 5px 8px 4px;
+      margin: 0;
+      padding: 5px 8px 3px;
       font-weight: bold;
       text-decoration: none;
       background-color: #dddddd;
@@ -163,6 +166,7 @@ nav, #menucontainer {
     text-decoration: none; }
 
 #main {
+  clear: both;
   background-color: #fff;
   min-height: 280px;
   padding: 10px 10px 5px; }
