@@ -1,0 +1,558 @@
+[33mcommit df16617d76247a1d023e52411d8f8e133e5732e3[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Fri Nov 9 07:27:37 2012 +0100
+
+    Added Environment variables to web.config.
+
+[33mcommit 6090c750318e2f9fdf601526c1c3db9efeb2c266[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 8 07:57:08 2012 +0100
+
+    fix
+
+[33mcommit 570961fc900bbf1e702c298a7b7248102ebe4c90[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 8 07:45:35 2012 +0100
+
+    fix
+
+[33mcommit efb4240d5c953f8f480087ff3dbc5a868529035c[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 8 07:34:42 2012 +0100
+
+    fix
+
+[33mcommit 9ace85068396f295e1347720d6ba2321d27b7899[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 8 00:42:08 2012 +0100
+
+    minor changes to logon partial. Started a Copy action that can copy data from one mongo to another
+
+[33mcommit 49cc085cb41d5e8df81d4962e742b345df111343[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 8 00:26:26 2012 +0100
+
+    corrected styling issues on mobile sized devices
+
+[33mcommit dd6088b28d0013a51ffec08239e0e12dfdf2da3a[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Wed Nov 7 17:09:16 2012 +0100
+
+    better styling on the Legendary matches list
+
+[33mcommit 3e54891abb1185bc4a0b03e262aef737e1aabb1a[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Wed Nov 7 16:23:35 2012 +0100
+
+    fixed a bug on the Player/Edit action
+
+[33mcommit e3a233d2307241085aad9587374a9773b926fe21[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Wed Nov 7 11:31:03 2012 +0100
+
+    fixed a signup bug
+
+[33mcommit 24473fcc91b9b23119e464387aa5ef01a1759d65[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Wed Nov 7 07:40:52 2012 +0100
+
+    Improved styling on match tables and displaying time 'Played' timestamps
+
+[33mcommit bc45e297139e7b794c26fa04dc44d82998f0ca8d[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Tue Nov 6 22:23:29 2012 +0100
+
+    merged development into master
+
+[33mcommit d0718d6f011f9ee8a4431b24e6ca1212494a9745[m
+Merge: bd16587 8bfb673
+Author: jbe <jbe@trustpilot.com>
+Date:   Tue Nov 6 22:21:43 2012 +0100
+
+    Merge branch 'development'
+    
+    Conflicts:
+    	FoosBall/Content/Base.scss
+    	FoosBall/Content/Players.scss
+    	FoosBall/Content/_mixins.scss
+    	FoosBall/Views/Players/Index.cshtml
+
+[33mcommit 8bfb6733922fc78ed5bf312723f33e320cb0baa8[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Tue Nov 6 22:07:12 2012 +0100
+
+    new layout and styles by Mr. Lajlev. Converted emails in the mongoDb so this release has to go out now.
+
+[33mcommit e64ce530b02d1a9f3bde2025fb9b5dbbfbaed035[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Tue Nov 6 20:34:32 2012 +0100
+
+    Added an admin page which is accessible on through an admin account
+
+[33mcommit a3f6a264d63d9dcbafc6f1f81cbd6f463f65caf5[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Nov 5 09:01:17 2012 +0100
+
+    testing if index works on remote server
+
+[33mcommit 992727a6e08b5dcc475db0246d138d4fd1afdc6c[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Nov 5 08:58:09 2012 +0100
+
+    testing if index works on remote server
+
+[33mcommit 170fd07c3a432ced3422073ac342a963f8caeea5[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Nov 5 08:56:29 2012 +0100
+
+    testing if index works on remote server
+
+[33mcommit ebfc4171a1d09a2f26431e28344dd3118a70f365[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Nov 5 08:55:31 2012 +0100
+
+    testing if index works on remote server
+
+[33mcommit be43d335aaf6e29d563e3df902caf7991aa58e61[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sat Nov 3 08:13:20 2012 +0100
+
+    Refactoring of code according to resharper recommendations
+
+[33mcommit a0bf09dba7eb641a06dd4077a6c4bbb62663141e[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sat Nov 3 07:36:29 2012 +0100
+
+    Removed test project completely
+
+[33mcommit 3d1d59335206c28147aaf743f90fca11ee2efc71[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sat Nov 3 06:08:10 2012 +0100
+
+    Started a migration script for getting matches into a PlayerMatchHistory table
+
+[33mcommit 14d33552c5a2b15e6c983b5dcedb8e276da7d9a0[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 15:08:54 2012 +0100
+
+    small allround tweaks
+
+[33mcommit 07d37a0f7119d66e2e17e7c22b5cee30cb7ca272[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 15:06:08 2012 +0100
+
+    small allround tweaks
+
+[33mcommit ccc184d77e1eaf10af4dc05014a090e126d34995[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 15:00:48 2012 +0100
+
+    small allround tweaks
+
+[33mcommit b950608d6d589be8d2503aaf98fc517194e6a420[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 14:59:53 2012 +0100
+
+    small allround tweaks
+
+[33mcommit afc0de38bf65c3844e659674d7b96e8437d8ec2c[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 14:50:30 2012 +0100
+
+    scoreboard pimped final today
+
+[33mcommit e75bc7c1ebbda7fff43dc05d7031f5205b6d9b3f[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 14:45:14 2012 +0100
+
+    scoreboard pimped final today
+
+[33mcommit 197c8125ca01f98ab0a5d5da2416d48a811ec373[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 14:38:57 2012 +0100
+
+    scoreboard pimped final today
+
+[33mcommit a9db4e0e6f5677bcbc32cfe7fed1d2bb5ae70b37[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 14:32:18 2012 +0100
+
+    scoreboard pimped final today'
+
+[33mcommit 86d306b75c583770f5dceccbe1d9f1ff5fd5a574[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:53:25 2012 +0100
+
+    scoreboard pimped final today'
+
+[33mcommit e7795f4ed1c3d3b80633506a953fe76c4009c247[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:47:20 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit e8337bc09ceed9bb85555d85c46407512a0a1d42[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:35:35 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 0d5c0a2001697e5f03b871b7ad0194fea8c5f7e9[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:28:09 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 17d2a5f1ebd20a26bb355bbef47f2d422d314601[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:20:22 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 1b90542b5c1fd29c74252a49de41e3723cf7761b[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:19:08 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 35a673bee35ce1b5894bb1ab2f0ef95c17ce7bce[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:18:02 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 288b019f820c16a9db603ee201011199dcbded20[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:12:31 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 9f79becb50d5b596326000611f2b87b28908d8f5[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:07:57 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 64c539cb02835281dd8aeec31cbbdf7ec037614d[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:06:34 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 58378ceae73d89d8444fe20b0fcac180ff561f4c[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:04:07 2012 +0100
+
+    scoreboard pimped
+
+[33mcommit 53fe46484a02114c8beea3b75b9c71b134c70757[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 13:01:34 2012 +0100
+
+    scoreboard cleaned
+
+[33mcommit 15c58994377f3d0f4834e23b279c08d5a0dfcf41[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:43:53 2012 +0100
+
+    scoreboard cleaned
+
+[33mcommit 5085d7f4334acaf615883454c791f2b6bff744d1[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:36:18 2012 +0100
+
+    menu naming fixed
+
+[33mcommit fd2455f32aa0953ddd52813948476deef850ab65[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:35:47 2012 +0100
+
+    player fixed fixed
+
+[33mcommit 4c39b33ad937aecd9bbcbb8f63f8fcc476d8d011[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:33:07 2012 +0100
+
+    menu fixed
+
+[33mcommit 33e144ff2172dd0fdd20662d8b80754a4cfc2db4[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:24:57 2012 +0100
+
+    matches cleaned
+
+[33mcommit 4b852d8e5ddca146bfefe9f6e3d0e6dc7bd770fc[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:21:02 2012 +0100
+
+    scoreboard not cleaned fixed
+
+[33mcommit 5e673f27fcc29e559ce68df96c50f3f29824abc4[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:16:47 2012 +0100
+
+    scoreboard cleaned
+
+[33mcommit 4cc1b00fad0ff3e65266f6e7afc57aef92c36d13[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:13:40 2012 +0100
+
+    color changes fixed
+
+[33mcommit 234455539d31ffbd7108663a410c3fa0647d228e[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:08:46 2012 +0100
+
+    color changes
+
+[33mcommit 4b867c1b39ffafedadb5834f55482c01c5aea3e5[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 12:02:43 2012 +0100
+
+    menu tweaked
+
+[33mcommit 4d7a9b0829dbbee0f37df52f6c3a1b73ec14efe9[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:54:32 2012 +0100
+
+    tweaked login and registrer
+
+[33mcommit 807f29567304ebe4b73af6b33663c71ebef8cd3f[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:53:25 2012 +0100
+
+    tweaked login and registrer
+
+[33mcommit 27759385f0e67b3f78c7fc60a7a558a6f0dbaab4[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:52:23 2012 +0100
+
+    tweaked login and registrer
+
+[33mcommit 4f72c688873d22eaef61be15dd756aa2c2511f2c[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:49:40 2012 +0100
+
+    tweaked login and registrer
+
+[33mcommit b7bb7ab76b4073bf48dd5db27c10633bac38bb45[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:47:32 2012 +0100
+
+    tweaked login and registrer
+
+[33mcommit a3b2ee46a6ae107cbba4a0820273715c4ad97b11[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:38:31 2012 +0100
+
+    ff again again
+
+[33mcommit fc560b575d07613ed808def1a830456fd6af25be[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:37:39 2012 +0100
+
+    css duplicates removed
+
+[33mcommit 320f0f1cd5819be5d4474ed9b86d041aae47e914[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:33:43 2012 +0100
+
+    font family changed again
+
+[33mcommit ebc95359d1b94e07d298f4ec5f2575b22ae730f1[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 11:20:25 2012 +0100
+
+    font family changed
+
+[33mcommit ea4ee139e62c462121e4c15be67c327f3781cd4a[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Fri Nov 2 11:10:44 2012 +0100
+
+    empty
+
+[33mcommit 35b4f6c14fa8e9a7e0230eed3bfbf5a5ad093cd2[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Fri Nov 2 10:45:16 2012 +0100
+
+    more work on player details
+
+[33mcommit bd165876df95ae107a2dadc12f9195da47eea09f[m
+Author: Michael Lajlev <lajlev@gmail.com>
+Date:   Fri Nov 2 10:31:37 2012 +0100
+
+    Blinfolded css changes
+
+[33mcommit b39d2d1d7d6592e68b39cd43eff6e53bcb930ab3[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 1 22:07:43 2012 +0100
+
+    Removed test project: FoosBall.Test. Started a Player Details View where Player history and stats are displayed.
+
+[33mcommit 9ce57d7f24f544afede2715cb9f3f37436e8415f[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 1 17:45:57 2012 +0100
+
+    Added ranking number on Player list. Added Gravatar pictures on Player list. Moved 'Edit Player' link from Player list to Top of page. Removed 'Delete Player' functionality.
+
+[33mcommit 73f930a92490a1582beae4957d0015ca66935584[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 1 12:24:29 2012 +0100
+
+    Fixed signup bug
+
+[33mcommit 1e01454e4b345ce035bdfeec04b79f3ce213eab1[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 1 10:49:14 2012 +0100
+
+    empty
+
+[33mcommit 91b4a368fefad8957123b8d00664de25171820dc[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 1 10:00:25 2012 +0100
+
+    sorted select lists for choosing players for matches
+
+[33mcommit 8ac16d01e02b4716b0434e388a1e810d3aa01147[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 1 09:42:07 2012 +0100
+
+    fixed margins on page
+
+[33mcommit c07e4a0dd27775de1989f0184a101876bb98887f[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Nov 1 09:35:48 2012 +0100
+
+    small refactoring of classses (only 1 pr file). Support for Gravatars. Max width on page 800px.
+
+[33mcommit 4a676b4d529c548d8f614ebd5a891785751e9449[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Wed Oct 31 13:53:11 2012 +0100
+
+    doing some data access layer stuff to fetch statistical data
+
+[33mcommit cf10747b151c4a585a320d36481abc7e77bcfbf9[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Oct 29 21:44:41 2012 +0100
+
+    Moved some css around and added a stat to the Stats page
+
+[33mcommit 35ad2ddbc838ea8151f590d266accf8c47ca3c81[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Oct 29 19:45:55 2012 +0100
+
+    Fixed a bug in the SaveMatchResult Controller
+
+[33mcommit 3efe77c540028d7727ab42db0b2b348a6b6aad1d[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Oct 29 11:04:07 2012 +0100
+
+    empty commit
+
+[33mcommit 70c527d6e46fae28abeb7888ece8076f5839ab27[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Oct 29 09:22:25 2012 +0100
+
+    added a statistics controller/view
+
+[33mcommit f8b47ce4616eb4170603c16e05ab6189279d5e2d[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sun Oct 28 21:03:55 2012 +0100
+
+    added missing images
+
+[33mcommit 3740525789640e7c79726a134a8d28cb955ceefd[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sun Oct 28 20:58:30 2012 +0100
+
+    Better responsive design, filtered data columns
+
+[33mcommit 84197ad67edd4f4e7e2cc33a7c131c3148718a30[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sun Oct 28 09:15:13 2012 +0100
+
+    changed list of matches to a <table>
+
+[33mcommit 19461a815ac3b58b285aa232b762d411fbccb2ce[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Oct 25 09:20:51 2012 +0200
+
+    added images of numbers for scores
+
+[33mcommit 0093366e63384f8de01a7db361d6cb18ee141955[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Oct 25 09:06:55 2012 +0200
+
+    added positions to player models
+
+[33mcommit e22007bcf5f3bd498bda361d4153bc67e0e8bdc6[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Wed Oct 24 21:16:43 2012 +0200
+
+    Feature added for resolving matches. Only logged in players can create/edit/delete matches. Added security to prevent cheating. To be done: css/markup for mobile view
+
+[33mcommit f0596edbeb97055c05c133aaf72e8bc975cd0ec3[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Tue Oct 23 08:47:26 2012 +0200
+
+    New register and login functionality now uses mongo instead of MSSQL. Version page where new and upcoming features are listed. Auth cookie is saved for 30 days and if valid will auto-login user when LogOn is clicked
+
+[33mcommit 4cb283ac9fcd6f0cc7a786412a2dab0330df2364[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Mon Oct 15 13:18:04 2012 +0200
+
+    ADded js validation
+
+[33mcommit e756a57ee4cdec0e984de2406fb8c916086ded2a[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sat Oct 13 11:04:27 2012 +0200
+
+    Splitted up the javascript file into FoosBall.js, Match.js and Players.js
+
+[33mcommit 9ed6cbacdfb4d192514c9ff15423bb703ec12468[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Sat Oct 13 08:17:53 2012 +0200
+
+    init commit to deploy solution on AppHarbor
+
+[33mcommit 4dbd0580d68090a92c442a3e715552c45f84a64e[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Fri Oct 12 23:04:45 2012 +0200
+
+    changed ui appearance, added js validation on player creation and match creation
+
+[33mcommit faf72b13f8cef65fa6df555df4df556a8d3ed5e7[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Fri Oct 12 07:21:51 2012 +0200
+
+    Added a local jquery file to support offline development of the app
+
+[33mcommit ad25634aaaacf7890352d238b03d5a3b6c5613d3[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Oct 11 21:45:14 2012 +0200
+
+    Changed the styling a bit, bigger fonts, thicker borders...
+
+[33mcommit c6f5b1df82c1723f13ad7ea9042c1e9fb5418e3d[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Oct 11 21:20:53 2012 +0200
+
+    added sliders for the team scores
+
+[33mcommit cb74a2e8537965d145d077e892b6d4573bf9a9ac[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Oct 11 20:39:26 2012 +0200
+
+    added match edit icons and a result page
+
+[33mcommit f2396eee454696f2cacf46d9d569c9c84ebf2400[m
+Author: jbe <jbe@trustpilot.com>
+Date:   Thu Oct 11 15:25:25 2012 +0200
+
+    initial commit
+
+[33mcommit 244e66d3819030fdc82ebffa434ed1243b1721b0[m
+Author: Jakob Tolstrup Bech <jbe@trustpilot.com>
+Date:   Thu Oct 11 06:00:41 2012 -0700
+
+    Initial commit

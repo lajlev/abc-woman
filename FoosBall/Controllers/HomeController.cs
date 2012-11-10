@@ -3,7 +3,7 @@
     using System.Web.Mvc;
     using FoosBall.Models.Views;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
