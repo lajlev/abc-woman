@@ -1,5 +1,6 @@
 ﻿namespace FoosBall.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -8,7 +9,6 @@
     using FoosBall.Models.Base;
     using FoosBall.Models.Views;
 
-    using MongoDB.Driver;
     using MongoDB.Driver.Builders;
 
     public class AdminController : BaseController
@@ -80,6 +80,26 @@
             foreach (var player in allPlayers)
             {
                 destinationPlayers.Save(player);
+            }
+
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpGet]
+        public ActionResult SyncPlayersStatistics()
+        {
+
+            var playersCollection = Dbh.GetCollection<Match>("Matches");
+            var allMatches = Dbh.GetCollection<Match>("Matches").FindAll();
+
+            foreach (var match in allMatches)
+            {
+                var players = new List<Player>
+                    {
+                        match.RedPlayer1, 
+                        match.BluePlayer1
+                    };
+
             }
 
             return RedirectToAction("Index", "Admin");

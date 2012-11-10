@@ -73,18 +73,5 @@
 
             return this.RedirectToAction("Index");
         }
-
-        [HttpGet]
-        public ActionResult Details(string playerId)
-        {
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
-            var query = Query.EQ("_id", ObjectId.Parse(playerId));
-            var player = playerCollection.FindOne(query);
-
-            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().SetSortOrder(SortBy.Descending("GameOverTime")).ToList();
-            var playedMatches = matchCollection.Where(match => match.ContainsPlayer(player.Id)).ToList();
-
-            return this.View(new PlayerDetailsViewModel { Player = player, PlayedMatches = playedMatches });
-        }
     }
 }
