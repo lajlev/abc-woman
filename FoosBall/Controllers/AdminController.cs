@@ -8,6 +8,7 @@
     using FoosBall.Models.Base;
     using FoosBall.Models.Views;
 
+    using MongoDB.Driver;
     using MongoDB.Driver.Builders;
 
     public class AdminController : BaseController
@@ -57,27 +58,28 @@
         }
 
         [HttpGet]
-        public ActionResult CopyProdToStaging()
+        public ActionResult CopyProdData(string environment = "Staging")
         {
-            var dbhStaging = new Db(Environment.Staging).Dbh;
+            var dbhTo = environment == "Local" ? new Db(Environment.Local).Dbh : new Db(Environment.Staging).Dbh;
+            var dbhFrom = new Db(Environment.Production).Dbh;
 
-            var allMatches = Dbh.GetCollection<Match>("Matches").FindAll();
-            var allPlayers = Dbh.GetCollection<Player>("Players").FindAll();
+            var allMatches = dbhFrom.GetCollection<Match>("Matches").FindAll();
+            var allPlayers = dbhFrom.GetCollection<Player>("Players").FindAll();
 
-            var stagingMatches = dbhStaging.GetCollection<Match>("Matches");
-            var stagingPlayers = dbhStaging.GetCollection<Player>("Players");
+            var destinationMatches = dbhTo.GetCollection<Match>("Matches");
+            var destinationPlayers = dbhTo.GetCollection<Player>("Players");
 
-            stagingMatches.RemoveAll();
-            stagingPlayers.RemoveAll();
-            
+            destinationMatches.RemoveAll();
+            destinationPlayers.RemoveAll();
+
             foreach (var match in allMatches)
             {
-                stagingMatches.Save(match);
+                destinationMatches.Save(match);
             }
 
             foreach (var player in allPlayers)
             {
-                stagingPlayers.Save(player);                
+                destinationPlayers.Save(player);
             }
 
             return RedirectToAction("Index", "Admin");

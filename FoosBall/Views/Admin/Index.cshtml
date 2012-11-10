@@ -40,7 +40,9 @@
 
 <fieldset>
     <legend>Copy Mongo data</legend>
-    @Html.ActionLink("Copy Prod to Staging", "CopyProdToStaging", "Admin")
+    @Html.ActionLink("Copy Prod to Staging", "CopyProdData", "Admin")
+    <br/>
+    @Html.ActionLink("Copy Prod to Local", "CopyProdData", new { environment = "Local"})
 </fieldset>
 
 <fieldset>

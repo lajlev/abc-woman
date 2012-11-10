@@ -1,0 +1,68 @@
+﻿@model FoosBall.Models.MatchTable
+
+ <table id="legendary-matches">
+    <thead>
+        <tr>
+            <th class="red team-names">Red team</th>
+            <th class="blue team-names">Blue team</th>
+            <th class="score">Result</th>
+            <th class="played">Played</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var match in Model.Matches)
+        {
+            <tr>
+                @* Red Teams names and Nicknames *@
+                <td class="red team-names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
+                    <span class="names">
+                        @match.RedPlayer1.Name
+                        @if (match.CountRedPlayers() == 2)
+                        {
+                            <br/>@match.RedPlayer2.Name
+                        }
+                    </span>
+                    <span class="nicknames">
+                        @match.RedPlayer1.NickName
+                        @if (match.CountRedPlayers() == 2)
+                        {
+                            <br/>@match.RedPlayer2.NickName  
+                        }
+                    </span>
+                </td>
+                
+                @* Blue Teams names and Nicknames *@
+                <td class="blue team-names @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
+                    <span class="names">
+                        @match.BluePlayer1.Name
+                        @if (match.CountBluePlayers() == 2)
+                        {
+                            <br/>@match.BluePlayer2.Name
+                        }
+                    </span>
+                    <span class="nicknames">
+                        @match.BluePlayer1.NickName
+                        @if (match.CountBluePlayers() == 2) 
+                        {
+                            <br/>@match.BluePlayer2.NickName
+                        }
+                    </span>
+                </td>
+                <td class="score">
+                    <span class="red @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
+                        @match.RedScore
+                    </span>
+                    -
+                    <span class="blue @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
+                        @match.BlueScore
+                    </span>
+                </td>
+                <td class="played" title="@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
+                    <span class="short-time">@match.GameOverTime.ToLocalTime().ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
+                    <span class="long-time">@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
+                </td>
+
+            </tr>
+       }
+    </tbody>
+</table>    

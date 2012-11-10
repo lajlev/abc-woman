@@ -11,9 +11,11 @@
         }
         @ViewBag.Title
     </title>
+
     <!-- Style Sheets -->
     <link href="@Url.Content("~/Content/Base.css")" rel="stylesheet" type="text/css" />
     @RenderSection("Css", false)
+    
     <!-- Javascript -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -21,6 +23,7 @@
             document.write(unescape('%3Cscript src="@Url.Content("~/Scripts/jquery.min.js")" type="text/javascript"%3E%3C/script%3E'));
         }
     </script>
+
     <!-- Feedback plugin -->
     <script type="text/javascript">
         if (!!window.innerWidth === true && window.innerWidth > 930) {
