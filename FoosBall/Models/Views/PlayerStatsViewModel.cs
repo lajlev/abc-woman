@@ -12,15 +12,15 @@
 
         public int Lost { get; set; }
 
-        public Player BestFriendsForever { get; set; }
+        public BestFriendForever Bff{ get; set; }
 
-        public Player RealBestFriendsForever { get; set; }
+        public RealBestFriendForever Rbff{ get; set; }
 
-        public Player EvilArchEnemy { get; set; }
+        public EvilArchEnemy Eae { get; set; }
 
-        public string PreferredColor { get; set; }
+        public PreferredColor PreferredColor { get; set; }
 
-        public string WinningColor { get; set; }
+        public WinningColor WinningColor { get; set; }
 
         public int PlayedToday { get; set; }
 
