@@ -42,7 +42,7 @@
             return id == BluePlayer1.Id || id == BluePlayer2.Id;
         }
 
-        public Player GetPartner(BsonObjectId id)
+        public Player GetTeamMate(BsonObjectId id)
         {
             if (id == RedPlayer1.Id)
             {

@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.Models
 {
-    using System;
     using System.Collections.Generic;
 
     public class MatchTable
@@ -10,4 +9,3 @@
         public Player User { get; set; }
     }
 }
-

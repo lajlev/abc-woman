@@ -18,22 +18,21 @@
             @index.
             </div>
             <div class="avatar">
-                <img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email)?d=mm"/>
+                <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })"><img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email)?d=mm"/></a>
             </div>
-            <div class="name ellipsis-1" title="Nickname: @player.NickName">
-            @player.Name
+            <div class="name ellipsis-1">
+            <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })">@player.Name</a>
             <br>
             @player.Rating.ToString("F0")<sup>points</sup>
                 <div class="won-lost-played" title="Won: @player.Won &middot; Lost: @player.Lost &middot; Played: @player.Played">
                     <span class="won">@player.Won</span> &middot; <span class="lost">@player.Lost</span> &middot; <span class="played">@player.Played</span>
                 </div>
             </div>
-
         </div>
 
         index++;
     }
 } else
 {
-    <text>- none - </text>
+    <text>- nope! noone here ... - </text>
 }

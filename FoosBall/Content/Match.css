@@ -1,35 +1,3 @@
-/* Match View
-----------------------------------------------------------*/
-#create-match-form .select-player {
-  margin: 2px 0px; }
-
-.team {
-  margin-top: 3px;
-  width: 45%;
-  text-align: center; }
-
-.red-team, #team-red-players {
-  float: left;
-  clear: left; }
-  .red-team .team-name, #team-red-players .team-name {
-    color: #cc0000; }
-
-.vs {
-  float: left;
-  margin-top: 3px;
-  text-align: center;
-  vertical-align: middle;
-  width: 10%; }
-
-.blue-team, #team-blue-players, .blue-score {
-  float: right;
-  clear: right; }
-  .blue-team .team-name, #team-blue-players .team-name, .blue-score .team-name {
-    color: #0000aa; }
-
-#create-match-button {
-  margin-top: 10px; }
-
 .list-of-matches {
   font-size: .9em;
   line-height: 1.0em; }
@@ -87,6 +55,38 @@ table .winner {
     display: none; }
   #legendary-matches .names, #legendary-matches .created, #legendary-matches .long-time {
     display: table-cell; } }
+/* Match View
+----------------------------------------------------------*/
+#create-match-form .select-player {
+  margin: 2px 0px; }
+
+.team {
+  margin-top: 3px;
+  width: 45%;
+  text-align: center; }
+
+.red-team, #team-red-players {
+  float: left;
+  clear: left; }
+  .red-team .team-name, #team-red-players .team-name {
+    color: #cc0000; }
+
+.vs {
+  float: left;
+  margin-top: 3px;
+  text-align: center;
+  vertical-align: middle;
+  width: 10%; }
+
+.blue-team, #team-blue-players, .blue-score {
+  float: right;
+  clear: right; }
+  .blue-team .team-name, #team-blue-players .team-name, .blue-score .team-name {
+    color: #0000aa; }
+
+#create-match-button {
+  margin-top: 10px; }
+
 /* SaveMatchResult View
 ----------------------------------------------------------*/
 .team-score {

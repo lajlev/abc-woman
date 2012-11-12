@@ -1,0 +1,99 @@
+﻿@using FoosBall.Models
+@model FoosBall.Models.Views.PlayerStatsViewModel
+@{
+    ViewBag.Title = "Player Stats";
+}
+@section Javascript{ <script async src="/Scripts/Stats.js"></script> }
+@section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
+
+<fieldset id="player-statistics">
+    <legend>Stats for @Model.Player.Name</legend>
+    <div class="second">
+        <div class="label">Fights Today:</div>
+        <div>@Model.PlayedToday</div>
+        <div class="label">Fights Last 7 Days:</div>
+        <div>@Model.PlayedLast7Days</div>
+        <div class="label">Fights Last 30 Days:</div>
+        <div>@Model.PlayedLast30Days</div>
+        <div class="label">Fights Total:</div>
+        <div>@Model.Played</div>
+        <div class="label">Won Fights:</div>
+        <div>@Model.Won</div>
+        <div class="label">Lost Fights:</div>
+        <div>@Model.Lost</div>
+        <br/>
+    </div>
+        
+    <div class="second">
+        <div class="label" title="The BFF (Best Friend Forever) is the player together with whom @Model.Player.Name has fought most often">Best Friend Forever:</div>
+        <div>
+            @if (@Model.BestFriendsForever != null)
+            {
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.BestFriendsForever.Id })">@Model.BestFriendsForever.Name</a>
+            } 
+            else
+            {
+                <text>no best friends :(</text>
+            }
+        </div>
+        <div class="label" title="The RBFF (Real Best Friend Forever) is the player together with whom @Model.Player.Name has won most fights">Real Best Friend Forever:</div>
+        <div>
+            @if (@Model.RealBestFriendsForever != null)
+            {
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.RealBestFriendsForever.Id })">@Model.RealBestFriendsForever.Name</a>
+            }
+            else
+            {
+                <text> - </text>
+            }
+        </div>
+        <br/>
+
+        <div class="label">Preferred Color:</div>
+        <div>@Model.PreferredColor</div>
+        <div class="label">Winning Color:</div>
+        <div>@Model.WinningColor</div>
+        <br/>
+        <div class="label">Latest fight:</div>
+        <div>
+            @if (Model.LatestMatch.WonTheMatch(Model.Player.Id))
+            {
+                <text>beat up </text>
+            }
+            else
+            {
+                <text>was beat up by </text>            
+            }
+            @if (Model.LatestMatch.IsOnRedTeam(Model.Player.Id))
+            {
+                <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.BluePlayer1.Id })">@Model.LatestMatch.BluePlayer1.Name</a>
+                if (@Model.LatestMatch.BluePlayer1 != null)
+                {
+                    <text>&</text>
+                    <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.BluePlayer2.Id })">@Model.LatestMatch.BluePlayer2.Name</a>
+                }
+            } 
+            else
+            {
+                <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.RedPlayer1.Id })">@Model.LatestMatch.RedPlayer1.Name</a>
+                if (@Model.LatestMatch.BluePlayer1 != null)
+                {
+                    <text>&</text>
+                    <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.RedPlayer2.Id })">@Model.LatestMatch.RedPlayer2.Name</a>
+                }
+            }
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>The story of @Model.Player.Name</legend>
+    @if (Model.PlayedMatches.Any())
+    {
+        Html.RenderPartial("_LegendaryMatchTable", new MatchTable { Matches = Model.PlayedMatches, User = null });
+    }
+    else
+    {
+        <text><span class="dimmed">Hrmmm... Guess Foosball is not a very popular sport around here...</span></text>
+    }
+</fieldset>

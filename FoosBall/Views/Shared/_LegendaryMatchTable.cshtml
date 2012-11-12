@@ -1,6 +1,14 @@
-﻿@model FoosBall.Models.MatchTable
-
- <table id="legendary-matches">
+﻿@using FoosBall.Models
+@model FoosBall.Models.MatchTable
+@{
+    var currentUser = (Player)HttpContext.Current.Session["User"];
+}
+@if (currentUser != null)
+{
+    <input type="hidden" value="@currentUser.Id" name="current-user-id" id="current-user-id"/>
+}
+    
+<table id="legendary-matches">
     <thead>
         <tr>
             <th class="red team-names">Red team</th>
@@ -16,17 +24,19 @@
                 @* Red Teams names and Nicknames *@
                 <td class="red team-names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
                     <span class="names">
-                        @match.RedPlayer1.Name
+                        <a href="@Url.Action("Player","Stats", new {playerId = @match.RedPlayer1.Id })">@match.RedPlayer1.Name</a>
                         @if (match.CountRedPlayers() == 2)
                         {
-                            <br/>@match.RedPlayer2.Name
+                            <br/>
+                            <a href="@Url.Action("Player","Stats", new {playerId = @match.RedPlayer2.Id })">@match.RedPlayer2.Name</a>
                         }
                     </span>
                     <span class="nicknames">
-                        @match.RedPlayer1.NickName
+                        <a href="@Url.Action("Player","Stats", new {playerId = @match.RedPlayer1.Id })">@match.RedPlayer1.NickName</a>
                         @if (match.CountRedPlayers() == 2)
                         {
-                            <br/>@match.RedPlayer2.NickName  
+                            <br/>
+                            <a href="@Url.Action("Player","Stats", new {playerId = @match.RedPlayer2.Id })">@match.RedPlayer2.NickName</a>
                         }
                     </span>
                 </td>
@@ -34,26 +44,30 @@
                 @* Blue Teams names and Nicknames *@
                 <td class="blue team-names @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
                     <span class="names">
-                        @match.BluePlayer1.Name
+                        <a href="@Url.Action("Player","Stats", new {playerId = @match.BluePlayer1.Id })">@match.BluePlayer1.Name</a>
                         @if (match.CountBluePlayers() == 2)
                         {
-                            <br/>@match.BluePlayer2.Name
+                            <br/>
+                            <a href="@Url.Action("Player","Stats", new {playerId = @match.BluePlayer2.Id })">@match.BluePlayer2.Name</a>
                         }
                     </span>
                     <span class="nicknames">
-                        @match.BluePlayer1.NickName
-                        @if (match.CountBluePlayers() == 2) 
+                        <a href="@Url.Action("Player","Stats", new {playerId = @match.BluePlayer1.Id })">@match.BluePlayer1.NickName</a>
+                        @if (match.CountBluePlayers() == 2)
                         {
-                            <br/>@match.BluePlayer2.NickName
+                            <br/>
+                            <a href="@Url.Action("Player","Stats", new {playerId = @match.BluePlayer2.Id })">@match.BluePlayer2.NickName</a>
                         }
                     </span>
                 </td>
                 <td class="score">
-                    <span class="red @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
+                    <span class="red @if (match.RedScore > match.BlueScore)
+                                     { <text>winner</text> }">
                         @match.RedScore
                     </span>
                     -
-                    <span class="blue @if (match.BlueScore > match.RedScore) { <text>winner</text> }">
+                    <span class="blue @if (match.BlueScore > match.RedScore)
+                                      { <text>winner</text> }">
                         @match.BlueScore
                     </span>
                 </td>
@@ -63,6 +77,6 @@
                 </td>
 
             </tr>
-       }
+        }
     </tbody>
 </table>    

@@ -123,6 +123,7 @@
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\Base\FoosBallLists.cs" />
+    <Compile Include="Models\Views\PlayerStatsViewModel.cs" />
     <Compile Include="Models\Views\ConfigViewModel.cs" />
     <Compile Include="Models\Views\ExistsResponse.cs" />
     <Compile Include="Models\Base\FoosBallDoc.cs" />
@@ -178,6 +179,7 @@
     <Content Include="Scripts\Match.js" />
     <Content Include="Scripts\Players.js" />
     <Content Include="Scripts\Register.js" />
+    <Content Include="Scripts\Stats.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -197,7 +199,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Content\Admin.scss" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Stats\Index.cshtml" />
+    <Content Include="Views\Stats\Player.cshtml" />
+    <Content Include="Content\_match-tables.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
