@@ -27,9 +27,9 @@
     <div class="second">
         <div class="label" title="The BFF (Best Friend Forever) is the player together with whom @Model.Player.Name has fought most often">Best Friend Forever:</div>
         <div>
-            @if (@Model.BestFriendsForever != null)
+            @if (@Model.Bff != null)
             {
-                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.BestFriendsForever.Id })">@Model.BestFriendsForever.Name</a>
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Bff.Player.Id.ToString() })">@Model.Bff.Player.Name</a><text> - @Model.Bff.Occurrences fights</text>
             } 
             else
             {
@@ -38,21 +38,47 @@
         </div>
         <div class="label" title="The RBFF (Real Best Friend Forever) is the player together with whom @Model.Player.Name has won most fights">Real Best Friend Forever:</div>
         <div>
-            @if (@Model.RealBestFriendsForever != null)
+            @if (@Model.Rbff != null)
             {
-                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.RealBestFriendsForever.Id })">@Model.RealBestFriendsForever.Name</a>
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Rbff.Player.Id.ToString() })">@Model.Rbff.Player.Name</a><text> - @Model.Rbff.Occurrences wins</text>
             }
             else
             {
                 <text> - </text>
             }
         </div>
+        <div class="label">Evil Arch Enemy:</div>
+        <div>
+            @if (@Model.Eae != null)
+            {
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Eae.Player.Id.ToString() })">@Model.Eae.Player.Name</a><text> - @Model.Eae.Occurrences losses</text>
+            }
+            else
+            {
+                <text> - </text>
+            }
+        </div>
+
         <br/>
 
         <div class="label">Preferred Color:</div>
-        <div>@Model.PreferredColor</div>
+        <div>
+            @if (@Model.PreferredColor != null)
+            {
+                <text>@Model.PreferredColor.Color - @Model.PreferredColor.Occurrences fights</text>
+            }
+        </div>
         <div class="label">Winning Color:</div>
-        <div>@Model.WinningColor</div>
+        <div>
+            @if (@Model.WinningColor != null)
+            {
+                <text>@Model.WinningColor.Color - @Model.WinningColor.Occurrences wins</text>
+            }
+            else
+            {
+                <text>:-(</text>
+            }
+        </div>
         <br/>
         <div class="label">Latest fight:</div>
         <div>
@@ -62,7 +88,7 @@
             }
             else
             {
-                <text>was beat up by </text>            
+                <text>was beat up by </text><br/>
             }
             @if (Model.LatestMatch.IsOnRedTeam(Model.Player.Id))
             {

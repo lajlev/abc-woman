@@ -123,6 +123,7 @@
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\Base\FoosBallLists.cs" />
+    <Compile Include="Models\PlayerStatsAggregate.cs" />
     <Compile Include="Models\Views\PlayerStatsViewModel.cs" />
     <Compile Include="Models\Views\ConfigViewModel.cs" />
     <Compile Include="Models\Views\ExistsResponse.cs" />
