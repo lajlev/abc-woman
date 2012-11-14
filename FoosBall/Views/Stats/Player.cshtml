@@ -3,7 +3,11 @@
 @{
     ViewBag.Title = "Player Stats";
 }
-@section Javascript{ <script async src="/Scripts/Stats.js"></script> }
+@section Javascript
+{ 
+    <script async src="/Scripts/highcharts.js"></script>
+    <script async src="/Scripts/Stats.js"></script>
+}
 @section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
 
 <fieldset id="player-statistics">
@@ -113,7 +117,13 @@
 </fieldset>
 
 <fieldset>
-    <legend>The story of @Model.Player.Name</legend>
+    <legend>Rating  Chart</legend>
+    <input type="button" value="See Rating Chart" class="button" id="load-player-rating-chart" data-subject-id="@Model.Player.Id" data-subject-name="@Model.Player.Name"/>
+    <div id="player-rating-chart"></div>
+</fieldset>
+
+<fieldset id="player-matches">
+    <legend>@(Model.Player.Name)s Fights</legend>
     @if (Model.PlayedMatches.Any())
     {
         Html.RenderPartial("_LegendaryMatchTable", new MatchTable { Matches = Model.PlayedMatches, User = null });

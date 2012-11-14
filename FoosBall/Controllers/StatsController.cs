@@ -3,6 +3,7 @@ namespace FoosBall.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -171,11 +172,21 @@ namespace FoosBall.Controllers
                     }
                     
                     stats.Played++;
-                    stats.Won = match.WonTheMatch(id) ? ++stats.Won : stats.Won;
-                    stats.Lost = !match.WonTheMatch(id) ? ++stats.Lost : stats.Lost;
-                    stats.PlayedToday = match.GameOverTime.ToLocalTime().Day == DateTime.Now.Day ? ++stats.PlayedToday : stats.PlayedToday;
-                    stats.PlayedLast7Days = match.GameOverTime.ToLocalTime() > DateTime.Now.AddDays(-7)? ++stats.PlayedLast7Days : stats.PlayedLast7Days;
-                    stats.PlayedLast30Days = match.GameOverTime.ToLocalTime() > DateTime.Now.AddDays(-30) ? ++stats.PlayedLast30Days : stats.PlayedLast30Days;
+                    stats.Won = match.WonTheMatch(id) 
+                        ? ++stats.Won 
+                        : stats.Won;
+                    stats.Lost = !match.WonTheMatch(id) 
+                        ? ++stats.Lost 
+                        : stats.Lost;
+                    stats.PlayedToday = match.GameOverTime.ToLocalTime().Day == DateTime.Now.Day 
+                        ? ++stats.PlayedToday 
+                        : stats.PlayedToday;
+                    stats.PlayedLast7Days = match.GameOverTime.ToLocalTime() > DateTime.Now.AddDays(-7) 
+                        ? ++stats.PlayedLast7Days 
+                        : stats.PlayedLast7Days;
+                    stats.PlayedLast30Days = match.GameOverTime.ToLocalTime() > DateTime.Now.AddDays(-30) 
+                        ? ++stats.PlayedLast30Days 
+                        : stats.PlayedLast30Days;
                 }
 
                 stats.Bff = bff.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
@@ -189,6 +200,53 @@ namespace FoosBall.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetPlayerRatingData(string playerId)
+        {
+            // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
+            var id = (playerId == "508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : ObjectId.Parse(playerId);
+            var chartData = new PlayerRatingChartData(); 
+
+            if (playerId != null)
+            {
+                var player = Dbh.GetCollection<Player>("Players").FindOne(Query.EQ("_id", id));
+                var matches = Dbh.GetCollection<Match>("Matches")
+                    .FindAll()
+                    .SetSortOrder(SortBy.Ascending("GameOverTime"))
+                    .ToList()
+                    .Where(match => match.ContainsPlayer(id))
+                    .Where(match => match.GameOverTime != DateTime.MinValue);
+
+                var playedMatches = matches as List<Match> ?? matches.ToList();
+                double minRating = 10000;
+                double maxRating = 0;
+
+                foreach (var match in playedMatches)
+                {
+                    var matchPlayer = match.GetPlayer(id);
+                    minRating = (minRating > matchPlayer.Rating) ? matchPlayer.Rating : minRating;
+                    maxRating = (maxRating < matchPlayer.Rating) ? matchPlayer.Rating : maxRating;
+
+                    var time = new List<string>
+                        {
+                            match.GameOverTime.ToLocalTime().Year.ToString(),
+                            match.GameOverTime.ToLocalTime().Month.ToString(),
+                            match.GameOverTime.ToLocalTime().Day.ToString(),
+                            match.GameOverTime.ToLocalTime().Hour.ToString(),
+                            match.GameOverTime.ToLocalTime().Minute.ToString(),
+                            match.GameOverTime.ToLocalTime().Second.ToString()
+                        };
+
+                    chartData.DataPoints.Add(new PlayerRatingChartDataPoint { TimeSet = time, Rating = matchPlayer.Rating });
+                }
+
+                chartData.MinimumValue = minRating;
+                chartData.MaximumValue = maxRating;
+            }
+          
+            return Json(chartData, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿namespace FoosBall.Models
 {
+    using System.Collections.Generic;
+
     public class BestFriendForever
     {
         public BestFriendForever()
@@ -52,4 +54,27 @@
 
         public int Occurrences { get; set; }
     }
+
+    public class PlayerRatingChartDataPoint
+    {
+        public List<string> TimeSet { get; set; }
+
+        public double Rating { get; set; }
+    }
+
+    public class PlayerRatingChartData
+    {
+        public PlayerRatingChartData()
+        {
+            this.DataPoints = new List<PlayerRatingChartDataPoint>();
+        }
+
+        public List<PlayerRatingChartDataPoint> DataPoints { get; set; }
+
+        public double MinimumValue { get; set; }
+
+        public double MaximumValue { get; set; }
+    }
+
+
 }

@@ -1,6 +1,10 @@
 ﻿namespace FoosBall.Models
 {
+    using System;
+
     using FoosBall.Models.Base;
+
+    using MongoDB.Bson;
 
     public class Player : FoosBallDoc
     {
@@ -12,6 +16,7 @@
             Won = 0;
             Lost = 0;
             Played = 0;
+            Created = new BsonDateTime(DateTime.Now);
         }
             
         public string Email { get; set; }
