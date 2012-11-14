@@ -6,23 +6,8 @@
     //var playerId = 
 
     $("#load-player-rating-chart").on('click', function (e) {
-        e.preventDefault();
         var that = this;
-
-        var script = document.createElement('script');
-        script.type = 'text/javascript'; 
-        script.async = true;
-        script.src = '/Scripts/highcharts.js';
-        script.onload = getChartData(this);
-        
-        script.onreadystatechange = function () {
-            if (this.readyState == 'complete') {
-                getChartData(that);
-            }
-        };
-        
-        var s = document.getElementsByTagName('script')[0]; 
-        s.parentNode.insertBefore(script, s);
+        getChartData(this);
     });
 });
 
@@ -131,7 +116,6 @@ function renderChart(chartData) {
             type: 'line',
             name: 'Rating',
             pointStart: Date.UTC(2012, 09, 28, 01, 01, 01),
-            //data: [[Date.UTC(2012, 09, 28, 05), 2], [Date.UTC(2012, 09, 28, 12), 4], [Date.UTC(2012, 09, 28, 18), 6]]
             data: chartData.DataPoints
         }]
     });
