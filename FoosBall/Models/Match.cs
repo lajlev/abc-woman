@@ -86,5 +86,22 @@
         {
             return (BluePlayer2.Id == null) ? BluePlayer1.Rating : (BluePlayer1.Rating + BluePlayer2.Rating);
         }
+
+        public Player GetPlayer(BsonObjectId id)
+        {
+            if (id == RedPlayer1.Id)
+            {
+                return RedPlayer1;
+            }
+            if (id == RedPlayer2.Id)
+            {
+                return RedPlayer2;
+            }
+            if (id == BluePlayer1.Id)
+            {
+                return BluePlayer1;
+            }
+            return id == this.BluePlayer2.Id ? this.BluePlayer2 : null;
+        }
     }
 }   
