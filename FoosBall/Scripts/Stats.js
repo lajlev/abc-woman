@@ -3,12 +3,8 @@
     /* ******************************************************************
      * Stats / Player View
      */
-    //var playerId = 
-
-    $("#load-player-rating-chart").on('click', function (e) {
-        var that = this;
-        getChartData(this);
-    });
+    var container = $("#player-rating-chart")[0];
+    getChartData(container);
 });
 
 function getChartData(that) {
@@ -113,7 +109,7 @@ function renderChart(chartData) {
         },
 
         series: [{
-            type: 'line',
+            type: 'area',
             name: 'Rating',
             pointStart: Date.UTC(2012, 09, 28, 01, 01, 01),
             data: chartData.DataPoints

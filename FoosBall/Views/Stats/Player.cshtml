@@ -118,8 +118,8 @@
 
 <fieldset>
     <legend>Rating  Chart</legend>
-    <input type="button" value="See Rating Chart" class="button" id="load-player-rating-chart" data-subject-id="@Model.Player.Id" data-subject-name="@Model.Player.Name"/>
-    <div id="player-rating-chart"></div>
+    @*<input type="button" value="See Rating Chart" class="button" id="load-player-rating-chart"/>*@
+    <div id="player-rating-chart" data-subject-id="@Model.Player.Id" data-subject-name="@Model.Player.Name"></div>
 </fieldset>
 
 <fieldset id="player-matches">
