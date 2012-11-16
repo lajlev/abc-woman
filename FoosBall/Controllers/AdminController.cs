@@ -57,8 +57,8 @@
             return RedirectToAction("Index", "Admin");
         }
 
-        [HttpGet]
-        public ActionResult CopyProdData(string environment = "Staging")
+        [HttpPost]
+        public JsonResult CopyProdData(string environment = "Staging")
         {
             var dbhTo = environment == "Local" ? new Db(Environment.Local).Dbh : new Db(Environment.Staging).Dbh;
             var dbhFrom = new Db(Environment.Production).Dbh;
@@ -82,27 +82,7 @@
                 destinationPlayers.Save(player);
             }
 
-            return RedirectToAction("Index", "Admin");
-        }
-
-        [HttpGet]
-        public ActionResult SyncPlayersStatistics()
-        {
-
-            var playersCollection = Dbh.GetCollection<Match>("Matches");
-            var allMatches = Dbh.GetCollection<Match>("Matches").FindAll();
-
-            foreach (var match in allMatches)
-            {
-                var players = new List<Player>
-                    {
-                        match.RedPlayer1, 
-                        match.BluePlayer1
-                    };
-
-            }
-
-            return RedirectToAction("Index", "Admin");
+            return Json(new { success = true });
         }
     }
 }

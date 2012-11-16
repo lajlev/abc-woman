@@ -1,5 +1,4 @@
-﻿
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -31,7 +30,7 @@ namespace FoosBall.Controllers
                 const string Red = "red";
 
                 var player = Dbh.GetCollection<Player>("Players").FindOne(Query.EQ("_id", id));
-                var stats = new PlayerStatsViewModel {Player = player};
+                var stats = new PlayerStatsViewModel { Player = player };
 
                 var matches = Dbh.GetCollection<Match>("Matches")
                     .FindAll()
@@ -72,7 +71,6 @@ namespace FoosBall.Controllers
 
                     if (match.IsOnRedTeam(id))
                     {
-                        var d = "d";
                         if (preferredColor.ContainsKey(Red))
                         {
                             preferredColor[Red].Occurrences++;
@@ -119,7 +117,6 @@ namespace FoosBall.Controllers
                                 }
                             }
                         }
-
                     }
                     else
                     {
@@ -211,7 +208,6 @@ namespace FoosBall.Controllers
 
             if (playerId != null)
             {
-                var player = Dbh.GetCollection<Player>("Players").FindOne(Query.EQ("_id", id));
                 var matches = Dbh.GetCollection<Match>("Matches")
                     .FindAll()
                     .SetSortOrder(SortBy.Ascending("GameOverTime"))
@@ -231,12 +227,12 @@ namespace FoosBall.Controllers
 
                     var time = new List<string>
                         {
-                            match.GameOverTime.ToLocalTime().Year.ToString(),
-                            match.GameOverTime.ToLocalTime().Month.ToString(),
-                            match.GameOverTime.ToLocalTime().Day.ToString(),
-                            match.GameOverTime.ToLocalTime().Hour.ToString(),
-                            match.GameOverTime.ToLocalTime().Minute.ToString(),
-                            match.GameOverTime.ToLocalTime().Second.ToString()
+                            match.GameOverTime.ToLocalTime().Year.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Month.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Day.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Hour.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Minute.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Second.ToString(CultureInfo.InvariantCulture)
                         };
 
                     chartData.DataPoints.Add(new PlayerRatingChartDataPoint { TimeSet = time, Rating = matchPlayer.Rating });

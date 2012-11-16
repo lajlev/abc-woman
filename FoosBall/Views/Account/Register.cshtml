@@ -11,13 +11,13 @@
 <h3>Register a New User</h3>
 <p>All fields are required to register.</p>
 
-@using (Html.BeginForm("Register","Account",FormMethod.Post,new{name = "register-player"}))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new{ name = "register-player" }))
 {
     <div>
         @Html.Partial("_PlayerBaseData", Model)
 
         <div>@Html.LabelFor(m => Model.Password, "Repeat password")</div>
-        <div>@Html.Password("Password", null, new { placeholder = "Repeat password", @id = "Repeat-Password"})</div>
+        <div>@Html.Password("Password", null, new { placeholder = "Repeat password", @id = "Repeat-Password" })</div>
 
         <div class="validation-message small All"></div>
         <div class="validation-message small Email"></div>

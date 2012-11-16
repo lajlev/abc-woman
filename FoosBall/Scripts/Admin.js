@@ -5,15 +5,42 @@
      */
 
     $("#select-player").on('change', function() {
-        log("fetching player: " + $(this).children(":selected").attr("id"));
         $.ajax({
             type: "get",
             cache: true,
             url: "/Players/Edit/",
             data: { id: $(this).children(":selected").attr("id") },
             success: function (data) {
-                log(data);
                 $("#player-data").html(data);
+            }
+        });
+    });
+
+    $("#copy-prod-to-staging").on("click", function (e) {
+        e.preventDefault();
+        toggleOverlay();
+        
+        $.ajax({
+            cache: true,
+            url: '/Admin/CopyProdData/',
+            success: function () {
+                toggleOverlay();
+                alert("Data has been copied.");
+            }
+        });
+    });
+    
+    $("#copy-prod-to-local").on("click", function (e) {
+        e.preventDefault();
+        toggleOverlay();
+        
+        $.ajax({
+            cache: true,
+            url: '/Admin/CopyProdData/',
+            data: { environment: "Local" },
+            success: function () {
+                toggleOverlay();
+                alert("Data has been copied.");
             }
         });
     });

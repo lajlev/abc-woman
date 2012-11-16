@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Web.Mvc;
 
     using FoosBall.Main;
@@ -39,7 +40,7 @@
                 }
             }
 
-            // Create content for the <select> 
+            // Create content for the <select>
             var selectItems = playerCollection
                 .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
                 .ToList();
@@ -58,31 +59,50 @@
             var r2 = formValues.GetValue("red-player-2").AttemptedValue;
             var b1 = formValues.GetValue("blue-player-1").AttemptedValue;
             var b2 = formValues.GetValue("blue-player-2").AttemptedValue;
+            var currentUser = (Player)Session["User"];
 
-            // only try to create a match if properties are set correctly
-            if (!string.IsNullOrEmpty(r1) && !string.IsNullOrEmpty(b1))
+            if (currentUser != null)
             {
-                var matchCollection = this.Dbh.GetCollection<Match>("Matches");
-                var playerCollection = this.Dbh.GetCollection<Player>("Players");
+                // only try to create a match if properties are set correctly
+                if (!string.IsNullOrEmpty(r1) && !string.IsNullOrEmpty(b1))
+                {
+                    var matchCollection = this.Dbh.GetCollection<Match>("Matches");
+                    var playerCollection = this.Dbh.GetCollection<Player>("Players");
+                    var eventCollection = this.Dbh.GetCollection<Event>("Events");
+                    var matchObjectId = ObjectId.GenerateNewId();
 
-                var redPlayer1 = string.IsNullOrEmpty(r1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r1)));
-                var redPlayer2 = string.IsNullOrEmpty(r2) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r2)));
-                var bluePlayer1 = string.IsNullOrEmpty(b1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b1)));
-                var bluePlayer2 = string.IsNullOrEmpty(b2) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b2)));
+                    var foosBallEvent = new Event
+                                            {
+                                                Action = "Create",
+                                                Object = "Match",
+                                                SubjectId = matchObjectId,
+                                                Created = new BsonDateTime(DateTime.Now),
+                                                CreatedBy = currentUser.Id,
+                                            };
 
-                var newMatch = new Match
-                                    {
-                                        RedPlayer1 = redPlayer1,
-                                        RedPlayer2 = redPlayer2,
-                                        BluePlayer1 = bluePlayer1,
-                                        BluePlayer2 = bluePlayer2,
-                                        CreationTime = new BsonDateTime(DateTime.Now),
-                                        GameOverTime = new BsonDateTime(DateTime.MinValue),
-                                    };
+                    var redPlayer1 = string.IsNullOrEmpty(r1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r1)));
+                    var redPlayer2 = string.IsNullOrEmpty(r2) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r2)));
+                    var bluePlayer1 = string.IsNullOrEmpty(b1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b1)));
+                    var bluePlayer2 = string.IsNullOrEmpty(b2) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b2)));
 
-                   matchCollection.Save(newMatch);
-            }
-            
+                    var newMatch = new Match
+                                        {
+                                            Id = matchObjectId,
+                                            RedPlayer1 = redPlayer1,
+                                            RedPlayer2 = redPlayer2,
+                                            BluePlayer1 = bluePlayer1,
+                                            BluePlayer2 = bluePlayer2,
+                                            CreationTime = new BsonDateTime(DateTime.Now),
+                                            GameOverTime = new BsonDateTime(DateTime.MinValue),
+                                            Created = new BsonDateTime(DateTime.Now),
+                                            CreatedBy = currentUser.Id
+                                        };
+
+                    matchCollection.Save(newMatch);
+                    eventCollection.Insert(foosBallEvent);
+                }
+            }   
+         
             return RedirectToAction("Index");
         }
         
@@ -114,7 +134,7 @@
             {
                 var matchCollection = this.Dbh.GetCollection<Match>("Matches");
                 var playerCollection = this.Dbh.GetCollection<Player>("Players");
-            
+
                 var query = Query.EQ("_id", ObjectId.Parse(formValues.GetValue("match-id").AttemptedValue));
                 var match = matchCollection.FindOne(query);
 
@@ -137,11 +157,22 @@
                 if (match.BluePlayer2.Id != null)
                 {
                     match.BluePlayer2 = playerCollection.FindOne(Query.EQ("_id", match.BluePlayer2.Id));
-                } 
+                }
 
                 var currentUser = (Player)Session["User"];
                 if (currentUser != null && match.ContainsPlayer(currentUser.Id))
                 {
+                    var eventCollection = this.Dbh.GetCollection<Event>("Events");
+
+                    var foosBallEvent = new Event
+                    {
+                        Action = "Resolve",
+                        Object = "Match",
+                        SubjectId = match.Id,
+                        Created = new BsonDateTime(DateTime.Now),
+                        CreatedBy = currentUser.Id,
+                    };
+
                     // Get the scores
                     var intRedScore = int.Parse(redScore, NumberStyles.Float);
                     var intBlueScore = int.Parse(blueScore, NumberStyles.Float);
@@ -199,6 +230,7 @@
                     match.GameOverTime = new BsonDateTime(DateTime.Now);
 
                     // Save the data to Db
+                    eventCollection.Insert(foosBallEvent);
                     matchCollection.Save(match);
                 }
             }
@@ -217,39 +249,5 @@
     
             return RedirectToAction("Index");
         }
-
-        /*
-        [HttpGet]
-        public ActionResult MigrateToHistory()
-        {
-            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().ToList();
-            var matchHistoryCollection = this.Dbh.GetCollection<PlayerMatchHistory>("PlayerMatchHistory");
-
-            foreach (var match in matchCollection)
-            {
-                if (match.RedPlayer1.Id != null)
-                {
-                    var a = new PlayerMatchHistory { PlayerId = match.RedPlayer1.Id, MatchId = match.Id, Player = match.RedPlayer1, Match = match };
-                }
-
-                if (match.RedPlayer2.Id != null)
-                {
-                    var a = new PlayerMatchHistory { PlayerId = match.RedPlayer2.Id, MatchId = match.Id, Player = match.RedPlayer2, Match = match };
-                }
-
-                if (match.BluePlayer1.Id != null)
-                {
-                    var a = new PlayerMatchHistory { PlayerId = match.BluePlayer1.Id, MatchId = match.Id, Player = match.BluePlayer1, Match = match };
-                }
-
-                if (match.BluePlayer2.Id != null)
-                {
-                    var a = new PlayerMatchHistory { PlayerId = match.BluePlayer2.Id, MatchId = match.Id, Player = match.BluePlayer2, Match = match };
-                }
-            }
-
-            return this.View(matchCollection);
-        }
-         */
     }
 }

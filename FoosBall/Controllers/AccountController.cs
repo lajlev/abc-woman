@@ -108,6 +108,7 @@
             {
                 email += "@" + this.Settings.Domain;
             }
+
             var name = model.Name;
             var password = Md5.CalculateMd5(model.Password);
             var department = model.Department;

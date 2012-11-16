@@ -265,6 +265,11 @@ input[type="submit"], input[type="button"], button {
   overflow: hidden;
   text-overflow: ellipsis; }
 
+#overlay img {
+  display: block;
+  width: 100px;
+  margin: 50% auto; }
+
 /* Clear-fix */
 .clearfix:after {
   clear: both;

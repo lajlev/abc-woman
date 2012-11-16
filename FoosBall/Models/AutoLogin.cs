@@ -1,7 +1,5 @@
 ﻿namespace FoosBall.Models
 {
-    using System;
-
     using FoosBall.Models.Base;
 
     public class AutoLogin : FoosBallDoc

@@ -6,7 +6,7 @@
 @section Javascript{ <script async src="/Scripts/Admin.js"></script> }
 @section Css { <link rel="stylesheet" href="/Content/Admin.css"/> }
 
-<fieldset>
+<fieldset id="app-configuration">
     <legend>Configuration</legend>
     @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
     {
@@ -38,14 +38,23 @@
     }
 </fieldset>
 
-<fieldset>
+<fieldset id="data-migration">
     <legend>Copy Mongo data</legend>
-    @Html.ActionLink("Copy Prod to Staging", "CopyProdData", "Admin")
+    <button class="button" href="#" id="copy-prod-to-staging">Copy Production Data to Staging</button>
     <br/>
-    @Html.ActionLink("Copy Prod to Local", "CopyProdData", new { environment = "Local"})
+    @if (ViewBag.Environment == "Local")
+    {
+        <button class="button" id="copy-prod-to-local">Copy Production Data to Local</button>
+    }
 </fieldset>
 
-<fieldset>
+<fieldset id="synchronize-player-data">
+    <legend>Synchronize data</legend>
+
+    <button id="start-player-sync" class="button">Synchronize players based on matches</button>
+</fieldset>
+
+<fieldset id="player-editor">
     <legend>Edit Players (experimental)</legend>
     
     @Html.LabelFor(m => Model.Users, "Choose a player")

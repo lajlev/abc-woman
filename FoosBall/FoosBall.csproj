@@ -123,7 +123,9 @@
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\Base\FoosBallLists.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\PlayerStatsAggregate.cs" />
+    <Compile Include="Models\Views\EventViewModel.cs" />
     <Compile Include="Models\Views\PlayerStatsViewModel.cs" />
     <Compile Include="Models\Views\ConfigViewModel.cs" />
     <Compile Include="Models\Views\ExistsResponse.cs" />
@@ -153,6 +155,7 @@
     <Content Include="Content\Home.css">
       <DependentUpon>Home.scss</DependentUpon>
     </Content>
+    <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\arrows-down.png" />
     <Content Include="Content\images\arrows-down_12x12.png" />
     <Content Include="Content\images\checkmark_15x15.png" />
@@ -175,6 +178,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\highcharts.js" />
+    <Content Include="Scripts\Home.js" />
     <Content Include="Scripts\LogOn.js" />
     <Content Include="Scripts\FoosBall.js" />
     <Content Include="Scripts\jquery.min.js" />
