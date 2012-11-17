@@ -5,6 +5,7 @@
     using FoosBall.Models;
     using FoosBall.Models.Views;
 
+    using MongoDB.Bson;
     using MongoDB.Driver.Builders;
     
     public class AccountController : BaseController
@@ -119,6 +120,7 @@
 
             var newPlayer = new Player
                                 {
+                                    Id = BsonObjectId.GenerateNewId(),
                                     Email = email,
                                     Name = name,
                                     Password = password,
@@ -134,6 +136,7 @@
 
             Login(newPlayer);
 
+            Events.SubmitEvent("Create", "Player", newPlayer, newPlayer.Id);
             return RedirectToAction("Index", "Home");
         }
 

@@ -2,8 +2,6 @@
 {
     using FoosBall.Models.Base;
 
-    using MongoDB.Bson;
-
     public class Event : FoosBallDoc
     {
         public Event()
@@ -15,8 +13,10 @@
 
         public string Action { get; set; }
 
-        public string Object { get; set; }
+        public string Type { get; set; }
 
-        public BsonObjectId SubjectId { get; set; }
+        public Player Player { get; set; }
+
+        public Match Match { get; set; }
     }
 }

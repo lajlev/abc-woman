@@ -1,11 +1,7 @@
 ﻿namespace FoosBall.Models.Views
 {
-    public class EventViewModel
+    public class SimpleEvent
     {
-        public long EventIndex { get; set; }
-
-        public Player PlayerSubject { get; set; }
-
-        public Match MatchSubject
+        public long Index { get; set; }
     }
 }

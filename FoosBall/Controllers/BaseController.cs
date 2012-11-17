@@ -12,29 +12,13 @@
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
 
-    using Environment = FoosBall.Models.Base.Environment;
-
     public class BaseController : Controller
     {
         protected readonly MongoDatabase Dbh;
 
         public BaseController()
         {
-            Environment environment;
-            var environmentString = ConfigurationManager.AppSettings["Environment"];
-
-            switch (environmentString)
-            {
-                case "Production":
-                    environment = Environment.Production;
-                    break;
-                case "Staging":
-                    environment = Environment.Staging;
-                    break;
-                default: 
-                    environment = Environment.Local;
-                    break;
-            }
+            var environment = AppConfig.GetEnvironment();
 
             this.Dbh = new Db(environment).Dbh;
             this.Settings = this.Dbh.GetCollection<Config>("Config").FindOne();
@@ -92,6 +76,7 @@
                 httpCookie.Expires = DateTime.Now.AddDays(-1);
             }
         }
+        
         public bool Login(Player player)
         {
             // Set or remove cookie for future auto-login

@@ -29,19 +29,4 @@
             }
         });
     });
-    
-    $("#copy-prod-to-local").on("click", function (e) {
-        e.preventDefault();
-        toggleOverlay();
-        
-        $.ajax({
-            cache: true,
-            url: '/Admin/CopyProdData/',
-            data: { environment: "Local" },
-            success: function () {
-                toggleOverlay();
-                alert("Data has been copied.");
-            }
-        });
-    });
 });

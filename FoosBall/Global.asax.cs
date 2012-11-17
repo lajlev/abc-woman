@@ -6,6 +6,11 @@ namespace FoosBall
     using System.Configuration;
 
     using FoosBall.Main;
+    using FoosBall.Models;
+
+    using MongoDB.Bson.Serialization;
+
+    using SignalR;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -30,6 +35,9 @@ namespace FoosBall
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            // Persistent connection through SignalR:
+            RouteTable.Routes.MapConnection<EventConnection>("Events", "Events/{*operation}");
 
             // Initialize App configuration
             AppConfig.InitalizeConfig();

@@ -58,9 +58,9 @@
         }
 
         [HttpPost]
-        public JsonResult CopyProdData(string environment = "Staging")
+        public JsonResult CopyProdData()
         {
-            var dbhTo = environment == "Local" ? new Db(Environment.Local).Dbh : new Db(Environment.Staging).Dbh;
+            var dbhTo = new Db(Environment.Staging).Dbh;
             var dbhFrom = new Db(Environment.Production).Dbh;
 
             var allMatches = dbhFrom.GetCollection<Match>("Matches").FindAll();

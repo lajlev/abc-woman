@@ -12,9 +12,7 @@
 
         public static void InitalizeConfig()
         {
-            var environment = ConfigurationManager.AppSettings["Environment"] == "Production"
-                                ? Environment.Production
-                                : Environment.Staging;
+            var environment = GetEnvironment();
 
             var configCollection = new Db(environment).Dbh.GetCollection<Models.Config>("Config");
             var config = configCollection.FindOne();
@@ -39,5 +37,26 @@
                 configCollection.Save(config);
             }
         }
+
+        public static Environment GetEnvironment()
+        {
+            Environment environment;
+            var environmentString = ConfigurationManager.AppSettings["Environment"];
+
+            switch (environmentString)
+            {
+                case "Production":
+                    environment = Environment.Production;
+                    break;
+                case "Staging":
+                    environment = Environment.Staging;
+                    break;
+                default:
+                    environment = Environment.Local;
+                    break;
+            }
+
+            return environment;
+        } 
     }
 }

@@ -3,21 +3,14 @@
     /* ******************************************************************
      * Home View
      */
-    window.setInterval("getEventFeed()", 1000);
+    $(function () {
+        var connection = $.connection('/Events');
+
+        connection.received(function (data) {
+            $('#event-feed').prepend('<li>' + data + '</li>');
+        });
+
+        connection.start();
+    });
 
 });
-
-function getEventFeed() {
-    $.ajax({
-        type: "get",
-        cache: true,
-        url: "/Home/GetEventFeed",
-        success: function(data) {
-            $.each(data, function(index, value) {
-                log(value);
-            });
-        }
-    });
-    
-    $("#event-feed").append(".");
-}

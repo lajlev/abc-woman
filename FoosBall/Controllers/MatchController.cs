@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
 
     using FoosBall.Main;
     using FoosBall.Models;
     using FoosBall.Models.Views;
+
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -68,18 +68,6 @@
                 {
                     var matchCollection = this.Dbh.GetCollection<Match>("Matches");
                     var playerCollection = this.Dbh.GetCollection<Player>("Players");
-                    var eventCollection = this.Dbh.GetCollection<Event>("Events");
-                    var matchObjectId = ObjectId.GenerateNewId();
-
-                    var foosBallEvent = new Event
-                                            {
-                                                Action = "Create",
-                                                Object = "Match",
-                                                SubjectId = matchObjectId,
-                                                Created = new BsonDateTime(DateTime.Now),
-                                                CreatedBy = currentUser.Id,
-                                            };
-
                     var redPlayer1 = string.IsNullOrEmpty(r1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r1)));
                     var redPlayer2 = string.IsNullOrEmpty(r2) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(r2)));
                     var bluePlayer1 = string.IsNullOrEmpty(b1) ? new Player() : playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Create(b1)));
@@ -87,7 +75,6 @@
 
                     var newMatch = new Match
                                         {
-                                            Id = matchObjectId,
                                             RedPlayer1 = redPlayer1,
                                             RedPlayer2 = redPlayer2,
                                             BluePlayer1 = bluePlayer1,
@@ -97,9 +84,9 @@
                                             Created = new BsonDateTime(DateTime.Now),
                                             CreatedBy = currentUser.Id
                                         };
-
+                    // Save to Db
                     matchCollection.Save(newMatch);
-                    eventCollection.Insert(foosBallEvent);
+                    Events.SubmitEvent("Create", "Match", newMatch, currentUser.Id);
                 }
             }   
          
@@ -162,17 +149,6 @@
                 var currentUser = (Player)Session["User"];
                 if (currentUser != null && match.ContainsPlayer(currentUser.Id))
                 {
-                    var eventCollection = this.Dbh.GetCollection<Event>("Events");
-
-                    var foosBallEvent = new Event
-                    {
-                        Action = "Resolve",
-                        Object = "Match",
-                        SubjectId = match.Id,
-                        Created = new BsonDateTime(DateTime.Now),
-                        CreatedBy = currentUser.Id,
-                    };
-
                     // Get the scores
                     var intRedScore = int.Parse(redScore, NumberStyles.Float);
                     var intBlueScore = int.Parse(blueScore, NumberStyles.Float);
@@ -230,8 +206,8 @@
                     match.GameOverTime = new BsonDateTime(DateTime.Now);
 
                     // Save the data to Db
-                    eventCollection.Insert(foosBallEvent);
                     matchCollection.Save(match);
+                    Events.SubmitEvent("Resolve", "Match", match, currentUser.Id);
                 }
             }
             
@@ -242,11 +218,18 @@
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            var matchCollection = this.Dbh.GetCollection<Match>("Matches");
+            var currentUser = (Player)Session["User"];
+            
+            if (currentUser != null)
+            {
+                var matchCollection = this.Dbh.GetCollection<Match>("Matches");
+                var query = Query.EQ("_id", BsonObjectId.Create(id));
+                var match = matchCollection.FindOne(query);
 
-            var query = Query.EQ("_id", BsonObjectId.Create(id));
-            matchCollection.Remove(query);
-    
+                Events.SubmitEvent("Delete", "Match", match, currentUser.Id);
+                matchCollection.Remove(query);
+            }
+
             return RedirectToAction("Index");
         }
     }

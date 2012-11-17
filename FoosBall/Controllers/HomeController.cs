@@ -1,5 +1,6 @@
 ﻿namespace FoosBall.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -28,13 +29,9 @@
         public string GetEventFeed()
         {
             var eventCollection = this.Dbh.GetCollection<Event>("Events");
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var events = eventCollection.FindAll();
-            var players = playerCollection.FindAll().ToList();
 
-            return players.ToJson();
-
-            //return Json(players.Select(x => new { Name = x.Name, Id = x.Id.ToString() }), JsonRequestBehavior.AllowGet);
+            return "blabla";
         }
     }
 }
