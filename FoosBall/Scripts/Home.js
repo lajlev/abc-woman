@@ -11,5 +11,10 @@
         });
 
         connection.start();
+
+        $("#broadcast").click(function () {
+            connection.send($('#msg').val());
+        });
+
     });
 });
