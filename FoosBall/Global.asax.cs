@@ -36,9 +36,6 @@ namespace FoosBall
         {
             AreaRegistration.RegisterAllAreas();
 
-            // SignalR routing
-            RouteTable.Routes.MapConnection<EventConnection>("Events", "Events/{*operation}");
-
             // Initialize App configuration
             AppConfig.InitalizeConfig();
 

@@ -12,15 +12,7 @@
     {
         public static void SubmitEvent(string action, string type, object targetObject, BsonObjectId userId)
         {
-            SendMessage("hello there, a " + action + " event just fired!!");
             SaveEvent(action, type, targetObject, userId);
-        }
-
-        public static void SendMessage(string message)
-        {
-            // Hooks up on the EventsHub 
-            var context = GlobalHost.ConnectionManager.GetConnectionContext<EventConnection>();
-            context.Connection.Broadcast(message);
         }
 
         private static void SaveEvent(string action, string type, object targetObject, BsonObjectId userId)

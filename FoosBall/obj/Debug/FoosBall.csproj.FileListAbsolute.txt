@@ -27,13 +27,4 @@ C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.pdb
 C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.csprojResolveAssemblyReference.cache
 C:\source\FoosBall\FoosBall\bin\RestSharp.dll
 C:\source\FoosBall\FoosBall\bin\RestSharp.xml
-C:\source\FoosBall\FoosBall\bin\Newtonsoft.Json.dll
 C:\source\FoosBall\FoosBall\bin\SignalR.dll
-C:\source\FoosBall\FoosBall\bin\SignalR.Hosting.AspNet.dll
-C:\source\FoosBall\FoosBall\bin\SignalR.Hosting.Common.dll
-C:\source\FoosBall\FoosBall\bin\Newtonsoft.Json.xml
-C:\source\FoosBall\FoosBall\bin\SignalR.xml
-C:\source\FoosBall\FoosBall\bin\SignalR.Hosting.AspNet.xml
-C:\source\FoosBall\FoosBall\bin\SignalR.Hosting.Common.xml
-C:\source\FoosBall\FoosBall\bin\SignalR.Client.dll
-C:\source\FoosBall\FoosBall\bin\SignalR.Client.xml
