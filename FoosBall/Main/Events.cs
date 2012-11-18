@@ -6,17 +6,21 @@
 
     using MongoDB.Bson;
 
-    using SignalR.Client;
+    using SignalR;
 
     public class Events
     {
         public static void SubmitEvent(string action, string type, object targetObject, BsonObjectId userId)
         {
-            var url = "http://" + System.Web.HttpContext.Current.Request.Url.Host + ":" + System.Web.HttpContext.Current.Request.Url.Port + "/Events";
-            var connection = new Connection(url);
-            connection.Start();
-            connection.Send("adfarvaaeraweg");
+            SendMessage("hello there, some event just fired!!");
             SaveEvent(action, type, targetObject, userId);
+        }
+
+        public static void SendMessage(string message)
+        {
+            // Hooks up on the PersistentConnection 
+            var context = GlobalHost.ConnectionManager.GetConnectionContext<EventConnection>();
+            context.Connection.Broadcast(message);
         }
 
         private static void SaveEvent(string action, string type, object targetObject, BsonObjectId userId)

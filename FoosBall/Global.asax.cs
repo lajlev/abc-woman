@@ -36,7 +36,7 @@ namespace FoosBall
         {
             AreaRegistration.RegisterAllAreas();
 
-            // Persistent connection through SignalR:
+            // SignalR routing
             RouteTable.Routes.MapConnection<EventConnection>("Events", "Events/{*operation}");
 
             // Initialize App configuration

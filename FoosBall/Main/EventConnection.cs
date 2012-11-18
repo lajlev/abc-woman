@@ -11,4 +11,9 @@
             return Connection.Broadcast(data);
         }
     }
+
+    public class Notifier
+    {
+        
+    }
 }
