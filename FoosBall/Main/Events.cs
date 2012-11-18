@@ -18,7 +18,7 @@
 
         public static void SendMessage(string message)
         {
-            // Hooks up on the PersistentConnection 
+            // Hooks up on the EventsHub 
             var context = GlobalHost.ConnectionManager.GetConnectionContext<EventConnection>();
             context.Connection.Broadcast(message);
         }
