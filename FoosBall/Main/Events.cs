@@ -12,7 +12,7 @@
     {
         public static void SubmitEvent(string action, string type, object targetObject, BsonObjectId userId)
         {
-            SendMessage("hello there, some event just fired!!");
+            SendMessage("hello there, a " + action + " event just fired!!");
             SaveEvent(action, type, targetObject, userId);
         }
 
