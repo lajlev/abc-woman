@@ -6,8 +6,6 @@
 
     using MongoDB.Bson;
 
-    using SignalR;
-
     public class Events
     {
         public static void SubmitEvent(string action, string type, object targetObject, BsonObjectId userId)
