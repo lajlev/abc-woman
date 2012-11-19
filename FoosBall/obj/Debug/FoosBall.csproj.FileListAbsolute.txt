@@ -24,3 +24,12 @@ C:\source\FoosBall\FoosBall\bin\System.Web.WebPages.Deployment.xml
 C:\source\FoosBall\FoosBall\bin\System.Web.WebPages.Razor.xml
 C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.dll
 C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.pdb
+C:\source\FoosBall\FoosBall\obj\Debug\FoosBall.csprojResolveAssemblyReference.cache
+C:\source\FoosBall\FoosBall\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\source\FoosBall\FoosBall\bin\Microsoft.AspNet.SignalR.Hosting.AspNet.dll
+C:\source\FoosBall\FoosBall\bin\Microsoft.AspNet.SignalR.Hosting.Common.dll
+C:\source\FoosBall\FoosBall\bin\Newtonsoft.Json.dll
+C:\source\FoosBall\FoosBall\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\source\FoosBall\FoosBall\bin\Microsoft.AspNet.SignalR.Hosting.AspNet.xml
+C:\source\FoosBall\FoosBall\bin\Microsoft.AspNet.SignalR.Hosting.Common.xml
+C:\source\FoosBall\FoosBall\bin\Newtonsoft.Json.xml

@@ -4,12 +4,21 @@
 
     using FoosBall.Models;
 
+    using Microsoft.AspNet.SignalR;
+
     using MongoDB.Bson;
 
-    public class Events
+    public static class Events
     {
+        public static void Say(string message)
+        {
+            var context = GlobalHost.ConnectionManager.GetHubContext<Chat>();
+            context.Clients.All.addMessage(message);
+        }
+
         public static void SubmitEvent(string action, string type, object targetObject, BsonObjectId userId)
         {
+            Say(action + " " + type + " was fired.");
             SaveEvent(action, type, targetObject, userId);
         }
 
