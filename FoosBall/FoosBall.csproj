@@ -192,10 +192,6 @@
     <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\Home.js" />
-    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.6.4.js" />
-    <Content Include="Scripts\jquery-1.6.4.min.js" />
-    <Content Include="Scripts\jquery.signalR-1.0.0-alpha2.js" />
     <Content Include="Scripts\jquery.signalR-1.0.0-alpha2.min.js" />
     <Content Include="Scripts\LogOn.js" />
     <Content Include="Scripts\FoosBall.js" />
