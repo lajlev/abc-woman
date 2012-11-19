@@ -36,13 +36,7 @@
         public ActionResult Save(FormCollection form)
         {
             var configCollection = Dbh.GetCollection<Models.Config>("Config");
-            var playerCollection = Dbh.GetCollection<Player>("Players")
-                    .FindAll()
-                    .SetSortOrder(SortBy.Ascending("Name"))
-                    .ToList()
-                    .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
-                    .ToList();
-
+            
             this.Settings.Name = form.GetValue("Name").AttemptedValue;
             this.Settings.Version = form.GetValue("Version").AttemptedValue;
             this.Settings.Domain = form.GetValue("Domain").AttemptedValue;

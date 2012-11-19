@@ -65,13 +65,12 @@
         }
     });
 
-    var $teamRedScore = $('#team-red-score');
+    
     $('#team-red-score-slider').on('change', function (e) {
-        $teamRedScore.val(e.target.value);
+        $('#team-red-score').val(e.target.value);
     });
-    var $teamBlueScore = $('#team-blue-score');
     $('#team-blue-score-slider').on('change', function (e) {
-        $teamBlueScore.val(e.target.value);
+        $('#team-blue-score').val(e.target.value);
     });
     
 

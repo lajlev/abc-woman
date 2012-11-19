@@ -61,8 +61,6 @@
         }
         
         if (!playerEmail === false) {
-            var playerId = $("#player-id").val();
-
             $.ajax({
                 type: "get",
                 cache: true,
