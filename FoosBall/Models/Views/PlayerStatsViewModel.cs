@@ -14,9 +14,9 @@
 
         public int Ranking { get; set; }
 
-        public BestFriendForever Bff{ get; set; }
+        public BestFriendForever Bff { get; set; }
 
-        public RealBestFriendForever Rbff{ get; set; }
+        public RealBestFriendForever Rbff { get; set; }
 
         public EvilArchEnemy Eae { get; set; }
 

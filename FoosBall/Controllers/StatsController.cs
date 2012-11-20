@@ -194,7 +194,6 @@
                                         .SetSortOrder(SortBy.Descending("Rating"))
                                         .ToList()
                                         .FindIndex(p => p.Id == id) + 1; // convert zero-based to 1-based index
-                
                 }
 
                 stats.Bff = bff.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
