@@ -94,10 +94,11 @@
             {
                 <text>was beat up by </text><br/>
             }
+
             @if (Model.LatestMatch.IsOnRedTeam(Model.Player.Id))
             {
                 <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.BluePlayer1.Id })">@Model.LatestMatch.BluePlayer1.Name</a>
-                if (@Model.LatestMatch.BluePlayer1 != null)
+                if (@String.IsNullOrEmpty(Model.LatestMatch.BluePlayer2.Name) == false)
                 {
                     <text>&</text>
                     <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.BluePlayer2.Id })">@Model.LatestMatch.BluePlayer2.Name</a>
@@ -106,7 +107,7 @@
             else
             {
                 <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.RedPlayer1.Id })">@Model.LatestMatch.RedPlayer1.Name</a>
-                if (@Model.LatestMatch.BluePlayer1 != null)
+                if (@String.IsNullOrEmpty(Model.LatestMatch.RedPlayer2.Name) == false)
                 {
                     <text>&</text>
                     <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.RedPlayer2.Id })">@Model.LatestMatch.RedPlayer2.Name</a>

@@ -15,6 +15,11 @@ namespace FoosBall.Controllers
 
     public class StatsController : BaseController
     {
+        public ActionResult Index()
+        {
+            return this.View();
+        }
+
         public ActionResult Player(string playerId)
         {
             // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
