@@ -12,6 +12,8 @@
 
         public int Lost { get; set; }
 
+        public int Ranking { get; set; }
+
         public BestFriendForever Bff{ get; set; }
 
         public RealBestFriendForever Rbff{ get; set; }

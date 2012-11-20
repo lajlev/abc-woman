@@ -1,5 +1,4 @@
-﻿
-namespace FoosBall.Controllers
+﻿namespace FoosBall.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -22,11 +21,11 @@ namespace FoosBall.Controllers
 
         public ActionResult Player(string playerId)
         {
-            // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
-            var id = (playerId == "508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : ObjectId.Parse(playerId); 
-
             if (playerId != null)
             {
+                // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
+                var id = (playerId == "508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : ObjectId.Parse(playerId);
+
                 var bff = new Dictionary<BsonObjectId, BestFriendForever>();
                 var rbff = new Dictionary<BsonObjectId, RealBestFriendForever>();
                 var eae = new Dictionary<BsonObjectId, EvilArchEnemy>();
@@ -35,8 +34,9 @@ namespace FoosBall.Controllers
                 const string Blue = "blue";
                 const string Red = "red";
 
-                var player = Dbh.GetCollection<Player>("Players").FindOne(Query.EQ("_id", id));
-                var stats = new PlayerStatsViewModel {Player = player};
+                var playerCollection = Dbh.GetCollection<Player>("Players");
+                var player = playerCollection.FindOne(Query.EQ("_id", id));
+                var stats = new PlayerStatsViewModel { Player = player };
 
                 var matches = Dbh.GetCollection<Match>("Matches")
                     .FindAll()
@@ -77,7 +77,6 @@ namespace FoosBall.Controllers
 
                     if (match.IsOnRedTeam(id))
                     {
-                        var d = "d";
                         if (preferredColor.ContainsKey(Red))
                         {
                             preferredColor[Red].Occurrences++;
@@ -124,7 +123,6 @@ namespace FoosBall.Controllers
                                 }
                             }
                         }
-
                     }
                     else
                     {
@@ -192,6 +190,11 @@ namespace FoosBall.Controllers
                     stats.PlayedLast30Days = match.GameOverTime.ToLocalTime() > DateTime.Now.AddDays(-30) 
                         ? ++stats.PlayedLast30Days 
                         : stats.PlayedLast30Days;
+                    stats.Ranking = playerCollection.FindAll()
+                                        .SetSortOrder(SortBy.Descending("Rating"))
+                                        .ToList()
+                                        .FindIndex(p => p.Id == id) + 1; // convert zero-based to 1-based index
+                
                 }
 
                 stats.Bff = bff.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
@@ -204,7 +207,7 @@ namespace FoosBall.Controllers
                 return View(stats);
             }
 
-            return View();
+            return this.RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -216,7 +219,6 @@ namespace FoosBall.Controllers
 
             if (playerId != null)
             {
-                var player = Dbh.GetCollection<Player>("Players").FindOne(Query.EQ("_id", id));
                 var matches = Dbh.GetCollection<Match>("Matches")
                     .FindAll()
                     .SetSortOrder(SortBy.Ascending("GameOverTime"))
@@ -236,12 +238,12 @@ namespace FoosBall.Controllers
 
                     var time = new List<string>
                         {
-                            match.GameOverTime.ToLocalTime().Year.ToString(),
-                            match.GameOverTime.ToLocalTime().Month.ToString(),
-                            match.GameOverTime.ToLocalTime().Day.ToString(),
-                            match.GameOverTime.ToLocalTime().Hour.ToString(),
-                            match.GameOverTime.ToLocalTime().Minute.ToString(),
-                            match.GameOverTime.ToLocalTime().Second.ToString()
+                            match.GameOverTime.ToLocalTime().Year.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Month.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Day.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Hour.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Minute.ToString(CultureInfo.InvariantCulture),
+                            match.GameOverTime.ToLocalTime().Second.ToString(CultureInfo.InvariantCulture)
                         };
 
                     chartData.DataPoints.Add(new PlayerRatingChartDataPoint { TimeSet = time, Rating = matchPlayer.Rating });

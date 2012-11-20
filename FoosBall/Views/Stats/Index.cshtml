@@ -1,13 +1,37 @@
-﻿@model FoosBall.Models.Views.PlayerStatsViewModel
-@{
+﻿@{
     ViewBag.Title = "FoosBal Stats";
-    Layout = "../Shared/_ngLayout.cshtml";
 }
 @section Javascript { <script async src="/Scripts/Stats.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
 
 <fieldset id="all-players-statistics">
     <legend>Stats for all players</legend>
+
+    <div class="label">Top FoosBall fighter:</div>
+    <div>@Model.TopFighter</div>
+
+    <div class="label">Bottom FoosBall fighter:</div>
+    <div>@Model.BottomFighter</div>
     
-    Nothing here {{'Yet' + '!'}}
+    <div class="label">Most Fights</div>
+    <div>@Model.MostFight</div>
+    
+    <div class="label">Most Wins</div>
+    <div>@Model.MostWins</div>
+    
+    <div class="label">Most Losses</div>
+    <div>@Model.MostLosses</div>
+    
+    <div class="label">Most wins in a row:</div>
+    <div>@Model.MostWinsInARow</div>
+    
+    <div class="label">Most losses in a row:</div>
+    <div>@Model.MostLossesInARow</div>
+    
+    <div class="label">Biggest Rating win</div>
+    <div>@Model.BiggestRatingWin</div>
+
+    <div class="label">Biggest Win</div>
+    <div>@Model.PlayedToday</div>
+
 </fieldset>

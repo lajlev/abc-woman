@@ -1,14 +1,18 @@
-﻿@model FoosBall.Models.MatchTable
+﻿@using FoosBall.Models
+@model FoosBall.Models.MatchTable
+@{
+    var currentUser = (Player)HttpContext.Current.Session["User"];
+}   
 <table id="pending-matches">
     <thead>
         <tr>
             <th class="delete">
-                <div><img src="Content/images/delete_15x15_grayscale.png" alt="A delete button"/></div>
+                <div><img src="@Url.Content("Content)/images/delete_15x15_grayscale.png")" alt="A delete button"/></div>
             </th>
             <th class="red team-names">Players</th>
             <th class="blue team-names">Players</th>
             <th class="resolve">
-                <div><img src="Content/images/checkmark_15x15_grayscale.png" alt="A delete button"/></div>
+                <div><img src="@Url.Content("Content/images/checkmark_15x15_grayscale.png")" alt="A delete button"/></div>
             </th>
 
         </tr>
@@ -18,10 +22,10 @@
         {
             <tr>
                 <td class="delete">
-                    @if ((Model.User != null && match.ContainsPlayer(Model.User.Id)) || (Session["Admin"] != null && Session["Admin"].ToString().ToLower() == "true"))
+                    @if ((currentUser != null && match.ContainsPlayer(currentUser.Id)) || (Session["Admin"] != null && Session["Admin"].ToString().ToLower() == "true"))
                     {
                         <a title="Delete the match" href="/Match/Delete/@match.Id">
-                            <div><img src="Content/images/delete_15x15.png" alt="A delete button"/></div>
+                            <div><img src="@Url.Content("Content/images/delete_15x15.png")" alt="A delete button"/></div>
                         </a>
                     }
                 </td>
@@ -63,10 +67,10 @@
                 </td>
 
                 <td class="resolve">
-                    @if (Model.User != null && match.ContainsPlayer(Model.User.Id))
+                    @if (currentUser != null && match.ContainsPlayer(currentUser.Id))
                     {
                         <a title="Resolve the match" href="Match/SaveMatchResult/@match.Id">
-                            <div><img src="Content/images/checkmark_15x15.png" alt="A delete button"/></div>
+                            <div><img src="@Url.Content("Content/images/checkmark_15x15.png")" alt="A delete button"/></div>
                         </a>
                     }
                 </td>

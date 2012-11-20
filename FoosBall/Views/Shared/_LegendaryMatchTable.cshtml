@@ -2,7 +2,7 @@
 @model FoosBall.Models.MatchTable
 @{
     var currentUser = (Player)HttpContext.Current.Session["User"];
-}
+}   
 @if (currentUser != null)
 {
     <input type="hidden" value="@currentUser.Id" name="current-user-id" id="current-user-id"/>
