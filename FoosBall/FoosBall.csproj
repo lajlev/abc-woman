@@ -207,7 +207,6 @@
     <Content Include="Views\Stats\Player.cshtml" />
     <Content Include="Content\_match-tables.scss" />
     <Content Include="Views\Stats\Index.cshtml" />
-    <Content Include="Views\Shared\_ngLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
