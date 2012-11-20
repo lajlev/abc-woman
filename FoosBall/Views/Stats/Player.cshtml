@@ -6,7 +6,7 @@
 @section Javascript
 { 
     <script async src="/Scripts/highcharts.js"></script>
-    <script async src="/Scripts/Stats.js"></script>
+    <script async src="/Scripts/PlayerStats.js"></script>
 }
 @section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
 
@@ -121,7 +121,6 @@
 
 <fieldset>
     <legend>Rating  Chart</legend>
-    @*<input type="button" value="See Rating Chart" class="button" id="load-player-rating-chart"/>*@
     <div id="player-rating-chart" data-subject-id="@Model.Player.Id" data-subject-name="@Model.Player.Name"></div>
 </fieldset>
 

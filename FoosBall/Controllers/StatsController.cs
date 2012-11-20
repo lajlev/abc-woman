@@ -16,7 +16,9 @@
     {
         public ActionResult Index()
         {
-            return this.View();
+            var model = new AllPlayerStatsAggregate();
+
+            return this.View(model);
         }
 
         public ActionResult Player(string playerId)

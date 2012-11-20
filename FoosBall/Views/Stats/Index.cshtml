@@ -1,4 +1,5 @@
-﻿@{
+﻿@model FoosBall.Models.AllPlayerStatsAggregate
+@{
     ViewBag.Title = "FoosBal Stats";
 }
 @section Javascript { <script async src="/Scripts/Stats.js"></script> }
@@ -7,31 +8,29 @@
 <fieldset id="all-players-statistics">
     <legend>Stats for all players</legend>
 
-    <div class="label">Top FoosBall fighter:</div>
-    <div>@Model.TopFighter</div>
+    <div class="label">Most Fighting Fighter</div>
+    <div>@Model.MostFighting</div>
+    
+    <div class="label">Most Winning Fighter</div>
+    <div>@Model.MostWinning</div>
 
-    <div class="label">Bottom FoosBall fighter:</div>
-    <div>@Model.BottomFighter</div>
+    <div class="label">Most Losing Fighter</div>
+    <div>@Model.MostLosing</div>
     
-    <div class="label">Most Fights</div>
-    <div>@Model.MostFight</div>
+    <div class="label">Top Ranked Fighter</div>
+    <div>@Model.TopRanked</div>
     
-    <div class="label">Most Wins</div>
-    <div>@Model.MostWins</div>
+    <div class="label">Bottom Ranked Fighter</div>
+    <div>@Model.BottomRanked</div>
     
-    <div class="label">Most Losses</div>
-    <div>@Model.MostLosses</div>
-    
-    <div class="label">Most wins in a row:</div>
+    <div class="label">Winning streak (Most wins in a row)</div>
     <div>@Model.MostWinsInARow</div>
     
-    <div class="label">Most losses in a row:</div>
+    <div class="label">Losing streak (Most losses in a row)</div>
     <div>@Model.MostLossesInARow</div>
     
-    <div class="label">Biggest Rating win</div>
+    <div class="label">Highest Rating jump</div>
     <div>@Model.BiggestRatingWin</div>
-
-    <div class="label">Biggest Win</div>
-    <div>@Model.PlayedToday</div>
-
+    
+    <div id="hover-tap"></div>
 </fieldset>
