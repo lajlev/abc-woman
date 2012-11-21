@@ -179,6 +179,7 @@
     <Content Include="Content\images\delete_32x32.png" />
     <Content Include="Content\images\delete_button_15x15.png" />
     <Content Include="Content\images\edit_32x32.png" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\Match.css">
       <DependentUpon>Match.scss</DependentUpon>
     </Content>
