@@ -23,30 +23,25 @@
             var playerCollection = this.Dbh.GetCollection<Player>("Players").FindAll().SetSortOrder(SortBy.Ascending("Name")).ToList();
             
             // Fetch all FoosBall matches. 
-            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().ToList();
-            var playedMatches = new List<Match>();
-            var pendingMatches = new List<Match>();
-            
-            // Divide mathes into resolved and unresolved matches
-            foreach (var match in matchCollection)
-            {
-                if (match.GameOverTime != BsonDateTime.Create(DateTime.MinValue))
-                {
-                    playedMatches.Add(match);
-                } 
-                else
-                {
-                    pendingMatches.Add(match);
-                }
-            }
+            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().ToList().OrderByDescending(x => x.GameOverTime);
+            var playedMatches =
+                this.Dbh.GetCollection<Match>("Matches")
+                    .Find(Query.NE("GameOverTime", BsonDateTime.Create(DateTime.MinValue)))
+                    .ToList().OrderByDescending(x => x.GameOverTime).Take(20);
 
-            // Create content for the <select>
+            var pendingMatches =
+                this.Dbh.GetCollection<Match>("Matches")
+                    .Find(Query.EQ("GameOverTime", BsonDateTime.Create(DateTime.MinValue)))
+                    .ToList()
+                    .OrderByDescending(x => x.CreationTime);
+
+            // Create content for the <select> 
             var selectItems = playerCollection
                 .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
                 .ToList();
 
-            var played = playedMatches.OrderByDescending(a => a.GameOverTime);
-            var pending = pendingMatches.OrderByDescending(a => a.CreationTime);
+            var played = playedMatches.OrderByDescending(x => x.GameOverTime);
+            var pending = pendingMatches.OrderByDescending(x => x.CreationTime);
 
             return View(new MatchViewModel { PlayedMatches = played, PendingMatches = pending, SelectPlayers = selectItems });
         }

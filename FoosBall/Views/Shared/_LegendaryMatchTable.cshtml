@@ -2,7 +2,7 @@
 @model FoosBall.Models.MatchTable
 @{
     var currentUser = (Player)HttpContext.Current.Session["User"];
-}
+}   
 @if (currentUser != null)
 {
     <input type="hidden" value="@currentUser.Id" name="current-user-id" id="current-user-id"/>
@@ -75,8 +75,7 @@
                     <span class="short-time">@match.GameOverTime.ToLocalTime().ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
                     <span class="long-time">@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
                 </td>
-
             </tr>
         }
     </tbody>
-</table>    
+</table>

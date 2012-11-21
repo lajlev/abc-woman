@@ -6,7 +6,7 @@
 @section Javascript
 { 
     <script async src="/Scripts/highcharts.js"></script>
-    <script async src="/Scripts/Stats.js"></script>
+    <script async src="/Scripts/PlayerStats.js"></script>
 }
 @section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
 
@@ -25,6 +25,8 @@
         <div>@Model.Won</div>
         <div class="label">Lost Fights:</div>
         <div>@Model.Lost</div>
+        <div class="label">Player ranking:</div>
+        <div>@Model.Ranking</div>
         <br/>
     </div>
         
@@ -94,10 +96,11 @@
             {
                 <text>was beat up by </text><br/>
             }
+
             @if (Model.LatestMatch.IsOnRedTeam(Model.Player.Id))
             {
                 <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.BluePlayer1.Id })">@Model.LatestMatch.BluePlayer1.Name</a>
-                if (@Model.LatestMatch.BluePlayer1 != null)
+                if (@String.IsNullOrEmpty(Model.LatestMatch.BluePlayer2.Name) == false)
                 {
                     <text>&</text>
                     <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.BluePlayer2.Id })">@Model.LatestMatch.BluePlayer2.Name</a>
@@ -106,7 +109,7 @@
             else
             {
                 <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.RedPlayer1.Id })">@Model.LatestMatch.RedPlayer1.Name</a>
-                if (@Model.LatestMatch.BluePlayer1 != null)
+                if (@String.IsNullOrEmpty(Model.LatestMatch.RedPlayer2.Name) == false)
                 {
                     <text>&</text>
                     <a href="@Url.Action("Player","Stats", new {playerId = @Model.LatestMatch.RedPlayer2.Id })">@Model.LatestMatch.RedPlayer2.Name</a>
@@ -118,7 +121,6 @@
 
 <fieldset>
     <legend>Rating  Chart</legend>
-    @*<input type="button" value="See Rating Chart" class="button" id="load-player-rating-chart"/>*@
     <div id="player-rating-chart" data-subject-id="@Model.Player.Id" data-subject-name="@Model.Player.Name"></div>
 </fieldset>
 

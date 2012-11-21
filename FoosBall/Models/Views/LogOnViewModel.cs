@@ -1,7 +1,5 @@
 ﻿namespace FoosBall.Models.Views
 {
-    using System;
-
     public class LogOnViewModel
     {
         public LogOnViewModel()
