@@ -36,8 +36,10 @@
         public int Lost { get; set; }
         
         public int Played { get; set; }
-        
+
         public double Rating { get; set; }
+
+        public double RatingDifference { get; set; }
         
         public bool Deactivated { get; set; }
         
