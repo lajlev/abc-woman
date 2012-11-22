@@ -13,9 +13,8 @@
             return View();
         }
         
-        public ActionResult Version()
+        public ActionResult Features()
         {
-            ViewBag.Message = HomeViewModel.GetVersion();
             return View();
         }
     }

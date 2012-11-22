@@ -38,7 +38,6 @@
             var configCollection = Dbh.GetCollection<Models.Config>("Config");
             
             this.Settings.Name = form.GetValue("Name").AttemptedValue;
-            this.Settings.Version = form.GetValue("Version").AttemptedValue;
             this.Settings.Domain = form.GetValue("Domain").AttemptedValue;
             this.Settings.AdminAccount = form.GetValue("AdminAccount").AttemptedValue;
             this.Settings.RequireDepartment = form.GetValue("RequireDepartment") != null;

@@ -6,8 +6,6 @@
     {
         public string Name { get; set; }
 
-        public string Version { get; set; }
-
         public string Domain { get; set; }
 
         public string AdminAccount { get; set; } 

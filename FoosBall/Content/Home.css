@@ -1,14 +1,14 @@
-/* Home/Version View
+/* Home/Features View
 ----------------------------------------------------------*/
 #welcome-message {
   text-align: center; }
 
-#version-feature-list {
+#feature-list {
   padding-left: 20px;
   list-style: none; }
-  #version-feature-list li {
+  #feature-list li {
     color: black;
     font-size: .85em; }
-    #version-feature-list li ul li a {
+    #feature-list li ul li a {
       text-decoration: underline; }
 

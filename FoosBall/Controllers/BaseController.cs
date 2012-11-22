@@ -1,7 +1,6 @@
 ﻿namespace FoosBall.Controllers
 {
     using System;
-    using System.Configuration;
     using System.Text;
     using System.Web;
     using System.Web.Mvc;
@@ -24,7 +23,7 @@
             this.Settings = this.Dbh.GetCollection<Config>("Config").FindOne();
             this.Settings.Environment = environment;
 
-            ViewBag.Environment = environment.ToString();
+            ViewBag.Settings = this.Settings;
         }
 
         protected Config Settings { get; set; }

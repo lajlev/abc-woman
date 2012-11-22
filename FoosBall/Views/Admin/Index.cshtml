@@ -13,9 +13,6 @@
         <label for="Name">Application name:</label>
         <input type="text" name="Name" value="@Model.Settings.Name"/>
 
-        <label for="Name">Application Version:</label>
-        <input type="text" name="Version" value="@Model.Settings.Version"/>
-
         <label for="Name">Domain:</label>
         <input type="text" name="Domain" value="@Model.Settings.Domain"/>
 
@@ -41,11 +38,6 @@
 <fieldset id="data-migration">
     <legend>Copy Mongo data</legend>
     <button class="button" href="#" id="copy-prod-to-staging">Copy Production Data to Staging</button>
-    <br/>
-    @if (ViewBag.Environment == "Local")
-    {
-        <button class="button" id="copy-prod-to-local">Copy Production Data to Local</button>
-    }
 </fieldset>
 
 <fieldset id="synchronize-player-data">

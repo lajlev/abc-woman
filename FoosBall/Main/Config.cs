@@ -25,7 +25,6 @@
                 config = new Models.Config
                     {
                         Name = appConfig.GetElementsByTagName("name")[0].InnerText,
-                        Version = appConfig.GetElementsByTagName("version")[0].InnerText,
                         Domain = appConfig.GetElementsByTagName("domain")[0].InnerText,
                         AdminAccount = appConfig.GetElementsByTagName("adminAccount")[0].InnerText,
                         RequireDepartment = XmlConvert.ToBoolean(appConfig.GetElementsByTagName("requireDepartment")[0].InnerText),

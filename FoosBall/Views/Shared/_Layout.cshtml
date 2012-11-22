@@ -7,9 +7,9 @@
     <link rel="shortcut icon" href="@Url.Content("/Content/images/favicon.ico")" type="image/x-icon" />
 
     <title>
-        @if (ViewBag.Environment != "Production")
+        @if (ViewBag.Settings.Environment.ToString() != "Production")
         {
-            @ViewBag.Environment
+            @ViewBag.Settings.Environment.ToString()
         }
         @ViewBag.Title
     </title>
@@ -45,11 +45,11 @@
             </div>
             <div id="app-title">
                 <span>
-                    @if (ViewBag.Environment != "Production")
+                    @if (ViewBag.Settings.Environment.ToString() != "Production")
                     {
-                        @ViewBag.Environment  
+                        @ViewBag.Settings.Environment.ToString()  
                     }
-                    FoosBall Fighting
+                    @ViewBag.Settings.Name
                 </span>
             </div>
             <nav>
@@ -66,7 +66,7 @@
         </section>
         <footer>
             @RenderSection("Footer", false)
-            @Html.ActionLink("version " + @HomeViewModel.GetVersion(), "Version", "Home", null, new { @id = "version-link" })
+            @Html.ActionLink("Features", "Features", "Home", null, new { @id = "feature-link" })
         </footer>
     </div>
     <!-- Deferred Javascript -->
