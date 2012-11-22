@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.Main
 {
-    using System.Collections.Generic;
     using System.Configuration;
     using System.Xml;
 
@@ -30,7 +29,7 @@
                         RequireDepartment = XmlConvert.ToBoolean(appConfig.GetElementsByTagName("requireDepartment")[0].InnerText),
                         RequireDomainValidation = XmlConvert.ToBoolean(appConfig.GetElementsByTagName("requireDomainValidation")[0].InnerText),
                         AllowOneOnOneMatches = XmlConvert.ToBoolean(appConfig.GetElementsByTagName("allowOneOnOneMatches")[0].InnerText),
-                        GenderSpecificMatches = XmlConvert.ToBoolean(appConfig.GetElementsByTagName("genderSpecificMatches")[0].InnerText)
+                        GenderSpecificMatches = XmlConvert.ToBoolean(appConfig.GetElementsByTagName("genderSpecificMatches")[0].InnerText),
                     };
 
                 configCollection.Save(config);
