@@ -9,9 +9,9 @@
         public Db(Environment environment = Environment.Production)
         {
             // Determine environment
-            this.ConnectionString = environment == Environment.Staging 
-                ? ConfigurationManager.ConnectionStrings["FoosBallStaging.MongoLab"].ConnectionString 
-                : ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
+            this.ConnectionString = environment == Environment.Staging
+                ? ConfigurationManager.AppSettings["FoosBallStaging.MongoLab"]
+                : ConfigurationManager.AppSettings["Database"];
 
             // Try to connect to server
             this.DatabaseName = MongoUrl.Create(this.ConnectionString).DatabaseName;
