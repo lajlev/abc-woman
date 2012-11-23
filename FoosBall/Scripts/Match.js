@@ -45,6 +45,12 @@
         }
     });
     
+    // Add a tag on the players that match the current user
+    var currentUserId = $("#current-user-id").val();
+    if (!!currentUserId === true) {
+        $("." + currentUserId).append("<sup>(me)</sup>");
+    }
+    
     /* ******************************************************************
      * SaveMatchResult View
      */

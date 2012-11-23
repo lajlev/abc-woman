@@ -14,6 +14,14 @@
 
         public int Ranking { get; set; }
 
+        public int WinningStreakMatches { get; set; }
+
+        public double WinningStreakPoints { get; set; }
+
+        public int LosingStreakMatches { get; set; }
+
+        public double LosingStreakPoints { get; set; }
+
         public BestFriendForever Bff { get; set; }
 
         public RealBestFriendForever Rbff { get; set; }
