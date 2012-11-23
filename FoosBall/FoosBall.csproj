@@ -141,7 +141,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\AppDefault.config" />
+    <None Include="Config\AppDefault.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Content\Account.css">
       <DependentUpon>Account.scss</DependentUpon>
     </Content>

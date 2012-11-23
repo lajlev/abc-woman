@@ -1,3 +1,5 @@
 _ReSharper.FoosBall/
 *.cache
 *.suo
+FoosBall/bin/*
+FoosBall/obj/*
