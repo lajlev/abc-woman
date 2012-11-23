@@ -139,3 +139,7 @@ table .winner {
 #back-to-match {
   text-decoration: underline; }
 
+.names sup, .nicknames sup {
+  font-weight: normal;
+  margin-left: 3px; }
+
