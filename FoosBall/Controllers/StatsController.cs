@@ -42,13 +42,14 @@
 
                 var matches = Dbh.GetCollection<Match>("Matches")
                     .FindAll()
-                    .SetSortOrder(SortBy.Descending())
+                    .SetSortOrder(SortBy.Ascending("GameOverTime"))
                     .ToList()
                     .Where(match => match.ContainsPlayer(id))
                     .Where(match => match.GameOverTime != DateTime.MinValue);
 
                 var playedMatches = matches as List<Match> ?? matches.ToList();
                 stats.PlayedMatches = playedMatches.OrderByDescending(x => x.GameOverTime);
+                stats.LatestMatch = playedMatches.Last();
 
                 foreach (var match in playedMatches)
                 {
@@ -203,7 +204,6 @@
                 stats.Eae = eae.OrderByDescending(i => i.Value.Occurrences).ThenByDescending(i => i.Value.GoalDiff).Select(i => i.Value).FirstOrDefault();
                 stats.PreferredColor = preferredColor.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
                 stats.WinningColor = winningColor.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
-                stats.LatestMatch = playedMatches.Last();
 
                 return View(stats);
             }

@@ -5,6 +5,12 @@
      */
     var container = $("#player-rating-chart")[0];
     getChartData(container);
+    
+    var currentUserId = $("#current-user-id").val();
+
+    if (!!currentUserId === true) {
+        $("." + currentUserId).append("<sup>(me)</sup>");
+    }
 });
 
 function getChartData(container) {
