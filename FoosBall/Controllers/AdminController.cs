@@ -9,6 +9,7 @@
     using FoosBall.Models.Base;
     using FoosBall.Models.Views;
 
+    using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
     public class AdminController : BaseController
@@ -16,7 +17,7 @@
         public ActionResult Index()
         {
             var currentUser = (Player)Session["User"];
-            
+
             if (currentUser != null && currentUser.Email == this.Settings.AdminAccount)
             {
                 var playerCollection = Dbh.GetCollection<Player>("Players")
@@ -30,6 +31,27 @@
             }
 
             return this.Redirect("/Home/Index");
+        }
+
+        [HttpGet]
+        public JsonResult GetConfig()
+        {
+            var currentUser = (Player)Session["User"];
+
+            if (currentUser != null && currentUser.Email == this.Settings.AdminAccount)
+            {
+                var playerCollection = Dbh.GetCollection<Player>("Players")
+                        .FindAll()
+                        .SetSortOrder(SortBy.Ascending("Name"))
+                        .ToList()
+                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                        .ToList()
+                        .ToJson();
+
+                return Json(new { Settings = this.Settings.ToJson(), Users = playerCollection }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(null);
         }
 
         [HttpPost]

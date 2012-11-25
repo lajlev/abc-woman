@@ -63,7 +63,6 @@
         if (!playerEmail === false) {
             $.ajax({
                 type: "get",
-                cache: true,
                 url: "/Account/GetGravatarUrl/",
                 data: { emailPrefix: playerEmail},
                 success: function (jsonObj) {
@@ -85,6 +84,7 @@
 function emailExists(email) {
     $.ajax({
         url: '/Account/PlayerEmailExists',
+        cache: false,
         data: { email: email },
         dataType: 'json',
         async: false,
@@ -102,6 +102,7 @@ function emailExists(email) {
 function nameExists(name) {
     $.ajax({
         url: '/Account/PlayerNameExists',
+        cache: false,
         data: { name: name },
         dataType: 'json',
         async: false,

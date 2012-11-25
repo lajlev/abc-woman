@@ -8,7 +8,6 @@
      */
     $.ajaxSetup({
         type: 'post',
-        cache: false,
         error: function (jqHxr, statusText, errorThrown) {
             displayErrorMessage(statusText + ': ' + errorThrown);
         }
