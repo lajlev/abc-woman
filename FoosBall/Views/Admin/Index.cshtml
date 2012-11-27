@@ -6,7 +6,8 @@
 @section Javascript
 { 
     <script src="/Scripts/angular.min.js"></script> 
-    <script src="/Scripts/Admin.js"></script> 
+    <script src="/Scripts/_ngAdmin.js"></script> 
+    <script async src="/Scripts/Admin.js"></script> 
 }
 @section Css { <link rel="stylesheet" href="/Content/Admin.css"/> }
 
@@ -15,7 +16,6 @@
         <legend>Configuration</legend>
         @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
         {
-
             /* Angular stuff */
             <div data-ng-repeat="input in inputs">
                 <label>{{input.label}}</label>
@@ -34,12 +34,6 @@
     <fieldset id="data-migration">
         <legend>Copy Mongo data</legend>
         <button class="button" href="#" id="copy-prod-to-staging">Copy Production Data to Staging</button>
-    </fieldset>
-
-    <fieldset id="synchronize-player-data">
-        <legend>Synchronize data</legend>
-
-        <button id="start-player-sync" class="button">Synchronize players based on matches</button>
     </fieldset>
 
     <fieldset id="player-editor">

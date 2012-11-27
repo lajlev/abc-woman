@@ -187,6 +187,7 @@
     <Content Include="Scripts\Players.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\PlayerStats.js" />
+    <Content Include="Scripts\_ngAdmin.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

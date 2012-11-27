@@ -19,6 +19,7 @@
         toggleOverlay();
         
         $.ajax({
+            type: 'get',
             url: '/Admin/CopyProdData/',
             success: function () {
                 toggleOverlay();
@@ -28,31 +29,34 @@
     });
 });
 
-function settingsCtrl($scope, $http) {
-    var dataStore = {},
-        inputs,
-        checkboxes;
+function toggleOverlay() {
+    var overlay = $("#overlay");
 
-    $http.get("Admin/GetConfig").
-        success(function(data) {
-            log(data.Settings)
-            dataStore.Settings = JSON.parse(data.Settings);
-            dataStore.Users = JSON.parse(data.Users);
+    if (overlay.size() === 0) {
 
-            inputs = [
-                { label: "Application name", value: dataStore.Settings.Name },
-                { label: "Domain name", value: dataStore.Settings.Domain },
-                { label: "Admin user email", value: dataStore.Settings.AdminAccount },
-            ];
+        var htmlHeight = $('html').innerHeight();
+        $("body").append('<div id="overlay"></div>');
 
-            checkboxes = [
-                { label: "Enable Departments", value: dataStore.Settings.RequireDepartment },
-                { label: "Enable Domain Validation", value: dataStore.Settings.RequireDomainValidation },
-                { label: "Allow one-on-one Matches", value: dataStore.Settings.AllowOneOnOneMatches },
-                { label: "Enable Gender Specific Matches", value: dataStore.Settings.GenderSpecificMatches },
-            ];
+        overlay = $("#overlay");
 
-            $scope.inputs = inputs;
-            $scope.checkboxes = checkboxes;
+        overlay.css({
+            "height": htmlHeight + "px",
+            "background-color": "rgba(0, 0, 0, 0.6)",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "width": "100%",
+            "z-index": "1000",
         });
+
+        overlay.append('<img src="/Content/images/ajax-loader.gif"/>');
+
+        overlay.on('click', function () {
+            toggleOverlay();
+        });
+
+    } else {
+        overlay.remove();
+    }
+
 }

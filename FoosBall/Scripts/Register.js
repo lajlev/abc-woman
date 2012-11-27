@@ -83,6 +83,7 @@
 // Synch call to server to check if email is alredy registered
 function emailExists(email) {
     $.ajax({
+        type: post,
         url: '/Account/PlayerEmailExists',
         cache: false,
         data: { email: email },
@@ -101,6 +102,7 @@ function emailExists(email) {
 // Synch call to server to check if name is alredy registered
 function nameExists(name) {
     $.ajax({
+        type: 'post',
         url: '/Account/PlayerNameExists',
         cache: false,
         data: { name: name },
