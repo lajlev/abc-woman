@@ -61,7 +61,6 @@
             this.Settings.Name = form.GetValue("Name").AttemptedValue;
             this.Settings.Domain = form.GetValue("Domain").AttemptedValue;
             this.Settings.AdminAccount = form.GetValue("AdminAccount").AttemptedValue;
-            this.Settings.RequireDepartment = form.GetValue("RequireDepartment") != null;
             this.Settings.RequireDomainValidation = form.GetValue("RequireDomainValidation") != null;
             this.Settings.AllowOneOnOneMatches = form.GetValue("AllowOneOnOneMatches") != null;
             this.Settings.GenderSpecificMatches = form.GetValue("GenderSpecificMatches") != null;

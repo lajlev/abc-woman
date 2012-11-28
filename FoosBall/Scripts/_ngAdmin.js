@@ -15,7 +15,6 @@
             ];
 
             checkboxes = [
-                { label: "Enable Departments", value: dataStore.Settings.RequireDepartment },
                 { label: "Enable Domain Validation", value: dataStore.Settings.RequireDomainValidation },
                 { label: "Allow one-on-one Matches", value: dataStore.Settings.AllowOneOnOneMatches },
                 { label: "Enable Gender Specific Matches", value: dataStore.Settings.GenderSpecificMatches },

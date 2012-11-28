@@ -5,7 +5,9 @@
     using FoosBall.Models.Base;
 
     using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
 
+    [BsonIgnoreExtraElements]
     public class Player : FoosBallDoc
     {
         public Player()
@@ -26,8 +28,6 @@
         public string NickName { get; set; }
         
         public string Password { get; set; }
-        
-        public string Department { get; set; }
         
         public string Position { get; set; }
        

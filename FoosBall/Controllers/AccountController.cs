@@ -112,7 +112,6 @@
 
             var name = model.Name;
             var password = Md5.CalculateMd5(model.Password);
-            var department = model.Department;
             var position = model.Position;
             var nickname = model.NickName;
 
@@ -124,7 +123,6 @@
                                     Email = email,
                                     Name = name,
                                     Password = password,
-                                    Department = department,
                                     NickName = nickname,
                                     Position = position,
                                     Won = 0,
