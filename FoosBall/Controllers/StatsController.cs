@@ -20,7 +20,7 @@
 
             return this.View(model);
         }
- 
+  
         public ActionResult Player(string playerId)
         {
             if (playerId != null)
