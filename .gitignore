@@ -1,6 +1,7 @@
 bin/
 obj/
 _ReSharper.FoosBall/
+Migration/*.json
 *.cache
 *.suo
 *.orig
