@@ -3,60 +3,51 @@
     ViewBag.Title = "Configuration";
 }
 
-@section Javascript{ <script async src="/Scripts/Admin.js"></script> }
+@section Javascript
+{ 
+    <script src="/Scripts/angular.min.js"></script> 
+    <script src="/Scripts/_ngAdmin.js"></script> 
+    <script async src="/Scripts/Admin.js"></script> 
+}
 @section Css { <link rel="stylesheet" href="/Content/Admin.css"/> }
 
-<fieldset id="app-configuration">
-    <legend>Configuration</legend>
-    @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
-    {
-        <label for="Name">Application name:</label>
-        <input type="text" name="Name" value="@Model.Settings.Name"/>
-
-        <label for="Name">Domain:</label>
-        <input type="text" name="Domain" value="@Model.Settings.Domain"/>
-
-        <label for="Name">Admin Account/Email:</label> 
-        <input type="text" name="AdminAccount" value="@Model.Settings.AdminAccount"/>
-    
-        @Html.LabelFor(m => Model.Settings.RequireDepartment, "Require Department?")
-        <input name="RequireDepartment" type="checkbox" value="true" @(Model.Settings.RequireDepartment ? "checked=\"checked\"" : "")/>
-        
-        @Html.LabelFor(m => Model.Settings.RequireDomainValidation, "Validate domain?")
-        <input name="RequireDomainValidation" type="checkbox" value="true" @(Model.Settings.RequireDomainValidation ? "checked=\"checked\"" : "")/>
-
-        @Html.LabelFor(m => Model.Settings.AllowOneOnOneMatches, "Allow one-on-one matches?")
-        <input name="AllowOneOnOneMatches" type="checkbox" value="true" @(Model.Settings.AllowOneOnOneMatches ? "checked=\"checked\"" : "")/>
-
-        @Html.LabelFor(m => Model.Settings.GenderSpecificMatches, "Require gender specific matches?")
-        <input name="GenderSpecificMatches" type="checkbox" value="true" @(Model.Settings.GenderSpecificMatches ? "checked=\"checked\"" : "")/>
-
-        <input name="save-config" type="submit" value="Save" class="button"/>
-    }
-</fieldset>
-
-<fieldset id="data-migration">
-    <legend>Copy Mongo data</legend>
-    <button class="button" href="#" id="copy-prod-to-staging">Copy Production Data to Staging</button>
-</fieldset>
-
-<fieldset id="synchronize-player-data">
-    <legend>Synchronize data</legend>
-
-    <button id="start-player-sync" class="button">Synchronize players based on matches</button>
-</fieldset>
-
-<fieldset id="player-editor">
-    <legend>Edit Players (experimental)</legend>
-    
-    @Html.LabelFor(m => Model.Users, "Choose a player")
-    <select id="select-player" name="select-player">
-        <option></option>
-        @foreach (var user in Model.Users)
+<div data-ng-app>
+    <fieldset data-ng-controller="settingsCtrl" id="app-configuration">
+        <legend>Configuration</legend>
+        @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
         {
-            <option id="@user.Value" value="@user.Value">@user.Text</option>
+            /* Angular stuff */
+            <div data-ng-repeat="input in inputs">
+                <label>{{input.label}}</label>
+                <input type="text" data-ng-model="input.value">
+            </div>
+
+            <div data-ng-repeat="checkbox in checkboxes">
+                <label>{{checkbox.label}}</label>
+                <input type="checkbox" data-ng-model="checkbox.value">
+            </div>
+
+            <input name="save-config" type="submit" value="Save" class="button"/>
         }
-    </select>
+    </fieldset>
+
+    <fieldset id="data-migration">
+        <legend>Copy Mongo data</legend>
+        <button class="button" href="#" id="copy-prod-to-staging">Copy Production Data to Staging</button>
+    </fieldset>
+
+    <fieldset id="player-editor">
+        <legend>Edit Players (experimental)</legend>
     
-    <div id="player-data"></div>
-</fieldset>
+        @Html.LabelFor(m => Model.Users, "Choose a player")
+        <select id="select-player" name="select-player">
+            <option></option>
+            @foreach (var user in Model.Users)
+            {
+                <option id="@user.Value" value="@user.Value">@user.Text</option>
+            }
+        </select>
+    
+        <div id="player-data"></div>
+    </fieldset>
+</div>

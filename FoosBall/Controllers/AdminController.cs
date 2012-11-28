@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -9,6 +8,7 @@
     using FoosBall.Models.Base;
     using FoosBall.Models.Views;
 
+    using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
     public class AdminController : BaseController
@@ -16,7 +16,7 @@
         public ActionResult Index()
         {
             var currentUser = (Player)Session["User"];
-            
+
             if (currentUser != null && currentUser.Email == this.Settings.AdminAccount)
             {
                 var playerCollection = Dbh.GetCollection<Player>("Players")
@@ -32,15 +32,35 @@
             return this.Redirect("/Home/Index");
         }
 
+        [HttpGet]
+        public JsonResult GetConfig()
+        {
+            var currentUser = (Player)Session["User"];
+
+            if (currentUser != null && currentUser.Email == this.Settings.AdminAccount)
+            {
+                var playerCollection = Dbh.GetCollection<Player>("Players")
+                        .FindAll()
+                        .SetSortOrder(SortBy.Ascending("Name"))
+                        .ToList()
+                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                        .ToList()
+                        .ToJson();
+
+                return Json(new { Settings = this.Settings.ToJson(), Users = playerCollection }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(null);
+        }
+
         [HttpPost]
         public ActionResult Save(FormCollection form)
         {
-            var configCollection = Dbh.GetCollection<Models.Config>("Config");
+            var configCollection = Dbh.GetCollection<Config>("Config");
             
             this.Settings.Name = form.GetValue("Name").AttemptedValue;
             this.Settings.Domain = form.GetValue("Domain").AttemptedValue;
             this.Settings.AdminAccount = form.GetValue("AdminAccount").AttemptedValue;
-            this.Settings.RequireDepartment = form.GetValue("RequireDepartment") != null;
             this.Settings.RequireDomainValidation = form.GetValue("RequireDomainValidation") != null;
             this.Settings.AllowOneOnOneMatches = form.GetValue("AllowOneOnOneMatches") != null;
             this.Settings.GenderSpecificMatches = form.GetValue("GenderSpecificMatches") != null;
@@ -54,7 +74,7 @@
         public JsonResult CopyProdData()
         {
             var dbhTo = new Db(Environment.Staging).Dbh;
-            var dbhFrom = new Db(Environment.Production).Dbh;
+            var dbhFrom = new Db().Dbh;
 
             var allMatches = dbhFrom.GetCollection<Match>("Matches").FindAll();
             var allPlayers = dbhFrom.GetCollection<Player>("Players").FindAll();

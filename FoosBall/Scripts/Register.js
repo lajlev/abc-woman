@@ -63,7 +63,6 @@
         if (!playerEmail === false) {
             $.ajax({
                 type: "get",
-                cache: true,
                 url: "/Account/GetGravatarUrl/",
                 data: { emailPrefix: playerEmail},
                 success: function (jsonObj) {
@@ -84,7 +83,9 @@
 // Synch call to server to check if email is alredy registered
 function emailExists(email) {
     $.ajax({
+        type: post,
         url: '/Account/PlayerEmailExists',
+        cache: false,
         data: { email: email },
         dataType: 'json',
         async: false,
@@ -101,7 +102,9 @@ function emailExists(email) {
 // Synch call to server to check if name is alredy registered
 function nameExists(name) {
     $.ajax({
+        type: 'post',
         url: '/Account/PlayerNameExists',
+        cache: false,
         data: { name: name },
         dataType: 'json',
         async: false,

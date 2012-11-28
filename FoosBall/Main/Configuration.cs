@@ -3,6 +3,7 @@
     using System.Configuration;
     using System.Xml;
 
+    using FoosBall.Models;
     using FoosBall.Models.Base;
 
     public static class AppConfig
@@ -10,12 +11,12 @@
         public static void InitalizeConfig()
         {
             var environment = GetEnvironment();
-            var configCollection = new Db(environment).Dbh.GetCollection<Models.Config>("Config");
+            var configCollection = new Db(environment).Dbh.GetCollection<Config>("Config");
             var config = configCollection.FindOne();
 
             if (config == null)
             {
-                config = new Models.Config();
+                config = new Config();
                 configCollection.Save(config);
             }
         }

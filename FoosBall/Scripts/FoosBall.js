@@ -7,8 +7,6 @@
      * jQuery Ajax default configuration
      */
     $.ajaxSetup({
-        type: 'post',
-        cache: false,
         error: function (jqHxr, statusText, errorThrown) {
             displayErrorMessage(statusText + ': ' + errorThrown);
         }
@@ -26,6 +24,7 @@
 /* ******************************************************************
  * Custom js functions
  */
+
 function displayErrorMessage(errorMessage, selector) {
     $.globals.errorState[selector] = true;
     var $container = (!!selector === true) ? $(".validation-message." + selector) : $(".validation-message.All");
@@ -42,9 +41,6 @@ function clearErrorMessage(selector) {
     $container.html("").hide();
 }
 
-function log(str) {
-    console.log(str);
-}
 
 function errorState() {
     var state = false;
@@ -58,34 +54,24 @@ function errorState() {
     return state;
 }
 
-function toggleOverlay() {
-    var overlay = $("#overlay");
-    
-    if (overlay.size() === 0) {
+// Shorthand logging
+function log(str) {
+    console.log(str);
+}
 
-        var htmlHeight = $('html').innerHeight();
-        $("body").append('<div id="overlay"></div>');
+// Fine grained timing function. Returns time in milliseconds from window.open event is fired
+performance.now = (function (window) {
+    return window.performance.now ||
+           window.performance.mozNow ||
+           window.performance.msNow ||
+           window.performance.oNow ||
+           window.performance.webkitNow ||
+           function () {
+               return new Date().getTime();
+           };
+})(window);
 
-        overlay = $("#overlay");
-
-        overlay.css({
-            "height": htmlHeight + "px",
-            "background-color": "rgba(0, 0, 0, 0.6)",
-            "left": "0",
-            "position": "absolute",
-            "top": "0",
-            "width": "100%",
-            "z-index": "1000",
-        });
-
-        overlay.append('<img src="/Content/images/ajax-loader.gif"/>');
-
-        overlay.on('click', function () {
-            toggleOverlay();
-        });
-        
-    } else {
-        overlay.remove();
-    }
-
+// Shorthand method for window.performance.now()
+function now() {
+    return performance.now();
 }

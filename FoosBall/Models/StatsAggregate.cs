@@ -1,6 +1,6 @@
 ﻿namespace FoosBall.Models
 {
-    public class AllPlayerStatsAggregate
+    public class StatsAggregate
     {
         public string MostFighting { get; set; }
 
@@ -9,9 +9,13 @@
         public string MostLosing { get; set; }
         
         public string TopRanked { get; set; }
-        
+
         public string BottomRanked { get; set; }
-        
+
+        public double HighestRatingEver { get; set; }
+
+        public double LowestRatingEver { get; set; }
+
         public string MostWinsInARow { get; set; }
         
         public string MostLossesInARow { get; set; }
