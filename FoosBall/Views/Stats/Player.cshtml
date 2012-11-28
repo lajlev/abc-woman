@@ -35,7 +35,7 @@
         <div>
             @if (@Model.Bff != null)
             {
-                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Bff.Player.Id.AsString })">@Model.Bff.Player.Name</a><text> - @Model.Bff.Occurrences fights</text>
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Bff.Player.Id.ToString() })">@Model.Bff.Player.Name</a><text> - @Model.Bff.Occurrences fights</text>
             } 
             else
             {
@@ -46,7 +46,7 @@
         <div>
             @if (@Model.Rbff != null)
             {
-                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Rbff.Player.Id.AsString })">@Model.Rbff.Player.Name</a><text> - @Model.Rbff.Occurrences wins</text>
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Rbff.Player.Id.ToString() })">@Model.Rbff.Player.Name</a><text> - @Model.Rbff.Occurrences wins</text>
             }
             else
             {
@@ -57,7 +57,7 @@
         <div>
             @if (@Model.Eae != null)
             {
-                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Eae.Player.Id.AsString })">@Model.Eae.Player.Name</a><text> - @Model.Eae.Occurrences losses</text>
+                <a href="@Url.Action("Player", "Stats", new { playerId = @Model.Eae.Player.Id.ToString() })">@Model.Eae.Player.Name</a><text> - @Model.Eae.Occurrences losses</text>
             }
             else
             {

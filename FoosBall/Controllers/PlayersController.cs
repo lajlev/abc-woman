@@ -55,7 +55,7 @@
             var position = formValues.GetValue("Position").AttemptedValue;
             var nickname = formValues.GetValue("NickName").AttemptedValue;
              
-            if (currentUser != null && (currentUser.Id.AsString == playerId || currentUser.Email == this.Settings.AdminAccount))
+            if (currentUser != null && (currentUser.Id.ToString() == playerId || currentUser.Email == this.Settings.AdminAccount))
             {
                 var playerCollection = this.Dbh.GetCollection<Player>("Players");
                 var query = Query.EQ("_id", ObjectId.Parse(playerId));

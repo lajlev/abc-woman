@@ -34,7 +34,7 @@
 
             // Create content for the <select> 
             var selectItems = playerCollection
-                .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.AsString })
+                .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
                 .ToList();
 
             var played = playedMatches.OrderByDescending(x => x.GameOverTime);
