@@ -122,7 +122,7 @@
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\Base\FoosBallLists.cs" />
     <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\AllPlayerStatsAggregate.cs" />
+    <Compile Include="Models\StatsAggregate.cs" />
     <Compile Include="Models\PlayerStatsAggregate.cs" />
     <Compile Include="Models\Views\EventViewModel.cs" />
     <Compile Include="Models\Views\PlayerStatsViewModel.cs" />
