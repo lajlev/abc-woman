@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -57,7 +56,7 @@
         [HttpPost]
         public ActionResult Save(FormCollection form)
         {
-            var configCollection = Dbh.GetCollection<Models.Config>("Config");
+            var configCollection = Dbh.GetCollection<Config>("Config");
             
             this.Settings.Name = form.GetValue("Name").AttemptedValue;
             this.Settings.Domain = form.GetValue("Domain").AttemptedValue;
@@ -76,7 +75,7 @@
         public JsonResult CopyProdData()
         {
             var dbhTo = new Db(Environment.Staging).Dbh;
-            var dbhFrom = new Db(Environment.Production).Dbh;
+            var dbhFrom = new Db().Dbh;
 
             var allMatches = dbhFrom.GetCollection<Match>("Matches").FindAll();
             var allPlayers = dbhFrom.GetCollection<Player>("Players").FindAll();
