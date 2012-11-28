@@ -1,5 +1,6 @@
-./FoosBall/bin/
-./FoosBall/obj/
+bin/
+obj/
 _ReSharper.FoosBall/
 *.cache
 *.suo
+*.orig
