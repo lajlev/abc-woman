@@ -24,7 +24,7 @@ a:hover {
   text-decoration: underline; }
 
 a:active {
-  color: #black; }
+  color: black; }
 
 /* HEADINGS
 ----------------------------------------------------------*/
@@ -287,14 +287,17 @@ html[xmlns] .clearfix {
 
 /* Errors and Validation */
 .error, .validation-message {
-  background: rgba(255, 0, 0, 0.3);
+    background: #ff0000; /* fallback color */
+    background: rgba(255, 0, 0, 0.3);
   border: 2px solid red;
   color: black;
   display: none;
   margin: 10px 0 0 0;
   padding: 2px;
-  width: 98%; }
-  .error.small, .validation-message.small {
+  width: 98%;
+}
+
+.error.small, .validation-message.small {
     font-size: .85em;
     margin: 2px 0 0 0; }
   .error.show, .validation-message.show {

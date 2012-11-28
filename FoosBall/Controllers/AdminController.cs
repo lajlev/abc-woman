@@ -23,7 +23,7 @@
                         .FindAll()
                         .SetSortOrder(SortBy.Ascending("Name"))
                         .ToList()
-                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.AsString })
                         .ToList();
 
                 return View(new ConfigViewModel { Settings = this.Settings, Users = playerCollection });
@@ -43,7 +43,7 @@
                         .FindAll()
                         .SetSortOrder(SortBy.Ascending("Name"))
                         .ToList()
-                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.AsString })
                         .ToList()
                         .ToJson();
 

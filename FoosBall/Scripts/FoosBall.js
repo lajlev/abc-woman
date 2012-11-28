@@ -49,6 +49,7 @@ function errorState() {
         if (value) {
             return state = true;
         }
+        return undefined;
     });
     
     return state;
@@ -73,5 +74,5 @@ performance.now = (function (window) {
 
 // Shorthand method for window.performance.now()
 function now() {
-    return performance.now();
+    return window.performance.now();
 }

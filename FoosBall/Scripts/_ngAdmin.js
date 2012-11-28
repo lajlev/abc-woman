@@ -11,13 +11,13 @@
             inputs = [
                 { label: "Application name", value: dataStore.Settings.Name },
                 { label: "Domain name", value: dataStore.Settings.Domain },
-                { label: "Admin user email", value: dataStore.Settings.AdminAccount },
+                { label: "Admin user email", value: dataStore.Settings.AdminAccount }
             ];
 
             checkboxes = [
                 { label: "Enable Domain Validation", value: dataStore.Settings.RequireDomainValidation },
                 { label: "Allow one-on-one Matches", value: dataStore.Settings.AllowOneOnOneMatches },
-                { label: "Enable Gender Specific Matches", value: dataStore.Settings.GenderSpecificMatches },
+                { label: "Enable Gender Specific Matches", value: dataStore.Settings.GenderSpecificMatches }
             ];
 
             $scope.inputs = inputs;

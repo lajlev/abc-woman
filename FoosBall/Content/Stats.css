@@ -30,7 +30,7 @@ table .winner {
   display: none; }
 #pending-matches .delete div, #pending-matches .resolve div {
   width: 15px;
-  margin: 0px auto; }
+  margin: 0 auto; }
 
 #legendary-matches .names, #legendary-matches .created, #legendary-matches .long-time {
   display: none; }

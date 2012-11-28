@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -31,7 +30,7 @@
 
             ViewBag.Settings = Settings;
 
-            if ((currentUser != null && currentUser.Id == player.Id) || currentUser.Email == this.Settings.AdminAccount)
+            if (currentUser != null && (currentUser.Id == player.Id || currentUser.Email == this.Settings.AdminAccount))
             {
                 return this.View(player);
             }
@@ -45,16 +44,18 @@
             var currentUser = (Player)Session["User"];
             var playerId = formValues.GetValue("player-id").AttemptedValue;
             var email = formValues.GetValue("Email").AttemptedValue.ToLower();
+
             if (this.Settings.RequireDomainValidation)
             {
                 email += "@" + this.Settings.Domain;
             }
+            
             var name = formValues.GetValue("Name").AttemptedValue;
             var password = formValues.GetValue("Password").AttemptedValue;
             var position = formValues.GetValue("Position").AttemptedValue;
             var nickname = formValues.GetValue("NickName").AttemptedValue;
              
-            if ((currentUser != null && currentUser.Id.ToString() == playerId) || currentUser.Email == this.Settings.AdminAccount)
+            if (currentUser != null && (currentUser.Id.AsString == playerId || currentUser.Email == this.Settings.AdminAccount))
             {
                 var playerCollection = this.Dbh.GetCollection<Player>("Players");
                 var query = Query.EQ("_id", ObjectId.Parse(playerId));

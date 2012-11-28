@@ -1,7 +1,6 @@
 ﻿namespace FoosBall.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
@@ -9,7 +8,6 @@
     using FoosBall.Main;
     using FoosBall.Models;
     using FoosBall.Models.Views;
-
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -22,8 +20,7 @@
             // Fetch all players to display in a <select>
             var playerCollection = this.Dbh.GetCollection<Player>("Players").FindAll().SetSortOrder(SortBy.Ascending("Name")).ToList();
             
-            // Fetch all FoosBall matches. 
-            var matchCollection = this.Dbh.GetCollection<Match>("Matches").FindAll().ToList().OrderByDescending(x => x.GameOverTime);
+            // Fetch all FoosBall matches
             var playedMatches =
                 this.Dbh.GetCollection<Match>("Matches")
                     .Find(Query.NE("GameOverTime", BsonDateTime.Create(DateTime.MinValue)))
@@ -37,7 +34,7 @@
 
             // Create content for the <select> 
             var selectItems = playerCollection
-                .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.AsString })
                 .ToList();
 
             var played = playedMatches.OrderByDescending(x => x.GameOverTime);
@@ -79,6 +76,7 @@
                                             Created = new BsonDateTime(DateTime.Now),
                                             CreatedBy = currentUser.Id
                                         };
+
                     // Save to Db
                     matchCollection.Save(newMatch);
                     Events.SubmitEvent("Create", "Match", newMatch, currentUser.Id);
