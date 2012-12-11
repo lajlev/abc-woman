@@ -45,14 +45,13 @@
             var playerId = formValues.GetValue("player-id").AttemptedValue;
             var email = formValues.GetValue("Email").AttemptedValue.ToLower();
 
-            if (this.Settings.RequireDomainValidation)
+            if (this.Settings.EnableDomainValidation)
             {
                 email += "@" + this.Settings.Domain;
             }
             
             var name = formValues.GetValue("Name").AttemptedValue;
             var password = formValues.GetValue("Password").AttemptedValue;
-            var position = formValues.GetValue("Position").AttemptedValue;
             var nickname = formValues.GetValue("NickName").AttemptedValue;
              
             if (currentUser != null && (currentUser.Id.ToString() == playerId || currentUser.Email == this.Settings.AdminAccount))
@@ -64,7 +63,6 @@
                 player.Email = email.Length > 0 ? email : player.Email;
                 player.Name = name.Length > 0 ? name : player.Name;
                 player.Password = password.Length > 0 ? Md5.CalculateMd5(password) : player.Password;
-                player.Position = position.Length > 0 ? position : player.Position;
                 player.NickName = nickname.Length > 0 ? nickname : player.NickName;
 
                 playerCollection.Save(player);

@@ -12,9 +12,9 @@
             this.Name = "FoosBall Fighting";
             this.Domain = "trustpilot.com";
             this.AdminAccount = "jbe@trustpilot.com";
-            this.RequireDomainValidation = true;
-            this.AllowOneOnOneMatches = true;
-            this.GenderSpecificMatches = false;
+            this.EnableDomainValidation = true;
+            this.EnableOneOnOneMatches = true;
+            this.EnableGenderSpecificMatches = false;
         }
 
         public string Name { get; set; }
@@ -23,11 +23,11 @@
 
         public string AdminAccount { get; set; } 
 
-        public bool RequireDomainValidation { get; set; }
+        public bool EnableDomainValidation { get; set; }
 
-        public bool AllowOneOnOneMatches { get; set; }
+        public bool EnableOneOnOneMatches { get; set; }
 
-        public bool GenderSpecificMatches { get; set; }
+        public bool EnableGenderSpecificMatches { get; set; }
 
         public Environment Environment { get; set; }
     }

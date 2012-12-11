@@ -304,8 +304,8 @@ input[type="text"], input[type="password"], input[type="email"] {
   padding: 2px;
   width: 98%;
 
-	&#Email {
-		width: 60px!important;
+	&#Email.short {
+        width: 60px!important;
 	}
 }
 input[type="submit"], input[type="button"], button {

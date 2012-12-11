@@ -54,19 +54,22 @@
         }
 
         [HttpPost]
-        public ActionResult Save(FormCollection form)
+        public ActionResult Save(ConfigViewModel viewModel)
         {
-            var configCollection = Dbh.GetCollection<Config>("Config");
+            if (ModelState.IsValid)
+            {
+                var configCollection = Dbh.GetCollection<Config>("Config");
+
+                this.Settings.Name = viewModel.Settings.Name;
+                this.Settings.Domain = viewModel.Settings.Domain;
+                this.Settings.AdminAccount = viewModel.Settings.AdminAccount;
+                this.Settings.EnableDomainValidation = viewModel.Settings.EnableDomainValidation;
+                this.Settings.EnableOneOnOneMatches = viewModel.Settings.EnableOneOnOneMatches;
+                this.Settings.EnableGenderSpecificMatches = viewModel.Settings.EnableGenderSpecificMatches;
+
+                configCollection.Save(this.Settings);
+            }
             
-            this.Settings.Name = form.GetValue("Name").AttemptedValue;
-            this.Settings.Domain = form.GetValue("Domain").AttemptedValue;
-            this.Settings.AdminAccount = form.GetValue("AdminAccount").AttemptedValue;
-            this.Settings.RequireDomainValidation = form.GetValue("RequireDomainValidation") != null;
-            this.Settings.AllowOneOnOneMatches = form.GetValue("AllowOneOnOneMatches") != null;
-            this.Settings.GenderSpecificMatches = form.GetValue("GenderSpecificMatches") != null;
-
-            configCollection.Save(this.Settings);
-
             return RedirectToAction("Index", "Admin");
         }
 

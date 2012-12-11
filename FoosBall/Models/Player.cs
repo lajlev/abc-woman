@@ -29,8 +29,6 @@
         
         public string Password { get; set; }
         
-        public string Position { get; set; }
-       
         public int Won { get; set; }
         
         public int Lost { get; set; }
@@ -39,8 +37,6 @@
 
         public double Rating { get; set; }
 
-        public double RatingDifference { get; set; }
-        
         public bool Deactivated { get; set; }
         
         public bool RememberMe { get; set; }

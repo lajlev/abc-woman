@@ -51,7 +51,7 @@
         public ActionResult LogOn(LogOnViewModel model)
         {
             var email = model.Email.ToLower();
-            if (this.Settings.RequireDomainValidation)
+            if (this.Settings.EnableDomainValidation)
             {
                 email += "@" + this.Settings.Domain;
             }
@@ -105,14 +105,13 @@
         public ActionResult Register(Player model)
         {
             var email = model.Email.ToLower();
-            if (this.Settings.RequireDomainValidation)
+            if (this.Settings.EnableDomainValidation)
             {
                 email += "@" + this.Settings.Domain;
             }
 
             var name = model.Name;
             var password = Md5.CalculateMd5(model.Password);
-            var position = model.Position;
             var nickname = model.NickName;
 
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
@@ -124,7 +123,6 @@
                                     Name = name,
                                     Password = password,
                                     NickName = nickname,
-                                    Position = position,
                                     Won = 0,
                                     Lost = 0,
                                     Played = 0

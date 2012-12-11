@@ -1,4 +1,4 @@
-﻿    @model FoosBall.Models.Views.ConfigViewModel
+﻿@model FoosBall.Models.Views.ConfigViewModel
 @{
     ViewBag.Title = "Configuration";
 }
@@ -6,27 +6,32 @@
 @section Javascript
 { 
     <script src="/Scripts/angular.min.js"></script> 
-    <script src="/Scripts/_ngAdmin.js"></script> 
     <script async src="/Scripts/Admin.js"></script> 
 }
 @section Css { <link rel="stylesheet" href="/Content/Admin.css"/> }
 
-<div data-ng-app>
-    <fieldset data-ng-controller="settingsCtrl" id="app-configuration">
+<div>
+    <fieldset id="app-configuration">
         <legend>Configuration</legend>
         @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
         {
-            /* Angular stuff */
-            <div data-ng-repeat="input in inputs">
-                <label>{{input.label}}</label>
-                <input type="text" data-ng-model="input.value">
-            </div>
 
-            <div data-ng-repeat="checkbox in checkboxes">
-                <label>{{checkbox.label}}</label>
-                <input type="checkbox" data-ng-model="checkbox.value">
-            </div>
+            @Html.LabelFor(m => m.Settings.Name, "Application name");
+            @Html.TextBoxFor(m => m.Settings.Name)
+            
+            @Html.LabelFor(m => m.Settings.AdminAccount, "Administrator (email)");
+            @Html.TextBoxFor(m => m.Settings.AdminAccount)
+            
+            @Html.LabelFor(m => m.Settings.EnableDomainValidation, "Enable domain validation?");
+            @Html.CheckBoxFor(m => m.Settings.EnableDomainValidation)
+            @Html.TextBoxFor(m => m.Settings.Domain)
 
+            @Html.LabelFor(m => m.Settings.EnableOneOnOneMatches, "Enable one-on-one matches?");
+            @Html.CheckBoxFor(m => m.Settings.EnableOneOnOneMatches)
+            
+            @Html.LabelFor(m => m.Settings.EnableGenderSpecificMatches, "Enable gender specific matches?");
+            @Html.CheckBoxFor(m => m.Settings.EnableGenderSpecificMatches)
+            
             <input name="save-config" type="submit" value="Save" class="button"/>
         }
     </fieldset>
