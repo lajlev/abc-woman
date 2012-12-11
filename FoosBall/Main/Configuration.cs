@@ -1,7 +1,6 @@
 ﻿namespace FoosBall.Main
 {
     using System.Configuration;
-    using System.Xml;
 
     using FoosBall.Models;
     using FoosBall.Models.Base;

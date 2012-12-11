@@ -120,7 +120,6 @@
     <Compile Include="Main\Db.cs" />
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
-    <Compile Include="Models\Base\FoosBallLists.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\StatsAggregate.cs" />
     <Compile Include="Models\PlayerStatsAggregate.cs" />
@@ -187,7 +186,6 @@
     <Content Include="Scripts\Players.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\PlayerStats.js" />
-    <Content Include="Scripts\_ngAdmin.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

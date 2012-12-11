@@ -9,7 +9,7 @@
 @{
     string email = null;
     
-    if (ViewBag.Settings.RequireDomainValidation)
+    if (ViewBag.Settings.EnableDomainValidation)
     {
         if (Model != null)
         {
@@ -19,25 +19,13 @@
 }
 
 @Html.LabelFor(m => Model.Email, "Email")
-@Html.TextBoxFor(m => email, new { @id= "Email", placeholder = "Email", autocapitalize = "off", autocorrect = "off"})<text>@@trustpilot.com</text><br/>
+@Html.TextBoxFor(m => email, new { @id= "Email", placeholder = "Email", autocapitalize = "off", autocorrect = "off"})@@trustpilot.com<br/>
 <br/> 
 @Html.LabelFor(m => Model.Name)
 @Html.TextBoxFor(m => Model.Name, new { placeholder = "Name"})
 <br/><br/>
 @Html.LabelFor(m => Model.NickName, "Nickname (max 5 char.)")
 @Html.TextBoxFor(m => Model.NickName, new { placeholder = "Nickname", maxlength = "5"})
-<br/><br/>
-@Html.LabelFor(m => FoosBallLists.Positions[0], "Preferred position")
-
-<select name="Position">
-    @foreach (var position in FoosBallLists.Positions)
-    {
-        var selected = Model != null ? Model.Position : "None";
-        // set default option
-        var sel = (position == selected) ? Html.Raw("selected") : Html.Raw("");
-        <option @sel value="@position">@position</option>
-    }
-</select>
 <br/><br/>
 <div class="editor-label">@Html.LabelFor(m => Model.Password)</div>
 <div class="editor-field">@Html.PasswordFor(m => Model.Password, new { placeholder = "Password"})</div>

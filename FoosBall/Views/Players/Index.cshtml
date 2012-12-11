@@ -3,7 +3,6 @@
 @model FoosBall.Models.Views.PlayerViewModel
 @{
     ViewBag.Title = "FoosBall Players";
-    var currentUser = (Player)HttpContext.Current.Session["User"];
 }
 @section Javascript{ <script async src="/Scripts/Players.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}

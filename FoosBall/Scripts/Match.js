@@ -43,6 +43,7 @@
             e.preventDefault();
             return false;
         }
+        return undefined;
     });
     
     // Add a tag on the players that match the current user

@@ -1,14 +1,9 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace FoosBall
+﻿namespace FoosBall
 {
-    using System.Configuration;
+    using System.Web.Mvc;
+    using System.Web.Routing;
 
     using FoosBall.Main;
-    using FoosBall.Models;
-
-    using MongoDB.Bson.Serialization;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -40,6 +35,5 @@ namespace FoosBall
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
-
     }
 }

@@ -28,8 +28,7 @@
         // (By using the default encoding)
         public static string GetGravatarEmailHash(string email)
         {
-            var gravatarUrl = string.Empty;
-            gravatarUrl = "http://www.gravatar.com/avatar/" + CalculateMd5(email.ToLower().Trim(), Encoding.Default);
+            var gravatarUrl = "http://www.gravatar.com/avatar/" + CalculateMd5(email.ToLower().Trim(), Encoding.Default);
             return gravatarUrl.ToLower();
         }
     }
