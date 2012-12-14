@@ -6,6 +6,7 @@
     var $enableDomainValidation = $('#Settings_EnableDomainValidation'),
         $selectPlayer = $('#select-player'),
         $copyProdToStaging = $('#copy-prod-to-staging'),
+        $replayMatches = $('#replay-matches'),
         $appNameTextBox = $('#Settings_Name');
 
     $selectPlayer.on('change', function () {
@@ -22,13 +23,27 @@
     $copyProdToStaging.on('click', function (e) {
         e.preventDefault();
         toggleOverlay();
-        
+
         $.ajax({
             type: 'get',
             url: '/Admin/CopyProdData/',
             success: function () {
                 toggleOverlay();
                 alert('Data has been copied.');
+            }
+        });
+    });
+
+    $replayMatches.on('click', function (e) {
+        e.preventDefault();
+        toggleOverlay();
+
+        $.ajax({
+            type: 'post',
+            url: '/Admin/ReplayMatches/',
+            success: function () {
+                toggleOverlay();
+                alert('Matches has been replayed.');
             }
         });
     });

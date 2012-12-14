@@ -1,5 +1,7 @@
 # Import to production
-c:\source\mongodb\bin\mongoimport -h ds039467.mongolab.com:39467 -d appharbor_91a02254-b6c1-4f8a-8a8d-8acbeb96c62f -c Players -u admin -p 4va4lbertml --file c:\tmp\Players_20121108.json
+c:\source\mongodb\bin\mongoimport -h ds039467.mongolab.com:39467 -d appharbor_91a02254-b6c1-4f8a-8a8d-8acbeb96c62f -c Players -u admin -p 4va4lbertml --file C:\source\FoosBall\FoosBall\Migration\Players_20121213.json
+c:\source\mongodb\bin\mongoimport -h ds039467.mongolab.com:39467 -d appharbor_91a02254-b6c1-4f8a-8a8d-8acbeb96c62f -c Matches -u admin -p 4va4lbertml --file C:\source\FoosBall\FoosBall\Migration\Matches_20121213.json
 
 # Import to localhost
-c:\source\mongodb\bin\mongoimport -h localhost:27017 -d FoosBall -c Matches -u admin -p 4va4lbert --file C:\source\FoosBall\FoosBall\Migration\Matches_20121116.json 
+c:\source\mongodb\bin\mongoimport -h localhost:27017 -d FoosBall -c Players -u admin -p 4va4lbert --file C:\source\FoosBall\FoosBall\Migration\Players_20121213.json
+c:\source\mongodb\bin\mongoimport -h localhost:27017 -d FoosBall -c Matches -u admin -p 4va4lbert --file C:\source\FoosBall\FoosBall\Migration\Matches_20121213.json

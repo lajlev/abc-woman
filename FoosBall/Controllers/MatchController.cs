@@ -24,7 +24,7 @@
             var playedMatches =
                 this.Dbh.GetCollection<Match>("Matches")
                     .Find(Query.NE("GameOverTime", BsonDateTime.Create(DateTime.MinValue)))
-                    .ToList().OrderByDescending(x => x.GameOverTime).Take(20);
+                    .ToList().OrderByDescending(x => x.GameOverTime);
 
             var pendingMatches =
                 this.Dbh.GetCollection<Match>("Matches")
@@ -193,9 +193,7 @@
                         }
                     }
 
-                    // Update match score/time stats
-                    match.RedScore = intRedScore;
-                    match.BlueScore = intBlueScore;
+                    // Update match time stats
                     match.GameOverTime = new BsonDateTime(DateTime.Now);
 
                     // Save the data to Db
