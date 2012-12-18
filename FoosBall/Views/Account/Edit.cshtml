@@ -1,5 +1,4 @@
-﻿@using FoosBall.Models
-@model Player
+﻿@model FoosBall.ViewModels.PlayerBaseData
 @{
     Layout = "~/Views/Shared/_SimpleLayout.cshtml";
     ViewBag.Title = "Edit Player Data";
@@ -10,8 +9,7 @@
 @using (Html.BeginForm("Edit", "Players", FormMethod.Post, new { id = "edit-player" }))
 {
     <h3>Create a FoosBall player</h3>
-    <input type="hidden" name="player-id" value="@Model.Id"/>
-
+    
     @Html.Partial("_PlayerBaseData", Model)
 
     <div class="validation-message"></div>

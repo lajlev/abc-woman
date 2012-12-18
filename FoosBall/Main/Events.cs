@@ -8,12 +8,12 @@
 
     public static class Events
     {
-        public static void SubmitEvent(string action, string type, object targetObject, BsonObjectId userId) 
+        public static void SubmitEvent(string action, string type, object targetObject, string userId) 
         {
             SaveEvent(action, type, targetObject, userId);
         }
 
-        private static void SaveEvent(string action, string type, object targetObject, BsonObjectId userId)
+        private static void SaveEvent(string action, string type, object targetObject, string userId)
         {
             if (string.IsNullOrEmpty(action) == false && string.IsNullOrEmpty(type) == false && targetObject != null)
             {
