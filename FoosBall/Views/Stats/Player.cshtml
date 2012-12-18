@@ -1,5 +1,4 @@
-﻿@using FoosBall.Models
-@model FoosBall.Models.Views.PlayerStatsViewModel
+﻿@model FoosBall.Models.Views.PlayerStatsViewModel
 @{
     ViewBag.Title = "Player Stats";
 }
@@ -13,20 +12,19 @@
 <fieldset id="player-statistics">
     <legend>Stats for @Model.Player.Name</legend>
     <div class="second">
-        <div class="label">Fights Today:</div>
-        <div>@Model.PlayedToday</div>
-        <div class="label">Fights Last 7 Days:</div>
-        <div>@Model.PlayedLast7Days</div>
-        <div class="label">Fights Last 30 Days:</div>
-        <div>@Model.PlayedLast30Days</div>
+        <div class="label">Player ranking:</div>
+        <div>@Model.Ranking of @Model.TotalNumberOfPlayers</div>
+        <div class="label">Player rating:</div>
+        <div>@Model.Player.Rating.ToString("F2")</div>
+        <div class="label">Player ratio:</div>
+        <div>@Model.Player.Ratio().ToString("F2")</div>
+        <br/>
         <div class="label">Fights Total:</div>
         <div>@Model.Played</div>
         <div class="label">Won Fights:</div>
         <div>@Model.Won</div>
         <div class="label">Lost Fights:</div>
         <div>@Model.Lost</div>
-        <div class="label">Player ranking:</div>
-        <div>@Model.Ranking</div>
         <br/>
     </div>
         

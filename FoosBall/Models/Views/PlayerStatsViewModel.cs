@@ -40,6 +40,8 @@
 
         public Match LatestMatch { get; set; }
 
+        public int TotalNumberOfPlayers { get; set; }
+
         public IEnumerable<Match> PlayedMatches { get; set; }
     }
 }

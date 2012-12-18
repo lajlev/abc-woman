@@ -1,6 +1,4 @@
-﻿@using FoosBall.Models
-@using FoosBall.Main
-@model FoosBall.ViewModels.PlayersViewModel
+﻿@model FoosBall.ViewModels.PlayersViewModel
 @{
     ViewBag.Title = "FoosBall Players";
 }
@@ -14,18 +12,19 @@
     {
         <div id="@player.Id" class="player clearfix">
             <div class="ranking" title="Players ranking">
-            @index.
+                @index.
             </div>
             <div class="avatar">
                 <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })"><img class="gravatar" alt="Gravatar picture" src="@Html.GetGravatarEmailHash(player.Email)?d=mm"/></a>
             </div>
             <div class="name ellipsis-1">
-            <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })">@player.Name</a>
-            <br>
-                <span title="@player.Rating.ToString("F2")">@player.Rating.ToString("F0")<sup>points</sup></span>
-                <div class="won-lost-played" title="Won: @player.Won &middot; Lost: @player.Lost &middot; Played: @player.Played">
+                <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })">@player.Name</a>
+                <br>
+                <span title="Elo rating: @player.Rating.ToString("F2")">@player.Rating.ToString("F0")<sup>points</sup></span>|
+                <span title="Winning ratio: @player.Ratio().ToString("F4")" class="ratio">@player.Ratio().ToString("F2")<sup>ratio</sup></span>
+                @*<div class="won-lost-played" title="Won: @player.Won &middot; Lost: @player.Lost &middot; Played: @player.Played">
                     <span class="won">@player.Won</span> &middot; <span class="lost">@player.Lost</span> &middot; <span class="played">@player.Played</span>
-                </div>
+                </div>*@
             </div>
         </div>
 

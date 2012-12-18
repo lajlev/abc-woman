@@ -197,6 +197,7 @@
                                         .SetSortOrder(SortBy.Descending("Rating"))
                                         .ToList()
                                         .FindIndex(x => x.Id == id.ToString()) + 1; // convert zero-based to 1-based index
+                    stats.TotalNumberOfPlayers = (int)playerCollection.Count();
                 }
 
                 stats.Bff = bff.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();

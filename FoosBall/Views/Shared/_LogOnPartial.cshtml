@@ -1,5 +1,4 @@
-﻿@using FoosBall.Models
-@if (Session["IsLoggedIn"].ToString().ToLower() == "true")
+﻿@if (Session["IsLoggedIn"].ToString().ToLower() == "true")
 {
     var user = (Player)Session["User"];
     <text>Hi @user.Name

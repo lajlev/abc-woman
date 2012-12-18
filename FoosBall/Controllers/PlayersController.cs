@@ -12,7 +12,10 @@
     {
         public ActionResult Index()
         {
-            var playerCollection = this.Dbh.GetCollection<Player>("Players").FindAll().SetSortOrder(SortBy.Descending("Rating")).ToList();
+            var playerCollection = Dbh.GetCollection<Player>("Players")
+                                        .FindAll()
+                                        .SetSortOrder(SortBy.Descending("Rating"))
+                                        .ToList();
 
             return this.View(new PlayersViewModel { AllPlayers = playerCollection });
         }
