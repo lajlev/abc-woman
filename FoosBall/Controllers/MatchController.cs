@@ -24,7 +24,9 @@
             var playedMatches =
                 this.Dbh.GetCollection<Match>("Matches")
                     .Find(Query.NE("GameOverTime", BsonDateTime.Create(DateTime.MinValue)))
-                    .ToList().OrderByDescending(x => x.GameOverTime);
+                    .Take(30)
+                    .ToList()
+                    .OrderByDescending(x => x.GameOverTime);
 
             var pendingMatches =
                 this.Dbh.GetCollection<Match>("Matches")
@@ -92,7 +94,7 @@
         {
             var currentUser = (Player)Session["User"];
             var matchCollection = this.Dbh.GetCollection<Match>("Matches");
-            var query = Query.EQ("_id", BsonObjectId.Create(id));
+            var query = Query.EQ("_id", BsonObjectId.Parse(id));
             var match = matchCollection.FindOne(query);
 
             if (currentUser != null && match.ContainsPlayer(currentUser.Id))
@@ -121,22 +123,22 @@
                 // Update players from the match with players from the Db.
                 if (match.RedPlayer1.Id != null)
                 {
-                    match.RedPlayer1 = playerCollection.FindOne(Query.EQ("_id", match.RedPlayer1.Id));
+                    match.RedPlayer1 = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(match.RedPlayer1.Id)));
                 }
 
                 if (match.RedPlayer2.Id != null)
                 {
-                    match.RedPlayer2 = playerCollection.FindOne(Query.EQ("_id", match.RedPlayer2.Id));
+                    match.RedPlayer2 = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(match.RedPlayer2.Id)));
                 }
                 
                 if (match.BluePlayer1.Id != null)
                 {
-                    match.BluePlayer1 = playerCollection.FindOne(Query.EQ("_id", match.BluePlayer1.Id));
+                    match.BluePlayer1 = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(match.BluePlayer1.Id)));
                 }
                 
                 if (match.BluePlayer2.Id != null)
                 {
-                    match.BluePlayer2 = playerCollection.FindOne(Query.EQ("_id", match.BluePlayer2.Id));
+                    match.BluePlayer2 = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(match.BluePlayer2.Id)));
                 }
 
                 var currentUser = (Player)Session["User"];
@@ -214,7 +216,7 @@
             if (currentUser != null)
             {
                 var matchCollection = this.Dbh.GetCollection<Match>("Matches");
-                var query = Query.EQ("_id", BsonObjectId.Create(id));
+                var query = Query.EQ("_id", BsonObjectId.Parse(id));
                 var match = matchCollection.FindOne(query);
 
                 Events.SubmitEvent("Delete", "Match", match, currentUser.Id);

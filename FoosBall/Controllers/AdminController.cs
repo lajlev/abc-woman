@@ -134,32 +134,34 @@
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////
                 foreach (var match in allMatches)
                 {
-                    BsonObjectId id; 
+                    string id;
+                    const string DeletedJakob = "50918252592eff0e9088b4df";
+                    const string NewJakob = "50918252592eff0e9088b4df";
 
                     // Update players from the match with players from the Db.
                     if (match.RedPlayer1.Id != null)
                     {
 
-                        id = (match.RedPlayer1.Id == ObjectId.Parse("508e36b90fa6810e90a3165c")) ? ObjectId.Parse("50918252592eff0e9088b4df") : match.RedPlayer1.Id;
-                        match.RedPlayer1 = copyPlayers.FindOne(Query.EQ("_id", id));
+                        id = (match.RedPlayer1.Id == DeletedJakob) ? NewJakob : match.RedPlayer1.Id;
+                        match.RedPlayer1 = copyPlayers.FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
                     }
 
                     if (match.RedPlayer2.Id != null)
                     {
-                        id = match.RedPlayer2.Id == ObjectId.Parse("508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : match.RedPlayer2.Id;
-                        match.RedPlayer2 = copyPlayers.FindOne(Query.EQ("_id", id));
+                        id = match.RedPlayer2.Id == DeletedJakob ? NewJakob : match.RedPlayer2.Id;
+                        match.RedPlayer2 = copyPlayers.FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
                     }
 
                     if (match.BluePlayer1.Id != null)
                     {
-                        id = match.BluePlayer1.Id == ObjectId.Parse("508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : match.BluePlayer1.Id;
-                        match.BluePlayer1 = copyPlayers.FindOne(Query.EQ("_id", id));
+                        id = match.BluePlayer1.Id == DeletedJakob ? NewJakob : match.BluePlayer1.Id;
+                        match.BluePlayer1 = copyPlayers.FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
                     }
 
                     if (match.BluePlayer2.Id != null)
                     {
-                        id = match.BluePlayer2.Id == ObjectId.Parse("508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : match.BluePlayer2.Id;
-                        match.BluePlayer2 = copyPlayers.FindOne(Query.EQ("_id", id));
+                        id = match.BluePlayer2.Id == DeletedJakob ? NewJakob : match.BluePlayer2.Id;
+                        match.BluePlayer2 = copyPlayers.FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
                     }
 
                     // Determine the winners and the losers

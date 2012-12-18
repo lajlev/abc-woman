@@ -1,32 +1,32 @@
-﻿@using FoosBall.Models
-@using FoosBall.Main
-@using FoosBall.Models.Base
-@using System.Text.RegularExpressions
-@model FoosBall.Models.Player
+﻿@model FoosBall.ViewModels.PlayerBaseData
+@Html.HiddenFor(m => m.Player.Id)
 
-<a href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(Model != null ? Model.Email : "")"/></a>
-
+<a href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" src="@Html.GetGravatarEmailHash(Model.Player.Email)"/></a>
+<br/>
+<br/>
 @{
-    string email = null;
-    
-    if (ViewBag.Settings.EnableDomainValidation)
+    if (Model.Settings.EnableDomainValidation && !string.IsNullOrEmpty(Model.Player.Email))
     {
-        if (Model != null)
-        {
-            email = Regex.Replace(Model.Email, "@trustpilot.com", "");
-        }
+        Model.Player.Email = Regex.Replace(Model.Player.Email, "@" + Model.Settings.Domain, "");
     }
 }
 
-@Html.LabelFor(m => Model.Email, "Email")
-@Html.TextBoxFor(m => email, new { @id= "Email", placeholder = "Email", autocapitalize = "off", autocorrect = "off"})@@trustpilot.com<br/>
+@Html.LabelFor(m => Model.Player.Email, "Email")
+<br/>
+@Html.TextBoxFor(m => m.Player.Email, new { @id= "Email", placeholder = "Email", autocapitalize = "off", autocorrect = "off", @class = Model.Settings.EnableDomainValidation ? "short" : "long"})
+@if (Model.Settings.EnableDomainValidation)
+{
+    <string>@@</string>@Model.Settings.Domain
+}
+
+<br/>
 <br/> 
-@Html.LabelFor(m => Model.Name)
-@Html.TextBoxFor(m => Model.Name, new { placeholder = "Name"})
+@Html.LabelFor(m => Model.Player.Name)
+@Html.TextBoxFor(m => Model.Player.Name, new { placeholder = "Name"})
 <br/><br/>
-@Html.LabelFor(m => Model.NickName, "Nickname (max 5 char.)")
-@Html.TextBoxFor(m => Model.NickName, new { placeholder = "Nickname", maxlength = "5"})
+@Html.LabelFor(m => Model.Player.NickName, "Nickname (max 5 char.)")
+@Html.TextBoxFor(m => Model.Player.NickName, new { placeholder = "Nickname", maxlength = "5"})
 <br/><br/>
-<div class="editor-label">@Html.LabelFor(m => Model.Password)</div>
-<div class="editor-field">@Html.PasswordFor(m => Model.Password, new { placeholder = "Password"})</div>
+<div class="editor-label">@Html.LabelFor(m => Model.Player.Password)</div>
+<div class="editor-field">@Html.PasswordFor(m => Model.Player.Password, new { placeholder = "Password"})</div>
 <br/><br/>

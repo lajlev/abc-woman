@@ -4,6 +4,7 @@
     using FoosBall.Main;
     using FoosBall.Models;
     using FoosBall.Models.Views;
+    using FoosBall.ViewModels;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -97,28 +98,28 @@
         public ActionResult Register()
         {
             ViewBag.Settings = this.Settings;
-            return View();
+            return View(new PlayerBaseData{ Player = new Player(), Settings = this.Settings });
         }
 
         // POST: /Account/Register
         [HttpPost]
-        public ActionResult Register(Player model)
+        public ActionResult Register(PlayerBaseData model)
         {
-            var email = model.Email.ToLower();
+            var email = model.Player.Email.ToLower();
             if (this.Settings.EnableDomainValidation)
             {
                 email += "@" + this.Settings.Domain;
             }
 
-            var name = model.Name;
-            var password = Md5.CalculateMd5(model.Password);
-            var nickname = model.NickName;
+            var name = model.Player.Name;
+            var password = Md5.CalculateMd5(model.Player.Password);
+            var nickname = model.Player.NickName;
 
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
 
             var newPlayer = new Player
                                 {
-                                    Id = BsonObjectId.GenerateNewId(),
+                                    Id = BsonObjectId.GenerateNewId().ToString(),
                                     Email = email,
                                     Name = name,
                                     Password = password,
@@ -136,10 +137,68 @@
             return RedirectToAction("Index", "Home");
         }
 
-        // POST: /Account/PlayerEmailExists
-        [HttpPost]
-        public JsonResult PlayerEmailExists(string email)
+        [HttpGet]
+        public ActionResult Edit(string id)
         {
+            var currentUser = (Player)Session["User"];
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+
+            var query = Query.EQ("_id", BsonObjectId.Parse(id));
+            var player = playerCollection.FindOne(query);
+
+            ViewBag.Settings = Settings;
+
+            if (currentUser != null && (currentUser.Id == player.Id || currentUser.Email == this.Settings.AdminAccount))
+            {
+                return this.View(new PlayerBaseData { Player = player, Settings = this.Settings });
+            }
+
+            return this.RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult Edit(PlayerBaseData viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var currentUser = (Player)Session["User"];
+
+                if (this.Settings.EnableDomainValidation)
+                {
+                    viewModel.Player.Email += "@" + this.Settings.Domain;
+                }
+
+                if (currentUser != null
+                    && (currentUser.Id == viewModel.Player.Id || currentUser.Email == this.Settings.AdminAccount))
+                {
+                    var playerCollection = this.Dbh.GetCollection<Player>("Players");
+                    var query = Query.EQ("_id", BsonObjectId.Parse(viewModel.Player.Id));
+                    var player = playerCollection.FindOne(query);
+
+                    player.Email = string.IsNullOrEmpty(viewModel.Player.Email)
+                                        ? player.Email
+                                        : viewModel.Player.Email;
+                    player.Name = string.IsNullOrEmpty(viewModel.Player.Name)
+                                        ? player.Name
+                                        : viewModel.Player.Name;
+                    player.Password = string.IsNullOrEmpty(viewModel.Player.Password)
+                                        ? player.Password
+                                        : Md5.CalculateMd5(viewModel.Player.Password);
+                    player.NickName = string.IsNullOrEmpty(viewModel.Player.NickName)
+                                        ? player.NickName
+                                        : viewModel.Player.NickName;
+
+                    playerCollection.Save(player);
+                }
+            }
+
+            return this.RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult PlayerEmailIsValid(string email)
+        {
+
             var query = Query.EQ("Email", email.ToLower());
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(query);

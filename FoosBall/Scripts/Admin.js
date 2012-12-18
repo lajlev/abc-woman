@@ -12,7 +12,7 @@
     $selectPlayer.on('change', function () {
         $.ajax({
             type: 'get',
-            url: '/Players/Edit/',
+            url: '/Account/Edit/',
             data: { id: $(this).children(':selected').attr('id') },
             success: function (data) {
                 $('#player-data').html(data);

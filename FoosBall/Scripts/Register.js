@@ -2,11 +2,13 @@
     $('#Email').focus();
 
     // Form Validation
-    var $inputFields = $('input');
-    var emailRegExp = /[@]/i;
-
+    var $inputFields = $('input').not('[type="hidden"]');
+    
     $('form[name="register-player"]').on('submit', function (e) {
         var email = $('#Email').val(),
+            name = $('#Player_Name').val(),
+            password = $('#Player_Password').val(),
+            repeatPassword = $('#Player_RepeatPassword').val(),
             missingFields = false;
 
         $.each($('input[type="text"], input[type="email"]'), function () {
@@ -30,17 +32,15 @@
         }
 
         // Validate emails field
-        if (emailRegExp.test(email) === true) {
+        if (emailIsValid(email) === false) {
             displayErrorMessage("You must submit a valid trustpilot email.", "Email");
-        } else {
-            emailExists(email);
         }
 
         // Validate Name field
-        nameExists($('#Name').val());
+        nameExists(name);
 
         // Validate password fields
-        if ($('#Password').val() !== $('#Repeat-Password').val()) {
+        if (password !== repeatPassword) {
             displayErrorMessage("Your passwords do not match.", "Password");
         } else {
             clearErrorMessage("Password");
@@ -81,16 +81,16 @@
 });
 
 // Synch call to server to check if email is alredy registered
-function emailExists(email) {
+function emailIsValid(email) {
     $.ajax({
         type: post,
-        url: '/Account/PlayerEmailExists',
+        url: '/Account/PlayerEmailIsValid',
         cache: false,
         data: { email: email },
         dataType: 'json',
         async: false,
         success: function (response) {
-            if (response.Exists) {
+            if (response.isValid) {
                 displayErrorMessage("A player with this email already exists ("+response.Name+")", "Email");
             } else {
                 clearErrorMessage("Email");

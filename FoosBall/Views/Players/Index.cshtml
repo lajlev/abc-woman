@@ -7,17 +7,17 @@
 @section Javascript{ <script async src="/Scripts/Players.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
 
-@if (Model.Players.Any()) 
+@if (Model.AllPlayers.Any()) 
 {
     var index = 1;
-    foreach (var player in Model.Players)
+    foreach (var player in Model.AllPlayers)
     {
         <div id="@player.Id" class="player clearfix">
             <div class="ranking" title="Players ranking">
             @index.
             </div>
             <div class="avatar">
-                <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })"><img class="gravatar" alt="Gravatar picture" src="@Md5.GetGravatarEmailHash(player.Email)?d=mm"/></a>
+                <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })"><img class="gravatar" alt="Gravatar picture" src="@Html.GetGravatarEmailHash(player.Email)?d=mm"/></a>
             </div>
             <div class="name ellipsis-1">
             <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })">@player.Name</a>

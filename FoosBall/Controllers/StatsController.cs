@@ -26,18 +26,18 @@
             if (playerId != null)
             {
                 // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
-                var id = (playerId == "508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : ObjectId.Parse(playerId);
+                var id = (playerId == "508e36b90fa6810e90a3165c") ? "50918252592eff0e9088b4df" : playerId;
 
-                var bff = new Dictionary<BsonObjectId, BestFriendForever>();
-                var rbff = new Dictionary<BsonObjectId, RealBestFriendForever>();
-                var eae = new Dictionary<BsonObjectId, EvilArchEnemy>();
+                var bff = new Dictionary<string, BestFriendForever>();
+                var rbff = new Dictionary<string, RealBestFriendForever>();
+                var eae = new Dictionary<string, EvilArchEnemy>();
                 var preferredColor = new Dictionary<string, PreferredColor>();
                 var winningColor = new Dictionary<string, WinningColor>();
                 const string Blue = "blue";
                 const string Red = "red";
 
                 var playerCollection = Dbh.GetCollection<Player>("Players");
-                var player = playerCollection.FindOne(Query.EQ("_id", id));
+                var player = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
                 var stats = new PlayerStatsViewModel { Player = player };
 
                 var matches = Dbh.GetCollection<Match>("Matches")
@@ -196,7 +196,7 @@
                     stats.Ranking = playerCollection.FindAll()
                                         .SetSortOrder(SortBy.Descending("Rating"))
                                         .ToList()
-                                        .FindIndex(p => p.Id == id) + 1; // convert zero-based to 1-based index
+                                        .FindIndex(x => x.Id == id.ToString()) + 1; // convert zero-based to 1-based index
                 }
 
                 stats.Bff = bff.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
@@ -215,7 +215,7 @@
         public JsonResult GetPlayerRatingData(string playerId)
         {
             // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
-            var id = (playerId == "508e36b90fa6810e90a3165c") ? ObjectId.Parse("50918252592eff0e9088b4df") : ObjectId.Parse(playerId);
+            var id = (playerId == "508e36b90fa6810e90a3165c") ? "50918252592eff0e9088b4df" : playerId;
             var chartData = new PlayerRatingChartData(); 
 
             if (playerId != null)

@@ -5,7 +5,7 @@
     
     // Calculates a MD5 hash from the given string and uses the given
     // encoding.
-    public class Md5
+    public static class Md5
     {
         public static string CalculateMd5(string input, Encoding useEncoding)
         {
