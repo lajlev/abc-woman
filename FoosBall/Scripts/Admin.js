@@ -25,7 +25,7 @@
         toggleOverlay();
 
         $.ajax({
-            type: 'get',
+            type: 'post',
             url: '/Admin/CopyProdData/',
             success: function () {
                 toggleOverlay();

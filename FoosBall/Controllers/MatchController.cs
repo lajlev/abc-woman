@@ -24,9 +24,9 @@
             var playedMatches =
                 this.Dbh.GetCollection<Match>("Matches")
                     .Find(Query.NE("GameOverTime", BsonDateTime.Create(DateTime.MinValue)))
-                    .Take(30)
                     .ToList()
-                    .OrderByDescending(x => x.GameOverTime);
+                    .OrderByDescending(x => x.GameOverTime)
+                    .Take(30);
 
             var pendingMatches =
                 this.Dbh.GetCollection<Match>("Matches")
