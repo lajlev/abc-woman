@@ -5,7 +5,6 @@
 
     public abstract class FoosBallDoc
     {
-        [BsonRepresentation(BsonType.String)]
         public BsonObjectId Id { get; set; }
 
         public BsonDateTime Created { get; set; }
