@@ -1,4 +1,4 @@
-﻿@model FoosBall.ViewModels.PlayerBaseData
+﻿@model FoosBall.ViewModels.PlayerBaseDataViewModel
 @Html.HiddenFor(m => m.Player.Id)
 
 <a href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" src="@Html.GetGravatarEmailHash(Model.Player.Email)"/></a>

@@ -127,7 +127,7 @@
     <Compile Include="Models\PlayerStatsAggregate.cs" />
     <Compile Include="Models\Views\EventViewModel.cs" />
     <Compile Include="Models\Views\PlayerStatsViewModel.cs" />
-    <Compile Include="Models\Views\ConfigViewModel.cs" />
+    <Compile Include="ViewModels\ConfigViewModel.cs" />
     <Compile Include="Models\Views\ExistsResponse.cs" />
     <Compile Include="Models\Base\FoosBallDoc.cs" />
     <Compile Include="Models\MatchTable.cs" />
@@ -140,7 +140,7 @@
     <Compile Include="Models\Team.cs" />
     <Compile Include="ViewModels\PlayersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\PlayerBaseData.cs" />
+    <Compile Include="ViewModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Account.css">

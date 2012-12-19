@@ -7,6 +7,7 @@
         $selectPlayer = $('#select-player'),
         $copyProdToStaging = $('#copy-prod-to-staging'),
         $replayMatches = $('#replay-matches'),
+        $listEmails = $('#list-player-emails'),
         $appNameTextBox = $('#Settings_Name');
 
     $selectPlayer.on('change', function () {
@@ -44,6 +45,23 @@
             success: function () {
                 toggleOverlay();
                 alert('Matches has been replayed.');
+            }
+        });
+    });
+
+    $listEmails.on('click', function (e) {
+        e.preventDefault();
+        toggleOverlay();
+
+        $.ajax({
+            type: 'get',
+            url: '/Admin/GetPlayerEmails/',
+            success: function (data) {
+                toggleOverlay();
+                var $textareaWrapper = $('#list-of-emails').html('').append('<textarea></textarea>');
+                for (var index in data) {
+                    $textareaWrapper.find('textarea').append(data[index]+',').focus();
+                }
             }
         });
     });

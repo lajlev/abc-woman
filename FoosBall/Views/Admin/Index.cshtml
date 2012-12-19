@@ -1,11 +1,10 @@
-﻿@model FoosBall.Models.Views.ConfigViewModel
+﻿@model FoosBall.ViewModels.ConfigViewModel
 @{
     ViewBag.Title = "Configuration";
 }
 
 @section Javascript
 { 
-    <script src="/Scripts/angular.min.js"></script> 
     <script async src="/Scripts/Admin.js"></script> 
 }
 @section Css { <link rel="stylesheet" href="/Content/Admin.css"/> }
@@ -38,12 +37,18 @@
 
     <fieldset id="data-migration">
         <legend>Copy Mongo data</legend>
-        <button class="button" href="#" id="copy-prod-to-staging">Copy Production Data to Staging</button>
+        <button class="button" id="copy-prod-to-staging">Copy Production Data to Staging</button>
     </fieldset>
 
     <fieldset id="data-repair">
         <legend>Replay Matches</legend>
-        <button class="button" href="#" id="replay-matches">Replay all FoosBall matches</button>
+        <button class="button" id="replay-matches">Replay all FoosBall matches</button>
+    </fieldset>
+
+    <fieldset id="player-emails">
+        <legend>Player emails</legend>
+        <div id="list-of-emails"></div>
+        <button class="button" id="list-player-emails">List Player Emails</button>
     </fieldset>
 
     <fieldset id="player-editor">

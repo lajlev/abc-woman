@@ -98,12 +98,12 @@
         public ActionResult Register()
         {
             ViewBag.Settings = this.Settings;
-            return View(new PlayerBaseData{ Player = new Player(), Settings = this.Settings });
+            return View(new PlayerBaseDataViewModel{ Player = new Player(), Settings = this.Settings });
         }
 
         // POST: /Account/Register
         [HttpPost]
-        public ActionResult Register(PlayerBaseData model)
+        public ActionResult Register(PlayerBaseDataViewModel model)
         {
             var email = model.Player.Email.ToLower();
             if (this.Settings.EnableDomainValidation)
@@ -150,14 +150,14 @@
 
             if (currentUser != null && (currentUser.Id == player.Id || currentUser.Email == this.Settings.AdminAccount))
             {
-                return this.View(new PlayerBaseData { Player = player, Settings = this.Settings });
+                return this.View(new PlayerBaseDataViewModel { Player = player, Settings = this.Settings });
             }
 
             return this.RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        public ActionResult Edit(PlayerBaseData viewModel)
+        public ActionResult Edit(PlayerBaseDataViewModel viewModel)
         {
             if (ModelState.IsValid)
             {

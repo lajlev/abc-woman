@@ -6,7 +6,7 @@
     using FoosBall.Main;
     using FoosBall.Models;
     using FoosBall.Models.Base;
-    using FoosBall.Models.Views;
+    using FoosBall.ViewModels;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -23,7 +23,7 @@
                         .FindAll()
                         .SetSortOrder(SortBy.Ascending("Name"))
                         .ToList()
-                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id })
                         .ToList();
 
                 return View(new ConfigViewModel { Settings = this.Settings, Users = playerCollection });
@@ -43,7 +43,7 @@
                         .FindAll()
                         .SetSortOrder(SortBy.Ascending("Name"))
                         .ToList()
-                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id.ToString() })
+                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id })
                         .ToList()
                         .ToJson();
 
@@ -141,7 +141,6 @@
                     // Update players from the match with players from the Db.
                     if (match.RedPlayer1.Id != null)
                     {
-
                         id = (match.RedPlayer1.Id == DeletedJakob) ? NewJakob : match.RedPlayer1.Id;
                         match.RedPlayer1 = copyPlayers.FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
                     }
@@ -225,6 +224,13 @@
             }
 
             return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpGet]
+        public JsonResult GetPlayerEmails()
+        {
+            var allEmails = Dbh.GetCollection<Player>("Players").FindAll().Select(x => x.Email).ToList();
+            return Json(allEmails, JsonRequestBehavior.AllowGet);
         }
     }
 }
