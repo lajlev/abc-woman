@@ -135,7 +135,7 @@
                 foreach (var match in allMatches)
                 {
                     string id;
-                    const string DeletedJakob = "50918252592eff0e9088b4df";
+                    const string DeletedJakob = "508e36b90fa6810e90a3165c";
                     const string NewJakob = "50918252592eff0e9088b4df";
 
                     // Update players from the match with players from the Db.
