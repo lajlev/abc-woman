@@ -1,27 +1,18 @@
-﻿@model FoosBall.ViewModels.MatchViewModel
-@{
-    ViewBag.Title = "Register a FoosBall Fight!";
-    var currentUser = (Player)HttpContext.Current.Session["User"];
+﻿@{
+    ViewBag.Title = "Save Match Result";
 }
-@section Javascript{ <script async src="/Scripts/Match.js"></script> }
-@section Css{ <link rel="stylesheet" href="/Content/Match.css"/>}
 
-<h3>Create a Match</h3>
-
-@if (currentUser != null)
-{
-    
-    @Html.Partial("_SaveMatchResult", Model.SelectPlayers);
-    
-    /*
-    using (Html.BeginForm("Create", "Match", FormMethod.Post, new { id = "create-match" }))
-    {
-        <div id="team-red-players" class="team">
+@using (Html.BeginForm("SaveMatchResult", "Match", FormMethod.Post))
+{   
+    <fieldset>
+        <legend>Match Result</legend>
+        
+                <div id="team-red-players" class="team">
             <div class="team-name">Red Team</div>
             <div class="form-input">
                 <select class="select-player" id="red-player-1" name="red-player-1">
                     <option></option>
-                    @foreach (var player in Model.SelectPlayers)
+                    @foreach (var player in Model)
                     {
                         <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
@@ -31,7 +22,7 @@
             <div class="form-input">
                 <select class="select-player" id="red-player-2" name="red-player-2">
                     <option></option>
-                    @foreach (var player in Model.SelectPlayers)
+                    @foreach (var player in Model)
                     {
                         <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
@@ -46,7 +37,7 @@
             <div class="form-input">
                 <select class="select-player" id="blue-player-1" name="blue-player-1">
                     <option></option>
-                    @foreach (var player in Model.SelectPlayers)
+                    @foreach (var player in Model)
                     {
                         <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
@@ -56,7 +47,7 @@
             <div class="form-input">
                 <select class="select-player" id="blue-player-2" name="blue-player-2">
                     <option></option>
-                    @foreach (var player in Model.SelectPlayers)
+                    @foreach (var player in Model)
                     {
                         <option id="@player.Value" value="@player.Value">@player.Text</option>
                     }
@@ -64,28 +55,28 @@
             </div>
         </div>
 
-        <div class="validation-message"></div>
-        <br />
-        <br />
-        <div class="form-button">
-            <input type="submit" value="Create match" class="submit-button button" id="create-match-button"/>
+        <div id="team-results">
+            <div class="form-input opponent" id="fighting-team-red">
+                @Html.TextBox("team-red-score", "0", new {@class = "team-score", placeholder = "0"}) 
+                <br/>
+                <input id="team-red-score-slider" class="score-slider" type="range" min="0" max="10" step="1" autocomplete="off" value="0">
+            </div>
+            <div class="form-input opponent" id="fighting-team-blue">
+                @Html.TextBox("team-blue-score", "0", new {@class = "team-score", placeholder = "0"}) 
+                <br/>
+                <input id="team-blue-score-slider" class="score-slider" type="range" min="0" max="10" step="1" autocomplete="off" value="0">
+            </div>
         </div>
-        <br />
-        <br />
-    }
-    */
-}
-else
-{
-    <p>@Html.ActionLink("Log on", "LogOn", "Account") to register matches</p>
-}
+    
 
-<h3>Latest Matches</h3>
-@if (Model.PlayedMatches.Any())
-{
-    Html.RenderPartial("_LegendaryMatchTable", new MatchTable { Matches = Model.PlayedMatches, User = currentUser });
-}
-else
-{
-    <span class="dimmed">Hrmmm... Guess Foosball is not a very popular sport around here...</span>
+        <div class="form-button">
+            <input type="submit" value="Submit score" class="submit-button button" id="submit-score-button"/>
+        </div>
+        
+        <div class="validation-message small All"></div>
+
+        <div class="form-button">
+            @Html.ActionLink("Go back","Index",null,new{@id="back-to-match"})
+        </div>
+        </fieldset>
 }
