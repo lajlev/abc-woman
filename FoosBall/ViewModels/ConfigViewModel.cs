@@ -1,7 +1,9 @@
-﻿namespace FoosBall.Models.Views
+﻿namespace FoosBall.ViewModels
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
+
+    using FoosBall.Models;
 
     public class ConfigViewModel
     {
