@@ -125,7 +125,6 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\StatsAggregate.cs" />
     <Compile Include="Models\PlayerStatsAggregate.cs" />
-    <Compile Include="Models\Views\EventViewModel.cs" />
     <Compile Include="Models\Views\PlayerStatsViewModel.cs" />
     <Compile Include="ViewModels\ConfigViewModel.cs" />
     <Compile Include="Models\Views\ExistsResponse.cs" />
@@ -133,7 +132,7 @@
     <Compile Include="Models\MatchTable.cs" />
     <Compile Include="Models\AutoLogin.cs" />
     <Compile Include="Models\Views\LogOnViewModel.cs" />
-    <Compile Include="Models\Views\MatchViewModel.cs" />
+    <Compile Include="ViewModels\MatchViewModel.cs" />
     <Compile Include="Models\Views\HomeViewModel.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
@@ -228,7 +227,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Match\SaveMatchResult.cshtml" />
+    <Content Include="Views\Shared\_SaveMatchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Edit.cshtml" />
