@@ -1,4 +1,4 @@
-﻿@model FoosBall.Models.Views.MatchViewModel
+﻿@model FoosBall.ViewModels.MatchViewModel
 @{
     ViewBag.Title = "Register a FoosBall Fight!";
     var currentUser = (Player)HttpContext.Current.Session["User"];
@@ -6,86 +6,15 @@
 @section Javascript{ <script async src="/Scripts/Match.js"></script> }
 @section Css{ <link rel="stylesheet" href="/Content/Match.css"/>}
 
-<h3>Create a Match</h3>
-
 @if (currentUser != null)
 {
-    using (Html.BeginForm("Create", "Match", FormMethod.Post, new { id = "create-match" }))
-    {
-        <div id="team-red-players" class="team">
-            <div class="team-name">Red Team</div>
-            <div class="form-input">
-                <select class="select-player" id="red-player-1" name="red-player-1">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
-            </div>
-            <br />
-            <div class="form-input">
-                <select class="select-player" id="red-player-2" name="red-player-2">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
-            </div>
-        </div>
-
-        <div class="vs">VS</div>
-
-        <div id="team-blue-players" class="team">
-            <div class="team-name">Blue Team</div>
-            <div class="form-input">
-                <select class="select-player" id="blue-player-1" name="blue-player-1">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
-            </div>
-            <br />
-            <div class="form-input">
-                <select class="select-player" id="blue-player-2" name="blue-player-2">
-                    <option></option>
-                    @foreach (var player in Model.SelectPlayers)
-                    {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
-                    }
-                </select>
-            </div>
-        </div>
-
-        <div class="validation-message"></div>
-        <br />
-        <br />
-        <div class="form-button">
-            <input type="submit" value="Create match" class="submit-button button" id="create-match-button"/>
-        </div>
-        <br />
-        <br />
-    }
+    @Html.Partial("_SaveMatchResult", Model.SelectPlayers)
 }
 else
 {
     <p>@Html.ActionLink("Log on", "LogOn", "Account") to register matches</p>
 }
 
-<h3>Upcoming Matches</h3>
-
-@if (Model.PendingMatches.Any())
-{
-    Html.RenderPartial("_PendingMatchTable", new MatchTable { Matches = Model.PendingMatches, User = currentUser });
-}
-else
-{
-    <text><span class="dimmed">Hrmmm... Guess Foosball table is availiable then :D</span></text>
-}
-<br><br><br>
 <h3>Latest Matches</h3>
 @if (Model.PlayedMatches.Any())
 {
@@ -93,5 +22,5 @@ else
 }
 else
 {
-    <text><span class="dimmed">Hrmmm... Guess Foosball is not a very popular sport around here...</span></text>
+    <span class="dimmed">Hrmmm... Guess Foosball is not a very popular sport around here...</span>
 }

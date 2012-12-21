@@ -57,8 +57,9 @@ table .winner {
     display: table-cell; } }
 /* Match View
 ----------------------------------------------------------*/
-#create-match-form .select-player {
-  margin: 2px 0; }
+#submit-match-form {
+  display: none;
+  margin-top: 20px; }
 
 .team {
   margin-top: 3px;
@@ -98,46 +99,38 @@ table .winner {
 
 .score-slider {
   -webkit-appearance: slider-vertical;
+  overflow: -moz-scrollbars-vertical;
   height: 100px;
-  width: 30px;
-  margin: 10px auto 15px auto; }
+  width: 40px;
+  margin: 10px auto 15px auto;
+  display: block; }
 
-#team-titles {
-  clear: both;
-  width: 99%; }
-  #team-titles .team {
-    font-size: 0.85em;
-    font-weight: lighter;
-    text-align: center; }
-    #team-titles .team label {
-      font-size: 1.5em;
-      font-weight: bold; }
-  #team-titles #team-red-players {
-    float: left; }
-  #team-titles #team-blue-players {
-    float: right; }
+#team-red-players {
+  float: left; }
+
+#team-blue-players {
+  float: right; }
+
+.team-scores {
+  display: none; }
 
 #team-results {
   clear: both; }
 
+.opponent {
+  padding: 20px 0; }
+  .opponent input {
+    width: 40px;
+    margin: 0 auto;
+    display: block; }
+
 #fighting-team-red {
   float: left;
   width: 45%; }
-  #fighting-team-red input, #fighting-team-red label {
-    float: left;
-    clear: both;
-    margin-left: 20px; }
 
 #fighting-team-blue {
   float: right;
   width: 45%; }
-  #fighting-team-blue input, #fighting-team-blue label {
-    float: right;
-    clear: both;
-    margin-right: 20px; }
-
-#back-to-match {
-  text-decoration: underline; }
 
 .names sup, .nicknames sup {
   font-weight: normal;

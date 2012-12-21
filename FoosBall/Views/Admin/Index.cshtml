@@ -1,4 +1,4 @@
-﻿@model FoosBall.ViewModels.ConfigViewModel
+@model FoosBall.ViewModels.ConfigViewModel
 @{
     ViewBag.Title = "Configuration";
 }
@@ -15,20 +15,20 @@
         @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
         {
 
-            @Html.LabelFor(m => m.Settings.Name, "Application name");
+            @Html.LabelFor(m => m.Settings.Name, "Application name")
             @Html.TextBoxFor(m => m.Settings.Name)
             
-            @Html.LabelFor(m => m.Settings.AdminAccount, "Administrator (email)");
+            @Html.LabelFor(m => m.Settings.AdminAccount, "Administrator (email)")
             @Html.TextBoxFor(m => m.Settings.AdminAccount)
             
-            @Html.LabelFor(m => m.Settings.EnableDomainValidation, "Enable domain validation?");
+            @Html.LabelFor(m => m.Settings.EnableDomainValidation, "Enable domain validation?")
             @Html.CheckBoxFor(m => m.Settings.EnableDomainValidation)
             @Html.TextBoxFor(m => m.Settings.Domain)
 
-            @Html.LabelFor(m => m.Settings.EnableOneOnOneMatches, "Enable one-on-one matches?");
+            @Html.LabelFor(m => m.Settings.EnableOneOnOneMatches, "Enable one-on-one matches?")
             @Html.CheckBoxFor(m => m.Settings.EnableOneOnOneMatches)
             
-            @Html.LabelFor(m => m.Settings.EnableGenderSpecificMatches, "Enable gender specific matches?");
+            @Html.LabelFor(m => m.Settings.EnableGenderSpecificMatches, "Enable gender specific matches?")
             @Html.CheckBoxFor(m => m.Settings.EnableGenderSpecificMatches)
             
             <input name="save-config" type="submit" value="Save" class="button"/>
