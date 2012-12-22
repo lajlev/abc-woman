@@ -1,9 +1,9 @@
-﻿@model FoosBall.Models.StatsAggregate
+﻿@model FoosBall.Models.ViewModels.StatsAggregateViewModel
 @{
     ViewBag.Title = "FoosBall Stats";
 }
-@section Javascript { <script async src="/Scripts/Stats.js"></script> }
-@section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
+@section Javascript { <script async src="@Url.Content("~/Javascript/Stats.js")"></script> }
+@section Css{ <link rel="stylesheet" href="/Css/Stats.css"/>}
 
 <fieldset id="all-players-statistics">
     <legend>Stats for all players</legend>
@@ -13,7 +13,7 @@
     
     <div class="label">Most Winning Fighter</div>
     <div>@Model.MostWinning</div>
-
+    $
     <div class="label">Most Losing Fighter</div>
     <div>@Model.MostLosing</div>
     

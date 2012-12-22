@@ -2,8 +2,8 @@
 {
     using System.Configuration;
 
-    using FoosBall.Models;
     using FoosBall.Models.Base;
+    using FoosBall.Models.Domain;
 
     public static class AppConfig
     {

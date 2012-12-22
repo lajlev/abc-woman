@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    using FoosBall.Models.Views;
+    using FoosBall.Models.ViewModels;
 
     public class HomeController : BaseController
     {

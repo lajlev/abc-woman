@@ -7,7 +7,8 @@
     using System.Web.Mvc;
 
     using FoosBall.Models;
-    using FoosBall.Models.Views;
+    using FoosBall.Models.Domain;
+    using FoosBall.Models.ViewModels;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -16,7 +17,7 @@
     {
         public ActionResult Index()
         {
-            var model = new StatsAggregate();
+            var model = new StatsAggregateViewModel();
 
             return this.View(model);
         }

@@ -1,9 +1,9 @@
-﻿@model FoosBall.ViewModels.PlayersViewModel
+﻿@model FoosBall.Models.ViewModels.PlayersViewModel
 @{
     ViewBag.Title = "FoosBall Players";
 }
-@section Javascript{ <script async src="/Scripts/Players.js"></script> }
-@section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
+@section Javascript{ <script async src="@Url.Content("~/Javascript/Players.js")"></script> }
+@section Css{ <link rel="stylesheet" href="/Css/Players.css"/>}
 
 @if (Model.AllPlayers.Any()) 
 {

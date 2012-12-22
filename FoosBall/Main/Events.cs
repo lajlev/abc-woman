@@ -2,7 +2,7 @@
 {
     using System;
 
-    using FoosBall.Models;
+    using FoosBall.Models.Domain;
 
     using MongoDB.Bson;
 

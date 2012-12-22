@@ -1,13 +1,13 @@
-@model FoosBall.ViewModels.ConfigViewModel
+@model FoosBall.Models.ViewsModels.ConfigViewModel
 @{
     ViewBag.Title = "Configuration";
 }
 
 @section Javascript
 { 
-    <script async src="/Scripts/Admin.js"></script> 
+    <script async src="@Url.Content("~/Javascript/Admin.js")"></script> 
 }
-@section Css { <link rel="stylesheet" href="/Content/Admin.css"/> }
+@section Css { <link rel="stylesheet" href="/Css/Admin.css"/> }
 
 <div>
     <fieldset id="app-configuration">

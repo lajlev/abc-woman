@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    using FoosBall.Models.Domain;
+
     public class BestFriendForever
     {
         public BestFriendForever()

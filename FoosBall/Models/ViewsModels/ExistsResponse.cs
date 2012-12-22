@@ -1,4 +1,4 @@
-﻿namespace FoosBall.Models.Views
+﻿namespace FoosBall.Models.ViewModels
 {
     public class ExistsResponse
     {

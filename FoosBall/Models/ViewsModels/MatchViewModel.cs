@@ -1,9 +1,9 @@
-﻿namespace FoosBall.ViewModels
+﻿namespace FoosBall.Models.ViewModels
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
 
-    using FoosBall.Models;
+    using FoosBall.Models.Domain;
 
     public class MatchViewModel
     {
