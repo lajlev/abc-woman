@@ -1,6 +1,8 @@
-﻿namespace FoosBall.Models.Views
+﻿namespace FoosBall.Models.ViewModels
 {
     using System.Collections.Generic;
+
+    using FoosBall.Models.Domain;
 
     public class PlayerStatsViewModel
     {

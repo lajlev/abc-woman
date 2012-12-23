@@ -3,8 +3,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using FoosBall.Models;
-    using FoosBall.ViewModels;
+    using FoosBall.Models.Domain;
+    using FoosBall.Models.ViewModels;
 
     using MongoDB.Driver.Builders;
 

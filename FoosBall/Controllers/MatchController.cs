@@ -6,8 +6,8 @@
     using System.Web.Mvc;
 
     using FoosBall.Main;
-    using FoosBall.Models;
-    using FoosBall.ViewModels;
+    using FoosBall.Models.Domain;
+    using FoosBall.Models.ViewModels;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;

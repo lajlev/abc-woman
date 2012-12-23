@@ -1,11 +1,11 @@
-﻿@model FoosBall.ViewModels.PlayerBaseDataViewModel
+﻿@model FoosBall.Models.ViewModels.PlayerBaseDataViewModel
 
 @{
     ViewBag.Title = "Register User";
 }
 
-@section Javascript{ <script async src="/Scripts/Register.js"></script> }
-@section Css{ <link rel="stylesheet" href="/Content/Account.css"/>}
+@section Javascript{ <script async src="@Url.Content("~/Javascript/Register.js")"></script> }
+@section Css{ <link rel="stylesheet" href="/Css/Account.css"/>}
 
 
 <h3>Register a New User</h3>

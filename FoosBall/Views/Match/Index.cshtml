@@ -1,10 +1,10 @@
-﻿@model FoosBall.ViewModels.MatchViewModel
+﻿@model FoosBall.Models.ViewModels.MatchViewModel
 @{
     ViewBag.Title = "Register a FoosBall Fight!";
     var currentUser = (Player)HttpContext.Current.Session["User"];
 }
-@section Javascript{ <script async src="/Scripts/Match.js"></script> }
-@section Css{ <link rel="stylesheet" href="/Content/Match.css"/>}
+@section Javascript{ <script async src="@Url.Content("~/Javascript/Match.js")"></script> }
+@section Css{ <link rel="stylesheet" href="/Css/Match.css"/>}
 
 @if (currentUser != null)
 {

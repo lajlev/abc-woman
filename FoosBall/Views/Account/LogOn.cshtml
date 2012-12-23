@@ -1,11 +1,11 @@
-﻿@model FoosBall.Models.Views.LogOnViewModel
+﻿@model FoosBall.Models.ViewModels.LogOnViewModel
 
 @{
     ViewBag.Title = "Log On";
 }
 
-@section Javascript { <script async src="/Scripts/LogOn.js"></script> }
-@section Css{ <link rel="stylesheet" href="/Content/Account.css"/>}
+@section Javascript { <script async src="@Url.Content("~/Javascript/LogOn.js")"></script> }
+@section Css{ <link rel="stylesheet" href="/Css/Account.css"/>}
 
 <h3>Log On</h3>
 

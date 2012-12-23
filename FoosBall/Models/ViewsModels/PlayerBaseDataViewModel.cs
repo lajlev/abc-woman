@@ -1,6 +1,6 @@
-﻿namespace FoosBall.ViewModels
+﻿namespace FoosBall.Models.ViewModels
 {
-    using FoosBall.Models;
+    using FoosBall.Models.Domain;
     using FoosBall.Models.Base;
 
     public class PlayerBaseDataViewModel : FoosBallViewModel

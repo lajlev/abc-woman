@@ -2,9 +2,8 @@
 {
     using System.Web.Mvc;
     using FoosBall.Main;
-    using FoosBall.Models;
-    using FoosBall.Models.Views;
-    using FoosBall.ViewModels;
+    using FoosBall.Models.Domain;
+    using FoosBall.Models.ViewModels;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
@@ -98,7 +97,7 @@
         public ActionResult Register()
         {
             ViewBag.Settings = this.Settings;
-            return View(new PlayerBaseDataViewModel{ Player = new Player(), Settings = this.Settings });
+            return View(new PlayerBaseDataViewModel { Player = new Player(), Settings = this.Settings });
         }
 
         // POST: /Account/Register
@@ -192,13 +191,19 @@
                 }
             }
 
-            return this.RedirectToAction("Index");
+            // Go back to where we were before logging in
+            var referrer = this.Request.UrlReferrer;
+            if (referrer != null)
+            {
+                return this.Redirect(referrer.ToString());
+            }
+
+            return this.RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         public JsonResult PlayerEmailIsValid(string email)
         {
-
             var query = Query.EQ("Email", email.ToLower());
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(query);

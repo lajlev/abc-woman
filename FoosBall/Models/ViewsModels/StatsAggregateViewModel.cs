@@ -1,6 +1,6 @@
-﻿namespace FoosBall.Models
+﻿namespace FoosBall.Models.ViewModels
 {
-    public class StatsAggregate
+    public class StatsAggregateViewModel
     {
         public string MostFighting { get; set; }
 

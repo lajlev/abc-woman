@@ -1,12 +1,12 @@
-﻿@model FoosBall.ViewModels.PlayerBaseDataViewModel
+﻿@model FoosBall.Models.ViewModels.PlayerBaseDataViewModel
 @{
     Layout = "~/Views/Shared/_SimpleLayout.cshtml";
     ViewBag.Title = "Edit Player Data";
 }
-@section Javascript{ <script async src="/Scripts/Register.js"></script> }
-@section Css{ <link rel="stylesheet" href="/Content/Players.css"/>}
+@section Javascript{ <script async src="@Url.Content("~/Javascript/Register.js")"></script> }
+@section Css{ <link rel="stylesheet" href="/Css/Players.css"/>}
 
-@using (Html.BeginForm("Edit", "Players", FormMethod.Post, new { id = "edit-player" }))
+@using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { id = "edit-player" }))
 {
     <h3>Create a FoosBall player</h3>
     
@@ -17,5 +17,6 @@
     <div class="form-button">
         <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
     </div>
+    
     <a id="go-back" href="/Players">Go Back</a>
 }

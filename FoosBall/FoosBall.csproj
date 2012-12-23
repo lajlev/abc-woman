@@ -118,40 +118,40 @@
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
     <Compile Include="Models\Base\FoosBallViewModel.cs" />
-    <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\Domain\Config.cs" />
     <Compile Include="Main\Db.cs" />
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
-    <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\StatsAggregate.cs" />
+    <Compile Include="Models\Domain\Event.cs" />
+    <Compile Include="Models\ViewsModels\StatsAggregateViewModel.cs" />
     <Compile Include="Models\PlayerStatsAggregate.cs" />
-    <Compile Include="Models\Views\PlayerStatsViewModel.cs" />
-    <Compile Include="ViewModels\ConfigViewModel.cs" />
-    <Compile Include="Models\Views\ExistsResponse.cs" />
+    <Compile Include="Models\ViewsModels\PlayerStatsViewModel.cs" />
+    <Compile Include="Models\ViewsModels\ConfigViewModel.cs" />
+    <Compile Include="Models\ViewsModels\ExistsResponse.cs" />
     <Compile Include="Models\Base\FoosBallDoc.cs" />
     <Compile Include="Models\MatchTable.cs" />
-    <Compile Include="Models\AutoLogin.cs" />
-    <Compile Include="Models\Views\LogOnViewModel.cs" />
-    <Compile Include="ViewModels\MatchViewModel.cs" />
-    <Compile Include="Models\Views\HomeViewModel.cs" />
-    <Compile Include="Models\Match.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\Team.cs" />
-    <Compile Include="ViewModels\PlayersViewModel.cs" />
+    <Compile Include="Models\Domain\AutoLogin.cs" />
+    <Compile Include="Models\ViewsModels\LogOnViewModel.cs" />
+    <Compile Include="Models\ViewsModels\MatchViewModel.cs" />
+    <Compile Include="Models\ViewsModels\HomeViewModel.cs" />
+    <Compile Include="Models\Domain\Match.cs" />
+    <Compile Include="Models\Domain\Player.cs" />
+    <Compile Include="Models\Domain\Team.cs" />
+    <Compile Include="Models\ViewsModels\PlayersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\PlayerBaseDataViewModel.cs" />
+    <Compile Include="Models\ViewsModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Account.css">
+    <Content Include="Css\Account.css">
       <DependentUpon>Account.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Admin.css">
+    <Content Include="Css\Admin.css">
       <DependentUpon>Admin.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Base.css">
+    <Content Include="Css\Base.css">
       <DependentUpon>Base.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Home.css">
+    <Content Include="Css\Home.css">
       <DependentUpon>Home.scss</DependentUpon>
     </Content>
     <Content Include="Content\images\ajax-loader.gif" />
@@ -166,28 +166,28 @@
     <Content Include="Content\images\delete_button_15x15.png" />
     <Content Include="Content\images\edit_32x32.png" />
     <Content Include="Content\images\favicon.ico" />
-    <Content Include="Content\Match.css">
+    <Content Include="Css\Match.css">
       <DependentUpon>Match.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Players.css">
+    <Content Include="Css\Players.css">
       <DependentUpon>Players.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Stats.css">
+    <Content Include="Css\Stats.css">
       <DependentUpon>Stats.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Scripts\Admin.js" />
-    <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\Stats.js" />
-    <Content Include="Scripts\highcharts.js" />
-    <Content Include="Scripts\Home.js" />
-    <Content Include="Scripts\LogOn.js" />
-    <Content Include="Scripts\FoosBall.js" />
-    <Content Include="Scripts\jquery.min.js" />
-    <Content Include="Scripts\Match.js" />
-    <Content Include="Scripts\Players.js" />
-    <Content Include="Scripts\Register.js" />
-    <Content Include="Scripts\PlayerStats.js" />
+    <Content Include="Javascript\Admin.js" />
+    <Content Include="Javascript\angular.min.js" />
+    <Content Include="Javascript\Stats.js" />
+    <Content Include="Javascript\highcharts.js" />
+    <Content Include="Javascript\Home.js" />
+    <Content Include="Javascript\LogOn.js" />
+    <Content Include="Javascript\FoosBall.js" />
+    <Content Include="Javascript\jquery.min.js" />
+    <Content Include="Javascript\Match.js" />
+    <Content Include="Javascript\Players.js" />
+    <Content Include="Javascript\Register.js" />
+    <Content Include="Javascript\PlayerStats.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -205,10 +205,10 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Content\Admin.scss" />
+    <Content Include="Css\Admin.scss" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Stats\Player.cshtml" />
-    <Content Include="Content\_match-tables.scss" />
+    <Content Include="Css\_match-tables.scss" />
     <Content Include="Views\Stats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -233,7 +233,7 @@
     <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Base.scss" />
+    <Content Include="Css\Base.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_SimpleLayout.cshtml" />
@@ -248,25 +248,25 @@
     <Content Include="Views\Shared\_PendingMatchTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Match.scss" />
+    <Content Include="Css\Match.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Players.scss" />
+    <Content Include="Css\Players.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Home.scss" />
+    <Content Include="Css\Home.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Account.scss" />
+    <Content Include="Css\Account.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\_mixins.scss" />
+    <Content Include="Css\_mixins.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LegendaryMatchTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Stats.scss" />
+    <Content Include="Css\Stats.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

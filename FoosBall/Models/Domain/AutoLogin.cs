@@ -1,4 +1,4 @@
-﻿namespace FoosBall.Models
+﻿namespace FoosBall.Models.Domain
 {
     using FoosBall.Models.Base;
 

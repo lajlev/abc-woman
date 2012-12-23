@@ -1,13 +1,13 @@
-﻿@model FoosBall.Models.Views.PlayerStatsViewModel
+﻿@model FoosBall.Models.ViewModels.PlayerStatsViewModel
 @{
     ViewBag.Title = "Player Stats";
 }
 @section Javascript
 { 
-    <script async src="/Scripts/highcharts.js"></script>
-    <script async src="/Scripts/PlayerStats.js"></script>
+    <script async src="@Url.Content("~/Javascript/highcharts.js")"></script>
+    <script async src="@Url.Content("~/Javascript/PlayerStats.js")"></script>
 }
-@section Css{ <link rel="stylesheet" href="/Content/Stats.css"/>}
+@section Css{ <link rel="stylesheet" href="@Url.Content("/Css/Stats.css")"/>}
 
 <fieldset id="player-statistics">
     <legend>Stats for @Model.Player.Name</legend>
