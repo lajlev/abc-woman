@@ -113,7 +113,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Md5Extensions.cs" />
+    <Compile Include="ViewHelpers\Md5Extensions.cs" />
     <Compile Include="Main\Configuration.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
@@ -123,23 +123,23 @@
     <Compile Include="Main\EloRating.cs" />
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\Domain\Event.cs" />
-    <Compile Include="Models\ViewsModels\StatsAggregateViewModel.cs" />
+    <Compile Include="Models\ViewModels\StatsAggregateViewModel.cs" />
     <Compile Include="Models\PlayerStatsAggregate.cs" />
-    <Compile Include="Models\ViewsModels\PlayerStatsViewModel.cs" />
-    <Compile Include="Models\ViewsModels\ConfigViewModel.cs" />
-    <Compile Include="Models\ViewsModels\ExistsResponse.cs" />
+    <Compile Include="Models\ViewModels\PlayerStatsViewModel.cs" />
+    <Compile Include="Models\ViewModels\ConfigViewModel.cs" />
+    <Compile Include="Models\ViewModels\ExistsResponse.cs" />
     <Compile Include="Models\Base\FoosBallDoc.cs" />
     <Compile Include="Models\MatchTable.cs" />
     <Compile Include="Models\Domain\AutoLogin.cs" />
-    <Compile Include="Models\ViewsModels\LogOnViewModel.cs" />
-    <Compile Include="Models\ViewsModels\MatchViewModel.cs" />
-    <Compile Include="Models\ViewsModels\HomeViewModel.cs" />
+    <Compile Include="Models\ViewModels\LogOnViewModel.cs" />
+    <Compile Include="Models\ViewModels\MatchViewModel.cs" />
+    <Compile Include="Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\Domain\Match.cs" />
     <Compile Include="Models\Domain\Player.cs" />
     <Compile Include="Models\Domain\Team.cs" />
-    <Compile Include="Models\ViewsModels\PlayersViewModel.cs" />
+    <Compile Include="Models\ViewModels\PlayersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\ViewsModels\PlayerBaseDataViewModel.cs" />
+    <Compile Include="Models\ViewModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\Account.css">

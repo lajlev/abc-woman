@@ -102,18 +102,19 @@
 
         // POST: /Account/Register
         [HttpPost]
-        public ActionResult Register(PlayerBaseDataViewModel model)
+        public ActionResult Register(PlayerBaseDataViewModel viewModel)
         {
-            var email = model.Player.Email.ToLower();
+            var email = viewModel.Player.Email.ToLower();
             if (this.Settings.EnableDomainValidation)
             {
                 email += "@" + this.Settings.Domain;
             }
 
-            var name = model.Player.Name;
-            var password = Md5.CalculateMd5(model.Player.Password);
-            var nickname = model.Player.NickName;
-
+            var name = viewModel.Player.Name;
+            var password = Md5.CalculateMd5(viewModel.Player.Password);
+            var nickname = viewModel.Player.NickName;
+            var gender = viewModel.Player.Gender;
+            
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
 
             var newPlayer = new Player
@@ -121,6 +122,7 @@
                                     Id = BsonObjectId.GenerateNewId().ToString(),
                                     Email = email,
                                     Name = name,
+                                    Gender = gender,
                                     Password = password,
                                     NickName = nickname,
                                     Won = 0,
@@ -133,7 +135,7 @@
             Login(newPlayer);
 
             Events.SubmitEvent("Create", "Player", newPlayer, newPlayer.Id);
-            return RedirectToAction("Index", "Home");
+            return this.Redirect(Url.Action("Index", "Players") + "#" + newPlayer.Id);
         }
 
         [HttpGet]
@@ -149,7 +151,11 @@
 
             if (currentUser != null && (currentUser.Id == player.Id || currentUser.Email == this.Settings.AdminAccount))
             {
-                return this.View(new PlayerBaseDataViewModel { Player = player, Settings = this.Settings });
+                return this.View(new PlayerBaseDataViewModel
+                                     {
+                                         Player = player, 
+                                         Settings = this.Settings
+                                     });
             }
 
             return this.RedirectToAction("Index", "Home");
@@ -158,6 +164,8 @@
         [HttpPost]
         public ActionResult Edit(PlayerBaseDataViewModel viewModel)
         {
+            viewModel.SaveSuccess = false;
+
             if (ModelState.IsValid)
             {
                 var currentUser = (Player)Session["User"];
@@ -173,6 +181,7 @@
                     var playerCollection = this.Dbh.GetCollection<Player>("Players");
                     var query = Query.EQ("_id", BsonObjectId.Parse(viewModel.Player.Id));
                     var player = playerCollection.FindOne(query);
+                    var gender = viewModel.Player.Gender;
 
                     player.Email = string.IsNullOrEmpty(viewModel.Player.Email)
                                         ? player.Email
@@ -180,6 +189,9 @@
                     player.Name = string.IsNullOrEmpty(viewModel.Player.Name)
                                         ? player.Name
                                         : viewModel.Player.Name;
+                    player.Gender = string.IsNullOrEmpty(gender) 
+                                        ? player.Gender 
+                                        : gender;
                     player.Password = string.IsNullOrEmpty(viewModel.Player.Password)
                                         ? player.Password
                                         : Md5.CalculateMd5(viewModel.Player.Password);
@@ -188,14 +200,12 @@
                                         : viewModel.Player.NickName;
 
                     playerCollection.Save(player);
+                    viewModel.Player = player;
+                    viewModel.SaveSuccess = true;
                 }
-            }
 
-            // Go back to where we were before logging in
-            var referrer = this.Request.UrlReferrer;
-            if (referrer != null)
-            {
-                return this.Redirect(referrer.ToString());
+                viewModel.Settings = this.Settings;
+                return this.View("Edit", viewModel);
             }
 
             return this.RedirectToAction("Index", "Home");
