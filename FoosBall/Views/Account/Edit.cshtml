@@ -1,4 +1,4 @@
-﻿@model FoosBall.Models.ViewModels.PlayerBaseDataViewModel
+﻿@model PlayerBaseDataViewModel
 @{
     ViewBag.Title = "Edit Player Data";
 }
@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { id = "edit-player" }))
 {
-    <h3>Your FoosBall players info</h3>
+    <h3>Your data</h3>
     
     @Html.Partial("_PlayerBaseData", Model)
 
@@ -22,5 +22,5 @@
         <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
     </div>
     
-    <a id="go-back" href="/Players">Go Back</a>
+    <a id="go-back" href="@Model.ReferralUrl">Go Back</a>
 }

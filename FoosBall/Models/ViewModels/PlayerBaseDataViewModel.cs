@@ -6,7 +6,7 @@
     using FoosBall.Models.Base;
     using FoosBall.Models.Domain;
 
-    public class PlayerBaseDataViewModel : FoosBallViewModel
+    public class PlayerBaseDataViewModel : BaseViewModel
     {
         public PlayerBaseDataViewModel()
         {

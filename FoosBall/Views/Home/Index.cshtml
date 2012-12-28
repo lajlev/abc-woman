@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewBag.Title = "Home of FoosBall'ers";
 }
 
@@ -8,4 +9,4 @@
 }
 @section Css{ <link rel="stylesheet" href="/Css/Home.css"/>}
 
-<h2 id="welcome-message">@ViewBag.Message</h2>
+<h2 id="welcome-message">@Model.Message</h2>

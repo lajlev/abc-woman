@@ -59,15 +59,12 @@
             var playerCollection = this.Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(Query.EQ("Email", email));
             
-            // If the email matches a player then check password
             if (player != null)
             {
-                // If password is valid
                 if (player.Password == Md5.CalculateMd5(model.Password))
                 {
                     if (Login(player))
                     {
-                        // Go back to where we were before logging in
                         return Redirect(model.RefUrl);
                     }
                 }
@@ -96,8 +93,12 @@
         // GET: /Account/Register
         public ActionResult Register()
         {
-            ViewBag.Settings = this.Settings;
-            return View(new PlayerBaseDataViewModel { Player = new Player(), Settings = this.Settings });
+            var viewModel = new PlayerBaseDataViewModel
+                                {
+                                    Player = new Player(),
+                                    Settings = this.Settings
+                                };
+            return View(viewModel);
         }
 
         // POST: /Account/Register
@@ -147,14 +148,16 @@
             var query = Query.EQ("_id", BsonObjectId.Parse(id));
             var player = playerCollection.FindOne(query);
 
-            ViewBag.Settings = Settings;
-
             if (currentUser != null && (currentUser.Id == player.Id || currentUser.Email == this.Settings.AdminAccount))
             {
+                var refUrl = HttpContext.Request.UrlReferrer != null
+                                 ? HttpContext.Request.UrlReferrer.AbsoluteUri
+                                 : "/Players";
                 return this.View(new PlayerBaseDataViewModel
                                      {
                                          Player = player, 
-                                         Settings = this.Settings
+                                         Settings = this.Settings,
+                                         ReferralUrl = refUrl
                                      });
             }
 

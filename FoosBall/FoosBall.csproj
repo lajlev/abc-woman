@@ -117,7 +117,7 @@
     <Compile Include="Main\Configuration.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
-    <Compile Include="Models\Base\FoosBallViewModel.cs" />
+    <Compile Include="Models\Base\BaseViewModel.cs" />
     <Compile Include="Models\Domain\Config.cs" />
     <Compile Include="Main\Db.cs" />
     <Compile Include="Main\EloRating.cs" />
@@ -129,7 +129,7 @@
     <Compile Include="Models\ViewModels\ConfigViewModel.cs" />
     <Compile Include="Models\ViewModels\ExistsResponse.cs" />
     <Compile Include="Models\Base\FoosBallDoc.cs" />
-    <Compile Include="Models\MatchTable.cs" />
+    <Compile Include="Models\ViewModels\MatchTableViewModel.cs" />
     <Compile Include="Models\Domain\AutoLogin.cs" />
     <Compile Include="Models\ViewModels\LogOnViewModel.cs" />
     <Compile Include="Models\ViewModels\MatchViewModel.cs" />
@@ -227,16 +227,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_SaveMatchResult.cshtml" />
+    <Content Include="Views\Shared\_RegisterMatch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\Base.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_SimpleLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Features.cshtml" />

@@ -1,4 +1,4 @@
-﻿@model FoosBall.Models.ViewModels.LogOnViewModel
+﻿@model LogOnViewModel
 
 @{
     ViewBag.Title = "Log On";
@@ -14,8 +14,8 @@
     <div>
         <div>@Html.LabelFor(m => m.Email)</div>
         <div>
-            @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = ViewBag.Settings.EnableDomainValidation ? "short" : "long" })
-            @if (ViewBag.Settings.EnableDomainValidation)
+            @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = Model.Settings.EnableDomainValidation ? "short" : "long" })
+            @if (Model.Settings.EnableDomainValidation)
             {
                 <text>@@trustpilot.com</text>
             }

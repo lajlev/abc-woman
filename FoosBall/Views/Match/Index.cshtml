@@ -1,6 +1,6 @@
-﻿@model FoosBall.Models.ViewModels.MatchViewModel
+﻿@model MatchViewModel
 @{
-    ViewBag.Title = "Register a FoosBall Fight!";
+    ViewBag.Title = "Matches";
     var currentUser = (Player)HttpContext.Current.Session["User"];
 }
 @section Javascript{ <script async src="@Url.Content("~/Javascript/Match.js")"></script> }
@@ -8,7 +8,7 @@
 
 @if (currentUser != null)
 {
-    @Html.Partial("_SaveMatchResult", Model.SelectPlayers)
+    @Html.Partial("_RegisterMatch", Model.SelectPlayers)
 }
 else
 {
@@ -18,7 +18,7 @@ else
 <h3>Latest Matches</h3>
 @if (Model.PlayedMatches.Any())
 {
-    Html.RenderPartial("_LegendaryMatchTable", new MatchTable { Matches = Model.PlayedMatches, User = currentUser });
+    Html.RenderPartial("_LegendaryMatchTable", new MatchTableViewModel { Matches = Model.PlayedMatches, User = currentUser });
 }
 else
 {
