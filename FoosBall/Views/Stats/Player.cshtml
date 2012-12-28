@@ -1,4 +1,4 @@
-﻿@model FoosBall.Models.ViewModels.PlayerStatsViewModel
+﻿@model PlayerStatsViewModel
 @{
     ViewBag.Title = "Player Stats";
 }
@@ -126,7 +126,7 @@
     <legend>@(Model.Player.Name)s Fights</legend>
     @if (Model.PlayedMatches.Any())
     {
-        Html.RenderPartial("_LegendaryMatchTable", new MatchTable { Matches = Model.PlayedMatches, User = null });
+        Html.RenderPartial("_LegendaryMatchTable", new MatchTableViewModel { Matches = Model.PlayedMatches, User = null });
     }
     else
     {

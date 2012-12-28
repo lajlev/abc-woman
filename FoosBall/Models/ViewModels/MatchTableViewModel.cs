@@ -1,10 +1,10 @@
-﻿namespace FoosBall.Models
+﻿namespace FoosBall.Models.ViewModels
 {
     using System.Collections.Generic;
 
     using FoosBall.Models.Domain;
 
-    public class MatchTable
+    public class MatchTableViewModel
     {
         public IEnumerable<Match> Matches { get; set; }
 

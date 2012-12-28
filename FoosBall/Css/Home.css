@@ -3,12 +3,12 @@
 #welcome-message {
   text-align: center; }
 
-#feature-list {
+.feature-list {
   padding-left: 20px;
   list-style: none; }
-  #feature-list li {
+  .feature-list li {
     color: black;
     font-size: .85em; }
-    #feature-list li ul li a {
+    .feature-list li ul li a {
       text-decoration: underline; }
 

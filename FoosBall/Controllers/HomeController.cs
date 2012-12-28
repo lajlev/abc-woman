@@ -8,9 +8,8 @@
     {
         public ActionResult Index()
         {
-            ViewBag.Message = HomeViewModel.GetMessage();
-
-            return View();
+            var viewModel = new HomeViewModel();
+            return View(viewModel);
         }
         
         public ActionResult Features()

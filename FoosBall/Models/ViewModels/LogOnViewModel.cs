@@ -1,6 +1,8 @@
 ﻿namespace FoosBall.Models.ViewModels
 {
-    public class LogOnViewModel
+    using FoosBall.Models.Base;
+
+    public class LogOnViewModel : BaseViewModel
     {
         public LogOnViewModel()
         {

@@ -1,4 +1,4 @@
-﻿namespace FoosBall.Helpers
+﻿namespace FoosBall.ViewHelpers
 {
     using System.Text;
     using System.Web.Mvc;
@@ -9,7 +9,7 @@
     {
         public static string GetGravatarEmailHash(this HtmlHelper helper, string email)
         {
-            var gravatarUrl = "";
+            var gravatarUrl = string.Empty;
 
             gravatarUrl = string.IsNullOrEmpty(email) 
                 ? "http://www.gravatar.com/avatar/fbbf176095d4cb476b84bb4188a26ab1?d=mm" 

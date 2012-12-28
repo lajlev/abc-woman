@@ -2,7 +2,7 @@
 {
     using FoosBall.Models.Domain;
 
-    public class FoosBallViewModel
+    public class BaseViewModel
     {
         public Config Settings { get; set; }
     }

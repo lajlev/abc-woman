@@ -6,7 +6,7 @@
     using FoosBall.Main;
     using FoosBall.Models.Base;
     using FoosBall.Models.Domain;
-    using FoosBall.Models.ViewsModels;
+    using FoosBall.Models.ViewModels;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;

@@ -5,7 +5,7 @@
     using FoosBall.Models.Domain;
     using FoosBall.Models.Base;
 
-    public class PlayersViewModel : FoosBallViewModel
+    public class PlayersViewModel : BaseViewModel
     {
         public IEnumerable<Player> AllPlayers { get; set; }
     }
