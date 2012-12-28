@@ -114,13 +114,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ViewHelpers\Md5Extensions.cs" />
-    <Compile Include="Main\Configuration.cs" />
+    <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
     <Compile Include="Models\Base\BaseViewModel.cs" />
     <Compile Include="Models\Domain\Config.cs" />
     <Compile Include="Main\Db.cs" />
-    <Compile Include="Main\EloRating.cs" />
+    <Compile Include="Main\Rating.cs" />
     <Compile Include="Main\Md5.cs" />
     <Compile Include="Models\Domain\Event.cs" />
     <Compile Include="Models\ViewModels\StatsAggregateViewModel.cs" />

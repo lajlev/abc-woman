@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace FoosBall.Main
+﻿namespace FoosBall.Main
 {
+    using System;
+
     public static class Rating
     {
         private const int KModifier = 35;
@@ -9,7 +9,7 @@ namespace FoosBall.Main
         public static double GetRatingModifier(double winnerRating, double loserRating)
         {
             var winnerExpectedScore = 1 / (1 + Math.Pow(10, (loserRating - winnerRating) / 400));
-            return (KModifier * (1 - winnerExpectedScore));
+            return KModifier * (1 - winnerExpectedScore);
         }
     }
 }
