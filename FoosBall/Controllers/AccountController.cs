@@ -39,9 +39,11 @@
             }
 
             var urlReferrer = this.Request.UrlReferrer;
+            var viewModel = new LogOnViewModel { RefUrl = urlReferrer.ToString(), Settings = this.Settings };
+
             if (urlReferrer != null)
             {
-                return this.View(new LogOnViewModel { RefUrl = urlReferrer.ToString() });
+                return this.View(viewModel);
             }
 
             return RedirectToAction("Index", "Home");

@@ -8,6 +8,7 @@
         {
             this.LogOnError = false;
             this.RememberMe = true;
+            this.Email = string.Empty;
         }
         
         public string Email { get; set; }

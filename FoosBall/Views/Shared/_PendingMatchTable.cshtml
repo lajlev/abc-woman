@@ -23,7 +23,7 @@
                 <td class="delete">
                     @if ((currentUser != null && match.ContainsPlayer(currentUser.Id)) || (Session["Admin"] != null && Session["Admin"].ToString().ToLower() == "true"))
                     {
-                        <a title="Delete the match" href="/Match/Delete/@match.Id">
+                        <a title="Delete the match" href="/Matches/Delete/@match.Id">
                             <div><img src="@Url.Content("Content/images/delete_15x15.png")" alt="A delete button"/></div>
                         </a>
                     }
@@ -68,7 +68,7 @@
                 <td class="resolve">
                     @if (currentUser != null && match.ContainsPlayer(currentUser.Id))
                     {
-                        <a title="Resolve the match" href="Match/SaveMatchResult/@match.Id">
+                        <a title="Resolve the match" href="Matches/SaveMatchResult/@match.Id">
                             <div><img src="@Url.Content("Content/images/checkmark_15x15.png")" alt="A delete button"/></div>
                         </a>
                     }

@@ -3,12 +3,10 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
 
-    using FoosBall.Models.Domain;
+    using FoosBall.Models.Base;
 
-    public class ConfigViewModel
+    public class ConfigViewModel : BaseViewModel
     {
-        public Config Settings { get; set; }
-
         public List<SelectListItem> Users { get; set; } 
     }
 }

@@ -6,15 +6,16 @@
     using System.Web.Mvc;
 
     using FoosBall.Main;
+    using FoosBall.Models.Custom;
     using FoosBall.Models.Domain;
     using FoosBall.Models.ViewModels;
 
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
-    public class MatchController : BaseController
+    public class MatchesController : BaseController
     {       
-        // GET: /Match/
+        // GET: /Matches/
         public ActionResult Index()
         {
             // Fetch all players to display in a <select>
@@ -36,16 +37,22 @@
 
             // Create content for the <select> 
             var selectItems = playerCollection
-                .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id })
+                .Select(x => new CustomSelectListItem { Selected = false, Text = x.Name, Value = x.Id, CssClass = x.Gender })
                 .ToList();
 
             var played = playedMatches.OrderByDescending(x => x.GameOverTime);
             var pending = pendingMatches.OrderByDescending(x => x.CreationTime);
 
-            return View(new MatchViewModel { PlayedMatches = played, PendingMatches = pending, SelectPlayers = selectItems });
+            return View(new MatchesViewModel
+                            {
+                                PlayedMatches = played, 
+                                PendingMatches = pending, 
+                                SelectPlayers = selectItems,
+                                Settings = this.Settings
+                            });
         }
 
-        // POST: /Match/RegisterMatch
+        // POST: /Matches/RegisterMatch
         [HttpPost]
         public ActionResult RegisterMatch(FormCollection formCollection)
         {
@@ -60,7 +67,7 @@
             return this.RedirectToAction("Index");
         }
 
-        // POST: /Match/Delete/{id}
+        // POST: /Matches/Delete/{id}
         [HttpGet]
         public ActionResult Delete(string id)
         {
@@ -79,7 +86,7 @@
             return RedirectToAction("Index");
         }
 
-        // POST: /Match/Create/{FormCollection}
+        // POST: /Matches/Create/{FormCollection}
         private Match CreateMatch(Player user, FormCollection formValues)
         {
             Match newMatch = null;
@@ -126,7 +133,7 @@
             return newMatch;
         }
 
-        // POST: /Match/SaveMatchResult/{FormCollection}
+        // POST: /Matches/SaveMatchResult/{FormCollection}
         [HttpPost]
         private Match SaveMatchResult(Match match, FormCollection form)
         {

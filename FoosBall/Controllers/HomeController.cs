@@ -14,7 +14,7 @@
         
         public ActionResult Features()
         {
-            return View();
+            return View(new FeaturesViewModel { Settings = this.Settings });
         }
     }
 }

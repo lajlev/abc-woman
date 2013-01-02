@@ -107,12 +107,14 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MatchController.cs" />
+    <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Custom\CustomSelectListItem.cs" />
+    <Compile Include="Models\ViewModels\FeaturesViewModel.cs" />
     <Compile Include="ViewHelpers\Md5Extensions.cs" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
@@ -132,7 +134,7 @@
     <Compile Include="Models\ViewModels\MatchTableViewModel.cs" />
     <Compile Include="Models\Domain\AutoLogin.cs" />
     <Compile Include="Models\ViewModels\LogOnViewModel.cs" />
-    <Compile Include="Models\ViewModels\MatchViewModel.cs" />
+    <Compile Include="Models\ViewModels\MatchesViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\Domain\Match.cs" />
     <Compile Include="Models\Domain\Player.cs" />
@@ -166,8 +168,8 @@
     <Content Include="Content\images\delete_button_15x15.png" />
     <Content Include="Content\images\edit_32x32.png" />
     <Content Include="Content\images\favicon.ico" />
-    <Content Include="Css\Match.css">
-      <DependentUpon>Match.scss</DependentUpon>
+    <Content Include="Css\Matches.css">
+      <DependentUpon>Matches.scss</DependentUpon>
     </Content>
     <Content Include="Css\Players.css">
       <DependentUpon>Players.scss</DependentUpon>
@@ -184,7 +186,7 @@
     <Content Include="Javascript\LogOn.js" />
     <Content Include="Javascript\FoosBall.js" />
     <Content Include="Javascript\jquery.min.js" />
-    <Content Include="Javascript\Match.js" />
+    <Content Include="Javascript\Matches.js" />
     <Content Include="Javascript\Players.js" />
     <Content Include="Javascript\Register.js" />
     <Content Include="Javascript\PlayerStats.js" />
@@ -218,7 +220,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Match\Index.cshtml" />
+    <Content Include="Views\Matches\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Players\Index.cshtml" />
@@ -245,7 +247,7 @@
     <Content Include="Views\Shared\_PendingMatchTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Match.scss" />
+    <Content Include="Css\Matches.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\Players.scss" />

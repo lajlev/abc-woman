@@ -1,6 +1,8 @@
-﻿@using (Html.BeginForm("RegisterMatch", "Match", FormMethod.Post))
+﻿@model MatchesViewModel
+@using (Html.BeginForm("RegisterMatch", "Matches", FormMethod.Post))
 {   
     <input type="button" class="button" id="open-submit-match-form" value="Create a Match" />
+    <input type="hidden" id="gender-specific-matches" value="@Model.Settings.EnableGenderSpecificMatches.ToString()" />
     
     <fieldset id="submit-match-form" class="closed">
         <legend>Match Result</legend>
@@ -10,9 +12,9 @@
             <div class="form-input">
                 <select class="select-player" id="red-player-1" name="red-player-1">
                     <option></option>
-                    @foreach (var player in Model)
+                    @foreach (var player in Model.SelectPlayers)
                     {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        <option class="@player.CssClass" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>
@@ -20,9 +22,9 @@
             <div class="form-input">
                 <select class="select-player" id="red-player-2" name="red-player-2">
                     <option></option>
-                    @foreach (var player in Model)
+                    @foreach (var player in Model.SelectPlayers)
                     {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        <option class="@player.CssClass" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>
@@ -35,9 +37,9 @@
             <div class="form-input">
                 <select class="select-player" id="blue-player-1" name="blue-player-1">
                     <option></option>
-                    @foreach (var player in Model)
+                    @foreach (var player in Model.SelectPlayers)
                     {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        <option class="@player.CssClass" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>
@@ -45,9 +47,9 @@
             <div class="form-input">
                 <select class="select-player" id="blue-player-2" name="blue-player-2">
                     <option></option>
-                    @foreach (var player in Model)
+                    @foreach (var player in Model.SelectPlayers)
                     {
-                        <option id="@player.Value" value="@player.Value">@player.Text</option>
+                        <option class="@player.CssClass" value="@player.Value">@player.Text</option>
                     }
                 </select>
             </div>

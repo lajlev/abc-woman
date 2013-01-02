@@ -59,6 +59,8 @@
                 $teamScores.css({ 'overflow': '' });
             });
         }
+        
+        valueBeforeChange = $thisSelect.find(':selected').val();
     });
 
     $('.delete').on('click', 'a', function (e) {

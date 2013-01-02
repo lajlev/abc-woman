@@ -1,14 +1,14 @@
-﻿@model MatchViewModel
+﻿@model MatchesViewModel
 @{
     ViewBag.Title = "Matches";
     var currentUser = (Player)HttpContext.Current.Session["User"];
 }
-@section Javascript{ <script async src="@Url.Content("~/Javascript/Match.js")"></script> }
-@section Css{ <link rel="stylesheet" href="/Css/Match.css"/>}
+@section Javascript{ <script async src="@Url.Content("~/Javascript/Matches.js")"></script> }
+@section Css{ <link rel="stylesheet" href="/Css/Matches.css"/>}
 
 @if (currentUser != null)
 {
-    @Html.Partial("_RegisterMatch", Model.SelectPlayers)
+    @Html.Partial("_RegisterMatch", Model)
 }
 else
 {
