@@ -27,8 +27,6 @@
             if (playerId != null)
             {
                 // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
-                var id = (playerId == "508e36b90fa6810e90a3165c") ? "50918252592eff0e9088b4df" : playerId;
-
                 var bff = new Dictionary<string, BestFriendForever>();
                 var rbff = new Dictionary<string, RealBestFriendForever>();
                 var eae = new Dictionary<string, EvilArchEnemy>();
@@ -38,14 +36,14 @@
                 const string Red = "red";
 
                 var playerCollection = Dbh.GetCollection<Player>("Players");
-                var player = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
+                var player = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(playerId)));
                 var stats = new PlayerStatsViewModel { Player = player };
 
                 var matches = Dbh.GetCollection<Match>("Matches")
                     .FindAll()
                     .SetSortOrder(SortBy.Ascending("GameOverTime"))
                     .ToList()
-                    .Where(match => match.ContainsPlayer(id))
+                    .Where(match => match.ContainsPlayer(playerId))
                     .Where(match => match.GameOverTime != DateTime.MinValue);
 
                 var playedMatches = matches as List<Match> ?? matches.ToList();
@@ -54,7 +52,7 @@
 
                 foreach (var match in playedMatches)
                 {
-                    var teamMate = match.GetTeamMate(id);
+                    var teamMate = match.GetTeamMate(playerId);
                     if (teamMate.Id != null)
                     {
                         if (bff.ContainsKey(teamMate.Id))
@@ -66,7 +64,7 @@
                             bff.Add(teamMate.Id, new BestFriendForever { Player = teamMate });
                         }
 
-                        if (match.WonTheMatch(id))
+                        if (match.WonTheMatch(playerId))
                         {
                             if (rbff.ContainsKey(teamMate.Id))
                             {
@@ -79,7 +77,7 @@
                         }
                     }
 
-                    if (match.IsOnRedTeam(id))
+                    if (match.IsOnRedTeam(playerId))
                     {
                         if (preferredColor.ContainsKey(Red))
                         {
@@ -90,7 +88,7 @@
                             preferredColor.Add(Red, new PreferredColor { Color = Red, Occurrences = 1 });
                         }
 
-                        if (match.WonTheMatch(id))
+                        if (match.WonTheMatch(playerId))
                         {
                             if (winningColor.ContainsKey(Red))
                             {
@@ -139,7 +137,7 @@
                             preferredColor.Add(Blue, new PreferredColor { Color = Blue, Occurrences = 1 });
                         }
 
-                        if (match.WonTheMatch(id))
+                        if (match.WonTheMatch(playerId))
                         {
                             if (winningColor.ContainsKey(Blue))
                             {
@@ -179,10 +177,10 @@
                     }
                     
                     stats.Played++;
-                    stats.Won = match.WonTheMatch(id) 
+                    stats.Won = match.WonTheMatch(playerId) 
                         ? ++stats.Won 
                         : stats.Won;
-                    stats.Lost = !match.WonTheMatch(id) 
+                    stats.Lost = !match.WonTheMatch(playerId) 
                         ? ++stats.Lost 
                         : stats.Lost;
                     stats.PlayedToday = match.GameOverTime.ToLocalTime().Day == DateTime.Now.Day 
@@ -197,7 +195,7 @@
                     stats.Ranking = playerCollection.FindAll()
                                         .SetSortOrder(SortBy.Descending("Rating"))
                                         .ToList()
-                                        .FindIndex(x => x.Id == id) + 1; // convert zero-based to 1-based index
+                                        .FindIndex(x => x.Id == playerId) + 1; // convert zero-based to 1-based index
                     stats.TotalNumberOfPlayers = (int)playerCollection.Count();
                 }
 
@@ -216,8 +214,6 @@
         [HttpGet]
         public JsonResult GetPlayerRatingData(string playerId)
         {
-            // Hack: Because "old" Jakob was deleted by accident, we point "old" Jakob to "new" Jakob
-            var id = (playerId == "508e36b90fa6810e90a3165c") ? "50918252592eff0e9088b4df" : playerId;
             var chartData = new PlayerRatingChartData(); 
 
             if (playerId != null)
@@ -226,7 +222,7 @@
                     .FindAll()
                     .SetSortOrder(SortBy.Ascending("GameOverTime"))
                     .ToList()
-                    .Where(match => match.ContainsPlayer(id))
+                    .Where(match => match.ContainsPlayer(playerId))
                     .Where(match => match.GameOverTime != DateTime.MinValue);
 
                 var playedMatches = matches as List<Match> ?? matches.ToList();
@@ -235,7 +231,7 @@
 
                 foreach (var match in playedMatches)
                 {
-                    var matchPlayer = match.GetPlayer(id);
+                    var matchPlayer = match.GetPlayer(playerId);
                     minRating = (minRating > matchPlayer.Rating) ? matchPlayer.Rating : minRating;
                     maxRating = (maxRating < matchPlayer.Rating) ? matchPlayer.Rating : maxRating;
 

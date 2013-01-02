@@ -20,7 +20,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script type="text/javascript">
         if (typeof jQuery == 'undefined') {
-            document.write(unescape('%3Cscript src="@Url.Content("~/Javascript/jquery.min.js")" type="text/javascript"%3E%3C/script%3E'));
+            document.write(unescape('%3Cscript src="@Url.Content("~/Javacsript/jquery.min.js")" type="text/javascript"%3E%3C/script%3E'));
         }
     </script>
 
@@ -57,7 +57,7 @@
                     <li class="Home">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="Players">@Html.ActionLink("Scoreboard", "Index", "Players")</li>
                     <li class="Match">@Html.ActionLink("Matches", "Index", "Matches")</li>
-                    <!--<li class="Stats">@Html.ActionLink("Stats", "Index", "Stats")</li>-->
+                    <li class="Stats">@Html.ActionLink("Stats", "Index", "Stats")</li>
                 </ul>
             </nav>
         </header>
