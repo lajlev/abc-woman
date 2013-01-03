@@ -3,18 +3,18 @@
 
 /* The box-model */
 * {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: $light;
-  color: $dark;
-  font-size: 1.0em;
-  font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
+    background-color: $light;
+    color: $dark;
+    font-size: 1.0em;
+    font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 a:link {
@@ -66,28 +66,28 @@ h5, h6 {
 }
 
 .dimmed {
-  color: $font-color-dimmed;
+    color: $font-color-dimmed;
 }
 
 /* TABLE
 ----------------------------------------------------------*/
 table {
-	border-collapse: collapse;
-	width: 100%;
-	th, td {
-		letter-spacing: 0;
-		padding: 6px 3px 6px 3px;
-		text-align: left;
-	}
-	td {
-		font-weight: normal;
-	}
-	th {
-		color: $darkest;
-		font-size: .8em;
-		padding: 6px 3px 0 3px;
-		text-align: center;
-	}
+    border-collapse: collapse;
+    width: 100%;
+    th, td {
+        letter-spacing: 0;
+        padding: 6px 3px 6px 3px;
+        text-align: left;
+    }
+    td {
+        font-weight: normal;
+    }
+    th {
+        color: $darkest;
+        font-size: .8em;
+        padding: 6px 3px 0 3px;
+        text-align: center;
+    }
 }
 
 
@@ -97,16 +97,16 @@ table {
 /* you can specify a greater or lesser percentage for the
 page width. Or, you can specify an exact pixel width. */
 #page {
-	 max-width: 800px;
+    max-width: 800px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
 @media only screen and (min-width : 810px) {
-	#page {
-		margin-left: auto;
-		margin-right: auto;
-	}
+    #page {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 footer, #footer {
@@ -119,9 +119,9 @@ footer, #footer {
     margin: 0;
     padding: 0 10px 3px 10px;
     text-align: center;
-	a, a:link, a:visited {
-		text-decoration: underline;
-	}
+    a, a:link, a:visited {
+        text-decoration: underline;
+    }
 }
 
 /* TAB MENU
@@ -131,39 +131,39 @@ footer, #footer {
     margin: 0;
     position: relative;
     text-align: right;
-	-webkit-margin-before: 0;
-	-webkit-margin-after: 0;
-	-webkit-padding-start: 0;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0;
 
-	li {
-		display: inline;
-		float: left;
-		list-style: none;
+    li {
+        display: inline;
+        float: left;
+        list-style: none;
 
-		a {
+        a {
       margin: 0;
       padding: 5px 8px 3px;
       font-weight: bold;
-			text-decoration: none;
-			background-color: $light;
-			color: $dark;
+            text-decoration: none;
+            background-color: $light;
+            color: $dark;
 
-			&:hover {
-				background-color: #fff;
-				text-decoration: none;
+            &:hover {
+                background-color: #fff;
+                text-decoration: none;
       }
 
       &:active {
         background-color: #a6e2a6;
         text-decoration: none;
       }
-		}
+        }
 
-    &.selected a {
-      background-color: #fff;
-      color: #000;
+        &.selected a {
+            background-color: #fff;
+            color: #000;
+        }
     }
-	}
 }
 
 
@@ -202,52 +202,52 @@ nav, #menucontainer {
     text-decoration: underline; }
 
   a:link {
-		color: #222;
-		text-decoration: underline; }
+        color: #222;
+        text-decoration: underline; }
 
-	a:visited {
-		color: #222;
-		text-decoration: underline; }
+    a:visited {
+        color: #222;
+        text-decoration: underline; }
 
-	a:hover {
-		color: #000;
-		text-decoration: none;
+    a:hover {
+        color: #000;
+        text-decoration: none;
   }
 }
 
 #main {
-	clear: both;
+    clear: both;
     background-color: #fff;
     min-height: 280px;
     padding: 10px 10px 5px;
 }
 
 .button {
-	background: $darkest;
-	border: 1px solid $font-color-dimmed;
-	color: #efefef;
-	font-weight: bold;
-	margin: 5px;
-	padding: 10px 4px;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
-	cursor: hand;
-	@include round-border-large;
+    background: $darkest;
+    border: 1px solid $font-color-dimmed;
+    color: #efefef;
+    font-weight: bold;
+    margin: 5px;
+    padding: 10px 4px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+    @include round-border-large;
 }
 
 .editor-icon {
-	float: right;
-	margin-top: 3px;
-	a img {
-		height: 18px;
-	}
-	&#edit-player {
-		margin-right: 10px;
-	}
-	&#delete-player {
-		margin-right: 10px;
-	}
+    float: right;
+    margin-top: 3px;
+    a img {
+        height: 18px;
+    }
+    &#edit-player {
+        margin-right: 10px;
+    }
+    &#delete-player {
+        margin-right: 10px;
+    }
 }
 
 /* FORM LAYOUT ELEMENTS
@@ -258,115 +258,115 @@ fieldset {
     border-radius: 10px;
     border: 2px solid $dark;
     margin: 0 0 1.5em 0;
-	legend {
-		border: inherit;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-	    font-size: 1.0em;
-		font-weight: bold;
-		margin: 0 auto;
-		padding: 3px 5px;
-		text-shadow: 2px 2px 2px #DDD;
-	}
-	.wrapper {
-		height: 100%;
-		width: 100%;
-	}
+    legend {
+        border: inherit;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        font-size: 1.0em;
+        font-weight: bold;
+        margin: 0 auto;
+        padding: 3px 5px;
+        text-shadow: 2px 2px 2px #DDD;
+    }
+    .wrapper {
+        height: 100%;
+        width: 100%;
+    }
 }
 select {
     border: 2px solid #ccc;
     color: #444;
     font-size: 1.1em;
-	height: 40px;
+    height: 40px;
     margin: 0;
     padding: 2px;
-  width: 98%;
+    width: 98%;
 }
 .submit-button {
-  margin: 5px 0;
+    margin: 5px 0;
 }
 .form-input {
-  width:90%;
-	margin: 5px auto;
+    width:90%;
+    margin: 5px auto;
 }
 .form-button{
-  clear: both;
-  float: none;
-  margin:10px auto 5px auto;
-	width: 90%;
+    clear: both;
+    float: none;
+    margin:10px auto 5px auto;
+    width: 90%;
 }
 input[type="text"], input[type="password"], input[type="email"] {
-  border: 2px solid #ccc;
-  color: #444;
-  font-size: 1.1em;
-	height: 1.5em;
-  padding: 2px;
-  width: 98%;
+    border: 2px solid #ccc;
+    color: #444;
+    font-size: 1.1em;
+    height: 1.5em;
+    padding: 2px;
+    width: 98%;
 
-	&#Email.short {
+    &#Email.short {
         width: 60px!important;
-	}
+    }
 }
 input[type="submit"], input[type="button"], button {
-	font-size: 1.0em;
-	width: 100%;
-	margin: 1px 0;
+    font-size: 1.0em;
+    width: 100%;
+    margin: 1px 0;
 }
 /* MISC
 ----------------------------------------------------------*/
 .hide { display: none; }
 
 .ellipsis-1 {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #overlay {
-	img {
-		display: block;
-		width: 100px;
-		margin: 50% auto;
-	}
+    img {
+        display: block;
+        width: 100px;
+        margin: 50% auto;
+    }
 }
 
 /* Clear-fix */
 .clearfix:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	line-height: 0;
-	visibility: hidden;
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
 }
 html[xmlns] .clearfix {
-	display: block;
+    display: block;
 }
 * html .clearfix {
-	height: 1%;
+    height: 1%;
 }
 
 /* Errors and Validation */
 .error, .validation-message {
-	background: rgba(255, 0, 0, .3);
-	border: 2px solid red;
+    background: rgba(255, 0, 0, .3);
+    border: 2px solid red;
     color: black;
-	display: none;
-	margin: 10px 0 0 0;
-	padding: 2px;
-	width:98%;
-	&.small {
-		font-size: .85em;
-		margin: 2px 0 0 0;
-	}
-	&.show {
-		display: block;
-	}
+    display: none;
+    margin: 10px 0 0 0;
+    padding: 2px;
+    width:98%;
+    &.small {
+        font-size: .85em;
+        margin: 2px 0 0 0;
+    }
+    &.show {
+        display: block;
+    }
 }
 .field-validation-error {
-	font-size: .85em;
-	width:90%;
-	margin: 0 auto;
-	color: Red;
+    font-size: .85em;
+    width:90%;
+    margin: 0 auto;
+    color: Red;
 }

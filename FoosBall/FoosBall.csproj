@@ -144,6 +144,7 @@
     <Compile Include="Models\ViewModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\menu-list.png" />
     <Content Include="Css\Account.css">
       <DependentUpon>Account.scss</DependentUpon>
     </Content>
