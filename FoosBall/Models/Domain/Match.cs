@@ -124,6 +124,54 @@
             }
 
             return listOfPlayers;
+        }
+
+        public List<Player> GetWinners()
+        {
+            var listOfWinners = new List<Player>();
+
+            if (this.WonTheMatch(this.RedPlayer1.Id))
+            {
+                listOfWinners.Add(this.RedPlayer1);
+                if (this.CountRedPlayers() == 2)
+                {
+                    listOfWinners.Add(this.RedPlayer2);
+                }
+            }
+            else
+            {
+                listOfWinners.Add(this.BluePlayer1);
+                if (this.CountBluePlayers() == 2)
+                {
+                    listOfWinners.Add(this.BluePlayer2);
+                }
+            }
+
+            return listOfWinners;
+        }
+
+        public List<Player> GetLosers()
+        {
+            var listOfLosers = new List<Player>();
+
+            if (!this.WonTheMatch(this.RedPlayer1.Id))
+            {
+                listOfLosers.Add(this.RedPlayer1);
+                if (this.CountRedPlayers() == 2)
+                {
+                    listOfLosers.Add(this.RedPlayer2);
+                }
+            }
+            else
+            {
+                listOfLosers.Add(this.BluePlayer1);
+                if (this.CountBluePlayers() == 2)
+                {
+                    listOfLosers.Add(this.BluePlayer2);
+                }
+            }
+
+            return listOfLosers;
         } 
     }
 }   

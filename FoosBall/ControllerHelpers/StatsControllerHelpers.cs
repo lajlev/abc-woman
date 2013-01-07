@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.ControllerHelpers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -122,8 +121,40 @@
         public static RatingDifference GetBiggestRatingWin()
         {
             var matches = Dbh.GetCollection<Match>("Matches").FindAll().SetSortOrder(SortBy.Ascending("GameOverTime"));
-     
-            return null;
+            var ratingDiff = new RatingDifference();
+            
+            foreach (var match in matches)
+            {
+                // Determine the winners and the losers
+                var winners = new Team();
+                var losers = new Team();
+
+                if (match.RedScore > match.BlueScore)
+                {
+                    winners.MatchTeam.Add(match.RedPlayer1);
+                    winners.MatchTeam.Add(match.RedPlayer2);
+                    losers.MatchTeam.Add(match.BluePlayer1);
+                    losers.MatchTeam.Add(match.BluePlayer2);
+                }
+                else
+                {
+                    winners.MatchTeam.Add(match.BluePlayer1);
+                    winners.MatchTeam.Add(match.BluePlayer2);
+                    losers.MatchTeam.Add(match.RedPlayer1);
+                    losers.MatchTeam.Add(match.RedPlayer2);
+                }
+
+                // Get the rating modifier
+                var ratingModifier = Rating.GetRatingModifier(winners.GetTeamRating(), losers.GetTeamRating());
+
+                if (ratingModifier > ratingDiff.Rating)
+                {
+                    ratingDiff.Rating = ratingModifier;
+                    ratingDiff.Match = match;
+                }
+            }
+
+            return ratingDiff;
         }
     }
 }

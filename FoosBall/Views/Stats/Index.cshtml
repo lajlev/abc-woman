@@ -10,31 +10,45 @@
 
     <div class="label">Most Fights</div>
     <div>@Model.MostFights.Name (@Model.MostFights.Played)</div>
-    
+
     <div class="label">Most Wins</div>
     <div>@Model.MostWins.Name (@Model.MostWins.Won)</div>
-    
+
     <div class="label">Most Losses</div>
     <div>@Model.MostLosses.Name (@Model.MostLosses.Lost)</div>
-    
+
     <div class="label">Top Ranked</div>
     <div>@Model.TopRanked.Name</div>
-    
+
     <div class="label">Bottom Ranked</div>
     <div>@Model.BottomRanked.Name</div>
-    
+
     <div class="label">Highest Ranking Ever</div>
     <div>@Model.HighestRatingEver.Rating.ToString("F2") (@Model.HighestRatingEver.Name)</div>
-    
+
     <div class="label">Lowest Ranking Ever</div>
     <div>@Model.LowestRatingEver.Rating.ToString("F2") (@Model.LowestRatingEver.Name)</div>
-    
+
     <div class="label">Longest Winning streak</div>
     <div>@Model.LongestWinningStreak.Player.Name (@Model.LongestWinningStreak.Count)</div>
-    
+
     <div class="label">Longest Losing streak</div>
     <div>@Model.LongestLosingStreak.Player.Name (@Model.LongestLosingStreak.Count)</div>
-    
+
     <div class="label">Biggest Win (Rating)</div>
-    <div>@Model.BiggestRatingWin</div>
+    <div>
+        @Model.BiggestRatingWin.Rating.ToString("F2") -
+        <a href="Stats/Player?playerId=@Model.BiggestRatingWin.Match.GetWinners()[0].Id">@Model.BiggestRatingWin.Match.GetWinners()[0].Name</a>
+        @if (Model.BiggestRatingWin.Match.GetWinners().Count == 2)
+        {
+            <text> & <a href="Stats/Player?playerId=@Model.BiggestRatingWin.Match.GetWinners()[1].Id">@Model.BiggestRatingWin.Match.GetWinners()[1].Name</a></text>
+        }
+        
+        <span class="thin">beat up</span> <a href="Stats/Player?playerId=@Model.BiggestRatingWin.Match.GetLosers()[0].Id">@Model.BiggestRatingWin.Match.GetLosers()[0].Name</a>
+        @if (Model.BiggestRatingWin.Match.GetLosers().Count == 2)
+        {
+            <text> & <a href="Stats/Player?playerId=@Model.BiggestRatingWin.Match.GetLosers()[1].Id">@Model.BiggestRatingWin.Match.GetLosers()[1].Name</a></text>
+        }
+
+    </div>
 </fieldset>
