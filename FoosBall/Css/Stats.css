@@ -57,13 +57,13 @@ table .winner {
     display: table-cell; } }
 /* Stats View
 ----------------------------------------------------------*/
-#player-statistics div {
+.statistics div {
   font-weight: bold;
   font-size: 1.0em; }
-#player-statistics .first, #player-statistics .second {
+.statistics .first, .statistics .second {
   width: 230px;
   float: left; }
-#player-statistics .label {
+.statistics .label {
   font-weight: normal;
   font-size: .85em; }
 

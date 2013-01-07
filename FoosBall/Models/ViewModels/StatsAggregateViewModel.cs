@@ -1,27 +1,28 @@
 ﻿namespace FoosBall.Models.ViewModels
 {
+    using FoosBall.Models.Custom;
+    using FoosBall.Models.Domain;
+
     public class StatsAggregateViewModel
     {
-        public string MostFighting { get; set; }
+        public Player MostFights { get; set; }
 
-        public string MostWinning { get; set; }
-        
-        public string MostLosing { get; set; }
-        
-        public string TopRanked { get; set; }
+        public Player MostWins { get; set; }
 
-        public string BottomRanked { get; set; }
+        public Player MostLosses { get; set; }
 
-        public double HighestRatingEver { get; set; }
+        public Player TopRanked { get; set; }
 
-        public double LowestRatingEver { get; set; }
+        public Player BottomRanked { get; set; }
 
-        public string MostWinsInARow { get; set; }
-        
-        public string MostLossesInARow { get; set; }
-        
-        public string BiggestRatingWin { get; set; }
-        
-        public string PlayedToday { get; set; }
+        public Player HighestRatingEver { get; set; }
+
+        public Player LowestRatingEver { get; set; }
+
+        public Streak LongestWinningStreak { get; set; }
+
+        public Streak LongestLosingStreak { get; set; }
+
+        public RatingDifference BiggestRatingWin { get; set; }
     }
 }

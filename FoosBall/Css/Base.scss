@@ -107,7 +107,7 @@ page width. Or, you can specify an exact pixel width. */
         margin-left: auto;
         margin-right: auto;
     }
-}
+    }
 
 footer, #footer {
     background-color: #fff;
@@ -127,45 +127,87 @@ footer, #footer {
 /* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
-    line-height: 1.6em;
-    margin: 0;
-    position: relative;
-    text-align: right;
+    display: none;
+    margin: 0 0 3px 0;
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
     -webkit-padding-start: 0;
 
     li {
-        display: inline;
-        float: left;
+        border-bottom: 1px solid $font-color-dimmed;
         list-style: none;
+        display: list-item;  
+        padding-bottom: 3px;
+        margin: 3px;
+    }
+    li:last-child {
+        border-bottom: none;
+    }
+}
+.menu-list-button {
+    background: transparent url("/Content/images/menu-list.png") no-repeat bottom;
+    background-size: 21px;
+    float: right;
+    height: 21px;
+    margin-left: 15px;
+    width: 21px;
+}
 
-        a {
-      margin: 0;
-      padding: 5px 8px 3px;
-      font-weight: bold;
-            text-decoration: none;
-            background-color: $light;
-            color: $dark;
+@media only screen and (min-width : 810px) {
+    .menu-list-button {
+        display: none;
+    }
+    #main-menu {
+        background-color: none;
+        border: none;
+        display: block;
+        line-height: 1.6em;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        right: 0;
+        text-align: right;
+        top: 0;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        -webkit-padding-start: 0;
 
-            &:hover {
-                background-color: #fff;
+        li {
+            border: none;
+            margin: 0;
+            padding: 0;
+            display: inline;
+            float: left;
+            list-style: none;
+
+            a {
+                margin: 0;
+                padding: 5px 8px 3px;
+                font-weight: bold;
                 text-decoration: none;
-      }
+                background-color: $light;
+                color: $dark;
 
-      &:active {
-        background-color: #a6e2a6;
-        text-decoration: none;
-      }
-        }
+                &:hover {
+                    background-color: #fff;
+                    text-decoration: none;
+                }
 
-        &.selected a {
-            background-color: #fff;
-            color: #000;
+                &:active {
+                    background-color: #a6e2a6;
+                    text-decoration: none;
+                }
+            }
+
+            &.selected a {
+                background-color: #fff;
+                color: #000;
+            }
         }
     }
 }
-
 
 textarea {
     min-height: 75px;
@@ -182,12 +224,18 @@ nav, #menucontainer {
 }
 
 #app-title {
+    border: none;
+    color: #000;
     font-size: 30px;
     font-weight: bold;
-    padding: 5px 0;
     margin: 0;
-    color: #000;
-    border: none;
+    padding: 5px 0;
+    width: 90%;
+}
+@media only screen and (min-width : 810px) {
+    #app-title {
+        float: none;
+    }
 }
 
 #login-display {

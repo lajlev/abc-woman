@@ -25,7 +25,7 @@ $std-border: 2px solid #6A6;
     border-radius: 15px;
 }
 @mixin std-round-border {
-    border: 2px solid #6A6;
+    border: 2px solid $font-color-dimmed;
     @include round-border-small;
 }
 @mixin gravatar-large {

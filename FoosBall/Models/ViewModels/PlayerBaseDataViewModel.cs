@@ -12,8 +12,8 @@
         {
             var genderList = new List<SelectListItem>
                                  {
-                                     new SelectListItem { Selected = false, Text = "Male", Value = "Male" },
-                                     new SelectListItem { Selected = false, Text = "Female", Value = "Female" }
+                                     new SelectListItem { Text = "Male", Value = "Male" },
+                                     new SelectListItem { Text = "Female", Value = "Female" }
                                  };
 
             this.Genders = genderList;

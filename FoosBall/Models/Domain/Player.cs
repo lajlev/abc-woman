@@ -20,7 +20,19 @@
             Played = 0;
             Created = new BsonDateTime(DateTime.Now);
         }
-            
+
+        public Player(string id)
+        {
+            Id = id;
+            Rating = 1000;
+            Deactivated = false;
+            RememberMe = true;
+            Won = 0;
+            Lost = 0;
+            Played = 0;
+            Created = new BsonDateTime(DateTime.Now);
+        }
+
         public string Email { get; set; }
 
         public string Name { get; set; }

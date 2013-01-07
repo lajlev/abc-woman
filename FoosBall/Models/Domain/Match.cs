@@ -1,9 +1,9 @@
 ﻿namespace FoosBall.Models.Domain
 {
+    using System.Collections.Generic;
     using FoosBall.Models.Base;
-
     using MongoDB.Bson;
-    
+
     public class Match : FoosBallDoc
     {
         public int RedScore { get; set; }
@@ -93,15 +93,37 @@
             {
                 return RedPlayer1;
             }
+
             if (id == RedPlayer2.Id)
             {
                 return RedPlayer2;
             }
+
             if (id == BluePlayer1.Id)
             {
                 return BluePlayer1;
             }
+
             return id == this.BluePlayer2.Id ? this.BluePlayer2 : null;
         }
+
+        public List<Player> GetPlayers()
+        {
+            var listOfPlayers = new List<Player>();
+
+            listOfPlayers.Add(this.RedPlayer1);
+            if (this.CountRedPlayers() == 2)
+            {
+                listOfPlayers.Add(this.RedPlayer2);
+            }
+
+            listOfPlayers.Add(this.BluePlayer1);
+            if (this.CountBluePlayers() == 2)
+            {
+                listOfPlayers.Add(this.BluePlayer2);
+            }
+
+            return listOfPlayers;
+        } 
     }
 }   

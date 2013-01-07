@@ -99,34 +99,71 @@ footer, #footer {
 /* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
-  line-height: 1.6em;
-  margin: 0;
-  position: relative;
-  text-align: right;
+  display: none;
+  margin: 0 0 3px 0;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
   -webkit-padding-start: 0; }
   #main-menu li {
-    display: inline;
-    float: left;
-    list-style: none; }
-    #main-menu li a {
-      margin: 0;
-      padding: 5px 8px 3px;
-      font-weight: bold;
-      text-decoration: none;
-      background-color: #dddddd;
-      color: #222222; }
-      #main-menu li a:hover {
-        background-color: #fff;
-        text-decoration: none; }
-      #main-menu li a:active {
-        background-color: #a6e2a6;
-        text-decoration: none; }
-    #main-menu li.selected a {
-      background-color: #fff;
-      color: #000; }
+    border-bottom: 1px solid #999999;
+    list-style: none;
+    display: list-item;
+    padding-bottom: 3px;
+    margin: 3px; }
+  #main-menu li:last-child {
+    border-bottom: none; }
 
+.menu-list-button {
+  background: transparent url("/Content/images/menu-list.png") no-repeat bottom;
+  background-size: 21px;
+  float: right;
+  height: 21px;
+  margin-left: 15px;
+  width: 21px; }
+
+@media only screen and (min-width: 810px) {
+  .menu-list-button {
+    display: none; }
+
+  #main-menu {
+    background-color: none;
+    border: none;
+    display: block;
+    line-height: 1.6em;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    right: 0;
+    text-align: right;
+    top: 0;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0; }
+    #main-menu li {
+      border: none;
+      margin: 0;
+      padding: 0;
+      display: inline;
+      float: left;
+      list-style: none; }
+      #main-menu li a {
+        margin: 0;
+        padding: 5px 8px 3px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #dddddd;
+        color: #222222; }
+        #main-menu li a:hover {
+          background-color: #fff;
+          text-decoration: none; }
+        #main-menu li a:active {
+          background-color: #a6e2a6;
+          text-decoration: none; }
+      #main-menu li.selected a {
+        background-color: #fff;
+        color: #000; } }
 textarea {
   min-height: 75px; }
 
@@ -139,13 +176,17 @@ nav, #menucontainer {
   margin-top: 5px; }
 
 #app-title {
+  border: none;
+  color: #000;
   font-size: 30px;
   font-weight: bold;
-  padding: 5px 0;
   margin: 0;
-  color: #000;
-  border: none; }
+  padding: 5px 0;
+  width: 90%; }
 
+@media only screen and (min-width: 810px) {
+  #app-title {
+    float: none; } }
 #login-display {
   font-size: 0.85em;
   display: block;

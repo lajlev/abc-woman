@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using StackExchange.Profiling
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -20,10 +21,10 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script type="text/javascript">
         if (typeof jQuery == 'undefined') {
-            document.write(unescape('%3Cscript src="@Url.Content("~/Javacsript/jquery.min.js")" type="text/javascript"%3E%3C/script%3E'));
+            document.write(unescape('%3Cscript src="@Url.Content("~/Javascript/jquery.min.js")" type="text/javascript"%3E%3C/script%3E'));
         }
     </script>
-
+    
     <!-- Feedback plugin -->
     <script type="text/javascript">
         if (!!window.innerWidth === true && window.innerWidth > 930) {
@@ -57,8 +58,16 @@
                     <li class="Home">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="Players">@Html.ActionLink("Scoreboard", "Index", "Players")</li>
                     <li class="Matches">@Html.ActionLink("Matches", "Index", "Matches")</li>
-                    @*<li class="Stats">@Html.ActionLink("Stats", "Index", "Stats")</li>*@
-                </ul>
+                    <li class="Stats">@Html.ActionLink("Stats", "Index", "Stats")</li>
+                    @if (Session["IsLoggedIn"].ToString().ToLower() == "true")
+                    {
+                        if (Session["Admin"].ToString().ToLower() == "true")
+                        {
+                            <li class="Admin">@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        }                           
+                    }
+
+                </ul> 
             </nav>
         </header>
         <section id="main">
@@ -72,5 +81,6 @@
     <!-- Deferred Javascript -->
     <script src="@Url.Content("~/Javascript/FoosBall.js")"></script>
     @RenderSection("Javascript", false)
+    @MiniProfiler.RenderIncludes()    
 </body>
 </html>

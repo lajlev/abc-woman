@@ -5,32 +5,36 @@
 @section Javascript { <script async src="@Url.Content("~/Javascript/Stats.js")"></script> }
 @section Css{ <link rel="stylesheet" href="/Css/Stats.css"/>}
 
-<fieldset id="all-players-statistics">
+<fieldset class="statistics">
     <legend>Stats for all players</legend>
 
-    <div class="label">Most Fighting Fighter</div>
-    <div>@Model.MostFighting</div>
+    <div class="label">Most Fights</div>
+    <div>@Model.MostFights.Name (@Model.MostFights.Played)</div>
     
-    <div class="label">Most Winning Fighter</div>
-    <div>@Model.MostWinning</div>
-    $
-    <div class="label">Most Losing Fighter</div>
-    <div>@Model.MostLosing</div>
+    <div class="label">Most Wins</div>
+    <div>@Model.MostWins.Name (@Model.MostWins.Won)</div>
     
-    <div class="label">Top Ranked Fighter</div>
-    <div>@Model.TopRanked</div>
+    <div class="label">Most Losses</div>
+    <div>@Model.MostLosses.Name (@Model.MostLosses.Lost)</div>
     
-    <div class="label">Bottom Ranked Fighter</div>
-    <div>@Model.BottomRanked</div>
+    <div class="label">Top Ranked</div>
+    <div>@Model.TopRanked.Name</div>
     
-    <div class="label">Winning streak (Most wins in a row)</div>
-    <div>@Model.MostWinsInARow</div>
+    <div class="label">Bottom Ranked</div>
+    <div>@Model.BottomRanked.Name</div>
     
-    <div class="label">Losing streak (Most losses in a row)</div>
-    <div>@Model.MostLossesInARow</div>
+    <div class="label">Highest Ranking Ever</div>
+    <div>@Model.HighestRatingEver.Rating.ToString("F2") (@Model.HighestRatingEver.Name)</div>
     
-    <div class="label">Highest Rating jump</div>
+    <div class="label">Lowest Ranking Ever</div>
+    <div>@Model.LowestRatingEver.Rating.ToString("F2") (@Model.LowestRatingEver.Name)</div>
+    
+    <div class="label">Longest Winning streak</div>
+    <div>@Model.LongestWinningStreak.Player.Name (@Model.LongestWinningStreak.Count)</div>
+    
+    <div class="label">Longest Losing streak</div>
+    <div>@Model.LongestLosingStreak.Player.Name (@Model.LongestLosingStreak.Count)</div>
+    
+    <div class="label">Biggest Win (Rating)</div>
     <div>@Model.BiggestRatingWin</div>
-    
-    <div id="hover-tap"></div>
 </fieldset>

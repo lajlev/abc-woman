@@ -12,13 +12,21 @@
         }
     });
     
-    /* Menu highlighting */
+    /* ******************************************************************
+     * Menu highlighting and animation 
+     */
     var activeTab = $('#page').attr('class');
+    var $menu = $('#main-menu');
+    
     if (!!activeTab !== false) {
-        var $menu = $('#main-menu');
         $menu.find('li').removeClass('selected');
         $('.' + activeTab, $menu).addClass('selected');
     }
+
+    $('.menu-list-button').on('click', function(e) {
+        e.preventDefault();
+        $menu.slideToggle(200);
+    });
 });
 
 /* ******************************************************************

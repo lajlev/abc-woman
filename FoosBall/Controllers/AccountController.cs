@@ -1,6 +1,8 @@
 ﻿namespace FoosBall.Controllers
 {
     using System.Web.Mvc;
+
+    using FoosBall.ControllerHelpers;
     using FoosBall.Main;
     using FoosBall.Models.Domain;
     using FoosBall.Models.ViewModels;
@@ -145,11 +147,8 @@
         public ActionResult Edit(string id)
         {
             var currentUser = (Player)Session["User"];
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
-
-            var query = Query.EQ("_id", BsonObjectId.Parse(id));
-            var player = playerCollection.FindOne(query);
-
+            var player = DbHelper.GetPlayer(id);
+            
             if (currentUser != null && (currentUser.Id == player.Id || currentUser.Email == this.Settings.AdminAccount))
             {
                 var refUrl = HttpContext.Request.UrlReferrer != null
@@ -183,9 +182,7 @@
                 if (currentUser != null
                     && (currentUser.Id == viewModel.Player.Id || currentUser.Email == this.Settings.AdminAccount))
                 {
-                    var playerCollection = this.Dbh.GetCollection<Player>("Players");
-                    var query = Query.EQ("_id", BsonObjectId.Parse(viewModel.Player.Id));
-                    var player = playerCollection.FindOne(query);
+                    var player = DbHelper.GetPlayer(viewModel.Player.Id);
                     var gender = viewModel.Player.Gender;
 
                     player.Email = string.IsNullOrEmpty(viewModel.Player.Email)
@@ -204,7 +201,7 @@
                                         ? player.NickName
                                         : viewModel.Player.NickName;
 
-                    playerCollection.Save(player);
+                    DbHelper.SavePlayer(player);
                     viewModel.Player = player;
                     viewModel.SaveSuccess = true;
                 }
