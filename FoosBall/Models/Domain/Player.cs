@@ -58,20 +58,23 @@
         
         public bool RememberMe { get; set; }
 
-        public double Ratio()
+        public double Ratio
         {
-            double ratio;
-            
-            if (this.Played == 0)
+            get
             {
-                ratio = 0;
-            }
-            else
-            {
-                ratio = (this.Won / (double)this.Played) * 100;
-            }
+                double ratio;
 
-            return ratio;
+                if (this.Played == 0)
+                {
+                    ratio = 0;
+                }
+                else
+                {
+                    ratio = (this.Won / (double)this.Played) * 100;
+                }
+
+                return ratio;                
+            }
         }
     }
 }

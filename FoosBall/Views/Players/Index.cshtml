@@ -21,10 +21,7 @@
                 <a href="@Url.Action("Player","Stats", new {playerId = @player.Id })">@player.Name</a>
                 <br>
                 <span title="Elo rating: @player.Rating.ToString("F2")">@player.Rating.ToString("F0")<sup>points</sup></span>|
-                <span title="Winning ratio: @player.Ratio().ToString("F4")" class="ratio">@player.Ratio().ToString("F2")<sup>ratio</sup></span>
-                @*<div class="won-lost-played" title="Won: @player.Won &middot; Lost: @player.Lost &middot; Played: @player.Played">
-                    <span class="won">@player.Won</span> &middot; <span class="lost">@player.Lost</span> &middot; <span class="played">@player.Played</span>
-                </div>*@
+                <span title="Winning ratio: @player.Ratio.ToString("F4")" class="ratio">@player.Ratio.ToString("F2")<sup>ratio</sup></span>
             </div>
         </div>
 
