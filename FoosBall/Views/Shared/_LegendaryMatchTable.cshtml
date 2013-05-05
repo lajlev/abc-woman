@@ -1,6 +1,7 @@
 ﻿@model MatchTableViewModel
 @{
     var currentUser = (Player)HttpContext.Current.Session["User"];
+    var t = TimeZone.CurrentTimeZone;
 }   
 @if (currentUser != null)
 {
@@ -70,10 +71,10 @@
                         @match.BlueScore
                     </span>
                 </td>
-                <td class="played" title="@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
-                    <span class="short-time">@match.GameOverTime.ToLocalTime().ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
-                    <span class="long-time" title="@match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
-                        @match.GameOverTime.ToLocalTime().ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))
+                <td class="played" title="@t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
+                    <span class="short-time">@t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
+                    <span class="long-time" title="@t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("d MMM yy, HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
+                        @t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))
                     </span>
                 </td>
             </tr>
