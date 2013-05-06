@@ -1,7 +1,6 @@
 ﻿@model MatchTableViewModel
 @{
     var currentUser = (Player)HttpContext.Current.Session["User"];
-    var t = TimeZone.CurrentTimeZone;
 }   
 @if (currentUser != null)
 {
@@ -20,6 +19,7 @@
     <tbody>
         @foreach (var match in Model.Matches)
         {
+            var gameTime = TimeZoneInfo.ConvertTime(match.GameOverTime.ToUniversalTime(), TimeZoneInfo.Utc, TimeZoneInfo.FindSystemTimeZoneById("Romance Standard Time"));
             <tr>
                 @* Red Teams names and Nicknames *@
                 <td class="red team-names @if (match.RedScore > match.BlueScore) { <text>winner</text> }">
@@ -69,12 +69,12 @@
                     <span class="blue @if (match.BlueScore > match.RedScore)
                                       { <text>winner</text> }">
                         @match.BlueScore
-                    </span>
+                    </span> 
                 </td>
-                <td class="played" title="@t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
-                    <span class="short-time">@t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
-                    <span class="long-time" title="@t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("d MMM yy, HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
-                        @t.ToLocalTime(match.GameOverTime.ToLocalTime()).ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))
+                <td class="played" title="@gameTime.ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
+                    <span class="short-time">@gameTime.ToString("dd MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))</span>
+                    <span class="long-time" title="@gameTime.ToString("d MMM yy, HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))">
+                        @gameTime.ToString("d MMM yy, HH:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-gb"))
                     </span>
                 </td>
             </tr>
