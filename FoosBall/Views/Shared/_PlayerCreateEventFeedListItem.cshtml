@@ -1,0 +1,4 @@
+﻿@model Event
+<li>
+    Fresh meat! <a href="@Url.Action("Player","Stats", new {playerId = Model.Player.Id })">@Model.Player.Name</a> just signed up for the FoosBall app.
+</li>
