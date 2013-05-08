@@ -6,7 +6,7 @@
     using FoosBall.Main;
     using FoosBall.Models.Domain;
     using FoosBall.Models.ViewModels;
-
+    using Models.Base;
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
     
@@ -139,7 +139,7 @@
 
             Login(newPlayer);
 
-            Events.SubmitEvent("Create", "Player", newPlayer, newPlayer.Id);
+            Events.SubmitEvent(EventType.PlayerCreate, newPlayer, newPlayer.Id);
             return this.Redirect(Url.Action("Index", "Players") + "#" + newPlayer.Id);
         }
 

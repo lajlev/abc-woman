@@ -11,9 +11,7 @@
 
         public long Index { get; set; }
 
-        public string Action { get; set; }
-
-        public string Type { get; set; }
+        public EventType EventType { get; set; }
 
         public Player Player { get; set; }
 

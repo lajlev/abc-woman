@@ -2,38 +2,37 @@
 {
     using System;
 
-    using FoosBall.Models.Domain;
-
+    using Models.Base;
+    using Models.Domain;
     using MongoDB.Bson;
 
     public static class Events
     {
-        public static void SubmitEvent(string action, string type, object targetObject, string userId) 
+        public static void SubmitEvent(EventType eventType, object targetObject, string userId) 
         {
-            SaveEvent(action, type, targetObject, userId);
+            SaveEvent(eventType, targetObject, userId);
         }
 
-        private static void SaveEvent(string action, string type, object targetObject, string userId)
+        private static void SaveEvent(EventType eventType, object targetObject, string userId) 
         {
-            if (string.IsNullOrEmpty(action) == false && string.IsNullOrEmpty(type) == false && targetObject != null)
+            if (eventType != EventType.Default && targetObject != null)
             {
                 var dbh = new Db(AppConfig.GetEnvironment()).Dbh;
                 var eventCollection = dbh.GetCollection<Event>("Events");
 
                 var newEvent = new Event
                 {
-                    Action = action,
-                    Type = type,
+                    EventType = eventType,
                     Created = new BsonDateTime(DateTime.Now),
                     CreatedBy = userId
                 };
 
-                if (type.ToLower() == "player")
-                {
+                if (eventType == EventType.PlayerLogin || eventType == EventType.PlayerCreate)
+                {   
                     newEvent.Player = (Player)targetObject;
                 }
 
-                if (type.ToLower() == "match")
+                if (eventType == EventType.MatchResolve)
                 {
                     newEvent.Match = (Match)targetObject;
                 }

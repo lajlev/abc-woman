@@ -128,7 +128,7 @@
 
     <fieldset id="player-matches">
         <legend>@(Model.Player.Name)s Fights</legend>
-        Html.RenderPartial("_LegendaryMatchTable", new MatchTableViewModel { Matches = Model.PlayedMatches, User = null });
+        @{Html.RenderPartial("_LegendaryMatchTable", new MatchTableViewModel { Matches = Model.PlayedMatches, User = null });}
     </fieldset>
 }
 else

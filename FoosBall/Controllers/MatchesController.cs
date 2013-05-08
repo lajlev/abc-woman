@@ -9,7 +9,7 @@
     using FoosBall.Models.Custom;
     using FoosBall.Models.Domain;
     using FoosBall.Models.ViewModels;
-
+    using Models.Base;
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
@@ -32,24 +32,22 @@
                     .OrderByDescending(x => x.GameOverTime)
                     .Take(30);
 
-            var pendingMatches =
-                this.Dbh.GetCollection<Match>("Matches")
-                    .Find(Query.EQ("GameOverTime", BsonDateTime.Create(DateTime.MinValue)))
-                    .ToList()
-                    .OrderByDescending(x => x.CreationTime);
-
             // Create content for the <select> 
             var selectItems = playerCollection
-                .Select(x => new CustomSelectListItem { Selected = false, Text = x.Name, Value = x.Id, CssClass = x.Gender })
+                .Select(x => new CustomSelectListItem
+                    {
+                        Selected = false, 
+                        Text = x.Name, 
+                        Value = x.Id, 
+                        CssClass = x.Gender
+                    })
                 .ToList();
 
             var played = playedMatches.OrderByDescending(x => x.GameOverTime);
-            var pending = pendingMatches.OrderByDescending(x => x.CreationTime);
 
             return View(new MatchesViewModel
                             {
                                 PlayedMatches = played, 
-                                PendingMatches = pending, 
                                 SelectPlayers = selectItems,
                                 Settings = this.Settings
                             });
@@ -65,7 +63,7 @@
             var matchCollection = this.Dbh.GetCollection<Match>("Matches");
 
             matchCollection.Save(resolvedMatch);
-            Events.SubmitEvent("Register", "Match", resolvedMatch, currentUser.Id);
+            Events.SubmitEvent(EventType.MatchResolve, resolvedMatch, currentUser.Id);
 
             return this.RedirectToAction("Index");
         }
@@ -82,7 +80,7 @@
                 var query = Query.EQ("_id", BsonObjectId.Parse(id));
                 var match = matchCollection.FindOne(query);
 
-                Events.SubmitEvent("Delete", "Match", match, currentUser.Id);
+                Events.SubmitEvent(EventType.MatchDelete, match, currentUser.Id);
                 matchCollection.Remove(query);
             }
 

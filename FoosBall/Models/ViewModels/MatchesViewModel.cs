@@ -10,8 +10,6 @@
     {
         public IEnumerable<Match> PlayedMatches { get; set; }
 
-        public IEnumerable<Match> PendingMatches { get; set; }
-
         public IEnumerable<CustomSelectListItem> SelectPlayers { get; set; }
     }
 }

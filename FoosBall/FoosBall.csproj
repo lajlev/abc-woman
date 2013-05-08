@@ -118,6 +118,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Base\EventType.cs" />
     <Compile Include="Models\Custom\CustomSelectListItem.cs" />
     <Compile Include="Models\Custom\RatingDifference.cs" />
     <Compile Include="Models\Custom\Streak.cs" />
@@ -275,6 +276,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\Stats.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_PlayerCreateEventFeedListItem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_MatchResolveEventFeedListItem.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -3,7 +3,8 @@
     using System;
     using System.Collections.Generic;
 
-    using FoosBall.Models.Base;
+    using Base;
+    using Domain;
 
     public class HomeViewModel : BaseViewModel
     {
@@ -13,13 +14,15 @@
                                                  "Are you ready to score The Goal Of The Year?",
                                                  "Welcome FoosBall Fighter, We've been expecting you.",
                                                  "Ready to challenge another FoosBall Fighter?",
-                                                 "Come on in, set up a match, enjoy!",
+                                                 "Come on in, set up a match, enjoy!"
                                              };
 
         public HomeViewModel()
         {
-            this.Message = this.GetMessage();
+            Message = GetMessage();
         }
+
+        public List<Event> LatestEvents { get; set; }
 
         public string Message { get; set; }
 

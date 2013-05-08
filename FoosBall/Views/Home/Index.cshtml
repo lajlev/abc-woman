@@ -1,4 +1,5 @@
-﻿@model HomeViewModel
+﻿@using FoosBall.Models.Base
+@model HomeViewModel
 @{
     ViewBag.Title = "Home of FoosBall'ers";
 }
@@ -10,3 +11,25 @@
 @section Css{ <link rel="stylesheet" href="/Css/Home.css"/>}
 
 <h2 id="welcome-message">@Model.Message</h2>
+
+@if (Model.LatestEvents.Any())
+{
+    <ul class="event-feed-items">
+        @foreach (var latestEvent in Model.LatestEvents)
+        {
+            var eventTime = TimeZoneInfo.ConvertTime(latestEvent.Created.ToUniversalTime(), TimeZoneInfo.Utc, TimeZoneInfo.FindSystemTimeZoneById("Romance Standard Time"));
+            
+            switch (latestEvent.EventType)
+            {
+                case EventType.PlayerCreate:
+                    Html.RenderPartial("_PlayerCreateEventFeedListItem", latestEvent);
+                    break;
+                case EventType.MatchResolve:
+                    Html.RenderPartial("_MatchResolveEventFeedListItem", latestEvent);
+                    break;
+                default:
+                    break;
+            }   
+        }
+    </ul>
+}
