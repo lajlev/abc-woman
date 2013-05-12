@@ -5,12 +5,10 @@
     using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
-
-    using FoosBall.ControllerHelpers;
-    using FoosBall.Models;
-    using FoosBall.Models.Domain;
-    using FoosBall.Models.ViewModels;
-
+    using ControllerHelpers;
+    using Models;
+    using Models.Domain;
+    using Models.ViewModels;
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
@@ -255,17 +253,20 @@
                         stats.TotalNumberOfPlayers = (int)playerCollection.Count();
                     }
 
-                    stats.Bff = bff.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
-                    stats.Rbff = rbff.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
-                    stats.Eae =
-                        eae.OrderByDescending(i => i.Value.Occurrences)
-                           .ThenByDescending(i => i.Value.GoalDiff)
-                           .Select(i => i.Value)
-                           .FirstOrDefault();
-                    stats.PreferredColor =
-                        preferredColor.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
-                    stats.WinningColor =
-                        winningColor.OrderByDescending(i => i.Value.Occurrences).Select(i => i.Value).FirstOrDefault();
+                    stats.Bff = bff.OrderByDescending(x => x.Value.Occurrences)
+                                   .Select(x => x.Value)
+                                   .FirstOrDefault();
+                    stats.Rbff = rbff.OrderByDescending(x => x.Value.Occurrences).Select(x => x.Value).FirstOrDefault();
+                    stats.Eae = eae.OrderByDescending(x => x.Value.Occurrences)
+                                   .ThenByDescending(x => x.Value.GoalDiff)
+                                   .Select(x => x.Value)
+                                   .FirstOrDefault();
+                    stats.PreferredColor = preferredColor.OrderByDescending(x => x.Value.Occurrences)
+                                                         .Select(x => x.Value)
+                                                         .FirstOrDefault();
+                    stats.WinningColor = winningColor.OrderByDescending(x => x.Value.Occurrences)
+                                                     .Select(x => x.Value)
+                                                     .FirstOrDefault();
 
                     return View(stats);
                 }
@@ -277,7 +278,14 @@
         [HttpGet]
         public JsonResult GetPlayerRatingData(string playerId)
         {
-            var chartData = new PlayerRatingChartData(); 
+            var chartData = new PlayerRatingChartData();
+            const int defaultRating = 1000;
+
+            chartData.DataPoints.Add(new PlayerRatingChartDataPoint
+                        {
+                            TimeSet = new List<string>(),
+                            Rating = defaultRating 
+                        });
 
             if (playerId != null)
             {
@@ -308,7 +316,11 @@
                             match.GameOverTime.ToLocalTime().Second.ToString(CultureInfo.InvariantCulture)
                         };
 
-                    chartData.DataPoints.Add(new PlayerRatingChartDataPoint { TimeSet = time, Rating = matchPlayer.Rating });
+                    chartData.DataPoints.Add(new PlayerRatingChartDataPoint
+                        {
+                            TimeSet = time, 
+                            Rating = matchPlayer.Rating
+                        });
                 }
 
                 chartData.MinimumValue = minRating;

@@ -33,7 +33,7 @@ function getChartData(container) {
                         parseInt(value.TimeSet[1]) - 1, // month (0-based)
                         value.TimeSet[2], // day
                         value.TimeSet[3], // hour
-                        value.TimeSet[4],  // minute
+                        value.TimeSet[4], // minute
                         value.TimeSet[5]  // second
                     )).toDateString(),
                     parseFloat(value.Rating.toPrecision(6))
@@ -43,6 +43,7 @@ function getChartData(container) {
             chartData.MinimumValue = data.MinimumValue - 50;
             chartData.MaximumValue = data.MaximumValue + 50;
             chartData.PlayerName = subjectName;
+            chartData.DataPoints[0][0] = 'The "birth" of ' + subjectName;
             renderChart(chartData);
         }
     });
