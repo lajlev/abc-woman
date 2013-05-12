@@ -4,16 +4,24 @@
     text-align: center;
 }
 
+.event-feed-items-header {
+    text-align:center;
+}
 .event-feed-items {
+    list-style: none;
+    li {
+        padding-top: 20px;
+    }
     a {
-        font-weight: bold;
+        font-weight: normal;
         font-size: 1.0em;
+        text-decoration: underline;
     }
 }
 
 .feature-list {
-    padding-left: 20px;
     list-style: none;
+    padding-left: 20px;
     & li {
         color: black;
         font-size: .85em;

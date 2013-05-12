@@ -4,10 +4,10 @@
     var winner1 = Model.Match.GetWinners().First();
     var losers = Model.Match.GetLosers();
     var loser1 = Model.Match.GetLosers().First();
-
-    var date = TimeZoneInfo.ConvertTime(Model.Match.GameOverTime.ToUniversalTime(), TimeZoneInfo.Utc, TimeZoneInfo.FindSystemTimeZoneById("Romance Standard Time"));
 }
 <li>
+    <b>@Math.Max(Model.Match.RedScore, Model.Match.BlueScore) - @Math.Min(Model.Match.RedScore, Model.Match.BlueScore)</b>
+    was the result when 
     <a href="@Url.Action("Player","Stats", new {playerId = @winner1.Id })">@winner1.Name</a>
     @if (winners.Count > 1)
     {
@@ -19,6 +19,4 @@
     {
         <text>& </text><a href="@Url.Action("Player","Stats", new {playerId = @Model.Match.GetLosers().Last().Id })">@Model.Match.GetLosers().Last().Name</a>
     }
-    
-    @Math.Max(Model.Match.RedScore, Model.Match.BlueScore) - @Math.Min(Model.Match.RedScore, Model.Match.BlueScore)
 </li>

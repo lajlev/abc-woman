@@ -3,13 +3,21 @@
 #welcome-message {
   text-align: center; }
 
-.event-feed-items a {
-  font-weight: bold;
-  font-size: 1.0em; }
+.event-feed-items-header {
+  text-align: center; }
+
+.event-feed-items {
+  list-style: none; }
+  .event-feed-items li {
+    padding-top: 20px; }
+  .event-feed-items a {
+    font-weight: normal;
+    font-size: 1.0em;
+    text-decoration: underline; }
 
 .feature-list {
-  padding-left: 20px;
-  list-style: none; }
+  list-style: none;
+  padding-left: 20px; }
   .feature-list li {
     color: black;
     font-size: .85em; }
