@@ -78,7 +78,6 @@
             return View(model);
         }
 
-        // GET: /Account/LogOff
         public ActionResult LogOff()
         {
             Session.Clear();
@@ -94,7 +93,6 @@
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: /Account/Register
         public ActionResult Register()
         {
             var viewModel = new PlayerBaseDataViewModel
@@ -105,7 +103,6 @@
             return View(viewModel);
         }
 
-        // POST: /Account/Register
         [HttpPost]
         public ActionResult Register(PlayerBaseDataViewModel viewModel)
         {
@@ -140,6 +137,7 @@
             Login(newPlayer);
 
             Events.SubmitEvent(EventType.PlayerCreate, newPlayer, newPlayer.Id);
+
             return this.Redirect(Url.Action("Index", "Players") + "#" + newPlayer.Id);
         }
 
@@ -154,6 +152,7 @@
                 var refUrl = HttpContext.Request.UrlReferrer != null
                                  ? HttpContext.Request.UrlReferrer.AbsoluteUri
                                  : "/Players";
+
                 return this.View(new PlayerBaseDataViewModel
                                      {
                                          Player = player, 
@@ -207,6 +206,7 @@
                 }
 
                 viewModel.Settings = this.Settings;
+
                 return this.View("Edit", viewModel);
             }
 
@@ -228,7 +228,6 @@
             return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
         }
 
-        // POST: /Account/PlayerNameExists
         [HttpPost]
         public JsonResult PlayerNameExists(string name)
         {
@@ -244,7 +243,6 @@
             return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
         }
 
-        // GET Account/GetGravatarUrl/{emailPrefix}
         [HttpGet]
         public JsonResult GetGravatarUrl(string email)
         {
