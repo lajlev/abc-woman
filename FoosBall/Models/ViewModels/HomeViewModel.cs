@@ -8,7 +8,7 @@
 
     public class HomeViewModel : BaseViewModel
     {
-        private readonly List<string> messages = new List<string>
+        private readonly List<string> welcomeMessages = new List<string>
                                              {
                                                  "Welcome to the FoosBall Tournament App!!",
                                                  "Are you ready to score The Goal Of The Year?",
@@ -19,16 +19,16 @@
 
         public HomeViewModel()
         {
-            Message = GetMessage();
+            WelcomeMessage = GetWelcomeMessage();
         }
 
         public List<Event> LatestEvents { get; set; }
 
-        public string Message { get; set; }
+        public string WelcomeMessage { get; set; }
 
-        public string GetMessage(int index = -1)
+        public string GetWelcomeMessage(int index = -1)
         {
-            return index < 0 ? messages[new Random().Next(0, messages.Count)] : messages[index];
+            return index < 0 ? welcomeMessages[new Random().Next(0, welcomeMessages.Count)] : welcomeMessages[index];
         }
     }
 }
