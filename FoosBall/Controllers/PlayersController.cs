@@ -15,7 +15,7 @@
             var playerCollection = Dbh.GetCollection<Player>("Players")
                                         .FindAll()
                                         .SetSortOrder(SortBy.Descending("Rating"))
-                                        .Where(x => x.Played > 0)
+                                        .Where(x => x.Played > 0 && x.Deactivated == false)
                                         .ToList();
 
             return this.View(new PlayersViewModel { AllPlayers = playerCollection });
