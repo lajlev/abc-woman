@@ -36,6 +36,40 @@
 
     // Start the connection.
     $.connection.hub.start();
+    
+    // ******************************************************************
+    // Menu highlighting and animation 
+    //
+    var activeTab = $('#page').attr('class');
+    var $menu = $('#main-menu');
+    var $menuarrow = $('.menu-arrow');
+
+    if (!!activeTab !== false) {
+        $menu.find('li').removeClass('selected');
+        $('.' + activeTab, $menu).addClass('selected');
+    }
+
+    $('.menu-list-button').on('click', function (e) {
+        e.preventDefault();
+        $menu.toggle();
+        $menuarrow.toggle();
+    });
+
+    $menu.on('click', 'li', function (event) {
+        event.preventDefault();
+        var redirectUrl;
+        var $target = $(event.target);
+
+        if ($target.is('li')) {
+            redirectUrl = $target.children('a').attr('href');
+        } else if ($target.is('a')) {
+            redirectUrl = $target.attr('href');
+        }
+
+        if (redirectUrl) {
+            window.location = redirectUrl;
+        }
+    });
 });
 
 /* ******************************************************************
@@ -85,7 +119,7 @@ function onMatchResolved(event, eventData) {
 function displayRequestForUsingWebkitNotifications() {
     var $requestDiv = $('#request-notification');
     $requestDiv.slideDown(250, function() {
-        var $closeNotification = $requestDiv.find('#notify-me')
+        var $closeNotification = $requestDiv.find('#notify-me');
 
         $closeNotification.on('click', function () {
             window.webkitNotifications.requestPermission();
