@@ -56,13 +56,14 @@
         }
 
         [HttpGet]
-        public ActionResult GetMatches(int numberOfMatches = PageSize, int fromMatchNo = 0)
+        public ActionResult GetMatches(int numberOfMatches = PageSize, int startFromMatch = 0)
         {
             // Fetch all FoosBall matches
             var playedMatches = 
                 this.Dbh.GetCollection<Match>("Matches")
                     .Find(Query.GT("GameOverTime", DateTime.Parse("01/01/2012")))
                     .OrderByDescending(x => x.GameOverTime)
+                    .Skip(startFromMatch)
                     .Take(numberOfMatches);
 
             return Json(playedMatches, JsonRequestBehavior.AllowGet);

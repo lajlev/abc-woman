@@ -3,7 +3,12 @@
     ViewBag.Title = "Matches";
     var currentUser = (Player)HttpContext.Current.Session["User"];
 }
-@section Javascript{ <script async src="@Url.Content("~/Javascript/Matches.js")"></script> }
+@section Javascript
+{ 
+    <script async src="@Url.Content("~/Javascript/Matches.js")"></script> 
+    <script src="@Url.Content("~/Javascript/matches.controller.js")"></script> 
+}
+
 @section Css{ <link rel="stylesheet" href="/Css/Matches.css"/>}
 
 @if (currentUser != null)
@@ -15,10 +20,11 @@ else
     <p>@Html.ActionLink("Log on", "LogOn", "Account") to register matches</p>
 }
 
-<div id="match-list">
-    
+<div ng-controller="MatchesController" id="match-list">
+    @{ Html.RenderPartial("_MatchTemplate"); }
 </div>
-@{ Html.RenderPartial("_MatchTemplate"); }
+
+
 
 @*
 @if (Model.PlayedMatches.Any())
