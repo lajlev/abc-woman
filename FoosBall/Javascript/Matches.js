@@ -1,7 +1,10 @@
-﻿jQuery(window).load(function () {
-    /* ******************************************************************
-     * Match View
-     */
+﻿/*
+
+jQuery(window).load(function () {
+    // ******************************************************************
+    // Match View
+    // 
+    
     var $r1 = $('#red-player-1'),
         $b1 = $('#blue-player-1'),
         $playerSelects = $('.select-player'),
@@ -32,10 +35,7 @@
         $thisSelect = $(e.target);
         valueBeforeChange = $thisSelect.find(':selected').val();
     }).on('change', function () {
-        var $thisOption = $thisSelect.find(':selected'),
-            $redPlayer1 = $('#red-player-1'),
-            $bluePlayer1 = $('#blue-player-1'),
-            $teamScores = $('.team-scores');
+        var $thisOption = $thisSelect.find(':selected');
 
         // reset options 
         $.each($('option[value="' + valueBeforeChange + '"]').not($thisOption), function (idx, element) {
@@ -60,9 +60,10 @@
         return undefined;
     });
     
-    /* ******************************************************************
-     * SaveMatchResult View
-     */
+    // ******************************************************************
+    // SaveMatchResult View
+    // 
+
     // Validation
     $('#submit-score-button').on('click', function (e) {
         var errm = "",
@@ -97,3 +98,5 @@
         $('#team-blue-score').val(e.target.value);
     });
 });
+
+*/

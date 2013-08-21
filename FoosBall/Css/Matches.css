@@ -3,8 +3,7 @@
 #match-list {
   min-height: 590px; }
 
-#submit-match-form, #submit-challenge-form {
-  display: none;
+#submit-match-form {
   margin-top: 20px; }
 
 .match {
@@ -125,18 +124,10 @@
 
 .team-score {
   height: 40px;
-  width: 40px !important;
+  width: 60px !important;
   font-size: 22px;
   text-align: center;
   margin: 5px auto 0 auto; }
-
-.score-slider {
-  -webkit-appearance: slider-vertical;
-  overflow: -moz-scrollbars-vertical;
-  height: 100px;
-  width: 40px;
-  margin: 10px auto 15px auto;
-  display: block; }
 
 #team-red-players {
   float: left; }
@@ -155,12 +146,10 @@
     width: 40px;
     margin: 0 auto;
     display: block; }
-
-#fighting-team-red {
-  float: left;
-  width: 45%; }
-
-#fighting-team-blue {
-  float: right;
-  width: 45%; }
+  .opponent.red {
+    float: left;
+    width: 45%; }
+  .opponent.blue {
+    float: right;
+    width: 45%; }
 
