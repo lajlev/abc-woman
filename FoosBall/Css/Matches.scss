@@ -165,11 +165,14 @@
     width: 20%;
 }
 .team-score {
-    height: 40px;
-    width: 60px!important;
     font-size: 22px;
-    text-align: center;
+    height: 40px;
     margin: 5px auto 0 auto;
+    text-align: center;
+    width: 60px!important;
+    &.invalid {
+        border: 2px solid red;
+    }
 }
 #team-red-players {
     float: left;}

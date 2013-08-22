@@ -1,6 +1,6 @@
 ﻿<input ng-cloak ng-click="hideForm=!hideForm" type="button" class="button" value="Create a Match" />
 
-<form name="resolveMatchForm" ng-submit="submitMatch()" ng-controller="SubmitMatchController">
+<form novalidate name="resolveMatchForm" ng-submit="submitMatch()" ng-controller="SubmitMatchController">
     <div ng-hide="hideForm" id="submit-match-form" class="closed clearfix">
         <div id="team-red-players" class="team">
             <div class="team-name">Red Team</div>
@@ -36,10 +36,11 @@
         </div>
         <div class="team-scores">
             <div class="form-input opponent red">
-                <input type="number" min="0" max="99" placeholder="0" class="team-score" required ng-model="match.RedScore"/>
+                <input ng-model="match.RedScore" 
+                       type="number" min="0" max="99" value="0" class="team-score" resolvedScore />
             </div>
             <div class="form-input opponent blue">
-                <input type="number" min="0" max="99" placeholder="0" class="team-score" required ng-model="match.BlueScore"/>
+                <input type="number" min="0" max="99" value="0" class="team-score" required ng-model="match.BlueScore"/>
             </div>
             <div class="form-button">
                 <input type="submit" value="Submit score" class="submit-button button" id="submit-score-button"/>

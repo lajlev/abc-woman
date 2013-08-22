@@ -1,23 +1,4 @@
-﻿function SubmitMatchController($scope, $resource) { 
-    $scope.submitMatch = function () {
-        var Match = $resource('Matches/SubmitMatch');
-        var promise = Match.save($scope.match).$promise;
-
-        promise.then(function (response) {
-            // Reset the match form
-            angular.forEach($scope.match, function (value, key) {
-                $scope.match[key] = null;
-            });
-
-            if (response.success) {
-                var preparedMatch = prepareMatch(response.returnedMatch);
-                $scope.matches.unshift(preparedMatch);
-            }
-        });
-    };
-}
-
-function MatchesController($scope, $resource) {
+﻿function MatchesController($scope, $resource) {
     $scope.pageSize = 10;
     $scope.hideForm = true;
     $scope.matches = [];
@@ -52,14 +33,32 @@ function MatchesController($scope, $resource) {
     $scope.getPlayers();
 }
 
-// Groom the data
-function prepareMatch(match) {
-        var time = parseInt(match.GameOverTime.replace(/\D/g, ""));
-        var date = new Date(time);
+function SubmitMatchController($scope, $resource) {
+    $scope.submitMatch = function () {
+        var Match = $resource('Matches/SubmitMatch');
+        var promise = Match.save($scope.match).$promise;
 
-        match.DistributedRating = match.DistributedRating.toString().replace(/(\d{1,2})(\.)(\d{2})(.*)/g, "$1,$3");
-        match.GameOverDate = date.toDateString().replace(/(\w{3}) (\w{3}) (\d{2}) (\d{2})(\d{2})/g, date.getDate() + " $2 " + " $5");
-        match.GameOverTime = date.toLocaleTimeString().replace(/(\d{2})(\.)(\d{2})(\.)(\d{2})/g, ", $1:$3");
+        promise.then(function (response) {
+            // Reset the match form
+            angular.forEach($scope.match, function (value, key) {
+                $scope.match[key] = null;
+            });
+
+            if (response.success) {
+                var preparedMatch = prepareMatch(response.returnedMatch);
+                $scope.matches.unshift(preparedMatch);
+            }
+        });
+    };
+}
+
+function prepareMatch(match) {
+    var time = parseInt(match.GameOverTime.replace(/\D/g, ""));
+    var date = new Date(time);
+
+    match.DistributedRating = match.DistributedRating.toString().replace(/(\d{1,2})(\.)(\d{2})(.*)/g, "$1,$3");
+    match.GameOverDate = date.toDateString().replace(/(\w{3}) (\w{3}) (\d{2}) (\d{2})(\d{2})/g, date.getDate() + " $2 " + " $5");
+    match.GameOverTime = date.toLocaleTimeString().replace(/(\d{2})(\.)(\d{2})(\.)(\d{2})/g, ", $1:$3");
 
     return match;
 }
