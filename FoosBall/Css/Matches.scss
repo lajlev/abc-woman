@@ -8,10 +8,6 @@
     min-height: 590px;    
 }
 
-#submit-match-form {
-    margin-top: 20px;
-}
-
 .match {
     margin: 40px 0 0 0;
 }
@@ -153,9 +149,10 @@
 
 /* SaveMatchResult View
 ----------------------------------------------------------*/
-#submit-match-form {
+#match-form {
     background: none #fff;
     border-radius: 5px;
+    margin-top: 20px;
     padding: 15px 20px;
 }
 .team {

@@ -382,6 +382,23 @@ input[type="submit"], input[type="button"], button {
     font-size: 1.0em;
     width: 100%;
     margin: 1px 0;
+    &[disabled="disabled"] {
+        -moz-box-shadow:inset 0px 1px 0px 0px #bbb;
+        -webkit-box-shadow:inset 0px 1px 0px 0px #bbb;
+        box-shadow:inset 0px 1px 0px 0px #bbb;
+        border: 1px solid #bbb;
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ddd), color-stop(1, #ccc));
+        background:-moz-linear-gradient(top, #ddd 5%, #ccc 100%);
+        background:-webkit-linear-gradient(top, #ddd 5%, #ccc 100%);
+        background:-o-linear-gradient(top, #ddd 5%, #ccc 100%);
+        background:-ms-linear-gradient(top, #ddd 5%, #ccc 100%);
+        background:linear-gradient(to bottom, #ddd 5%, #ccc 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ddd', endColorstr='#ccc',GradientType=0);
+        color: #aaa;
+        &:active {
+            top: 0px;
+        }
+    }
 }
 /* MISC
 ----------------------------------------------------------*/

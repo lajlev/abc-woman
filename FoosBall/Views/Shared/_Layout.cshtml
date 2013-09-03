@@ -47,10 +47,15 @@
             })();
         }
     </script>
-
 </head>
 <body>
-    
+    @{
+        var currentUser = (Player)HttpContext.Current.Session["User"];
+        if (currentUser != null && !string.IsNullOrWhiteSpace(currentUser.Id))
+        {
+            <input id="current-user-id" type="hidden" value="@currentUser.Id"/>
+        }
+    }
     <div id="request-notification">
         Try the new Foosball Fighting desktop notifications - You'll love it!<br />
         <input class="button" id="notify-me" value="Ok, off we go!" />

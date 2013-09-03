@@ -59,7 +59,7 @@
         }
 
         // POST: /Matches/Delete/{id}
-        [HttpGet]
+        [HttpPost]
         public ActionResult Delete(string id)
         {
             var currentUser = (Player)Session["User"];
@@ -101,6 +101,7 @@
                 var red2 = string.IsNullOrWhiteSpace(newMatch.RedPlayer2.Id) ? string.Empty : newMatch.RedPlayer2.Id;
                 var blue1 = newMatch.BluePlayer1.Id;
                 var blue2 = string.IsNullOrWhiteSpace(newMatch.BluePlayer2.Id) ? string.Empty : newMatch.BluePlayer2.Id;
+                var playersHash = string.Concat(red1, red2, blue1, blue2);
 
                 // only try to create a match if properties are set correctly
                 if (!string.IsNullOrEmpty(red1) && !string.IsNullOrEmpty(blue1))
@@ -125,6 +126,7 @@
                                         RedPlayer2 = redPlayer2,
                                         BluePlayer1 = bluePlayer1,
                                         BluePlayer2 = bluePlayer2,
+                                        PlayersHash = playersHash,
                                         RedScore = newMatch.RedScore,
                                         BlueScore = newMatch.BlueScore,
                                         CreationTime = DateTime.Now,
