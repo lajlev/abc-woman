@@ -108,6 +108,8 @@ function prepareMatch(match) {
 }
 
 function writeMatchPredictions() {
+    log('starting to predict', true);
+    
     var $redTeam = $('#team-red-players'),
         $blueTeam = $('#team-blue-players'),
         $redTeamPrediction = $('.score-prediction', $redTeam),
@@ -138,16 +140,28 @@ function writeMatchPredictions() {
                     roundedLoserGain = Math.round(rating.KModifier - rating.RatingModifier);
 
                 if (redPlayerRatings === winnerRating) {
-                    $redTeamPrediction.text("(rating: " + roundedRedRating + "), chance of winning: " + roundedWinnerChance + "%" + ", gain: " + roundedWinnerGain);
-                    $blueTeamPrediction.text("(rating: " + roundedBlueRating + "), chance of winning: " + roundedLoserChance + "%" + ", gain: " + roundedLoserGain);
+                    $redTeamPrediction.find('.rating').text(roundedRedRating);
+                    $redTeamPrediction.find('.chance').text(roundedWinnerChance);
+                    $redTeamPrediction.find('.gain').text(roundedWinnerGain);
+                    $blueTeamPrediction.find('.rating').text(roundedBlueRating);
+                    $blueTeamPrediction.find('.chance').text(roundedLoserChance);
+                    $blueTeamPrediction.find('.gain').text(roundedLoserGain);
                 } else {
-                    $blueTeamPrediction.text("(rating: " + roundedBlueRating + "), chance of winning: " + roundedWinnerChance + "%" + ", gain: " + roundedWinnerGain);
-                    $redTeamPrediction.text("(rating: " + roundedRedRating + "), chance of winning: " + roundedLoserChance + "%" + ", gain: " + roundedLoserGain);
+                    $blueTeamPrediction.find('.rating').text(roundedBlueRating);
+                    $blueTeamPrediction.find('.chance').text(roundedWinnerChance);
+                    $blueTeamPrediction.find('.gain').text(roundedWinnerGain);
+                    $redTeamPrediction.find('.rating').text(roundedRedRating);
+                    $redTeamPrediction.find('.chance').text(roundedLoserChance);
+                    $redTeamPrediction.find('.gain').text(roundedLoserGain);
                 }
+
+                $redTeamPrediction.removeClass('hide');
+                $blueTeamPrediction.removeClass('hide');
+                log('ending predict', true);
             }
         });
     } else {
-        $redTeamPrediction.text("");
-        $blueTeamPrediction.text("");
+        $redTeamPrediction.addClass('hide');
+        $blueTeamPrediction.addClass('hide');
     }
 }
