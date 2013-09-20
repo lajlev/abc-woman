@@ -184,6 +184,7 @@
       <Compile>True</Compile>
       <Minify>False</Minify>
     </Content>
+    <Content Include="Javascript\angular\home.controllers.js" />
     <Content Include="Javascript\foosball.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -200,7 +201,6 @@
     <Content Include="Javascript\Shared.js" />
     <Content Include="Javascript\Stats.js" />
     <Content Include="Javascript\lib\highcharts.js" />
-    <Content Include="Javascript\Home.js" />
     <Content Include="Javascript\LogOn.js" />
     <Content Include="Javascript\Base.js" />
     <Content Include="Javascript\lib\jquery.min.js" />

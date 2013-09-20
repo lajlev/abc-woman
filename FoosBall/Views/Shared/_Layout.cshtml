@@ -93,16 +93,12 @@
         </section>
     </div>
 
-    <footer>
-        @RenderSection("Footer", false)
-        @Html.ActionLink("Features", "Features", "Home", null, new { @id = "feature-link" })
-    </footer>
-        <!-- Deferred Javascript -->
-        <script src="@Url.Content("~/Javascript/lib/jquery.signalR-1.0.0.min.js")"></script>
-        <script src="/signalr/hubs"></script>
-        <script src="@Url.Content("~/Javascript/FoosBall.js")"></script>
-        <script src="@Url.Content("~/Javascript/Shared.js")"></script>
-        @RenderSection("Javascript", false)
-        @MiniProfiler.RenderIncludes()       
+    <!-- Deferred Javascript -->
+    <script src="@Url.Content("~/Javascript/lib/jquery.signalR-1.0.0.min.js")"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="@Url.Content("~/Javascript/FoosBall.js")"></script>
+    <script src="@Url.Content("~/Javascript/Shared.js")"></script>
+    @RenderSection("Javascript", false)
+    @MiniProfiler.RenderIncludes()       
 </body>
 </html>

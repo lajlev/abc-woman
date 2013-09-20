@@ -78,20 +78,6 @@ page width. Or, you can specify an exact pixel width. */
     }
 }
 
-footer, #footer {
-    color: $light;
-    font-size: 12px;
-    margin: 20px 0 0 0;
-    padding: 10px 0;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.5);
-
-    a, a:link, a:visited {
-        color: $light;
-
-    }
-}
-
 /* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
@@ -183,7 +169,7 @@ textarea {
 
 /* --- FoosBall --- v v v
 /* ---------------------------------------------------------*/
-header, footer, nav, section {
+header, nav, section {
     display: block;
 }
 

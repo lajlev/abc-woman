@@ -50,7 +50,7 @@ function getChartData(container) {
 }
 
 function renderChart(chartData) {
-    var chart = new Highcharts.Chart({
+    new Highcharts.Chart({
         chart: {
             renderTo: 'player-rating-chart',
             zoomType: 'x',

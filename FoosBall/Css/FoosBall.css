@@ -61,16 +61,6 @@ page width. Or, you can specify an exact pixel width. */
       margin-left: auto;
       margin-right: auto; } }
 
-footer, #footer {
-  color: #dddddd;
-  font-size: 12px;
-  margin: 20px 0 0 0;
-  padding: 10px 0;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.5); }
-  footer a, footer a:link, footer a:visited, #footer a, #footer a:link, #footer a:visited {
-    color: #dddddd; }
-
 /* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
@@ -142,7 +132,7 @@ textarea {
 
 /* --- FoosBall --- v v v
 /* ---------------------------------------------------------*/
-header, footer, nav, section {
+header, nav, section {
   display: block; }
 
 header {
@@ -414,7 +404,7 @@ input[type="checkbox"] {
 #list-of-emails textarea {
   width: 100%; }
 
-.frontpage, .features {
+.home, .features {
   background: none #fff;
   border-radius: 5px;
   padding: 15px 20px; }
