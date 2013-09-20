@@ -173,11 +173,11 @@
     <Compile Include="Models\ViewModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\FoosBall.css">
-      <DependentUpon>FoosBall.scss</DependentUpon>
+    <Content Include="css\foosball.css">
+      <DependentUpon>foosball.scss</DependentUpon>
     </Content>
-    <Content Include="Css\FoosBall.min.css">
-      <DependentUpon>FoosBall.scss</DependentUpon>
+    <Content Include="css\foosball.min.css">
+      <DependentUpon>foosball.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Javascript\Admin.js">
@@ -217,7 +217,7 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Css\modules\Admin.scss">
+    <Content Include="css\modules\Admin.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
@@ -249,7 +249,7 @@
     <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\modules\Base.scss">
+    <Content Include="css\modules\Base.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
@@ -263,7 +263,7 @@
     <Content Include="Views\Shared\_PlayerBaseData.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\modules\Matches.scss">
+    <Content Include="css\modules\Matches.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
@@ -271,7 +271,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\modules\Players.scss">
+    <Content Include="css\modules\Players.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
@@ -279,7 +279,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\modules\Home.scss">
+    <Content Include="css\modules\Home.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
@@ -287,7 +287,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\modules\Account.scss">
+    <Content Include="css\modules\Account.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
@@ -295,10 +295,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\_mixins.scss" />
+    <Content Include="css\_mixins.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\modules\Stats.scss">
+    <Content Include="css\modules\Stats.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
@@ -315,7 +315,7 @@
     <Content Include="Views\Shared\_MatchTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\FoosBall.scss">
+    <Content Include="css\foosball.scss">
       <Compile>True</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
