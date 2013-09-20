@@ -13,7 +13,7 @@
         }
     });
 
-    initializeSignlRHub();
+    initializeSignalRHub();
     showDesktopNotificationRequest();
     autoResizeBackgroundImage();
     autoLogin();
@@ -145,7 +145,7 @@ function showDesktopNotificationRequest() {
     }
 }
 
-function initializeSignlRHub() {
+function initializeSignalRHub() {
     // Declare a proxy to reference the hub. 
     var chat = $.connection.eventHub;
 
