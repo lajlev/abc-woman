@@ -99,7 +99,6 @@ function now() {
 }
 
 function autoLogin() {
-    // Autologin
     $.ajax({
         url: '/Account/Logon',
         success: function () {
