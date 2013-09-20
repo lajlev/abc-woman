@@ -173,38 +173,17 @@
     <Compile Include="Models\ViewModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Account.css">
-      <DependentUpon>Account.scss</DependentUpon>
+    <Content Include="Css\FoosBall.css">
+      <DependentUpon>FoosBall.scss</DependentUpon>
     </Content>
-    <Content Include="Css\Admin.css">
-      <DependentUpon>Admin.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Base.css">
-      <DependentUpon>Base.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Base.min.css">
-      <DependentUpon>Base.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Home.css">
-      <DependentUpon>Home.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Matches.css">
-      <DependentUpon>Matches.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Matches.min.css">
-      <DependentUpon>Matches.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Players.css">
-      <DependentUpon>Players.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Stats.css">
-      <DependentUpon>Stats.scss</DependentUpon>
-    </Content>
-    <Content Include="Css\Stats.min.css">
-      <DependentUpon>Stats.scss</DependentUpon>
+    <Content Include="Css\FoosBall.min.css">
+      <DependentUpon>FoosBall.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Javascript\Admin.js" />
+    <Content Include="Javascript\Admin.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+    </Content>
     <Content Include="Javascript\lib\angular-resource.min.js" />
     <Content Include="Javascript\lib\angular-route.min.js" />
     <Content Include="Javascript\lib\angular.min.js" />
@@ -238,7 +217,12 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Css\Admin.scss" />
+    <Content Include="Css\modules\Admin.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Stats\Player.cshtml" />
     <Content Include="Views\Stats\Index.cshtml" />
@@ -265,7 +249,12 @@
     <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Base.scss" />
+    <Content Include="Css\modules\Base.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Features.cshtml" />
@@ -274,22 +263,47 @@
     <Content Include="Views\Shared\_PlayerBaseData.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Matches.scss" />
+    <Content Include="Css\modules\Matches.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Players.scss" />
+    <Content Include="Css\modules\Players.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Home.scss" />
+    <Content Include="Css\modules\Home.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Account.scss" />
+    <Content Include="Css\modules\Account.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\_mixins.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Stats.scss" />
+    <Content Include="Css\modules\Stats.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_PlayerCreateEventFeedListItem.cshtml" />
@@ -299,6 +313,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_MatchTemplate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Css\FoosBall.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
