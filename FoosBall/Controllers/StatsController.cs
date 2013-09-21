@@ -20,15 +20,24 @@
 
         public ActionResult Index()
         {
-            var viewModel = new StatsAggregateViewModel
+            return View(new StatsAggregateViewModel());
+        }
+
+        public ActionResult GetStatistics()
+        {
+            var viewModelList = new List<StatsAggregateViewModel>()
+            {
+                new StatsAggregateViewModel
                 {
                     MostFights = StatsControllerHelpers.GetStatMostFights(),
                     MostWins = StatsControllerHelpers.GetStatMostWins(),
                     MostLosses = StatsControllerHelpers.GetStatMostLosses(),
                     TopRanked = StatsControllerHelpers.GetStatTopRanked(),
                     BottomRanked = StatsControllerHelpers.GetStatBottomRanked()
-                };
+                }
+            };
 
+            var viewModel = viewModelList.FirstOrDefault();
             var matches = Dbh.GetCollection<Match>("Matches").FindAll();
             var matchesList = matches.SetSortOrder(SortBy.Ascending("GameOverTime")).ToList();
 
@@ -36,7 +45,7 @@
 
             if (viewModel.TotalNumberOfPlayedMatches == 0)
             {
-                return View(viewModel);
+                return Json(viewModel, JsonRequestBehavior.AllowGet);
             }
 
             var players = matches.Select(x => x.BluePlayer1).ToList();
@@ -54,13 +63,9 @@
             var losingStreak = StatsControllerHelpers.GetLongestLosingStreak(matchesList);
             losingStreak.Player = DbHelper.GetPlayer(losingStreak.Player.Id);
             viewModel.LongestLosingStreak = losingStreak;
+            viewModel.BiggestRatingWin = StatsControllerHelpers.GetBiggestRatingWin();
 
-            using (Profiler.Step("Calculating BiggestRatingWin"))
-            {
-                viewModel.BiggestRatingWin = StatsControllerHelpers.GetBiggestRatingWin();
-            }
-
-            return View(viewModel);
+            return Json(viewModelList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Player(string playerId)

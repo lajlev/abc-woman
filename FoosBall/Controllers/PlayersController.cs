@@ -2,10 +2,8 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
-    using FoosBall.Models.Domain;
-    using FoosBall.Models.ViewModels;
-
+    using Models.Domain;
+    using Models.ViewModels;
     using MongoDB.Driver.Builders;
 
     public class PlayersController : BaseController
@@ -18,7 +16,18 @@
                                         .Where(x => x.Played > 0 && x.Deactivated == false)
                                         .ToList();
 
-            return this.View(new PlayersViewModel { AllPlayers = playerCollection });
+            return View(new PlayersViewModel { AllPlayers = playerCollection });
+        }
+
+        public ActionResult GetPlayers()
+        {
+            var playerCollection = Dbh.GetCollection<Player>("Players")
+                                        .FindAll()
+                                        .SetSortOrder(SortBy.Descending("Rating"))
+                                        .Where(x => x.Played > 0 && x.Deactivated == false)
+                                        .ToList();
+
+            return Json(playerCollection, JsonRequestBehavior.AllowGet);
         }
     }
 }

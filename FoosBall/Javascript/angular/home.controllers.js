@@ -1,3 +1,3 @@
-﻿function HomeController($scope, $resource) {
+﻿function HomeController() {
     
 }
