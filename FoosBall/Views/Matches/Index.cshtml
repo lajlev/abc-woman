@@ -1,5 +1,4 @@
-﻿@model MatchesViewModel
-@{
+﻿@{
     ViewBag.Title = "Matches";
     var currentUser = (Player)HttpContext.Current.Session["User"];
 }
@@ -12,7 +11,7 @@
 
     @if (currentUser != null)
     {
-        @Html.Partial("_RegisterMatch", Model)
+        @Html.Partial("_RegisterMatch")
     }
     else
     {

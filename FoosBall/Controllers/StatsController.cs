@@ -20,24 +20,20 @@
 
         public ActionResult Index()
         {
-            return View(new StatsAggregateViewModel());
+            return View();
         }
 
         public ActionResult GetStatistics()
         {
-            var viewModelList = new List<StatsAggregateViewModel>()
+            var viewModel = new StatsAggregateViewModel
             {
-                new StatsAggregateViewModel
-                {
-                    MostFights = StatsControllerHelpers.GetStatMostFights(),
-                    MostWins = StatsControllerHelpers.GetStatMostWins(),
-                    MostLosses = StatsControllerHelpers.GetStatMostLosses(),
-                    TopRanked = StatsControllerHelpers.GetStatTopRanked(),
-                    BottomRanked = StatsControllerHelpers.GetStatBottomRanked()
-                }
+                MostFights = StatsControllerHelpers.GetStatMostFights(),
+                MostWins = StatsControllerHelpers.GetStatMostWins(),
+                MostLosses = StatsControllerHelpers.GetStatMostLosses(),
+                TopRanked = StatsControllerHelpers.GetStatTopRanked(),
+                BottomRanked = StatsControllerHelpers.GetStatBottomRanked()
             };
 
-            var viewModel = viewModelList.FirstOrDefault();
             var matches = Dbh.GetCollection<Match>("Matches").FindAll();
             var matchesList = matches.SetSortOrder(SortBy.Ascending("GameOverTime")).ToList();
 
@@ -65,10 +61,15 @@
             viewModel.LongestLosingStreak = losingStreak;
             viewModel.BiggestRatingWin = StatsControllerHelpers.GetBiggestRatingWin();
 
-            return Json(viewModelList, JsonRequestBehavior.AllowGet);
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Player(string playerId)
+        {
+            return View();
+        }
+
+        public ActionResult GetPlayerStatistics(string playerId)
         {
             using (Profiler.Step("Calculating Player Statistics"))
             {
@@ -86,15 +87,15 @@
                     var playedMatches = matches as List<Match> ?? matches.ToList();
                     var player = playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(playerId)));
                     var stats = new PlayerStatsViewModel
-                        {
-                            Player = player,
-                            PlayedMatches = playedMatches.OrderByDescending(x => x.GameOverTime),
-                            LatestMatch = playedMatches.Last()
-                        };
+                    {
+                        Player = player,
+                        PlayedMatches = playedMatches.OrderByDescending(x => x.GameOverTime),
+                        LatestMatch = playedMatches.Last()
+                    };
 
                     if (playedMatches.Count == 0)
                     {
-                        return View(stats);
+                        return Json(stats, JsonRequestBehavior.AllowGet);
                     }
 
                     var bff = StatsControllerHelpers.GetBestFriendForever(playerId, playedMatches);
@@ -140,7 +141,7 @@
                     stats.LongestWinningStreak = longestWinningStreak;
                     stats.LongestLosingStreak = longestLosingStreak;
 
-                    return View(stats);
+                    return Json(stats, JsonRequestBehavior.AllowGet);
                 }
             }
 

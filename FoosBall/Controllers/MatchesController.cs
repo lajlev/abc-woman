@@ -6,7 +6,6 @@
     using Main;
     using Models.Base;
     using Models.Domain;
-    using Models.ViewModels;
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
@@ -17,7 +16,7 @@
         // GET: /Matches/
         public ActionResult Index()
         {
-            return View(new MatchesViewModel { Settings = Settings });
+            return View();
         }
 
         [HttpGet]

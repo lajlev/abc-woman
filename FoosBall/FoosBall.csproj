@@ -184,6 +184,7 @@
       <Compile>True</Compile>
       <Minify>False</Minify>
     </Content>
+    <Content Include="Javascript\angular\playerstats.controllers.js" />
     <Content Include="Javascript\angular\stats.controllers.js" />
     <Content Include="Javascript\angular\players.controllers.js" />
     <Content Include="Javascript\angular\home.controllers.js" />

@@ -1,18 +1,7 @@
 ﻿jQuery(window).load(function () {
-
-    /* ******************************************************************
-     * Stats / Player View
-     */
-    
     // Render the Players rating chart
     var container = $("#player-rating-chart")[0];
     getChartData(container);
-    
-    // Add a tag on the players that match the current user
-    var currentUserId = $("#current-user-id").val();
-    if (!!currentUserId === true) {
-        $("." + currentUserId).append("<sup>(me)</sup>");
-    }
 });
 
 function getChartData(container) {

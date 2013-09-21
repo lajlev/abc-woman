@@ -5,18 +5,14 @@
     // Start fetching statistics, return a promise
     $scope.getStats = function () {
         var Stats = $resource('Stats/GetStatistics');
-        var promise = Stats.query().$promise;
+        var promise = Stats.get().$promise;
 
         promise.then(function (stats) {
-            $scope.stats = prepareStats(stats[0]);
+            $scope.stats = prepareStats(stats);
         });
     };
 
-    $scope.getGravatarUrl = function (email) {
-        return 'http://www.gravatar.com/avatar/' + hex_md5(email) + '?d=mm';
-    };
-
-    $scope.getGetPlayerStatsUrl = function (playerId) {
+    $scope.getPlayerStatsUrl = function (playerId) {
         return '/Stats/Player?playerId=' + playerId;
     };
 
