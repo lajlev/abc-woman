@@ -1,7 +1,10 @@
-.home, .features {
+.home {
     background: none #fff;
     border-radius: 5px;
     padding: 15px 20px;
+    p {
+        text-align: center;
+    }
 }
 
 #welcome-message {

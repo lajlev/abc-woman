@@ -388,7 +388,7 @@ label {
   height: 80px;
   margin: 4px; }
 
-label {
+.admin label {
   margin: 5px 0 0 0;
   display: block;
   float: left;
@@ -404,10 +404,12 @@ input[type="checkbox"] {
 #list-of-emails textarea {
   width: 100%; }
 
-.home, .features {
+.home {
   background: none #fff;
   border-radius: 5px;
   padding: 15px 20px; }
+  .home p {
+    text-align: center; }
 
 #welcome-message {
   text-align: center; }
