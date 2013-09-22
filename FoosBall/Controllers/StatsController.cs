@@ -162,6 +162,8 @@
 
             if (playerId != null)
             {
+                var playerCollection = Dbh.GetCollection<Player>("Players");
+                var player = playerCollection.Find(Query.EQ("_id", BsonObjectId.Parse(playerId))).FirstOrDefault();
                 var matches = Dbh.GetCollection<Match>("Matches")
                     .FindAll()
                     .SetSortOrder(SortBy.Ascending("GameOverTime"))
@@ -198,6 +200,7 @@
 
                 chartData.MinimumValue = minRating;
                 chartData.MaximumValue = maxRating;
+                chartData.Player = player;
             }
           
             return Json(chartData, JsonRequestBehavior.AllowGet);
