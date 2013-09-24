@@ -1,12 +1,6 @@
-﻿@model LogOnViewModel
+﻿@section Javascript { <script async src="/js/LogOn.js")"></script> }
 
-@{
-    ViewBag.Title = "Log On";
-}
-
-@section Javascript { <script async src="/js/LogOn.js")"></script> }
-
-<div class="logon clearfix">
+<div ng-controller="LogonController" class="logon clearfix">
     <h3>Log On</h3>
 
     @using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { name = "logon-player" }))

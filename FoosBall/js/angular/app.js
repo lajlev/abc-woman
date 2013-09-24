@@ -1,5 +1,17 @@
-﻿angular.module('FoosBall', ['ngResource'])
-    .directive('foosballScore', function () {
+﻿angular.
+    module('FoosBall', ['ngRoute', 'ngResource']).
+    config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+            .when('/', { templateUrl: '/partials/home.html' })
+            .when('/stats', { templateUrl: '/partials/stats.html' })
+            .when('/playerstats', { templateUrl: '/partials/playerstats.html' })
+            .when('/features', { templateUrl: '/partials/features.html' })
+            .when('/matches', { templateUrl: '/partials/matches.html', controller: MatchesController })
+            .when('/players', { templateUrl: '/partials/players.html', controller: PlayersController })
+            .when('/logon', { templateUrl: '/logon.html', controller: PlayersController })
+            .otherwise({ redirectTo: '/' });
+    }]).
+    directive('foosballScore', function () {
         return {
             require: 'ngModel',
             link: function (scope, elm, attrs, ctrl) {
@@ -18,8 +30,8 @@
                 });
             }
         };
-    })
-    .directive('timeLeftToEdit', function ($timeout) {
+    }).
+    directive('timeLeftToEdit', function ($timeout) {
         return function (scope, element, attributes) {
             if (scope.currentUserId) {
                 var timeoutId,
