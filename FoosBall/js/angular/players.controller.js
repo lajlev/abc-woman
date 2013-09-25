@@ -29,3 +29,5 @@
         return player;
     }
 }
+
+PlayersController.$inject = ['$scope', '$resource'];

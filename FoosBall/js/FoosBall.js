@@ -16,7 +16,6 @@
     initializeSignalRHub();
     showDesktopNotificationRequest();
     autoResizeBackgroundImage();
-    autoLogin();
 });
 
 /* ******************************************************************
@@ -96,20 +95,6 @@ window.performance.now = (function (window) {
 // Shorthand method for window.performance.now()
 function now() {
     return parseInt(window.performance.now());
-}
-
-function autoLogin() {
-    $.ajax({
-        url: '/Account/Logon',
-        success: function () {
-            $.ajax({
-                url: '/Account/GetLogonStatus',
-                success: function (updatedHtml) {
-                    $('.login-display').html(updatedHtml);
-                }
-            });
-        }
-    });
 }
 
 function autoResizeBackgroundImage() {

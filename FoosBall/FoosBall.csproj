@@ -138,6 +138,7 @@
     </Compile>
     <Compile Include="Main\EventHub.cs" />
     <Compile Include="Models\Base\EventType.cs" />
+    <Compile Include="Models\Base\SessionInfo.cs" />
     <Compile Include="Models\Custom\CustomSelectListItem.cs" />
     <Compile Include="Models\Custom\RatingDifference.cs" />
     <Compile Include="Models\Custom\Streak.cs" />
@@ -171,21 +172,19 @@
     <Compile Include="Models\ViewModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\foosball.css">
-      <DependentUpon>foosball.scss</DependentUpon>
-    </Content>
-    <Content Include="css\foosball.min.css">
-      <DependentUpon>foosball.scss</DependentUpon>
-    </Content>
+    <Content Include="css\minified\foosball.css" />
+    <Content Include="css\minified\foosball.min.css" />
     <Content Include="Global.asax" />
     <Content Include="js\Admin.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
     </Content>
-    <Content Include="js\angular\playerstats.controllers.js" />
-    <Content Include="js\angular\stats.controllers.js" />
-    <Content Include="js\angular\players.controllers.js" />
-    <Content Include="js\angular\home.controllers.js" />
+    <Content Include="js\angular\base.controller.js" />
+    <Content Include="js\angular\account.controller.js" />
+    <Content Include="js\angular\playerstats.controller.js" />
+    <Content Include="js\angular\stats.controller.js" />
+    <Content Include="js\angular\players.controller.js" />
+    <Content Include="js\angular\home.controller.js" />
     <Content Include="js\foosball.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -196,15 +195,24 @@
     <Content Include="js\lib\angular.min.js" />
     <Content Include="js\lib\jquery.signalR-1.0.0.js" />
     <Content Include="js\lib\jquery.signalR-1.0.0.min.js" />
-    <Content Include="js\angular\matches.controllers.js" />
-    <Content Include="js\angular\app.js" />
+    <Content Include="js\angular\matches.controller.js" />
+    <Content Include="js\angular\app.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <IncludedFiles>js\angular\base.controller.js|js\angular\account.controller.js|js\angular\home.controller.js|js\angular\matches.controller.js|js\angular\players.controller.js|js\angular\playerstats.controller.js|js\angular\stats.controller.js</IncludedFiles>
+      <OutputFolder>..\minified</OutputFolder>
+    </Content>
     <Content Include="js\lib\md5.js" />
+    <Content Include="js\minified\app.combined.js" />
+    <Content Include="js\minified\app.min.js" />
     <Content Include="js\Shared.js" />
     <Content Include="js\lib\highcharts.js" />
     <Content Include="js\LogOn.js" />
     <Content Include="js\lib\jquery.min.js" />
     <Content Include="js\Register.js" />
     <Content Include="js\PlayerStats.js" />
+    <Content Include="partials\_logon-menu.html" />
+    <Content Include="partials\edit-user.html" />
     <Content Include="partials\logon.html" />
     <Content Include="partials\playerstats.html" />
     <Content Include="partials\stats.html" />
@@ -317,6 +325,7 @@
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
+      <OutputFolder>.\minified</OutputFolder>
     </Content>
   </ItemGroup>
   <ItemGroup>

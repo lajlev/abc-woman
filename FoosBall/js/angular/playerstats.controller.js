@@ -1,4 +1,4 @@
-﻿function PlayerStatsController($scope, $resource, $location) {
+﻿function PlayerStatsController($scope, $resource) {
     $scope.playerStats = [];
     $scope.hex_md5 = hex_md5;
 
@@ -140,3 +140,4 @@
     }
 }
 
+PlayerStatsController.$inject = ['$scope', '$resource'];

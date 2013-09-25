@@ -32,3 +32,5 @@
         return stats;
     }
 }
+
+StatsController.$inject = ['$scope', '$resource'];

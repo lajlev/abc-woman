@@ -15,7 +15,7 @@
         @ViewBag.Title
     </title>
 
-    <link href="@Url.Content("~/css/foosball.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/minified/foosball.min.css")" rel="stylesheet" type="text/css" />
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script>
@@ -35,14 +35,23 @@
             document.write(unescape('%3Cscript src="/js/lib/angular-route.min.js" type="text/javascript"%3E%3C/script%3E'));
         }
     </script>
-    <script src="/js/angular/stats.controllers.js"></script> 
-    <script src="/js/angular/playerstats.controllers.js"></script>
-    <script src="/js/angular/home.controllers.js"></script> 
-    <script src="/js/angular/matches.controllers.js"></script>
-    <script src="/js/angular/players.controllers.js"></script>
+
+    <script src="/js/lib/jquery.signalR-1.0.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="/js/foosBall.js"></script>
+
+    <script src="/js/angular/base.controller.js"></script> 
+    <script src="/js/angular/account.controller.js"></script> 
+    <script src="/js/angular/stats.controller.js"></script> 
+    <script src="/js/angular/playerstats.controller.js"></script>
+    <script src="/js/angular/home.controller.js"></script> 
+    <script src="/js/angular/matches.controller.js"></script>
+    <script src="/js/angular/players.controller.js"></script>
     <script src="/js/angular/app.js"></script>
+    @*<script src="/js/minified/app.min.js"></script>*@
+
 </head>
-<body>
+<body ng-controller="BaseController">
     @{
         var currentUser = (Player)HttpContext.Current.Session["User"];
         if (currentUser != null && !string.IsNullOrWhiteSpace(currentUser.Id))
@@ -58,7 +67,7 @@
     <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/background.jpg" id="bg" class="bgwidth" alt="background image"/>
     
     <header>
-        <a href="@Url.Action("Index","Home")">
+        <a ng-href="/#/">
         <div id="app-title">
             <div class="logo-picture">
                 <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/icon_football.png" alt="logo"/>
@@ -75,11 +84,11 @@
         <nav>
             <div class="menu-arrow"></div>
             <ul id="main-menu">
-                <li class="Home"><a ng-href="#/">Home</a></li>
-                <li class="Scoreboard"><a ng-href="#/players">Scoreboard</a></li>
-                <li class="Matches"><a ng-href="#/matches">Matches</a></li>
-                <li class="Stats"><a ng-href="#/stats">Stats</a></li>
-                <li class="Features"><a ng-href="#/features">Features</a></li>
+                <li class="Home"><a ng-href="/#/">Home</a></li>
+                <li class="Scoreboard"><a ng-href="/#/players">Scoreboard</a></li>
+                <li class="Matches"><a ng-href="/#/matches">Matches</a></li>
+                <li class="Stats"><a ng-href="/#/stats">Stats</a></li>
+                <li class="Features"><a ng-href="/#/features">Features</a></li>
                 @if (Session["IsLoggedIn"].ToString().ToLower() == "true")
                 {
                     if (Session["Admin"].ToString().ToLower() == "true")
@@ -89,9 +98,8 @@
                 }
             </ul> 
         </nav>
-        <div class="login-display">
-            @Html.Partial("_LogOnPartial")
-        </div>
+
+        <div ng-include="'/partials/_logon-menu.html'" class="login-display"></div>
     </header>
 
     <div id="page" class="clearfix">
@@ -102,9 +110,6 @@
     </div>
 
     <!-- Deferred Javascript -->
-    <script src="/js/lib/jquery.signalR-1.0.0.min.js"></script>
-    <script src="/signalr/hubs"></script>
-    <script src="/js/FoosBall.js"></script>
     <script src="/js/Shared.js"></script>
     @RenderSection("Javascript", false)
     @MiniProfiler.RenderIncludes()       

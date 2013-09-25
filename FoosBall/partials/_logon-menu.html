@@ -1,0 +1,12 @@
+﻿<div ng-if="session.IsLoggedIn" class="menu-account-info">
+    Hi {{session.User.Name}}
+    [ <a ng-href="/#/edit-user">Account</a> &middot; <a ng-href="#" ng-click="logout()">Log out</a> ]
+</div>
+
+<div ng-if="!session.IsLoggedIn" class="menu-login-info">
+    <a ng-href="/#/logon">Log on</a> or <a ng-href="/#/sign-up">Sign up</a>
+</div>
+
+<div class="menu-list-button">
+    <a href="#"></a>
+</div>

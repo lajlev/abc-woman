@@ -133,6 +133,8 @@
 
 }
 
+MatchesController.$inject = ['$scope', '$resource'];
+
 function SubmitMatchController($scope, $resource) {
     $scope.submitMatch = function () {
         var Match = $resource('Matches/SubmitMatch');
@@ -153,6 +155,8 @@ function SubmitMatchController($scope, $resource) {
         });
     };
 }
+
+SubmitMatchController.$inject = ['$scope', '$resource'];
 
 function prepareMatch(match) {
     var time = parseInt(match.GameOverTime.replace(/\D/g, ""));

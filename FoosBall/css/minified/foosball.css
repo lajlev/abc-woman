@@ -274,7 +274,7 @@ input[type="text"], input[type="password"], input[type="email"] {
   height: 1.5em;
   padding: 2px;
   width: 98%; }
-  input[type="text"]#Email.short, input[type="password"]#Email.short, input[type="email"]#Email.short {
+  input[type="text"].short, input[type="password"].short, input[type="email"].short {
     width: 60px !important; }
 
 input[type="submit"], input[type="button"], button {

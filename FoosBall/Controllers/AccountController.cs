@@ -1,13 +1,12 @@
 ﻿namespace FoosBall.Controllers
 {
-    using System;
+    using System.Security.Cryptography;
     using System.Web.Mvc;
-
-    using FoosBall.ControllerHelpers;
-    using FoosBall.Main;
-    using FoosBall.Models.Domain;
-    using FoosBall.Models.ViewModels;
+    using ControllerHelpers;
+    using Main;
     using Models.Base;
+    using Models.Domain;
+    using Models.ViewModels;
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
     
@@ -58,28 +57,34 @@
             return View("_LogOnPartial");
         }
 
+        //[HttpPost]
+        //public ActionResult LogOn(LogOnViewModel model)
+        //{
+        //    var email = model.Email.ToLower();
+        //    email += "@" + this.Settings.Domain;
+        //
+        //    var playerCollection = this.Dbh.GetCollection<Player>("Players");
+        //    var player = playerCollection.FindOne(Query.EQ("Email", email));
+        //
+        //    if (player != null)
+        //    {
+        //        if (player.Password == Md5.CalculateMd5(model.Password))
+        //        {
+        //            if (Login(player))
+        //            {
+        //                return Redirect(model.RefUrl);
+        //            }
+        //        }
+        //    }
+        //
+        //    model.LogOnError = true;
+        //    return View(model);
+        //}
+
         [HttpPost]
-        public ActionResult LogOn(LogOnViewModel model)
+        public ActionResult LogOn(string email, string password, bool rememberMe)
         {
-            var email = model.Email.ToLower();
-            email += "@" + this.Settings.Domain;
-
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
-            var player = playerCollection.FindOne(Query.EQ("Email", email));
-            
-            if (player != null)
-            {
-                if (player.Password == Md5.CalculateMd5(model.Password))
-                {
-                    if (Login(player))
-                    {
-                        return Redirect(model.RefUrl);
-                    }
-                }
-            }
-
-            model.LogOnError = true;
-            return View(model);
+            return Json(new{}, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LogOff()

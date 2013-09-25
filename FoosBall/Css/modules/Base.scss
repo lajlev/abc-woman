@@ -335,7 +335,7 @@ input[type="text"], input[type="password"], input[type="email"] {
     padding: 2px;
     width: 98%;
 
-    &#Email.short {
+    &.short {
         width: 60px!important;
     }
 }
