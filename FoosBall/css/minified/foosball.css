@@ -64,7 +64,6 @@ page width. Or, you can specify an exact pixel width. */
 /* TAB MENU
 ----------------------------------------------------------*/
 #main-menu {
-  display: none;
   position: absolute;
   top: 42px;
   right: 15px;
@@ -91,7 +90,6 @@ page width. Or, you can specify an exact pixel width. */
       text-decoration: none; }
 
 .menu-arrow {
-  display: none;
   position: absolute;
   top: 38px;
   right: 18px;

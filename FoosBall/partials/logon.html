@@ -1,18 +1,18 @@
-﻿<div class="logon clearfix">
+﻿<div data-debug="{{session.IsLoggedIn}}" ng-controller="AccountController" class="logon clearfix">
     <h3>Log On</h3>
     
-    <form name="loginForm" ng-submit="submitLogin()" ng-controller="AccountController" ng-model="match">
+    <form name="loginForm" ng-submit="submitLogin()" ng-model="match">
         <div>Email</div>
         <div>
-            <input ng-model="loginForm.email" required="true" class="short" type="text" placeholder="Email" value="" />@trustpilot.com
+            <input ng-model="email" name="email" required="true" class="short" type="text" placeholder="Email" value="" />@trustpilot.com
         </div>
         <br>
         <div>Password</div>
         <div>
-            <input ng-model="loginForm.password" required="true" type="password" name="password" value="" placeholder="Password" autocapitalize="off" autocorrect="off"/>
+            <input ng-model="password" name="password" required="true" type="password" name="password" value="" placeholder="Password" autocapitalize="off" autocorrect="off"/>
         </div>
         <div>
-            <input ng-model="loginForm.rememberMe" type="checkbox" value="" />
+            <input ng-model="rememberMe" type="checkbox" value="" />
             Remember me
         </div>
 

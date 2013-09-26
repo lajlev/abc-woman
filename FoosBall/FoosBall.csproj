@@ -137,6 +137,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Main\EventHub.cs" />
+    <Compile Include="Models\Base\LoginInfo.cs" />
     <Compile Include="Models\Base\EventType.cs" />
     <Compile Include="Models\Base\SessionInfo.cs" />
     <Compile Include="Models\Custom\CustomSelectListItem.cs" />
@@ -211,10 +212,10 @@
     <Content Include="js\lib\jquery.min.js" />
     <Content Include="js\Register.js" />
     <Content Include="js\PlayerStats.js" />
-    <Content Include="partials\_logon-menu.html" />
-    <Content Include="partials\edit-user.html" />
+    <Content Include="partials\user-register.html" />
     <Content Include="partials\logon.html" />
-    <Content Include="partials\playerstats.html" />
+    <Content Include="partials\user-edit.html" />
+    <Content Include="partials\stats-player.html" />
     <Content Include="partials\stats.html" />
     <Content Include="partials\_match-list.html" />
     <Content Include="partials\_register-match.html" />

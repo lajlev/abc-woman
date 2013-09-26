@@ -3,13 +3,13 @@
     config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', { templateUrl: '/partials/home.html' })
-            .when('/stats', { templateUrl: '/partials/stats.html' })
-            .when('/playerstats', { templateUrl: '/partials/playerstats.html' })
             .when('/features', { templateUrl: '/partials/features.html' })
+            .when('/stats', { templateUrl: '/partials/stats.html', controller: StatsController })
+            .when('/playerstats', { templateUrl: '/partials/playerstats.html', controller: PlayerStatsController })
             .when('/matches', { templateUrl: '/partials/matches.html', controller: MatchesController })
             .when('/players', { templateUrl: '/partials/players.html', controller: PlayersController })
-            .when('/logon', { templateUrl: '/partials/logon.html', controller: PlayersController })
-            .when('/edit-user', { templateUrl: '/partials/edit-user.html', controller: PlayersController })
+            .when('/logon', { templateUrl: '/partials/logon.html', controller: AccountController })
+            .when('/edit-user', { templateUrl: '/partials/edit-user.html', controller: AccountController })
             //.when('/admin', { templateUrl: '/admin.html', controller: AdminController })
             .otherwise({ redirectTo: '/' });
     }]).

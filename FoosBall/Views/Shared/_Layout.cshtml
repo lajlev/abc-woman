@@ -40,6 +40,7 @@
     <script src="/signalr/hubs"></script>
     <script src="/js/foosBall.js"></script>
 
+    <script src="/js/angular/app.js"></script>
     <script src="/js/angular/base.controller.js"></script> 
     <script src="/js/angular/account.controller.js"></script> 
     <script src="/js/angular/stats.controller.js"></script> 
@@ -47,7 +48,6 @@
     <script src="/js/angular/home.controller.js"></script> 
     <script src="/js/angular/matches.controller.js"></script>
     <script src="/js/angular/players.controller.js"></script>
-    <script src="/js/angular/app.js"></script>
     @*<script src="/js/minified/app.min.js"></script>*@
 
 </head>
@@ -66,43 +66,52 @@
 
     <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/background.jpg" id="bg" class="bgwidth" alt="background image"/>
     
-    <header>
+    <header ng-cloak>
         <a ng-href="/#/">
-        <div id="app-title">
-            <div class="logo-picture">
-                <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/icon_football.png" alt="logo"/>
-            </div>
-            <div class="logo-text">
-                @if (ViewBag.Settings.Environment.ToString() != "Production")
-                {
-                    @ViewBag.Settings.Environment.ToString()  
-                }
-                @ViewBag.Settings.Name
-            </div>
-        </div>
-        </a>
-        <nav>
-            <div class="menu-arrow"></div>
-            <ul id="main-menu">
-                <li class="Home"><a ng-href="/#/">Home</a></li>
-                <li class="Scoreboard"><a ng-href="/#/players">Scoreboard</a></li>
-                <li class="Matches"><a ng-href="/#/matches">Matches</a></li>
-                <li class="Stats"><a ng-href="/#/stats">Stats</a></li>
-                <li class="Features"><a ng-href="/#/features">Features</a></li>
-                @if (Session["IsLoggedIn"].ToString().ToLower() == "true")
-                {
-                    if (Session["Admin"].ToString().ToLower() == "true")
+            <div id="app-title">
+                <div class="logo-picture">
+                    <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/icon_football.png" alt="logo"/>
+                </div>
+                <div class="logo-text">
+                    @if (ViewBag.Settings.Environment.ToString() != "Production")
                     {
-                        <li class="Admin">@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        @ViewBag.Settings.Environment.ToString()  
                     }
-                }
+                    @ViewBag.Settings.Name
+                </div>
+            </div>
+        </a>
+
+        <nav>
+            <div class="menu-arrow" ng-hide="hideMainMenu"></div>
+            <ul id="main-menu" ng-hide="hideMainMenu">
+                <li class="Home"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/">Home</a></li>
+                <li class="Scoreboard"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/players">Scoreboard</a></li>
+                <li class="Matches"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/matches">Matches</a></li>
+                <li class="Stats"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/stats">Stats</a></li>
+                <li class="Features"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/features">Features</a></li>
+                <li ng-if="session.IsLoggedIn && session.IsAdmin" ng-click="hideMainMenu = !hideMainMenu" class="Admin">@Html.ActionLink("Admin", "Index", "Admin")</li>
             </ul> 
         </nav>
 
-        <div ng-include="'/partials/_logon-menu.html'" class="login-display"></div>
+        <div data-debug="{{session.IsLoggedIn}}" class="login-display">
+            <div ng-if="session.IsLoggedIn" class="menu-account-info">
+                Hi {{session.User.Name}}
+                [ <a href ng-href="/#/edit-user">Account</a> &middot; <a href ng-click="logout()">Log out</a> ]
+            </div>
+
+            <div ng-if="!session.IsLoggedIn" class="menu-login-info">
+                <a href ng-href="/#/logon">Log on</a> or <a ng-href="/#/sign-up">Sign up</a>
+            </div>
+
+            <div class="menu-list-button">
+                <a href ng-click="hideMainMenu = !hideMainMenu"></a>
+            </div>
+        </div>
+
     </header>
 
-    <div id="page" class="clearfix">
+    <div ng-cloak id="page" class="clearfix">
         <section id="main">
             <div ng-view></div>
             @RenderBody()

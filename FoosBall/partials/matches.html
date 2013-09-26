@@ -1,12 +1,6 @@
 ﻿<div ng-controller="MatchesController" >
-    
-    <!-- If user is logged in then ... -->
     <div ng-include="'/partials/_register-match.html'"></div>
-    <!-- If user is not logged in then ... -->
-    <p><a href="/Account/LogOn">log on</a></p>
-
     <div id="match-list">
         <div ng-include="'/partials/_match-list.html'"></div>
     </div>
-
 </div>

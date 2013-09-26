@@ -1,5 +1,6 @@
 ﻿namespace FoosBall.Controllers
 {
+    using System.Linq;
     using System.Security.Cryptography;
     using System.Web.Mvc;
     using ControllerHelpers;
@@ -57,34 +58,34 @@
             return View("_LogOnPartial");
         }
 
-        //[HttpPost]
-        //public ActionResult LogOn(LogOnViewModel model)
-        //{
-        //    var email = model.Email.ToLower();
-        //    email += "@" + this.Settings.Domain;
-        //
-        //    var playerCollection = this.Dbh.GetCollection<Player>("Players");
-        //    var player = playerCollection.FindOne(Query.EQ("Email", email));
-        //
-        //    if (player != null)
-        //    {
-        //        if (player.Password == Md5.CalculateMd5(model.Password))
-        //        {
-        //            if (Login(player))
-        //            {
-        //                return Redirect(model.RefUrl);
-        //            }
-        //        }
-        //    }
-        //
-        //    model.LogOnError = true;
-        //    return View(model);
-        //}
-
         [HttpPost]
-        public ActionResult LogOn(string email, string password, bool rememberMe)
+        public ActionResult LogOn(string email, string password, string refUrl, bool rememberMe = false)
         {
-            return Json(new{}, JsonRequestBehavior.AllowGet);
+            var loginEmail = (email + "@" + Settings.Domain).ToLower();
+            var playerCollection = Dbh.GetCollection<Player>("Players");
+            var player = playerCollection.FindOne(Query.EQ("Email", loginEmail));
+            var loginInfo = new LoginInfo();
+
+            if (player != null)
+            {
+                if (player.Password == Md5.CalculateMd5(password))
+                {
+                    if (Login(player))
+                    {
+                        loginInfo.Message = "Success";
+                        loginInfo.Session = GetSessionInfo();
+                        loginInfo.Success = true;
+                    }
+                }
+            }
+            else
+            {
+                loginInfo.Message = "Wrong user name or password";
+                loginInfo.Session = GetSessionInfo();
+                loginInfo.Success = false;
+            }
+
+            return Json(loginInfo, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LogOff()
@@ -244,6 +245,15 @@
             }
 
             return Json(new { url = string.Empty }, JsonRequestBehavior.AllowGet);
+        }
+
+        private bool ValidateEmail(string email)
+        {
+            const string domain = "@trustpilot.com";
+
+            return email.EndsWith(domain) &&
+                   email.Count(x => x == '@') == 1 &&
+                   email.Length > domain.Length;
         }
     }
 }

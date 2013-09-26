@@ -3,6 +3,7 @@
     using System;
     using System.Text;
     using System.Web;
+    using System.Web.Helpers;
     using System.Web.Mvc;
     using Main;
     using Models.Base;
@@ -49,7 +50,12 @@
             return Md5.CalculateMd5(player.Id + player.Email + "FoosBall4Ever");
         }
 
-        public ActionResult GetSession()
+        public JsonResult GetSession()
+        {
+            return Json(GetSessionInfo(), JsonRequestBehavior.AllowGet);
+        }
+
+        protected SessionInfo GetSessionInfo()
         {
             SessionInfo session;
             if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
@@ -71,7 +77,7 @@
                 };
             }
 
-            return Json(session, JsonRequestBehavior.AllowGet);
+            return session;
         }
 
         // COOKIE DOUGH

@@ -1,11 +1,12 @@
 ﻿function BaseController($scope, $resource) {
     $scope.session = {};
+    $scope.hideMainMenu = true;
 
     var logonPromise = autoLogin();
     logonPromise.then(function () {
         getSession();
     });
-    
+
     function getSession() {
         var Session = $resource('/Base/GetSession');
         var promise = Session.get().$promise;
