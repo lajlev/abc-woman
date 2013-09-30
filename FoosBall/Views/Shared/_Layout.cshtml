@@ -16,39 +16,36 @@
     </title>
 
     <link href="@Url.Content("~/css/minified/foosball.min.css")" rel="stylesheet" type="text/css" />
-    
+    @*
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script>
-        if (typeof jQuery == 'undefined') {
-            document.write(unescape('%3Cscript src="/js/lib/jquery.min.js")" type="text/javascript"%3E%3C/script%3E'));
-        }
-    </script>
+    <script src="/js/lib/jquery.signalR-1.0.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src="/js/lib/md.min5.js"></script>
+    <script src="/js/lib/highcharts.js"></script>
+    *@
+    <script src="/js/lib/jquery.js"></script>
+    <script src="/js/lib/jquery.signalR-1.0.0.js"></script>
+    <script src="/js/lib/angular.js"></script>
+    <script src="/js/lib/angular-resource.js"></script>
+    <script src="/js/lib/angular-route.js"></script>
     <script src="/js/lib/md5.js"></script>
     <script src="/js/lib/highcharts.js"></script>
-    <script>
-        if (typeof angular === 'undefined') {
-            document.write(unescape('%3Cscript src="/js/lib/angular.min.js" type="text/javascript"%3E%3C/script%3E'));
-            document.write(unescape('%3Cscript src="/js/lib/angular-resource.min.js" type="text/javascript"%3E%3C/script%3E'));
-            document.write(unescape('%3Cscript src="/js/lib/angular-route.min.js" type="text/javascript"%3E%3C/script%3E'));
-        }
-    </script>
 
-    <script src="/js/lib/jquery.signalR-1.0.0.min.js"></script>
-    <script src="/signalr/hubs"></script>
     <script src="/js/foosBall.js"></script>
-
     <script src="/js/angular/app.js"></script>
-    <script src="/js/angular/base.controller.js"></script> 
     <script src="/js/angular/account.controller.js"></script> 
-    <script src="/js/angular/stats.controller.js"></script> 
-    <script src="/js/angular/playerstats.controller.js"></script>
+    <script src="/js/angular/admin.controller.js"></script>
+    <script src="/js/angular/base.controller.js"></script> 
     <script src="/js/angular/home.controller.js"></script> 
     <script src="/js/angular/matches.controller.js"></script>
     <script src="/js/angular/players.controller.js"></script>
+    <script src="/js/angular/playerstats.controller.js"></script>
+    <script src="/js/angular/stats.controller.js"></script> 
     @*<script src="/js/minified/app.min.js"></script>*@
+
+    <script src="/signalr/hubs"></script>
 
 </head>
 <body ng-controller="BaseController">
@@ -83,8 +80,8 @@
         </a>
 
         <nav>
-            <div class="menu-arrow" ng-hide="hideMainMenu"></div>
-            <ul id="main-menu" ng-hide="hideMainMenu">
+            <div class="main-menu-arrow menu-arrow" ng-hide="hideMainMenu"></div>
+            <ul id="main-menu" class="menu" ng-hide="hideMainMenu">
                 <li class="Home"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/">Home</a></li>
                 <li class="Scoreboard"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/players">Scoreboard</a></li>
                 <li class="Matches"><a ng-click="hideMainMenu = !hideMainMenu" ng-href="/#/matches">Matches</a></li>
@@ -94,18 +91,23 @@
             </ul> 
         </nav>
 
+        <div class="login-menu-arrow menu-arrow" ng-hide="hideLogonMenu"></div>
+        <div id="login-menu" class="menu" ng-hide="hideLogonMenu">
+            <div ng-include="'/partials/logon.html'"></div>
+        </div>
+
         <div data-debug="{{session.IsLoggedIn}}" class="login-display">
             <div ng-if="session.IsLoggedIn" class="menu-account-info">
                 Hi {{session.User.Name}}
-                [ <a href ng-href="/#/edit-user">Account</a> &middot; <a href ng-click="logout()">Log out</a> ]
+                [ <a href ng-href="/#/user-profile">Account</a> &middot; <a href ng-click="logout()">Log out</a> ]
             </div>
 
             <div ng-if="!session.IsLoggedIn" class="menu-login-info">
-                <a href ng-href="/#/logon">Log on</a> or <a ng-href="/#/sign-up">Sign up</a>
+                <a href ng-click="showLogonMenu()">Log on</a> or <a ng-href="/#/sign-up">Sign up</a>
             </div>
 
             <div class="menu-list-button">
-                <a href ng-click="hideMainMenu = !hideMainMenu"></a>
+                <a href ng-click="showMainMenu()"></a>
             </div>
         </div>
 

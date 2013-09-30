@@ -1,5 +1,5 @@
 ﻿function AccountController($scope) {
-    $scope.submitLogin = function (href) {
+    $scope.submitLogin = function () {
         var requestParameters = {
             email: $scope.email,
             password: $scope.password,
@@ -14,6 +14,8 @@
                 angular.forEach(loginInfo.Session, function(value, key) {
                     $scope.session[key] = value;
                 });
+                $scope.hideMainMenu = true;
+                $scope.hideLogonMenu = true;
                 $scope.$apply();
             }
         };
@@ -22,4 +24,4 @@
     };
 }
 
-AccountController.$inject = ['$scope', '$resource'];
+AccountController.$inject = ['$scope'];

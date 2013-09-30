@@ -21,7 +21,6 @@
 /* ******************************************************************
  * Custom js functions
  */
-
 function displayRequestForUsingWebkitNotifications() {
     var $requestDiv = $('#request-notification');
     $requestDiv.slideDown(250, function () {

@@ -182,6 +182,7 @@
     </Content>
     <Content Include="js\angular\base.controller.js" />
     <Content Include="js\angular\account.controller.js" />
+    <Content Include="js\angular\admin.controller.js" />
     <Content Include="js\angular\playerstats.controller.js" />
     <Content Include="js\angular\stats.controller.js" />
     <Content Include="js\angular\players.controller.js" />
@@ -191,27 +192,25 @@
       <Minify>False</Minify>
       <IncludedFiles>Javascript\lib\md5.js|Javascript\lib\highcharts.js|Javascript\angular\app.js|Javascript\angular\matches.controllers.js|Javascript\Base.js|Javascript\Shared.js|Javascript\LogOn.js|Javascript\Home.js|Javascript\PlayerStats.js|Javascript\Register.js|Javascript\Stats.js|Javascript\Admin.js|Javascript\lib\jquery.signalR-1.0.0.js</IncludedFiles>
     </Content>
-    <Content Include="js\lib\angular-resource.min.js" />
-    <Content Include="js\lib\angular-route.min.js" />
-    <Content Include="js\lib\angular.min.js" />
+    <Content Include="js\lib\angular-resource.js" />
+    <Content Include="js\lib\angular-route.js" />
+    <Content Include="js\lib\angular.js" />
+    <Content Include="js\lib\jquery.js" />
     <Content Include="js\lib\jquery.signalR-1.0.0.js" />
-    <Content Include="js\lib\jquery.signalR-1.0.0.min.js" />
     <Content Include="js\angular\matches.controller.js" />
     <Content Include="js\angular\app.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
-      <IncludedFiles>js\angular\base.controller.js|js\angular\account.controller.js|js\angular\home.controller.js|js\angular\matches.controller.js|js\angular\players.controller.js|js\angular\playerstats.controller.js|js\angular\stats.controller.js</IncludedFiles>
+      <IncludedFiles>js\lib\jquery.js|js\lib\jquery.signalR-1.0.0.js|js\lib\angular.js|js\lib\angular-resource.js|js\lib\angular-route.js|js\lib\md5.js|js\lib\highcharts.js|js\foosball.js|js\angular\base.controller.js|js\angular\account.controller.js|js\angular\home.controller.js|js\angular\matches.controller.js|js\angular\players.controller.js|js\angular\playerstats.controller.js|js\angular\stats.controller.js|js\angular\admin.controller.js</IncludedFiles>
       <OutputFolder>..\minified</OutputFolder>
     </Content>
     <Content Include="js\lib\md5.js" />
-    <Content Include="js\minified\app.combined.js" />
-    <Content Include="js\minified\app.min.js" />
     <Content Include="js\Shared.js" />
     <Content Include="js\lib\highcharts.js" />
     <Content Include="js\LogOn.js" />
-    <Content Include="js\lib\jquery.min.js" />
     <Content Include="js\Register.js" />
     <Content Include="js\PlayerStats.js" />
+    <Content Include="partials\admin.html" />
     <Content Include="partials\user-register.html" />
     <Content Include="partials\logon.html" />
     <Content Include="partials\user-edit.html" />
@@ -250,6 +249,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="js\lib\minified\" />
+    <Folder Include="js\minified\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -347,6 +348,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Players\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="js\lib\jquery.min.js.map">
+      <DependentUpon>jquery.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,6 +1,8 @@
-﻿function BaseController($scope, $resource) {
+﻿function BaseController($scope, $resource, $location) {
     $scope.session = {};
     $scope.hideMainMenu = true;
+    $scope.hideLogonMenu = true;
+    $location.path('/').replace();
 
     var logonPromise = autoLogin();
     logonPromise.then(function () {
@@ -25,6 +27,16 @@
         return promise;
     };
 
+    $scope.showLogonMenu = function () {
+        $scope.hideLogonMenu = !$scope.hideLogonMenu;
+        $scope.hideMainMenu = true;
+    };
+
+    $scope.showMainMenu = function () {
+        $scope.hideMainMenu = !$scope.hideMainMenu;
+        $scope.hideLogonMenu = true;
+    };
+
     $scope.logout = function () {
         var Logon = $resource('/Account/LogOff'),
             promise = Logon.get().$promise;
@@ -35,4 +47,4 @@
     };
 }
 
-BaseController.$inject = ['$scope', '$resource'];
+BaseController.$inject = ['$scope', '$resource', '$location'];

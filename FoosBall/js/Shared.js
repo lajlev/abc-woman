@@ -3,7 +3,6 @@
     // Menu highlighting and animation 
     //
     var $menu = $('#main-menu');
-    var $menuarrow = $('.menu-arrow');
 
     // redirect on menu-item click
     $menu.on('click', 'li', function (event) {
