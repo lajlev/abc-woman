@@ -11,12 +11,13 @@
             method: 'post',
             data: requestParameters,
             success: function (loginInfo) {
-                angular.forEach(loginInfo.Session, function(value, key) {
-                    $scope.session[key] = value;
+                $scope.$apply(function() {
+                    angular.forEach(loginInfo.Session, function (value, key) {
+                        $scope.session[key] = value;
+                    });
+                    $scope.uiSettings.hideMainMenu = true;
+                    $scope.uiSettings.hideLogonMenu = true;
                 });
-                $scope.hideMainMenu = true;
-                $scope.hideLogonMenu = true;
-                $scope.$apply();
             }
         };
 

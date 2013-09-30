@@ -207,9 +207,6 @@
     <Content Include="js\lib\md5.js" />
     <Content Include="js\Shared.js" />
     <Content Include="js\lib\highcharts.js" />
-    <Content Include="js\LogOn.js" />
-    <Content Include="js\Register.js" />
-    <Content Include="js\PlayerStats.js" />
     <Content Include="partials\admin.html" />
     <Content Include="partials\user-register.html" />
     <Content Include="partials\logon.html" />

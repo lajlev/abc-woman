@@ -1,7 +1,8 @@
 ﻿function BaseController($scope, $resource, $location) {
     $scope.session = {};
-    $scope.hideMainMenu = true;
-    $scope.hideLogonMenu = true;
+    $scope.uiSettings = {};
+    $scope.uiSettings.hideMainMenu = true;
+    $scope.uiSettings.hideLogonMenu = true;
     $location.path('/').replace();
 
     var logonPromise = autoLogin();
@@ -28,13 +29,13 @@
     };
 
     $scope.showLogonMenu = function () {
-        $scope.hideLogonMenu = !$scope.hideLogonMenu;
-        $scope.hideMainMenu = true;
+        $scope.uiSettings.hideLogonMenu = !$scope.uiSettings.hideLogonMenu;
+        $scope.uiSettings.hideMainMenu = true;
     };
 
     $scope.showMainMenu = function () {
-        $scope.hideMainMenu = !$scope.hideMainMenu;
-        $scope.hideLogonMenu = true;
+        $scope.uiSettings.hideMainMenu = !$scope.uiSettings.hideMainMenu;
+        $scope.uiSettings.hideLogonMenu = true;
     };
 
     $scope.logout = function () {
