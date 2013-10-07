@@ -181,8 +181,9 @@
       <Minify>False</Minify>
     </Content>
     <Content Include="js\angular\base.controller.js" />
-    <Content Include="js\angular\account.controller.js" />
+    <Content Include="js\angular\login.controller.js" />
     <Content Include="js\angular\admin.controller.js" />
+    <Content Include="js\angular\user.controller.js" />
     <Content Include="js\angular\playerstats.controller.js" />
     <Content Include="js\angular\stats.controller.js" />
     <Content Include="js\angular\players.controller.js" />
@@ -195,6 +196,7 @@
     <Content Include="js\lib\angular-resource.js" />
     <Content Include="js\lib\angular-route.js" />
     <Content Include="js\lib\angular.js" />
+    <Content Include="js\lib\event.js" />
     <Content Include="js\lib\jquery.js" />
     <Content Include="js\lib\jquery.signalR-1.0.0.js" />
     <Content Include="js\angular\matches.controller.js" />
@@ -209,8 +211,8 @@
     <Content Include="js\lib\highcharts.js" />
     <Content Include="partials\admin.html" />
     <Content Include="partials\user-register.html" />
-    <Content Include="partials\logon.html" />
-    <Content Include="partials\user-edit.html" />
+    <Content Include="partials\_logon.html" />
+    <Content Include="partials\user-profile.html" />
     <Content Include="partials\stats-player.html" />
     <Content Include="partials\stats.html" />
     <Content Include="partials\_match-list.html" />
@@ -297,14 +299,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\modules\Account.scss">
-      <Compile>False</Compile>
-      <Minify>True</Minify>
-      <CompileStyle>Nested</CompileStyle>
-      <DebugInfo>False</DebugInfo>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="css\_mixins.scss" />
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +343,14 @@
   <ItemGroup>
     <Content Include="js\lib\jquery.min.js.map">
       <DependentUpon>jquery.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\modules\Account.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
     </Content>
   </ItemGroup>
   <PropertyGroup>

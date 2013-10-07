@@ -1,7 +1,6 @@
 ﻿namespace FoosBall.Controllers
 {
     using System.Linq;
-    using System.Security.Cryptography;
     using System.Web.Mvc;
     using ControllerHelpers;
     using Main;
@@ -13,6 +12,14 @@
     
     public class AccountController : BaseController
     {
+        [HttpGet]
+        public ActionResult GetPlayer()
+        {
+            var currentUser = (Player)Session["User"];
+
+            return Json(DbHelper.GetPlayer(currentUser.Id), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult LogOn()
         {
             if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
@@ -50,12 +57,6 @@
             }
 
             return RedirectToAction("Index", "Home");
-        }
-
-        [HttpGet]
-        public ActionResult GetLogonStatus()
-        {
-            return View("_LogOnPartial");
         }
 
         [HttpPost]

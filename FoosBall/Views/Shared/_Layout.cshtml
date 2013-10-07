@@ -32,17 +32,19 @@
     <script src="/js/lib/angular-route.js"></script>
     <script src="/js/lib/md5.js"></script>
     <script src="/js/lib/highcharts.js"></script>
+    <script src="/js/lib/event.js"></script>
 
     <script src="/js/foosBall.js"></script>
     <script src="/js/angular/app.js"></script>
-    <script src="/js/angular/account.controller.js"></script> 
     <script src="/js/angular/admin.controller.js"></script>
     <script src="/js/angular/base.controller.js"></script> 
     <script src="/js/angular/home.controller.js"></script> 
+    <script src="/js/angular/login.controller.js"></script> 
     <script src="/js/angular/matches.controller.js"></script>
     <script src="/js/angular/players.controller.js"></script>
     <script src="/js/angular/playerstats.controller.js"></script>
     <script src="/js/angular/stats.controller.js"></script> 
+    <script src="/js/angular/user.controller.js"></script> 
     @*<script src="/js/minified/app.min.js"></script>*@
 
     <script src="/signalr/hubs"></script>
@@ -93,7 +95,7 @@
 
         <div data-debug="{{uiSettings.hideLogonMenu}}" class="login-menu-arrow menu-arrow" ng-hide="uiSettings.hideLogonMenu"></div>
         <div id="login-menu" class="menu" ng-hide="uiSettings.hideLogonMenu">
-            <div ng-include="'/partials/logon.html'"></div>
+            <div ng-include="'/partials/_logon.html'"></div>
         </div>
 
         <div class="login-display">

@@ -8,9 +8,8 @@
             .when('/playerstats', { templateUrl: '/partials/stats-player.html', controller: PlayerStatsController })
             .when('/matches', { templateUrl: '/partials/matches.html', controller: MatchesController })
             .when('/players', { templateUrl: '/partials/players.html', controller: PlayersController })
-            .when('/logon', { templateUrl: '/partials/logon.html', controller: AccountController })
-            .when('/user-profile', { templateUrl: '/partials/user-edit.html', controller: AccountController })
-            .when('/sign-up', { templateUrl: '/partials/user-edit.html', controller: AccountController })
+            .when('/user-profile', { templateUrl: '/partials/user-profile.html', controller: UserController })
+            .when('/sign-up', { templateUrl: '/partials/user-register.html', controller: UserController })
             .when('/admin', { templateUrl: '/admin.html', controller: AdminController })
             .otherwise({ redirectTo: '/' });
     }]).

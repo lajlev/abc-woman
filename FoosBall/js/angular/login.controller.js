@@ -1,4 +1,4 @@
-﻿function AccountController($scope) {
+﻿function LoginController($scope) {
     $scope.submitLogin = function () {
         var requestParameters = {
             email: $scope.email,
@@ -25,4 +25,4 @@
     };
 }
 
-AccountController.$inject = ['$scope'];
+LoginController.$inject = ['$scope'];

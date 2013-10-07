@@ -1,0 +1,29 @@
+﻿<div class="user-profile" class="user-profile">
+    <form ng-if="session.IsLoggedIn" name="editUserForm" ng-submit="submitUserDetails()" ng-controller="UserController" ng-model="user">
+        <fieldset>
+            <legend>{{user.Name}}'s account</legend>
+
+            <a href ng-href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" ng-src="{{user.GravatarUrl}}"/></a>
+            <br />
+            <br />
+            <label for="email">Email:</label>
+            <input required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email" type="email" name="email" value="{{user.Email}}" />
+            <br />
+            <br />
+            <label for="name">Name:</label>
+            <input required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Name" type="text" name="name" value="{{user.Name}}" />
+            <br />
+            <br />
+            <label for="old-password">Old password:</label>
+            <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Old password" type="password" name="old-password" value="" />
+            <br />
+            <br />
+            <label for="new-password">New password:</label>
+            <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="New password" type="password" name="new-password" value="" />
+            <br />
+            <br />
+
+            <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
+        </fieldset>
+    </form>
+</div>
