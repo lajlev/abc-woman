@@ -195,6 +195,7 @@
     </Content>
     <Content Include="js\lib\angular-resource.js" />
     <Content Include="js\lib\angular-route.js" />
+    <Content Include="js\lib\angular-animate.js" />
     <Content Include="js\lib\angular.js" />
     <Content Include="js\lib\event.js" />
     <Content Include="js\lib\jquery.js" />
@@ -231,8 +232,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\LogOn.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -250,6 +249,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="js\lib\minified\" />
     <Folder Include="js\minified\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -259,9 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_RegisterMatch.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\modules\Base.scss">

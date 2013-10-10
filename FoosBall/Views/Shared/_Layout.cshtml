@@ -30,6 +30,7 @@
     <script src="/js/lib/angular.js"></script>
     <script src="/js/lib/angular-resource.js"></script>
     <script src="/js/lib/angular-route.js"></script>
+    <script src="/js/lib/angular-animate.js"></script>
     <script src="/js/lib/md5.js"></script>
     <script src="/js/lib/highcharts.js"></script>
     <script src="/js/lib/event.js"></script>
@@ -84,12 +85,12 @@
         <nav data-debug="{uiSettings.{hideMainMenu}}" >
             <div class="main-menu-arrow menu-arrow" ng-hide="uiSettings.hideMainMenu"></div>
             <ul id="main-menu" class="menu" ng-hide="uiSettings.hideMainMenu">
-                <li class="Home"><a ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-href="/#/">Home</a></li>
-                <li class="Scoreboard"><a ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-href="/#/players">Scoreboard</a></li>
-                <li class="Matches"><a ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-href="/#/matches">Matches</a></li>
-                <li class="Stats"><a ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-href="/#/stats">Stats</a></li>
-                <li class="Features"><a ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-href="/#/features">Features</a></li>
-                <li ng-if="session.IsLoggedIn && session.IsAdmin" ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin">@Html.ActionLink("Admin", "Index", "Admin")</li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Home"><a ng-href="/#/">Home</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Scoreboard"><a ng-href="/#/players">Scoreboard</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Matches"><a ng-href="/#/matches">Matches</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Stats"><a ng-href="/#/stats">Stats</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Features"><a ng-href="/#/features">Features</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-if="session.IsLoggedIn && session.IsAdmin" ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin">@Html.ActionLink("Admin", "Index", "Admin")</li>
             </ul> 
         </nav>
 

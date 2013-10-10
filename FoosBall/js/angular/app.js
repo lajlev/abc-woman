@@ -1,5 +1,54 @@
 ﻿angular.
     module('FoosBall', ['ngRoute', 'ngResource']).
+    // The session service provides methods for users to login, logout and getting server session 
+    service('session', function ($resource) {
+        var self = this;
+
+        this.getSession = function (refresh) {
+            var url = '/Base/GetSession';
+            url += (refresh) ? '?refresh=true' : '';
+            
+            var Session = $resource(url);
+            var promise = Session.get().$promise;
+
+            return promise;
+        };
+
+        this.autoLogin = function (scope) {
+            var AccountLogon = $resource('/Account/Logon'),
+                logonPromise = AccountLogon.get().$promise;
+
+            logonPromise.then(function () {
+                var sessionPromise = self.getSession();
+
+                sessionPromise.then(function (sessionInfo) {
+                    angular.forEach(sessionInfo, function (value, key) {
+                        scope.session[key] = value;
+                    });
+                });
+            });
+        };
+        
+        this.logout = function (scope, callback) {
+            var AccoutLogoff = $resource('/Account/LogOff'),
+                logoffPromise = AccoutLogoff.get().$promise;
+
+            logoffPromise.then(function () {
+                var sessionPromise = self.getSession();
+
+                sessionPromise.then(function (sessionInfo) {
+                    angular.forEach(sessionInfo, function (value, key) {
+                        scope.session[key] = value;
+                    });
+                });
+                
+                if (callback) {
+                    callback();
+                }
+            });
+        };
+        
+    }).
     config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', { templateUrl: '/partials/home.html' })

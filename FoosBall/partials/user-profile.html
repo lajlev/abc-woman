@@ -7,22 +7,30 @@
             <br />
             <br />
             <label for="email">Email:</label>
-            <input required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email" type="email" name="email" value="{{user.Email}}" />
+            <input ng-model="user.Email" type="email" name="email" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email"/>
             <br />
             <br />
             <label for="name">Name:</label>
-            <input required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Name" type="text" name="name" value="{{user.Name}}" />
-            <br />
-            <br />
-            <label for="old-password">Old password:</label>
-            <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Old password" type="password" name="old-password" value="" />
-            <br />
-            <br />
-            <label for="new-password">New password:</label>
-            <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="New password" type="password" name="new-password" value="" />
+            <input ng-model="user.Name" value="{{user.Name}}" type="text" name="name" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Name" />
             <br />
             <br />
 
+            <label for="new-password">New password:</label>
+            <input ng-model="user.NewPassword" type="password" name="new-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="New password"/>
+            <br />
+            <br />
+
+            <span ng-show="user.NewPassword">
+                <label for="old-password">Old password:</label>
+                <input ng-model="user.OldPassword" type="password" name="old-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Old password" />
+                <br />
+                <br />
+            </span>
+
+            <span ng-hide="!showValidationMessage" class="error validation-message">{{updateMessage}}</span>
+            <br />
+            <br />
+            
             <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
         </fieldset>
     </form>
