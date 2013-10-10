@@ -1,6 +1,5 @@
 ﻿angular.
     module('FoosBall', ['ngRoute', 'ngResource']).
-    // The session service provides methods for users to login, logout and getting server session 
     service('api', function ($resource) {
         this.getAllMatches = function () {
             var url = '/Matches/GetMatches?numberOfMatches=0'; // "numberOfMatches=0" fetches all matches
