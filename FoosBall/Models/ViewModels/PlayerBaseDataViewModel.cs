@@ -1,10 +1,7 @@
 ﻿namespace FoosBall.Models.ViewModels
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
-
-    using FoosBall.Models.Base;
-    using FoosBall.Models.Domain;
+    using Base;
+    using Domain;
 
     public class PlayerBaseDataViewModel : BaseViewModel
     {

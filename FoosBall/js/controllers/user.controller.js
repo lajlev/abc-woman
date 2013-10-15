@@ -1,13 +1,15 @@
-﻿function UserController($scope, $resource, session) {
+﻿FoosBall.controller('UserController', ['$scope', '$resource', 'session', function($scope, $resource, session) {
     $scope.user = {};
     $scope.updateMessage;
     $scope.showValidationMessage = false;
 
-    $scope.getPlayer = function () {
+    getPlayer();
+    
+    function getPlayer() {
         var Player = $resource('Account/GetPlayer');
         var promise = Player.get().$promise;
 
-        promise.then(function (player) {
+        promise.then(function(player) {
             $scope.user = preparePlayer(player);
         });
     };
@@ -22,22 +24,21 @@
 
         var promise = User.save().$promise;
 
-        promise.then(function (responseData) {
+        promise.then(function(responseData) {
             if (!!responseData && responseData.Success === true) {
                 $scope.getPlayer();
                 var sessionPromise = session.getSession(true);
 
-                sessionPromise.then(function (sessionInfo) {
-                    angular.forEach(sessionInfo, function (value, key) {
+                sessionPromise.then(function(sessionInfo) {
+                    angular.forEach(sessionInfo, function(value, key) {
                         $scope.$parent.session[key] = value;
                     });
                 });
-                
+
             }
-            
+
             $scope.updateMessage = responseData.Message;
             $scope.showValidationMessage = true;
-            //$scope.$apply();
         });
     };
 
@@ -46,7 +47,4 @@
         return player;
     }
 
-    $scope.getPlayer();
-}
-
-UserController.$inject = ['$scope', '$resource','session'];
+}]);

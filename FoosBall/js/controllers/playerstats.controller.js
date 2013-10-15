@@ -1,4 +1,4 @@
-﻿function PlayerStatsController($scope, $resource, $location) {
+﻿FoosBall.controller('PlayerStatsController', ['$scope', '$resource', '$location', function ($scope, $resource, $location) {
     $scope.playerStats = [];
     $scope.hex_md5 = md5.hex_md5;
 
@@ -7,7 +7,7 @@
         var search = "?playerId=" + $location.search()["playerId"],
             PlayerStats = $resource('/Stats/GetPlayerStatistics' + search),
             promise = PlayerStats.get().$promise;
-        
+
 
         promise.then(function(playerStats) {
             $scope.playerStats = preparePlayerStats(playerStats);
@@ -19,14 +19,14 @@
             ChartData = $resource('/Stats/GetPlayerRatingData' + search),
             promise = ChartData.get().$promise,
             preparedChartData;
-        
-        promise.then(function (chartData) {
+
+        promise.then(function(chartData) {
             preparedChartData = prepareChartData(chartData);
             renderChart(preparedChartData);
         });
     };
 
-    $scope.getPlayerStatsUrl = function (playerId) {
+    $scope.getPlayerStatsUrl = function(playerId) {
         return '/#/playerstats?playerId=' + playerId;
     };
 
@@ -47,7 +47,7 @@
     function prepareChartData(chartData) {
         var preparedChartData = { DataPoints: [] };
 
-        angular.forEach(chartData.DataPoints, function (value, key) {
+        angular.forEach(chartData.DataPoints, function(value, key) {
             preparedChartData.DataPoints.push([
                 new Date(Date.UTC(
                     value.TimeSet[0], // year
@@ -81,8 +81,8 @@
             },
             subtitle: {
                 text: document.ontouchstart === undefined
-                        ? 'Click and drag in the plot area to zoom in'
-                        : 'Drag your finger over the plot to zoom in'
+                    ? 'Click and drag in the plot area to zoom in'
+                    : 'Drag your finger over the plot to zoom in'
             },
             xAxis: {
                 title: {
@@ -138,6 +138,4 @@
             }]
         });
     }
-}
-
-PlayerStatsController.$inject = ['$scope', '$resource', '$location'];
+}]);

@@ -1,10 +1,10 @@
-﻿function MatchesController($scope, $resource) {
+﻿FoosBall.controller('MatchesController', ['$scope', '$resource', function($scope, $resource) {
     var $thisSelect,
         valueBeforeChange,
         currentUserTag = document.getElementById('current-user-id');
 
-    $scope.pageSize = 10;
     $scope.hideForm = true;
+    $scope.pageSize = 10;
     $scope.matches = [];
     $scope.hex_md5 = md5.hex_md5;
     $scope.currentUserId = currentUserTag ? currentUserTag.value : '';
@@ -17,10 +17,10 @@
         promise.then(function() {
             $scope.matches.splice(index, 1);
             var ReplayMatches = $resource('Admin/ReplayMatches'),
-            replayPromise = ReplayMatches.save().$promise;
+                replayPromise = ReplayMatches.save().$promise;
 
-            replayPromise.then(function () {
-                
+            replayPromise.then(function() {
+
             });
         });
     };
@@ -47,7 +47,7 @@
     };
 
     // Start fetching players, return a promise
-    $scope.getPlayers = function () {
+    $scope.getPlayers = function() {
         var Players = $resource('Matches/GetPlayers');
         var promise = Players.query().$promise;
 
@@ -57,14 +57,14 @@
     };
 
     // Start fetching matches, return a promise
-    $scope.getMatches = function (numberOfMatches, startFromMatch) {
+    $scope.getMatches = function(numberOfMatches, startFromMatch) {
         var num = numberOfMatches || $scope.pageSize;
         var start = startFromMatch || 0;
         var Matches = $resource('Matches/GetMatches?numberOfMatches=' + num + '&startFromMatch=' + start);
         var promise = Matches.query().$promise;
 
         promise.then(function(matches) {
-            angular.forEach(matches, function (value, key) {
+            angular.forEach(matches, function(value, key) {
                 var preparedMatch = prepareMatch(matches[key]);
                 $scope.matches.push(preparedMatch);
             });
@@ -97,7 +97,7 @@
                     loserRating: loserRating,
                 },
                 type: 'get',
-                success: function (rating) {
+                success: function(rating) {
                     var roundedRedRating = Math.round(redPlayerRatings),
                         roundedBlueRating = Math.round(bluePlayerRatings),
                         roundedWinnerChance = Math.round(100 * rating.ExpectedScore),
@@ -131,40 +131,38 @@
         }
     }
 
-}
-
-MatchesController.$inject = ['$scope', '$resource'];
-
-function SubmitMatchController($scope, $resource) {
     $scope.submitMatch = function () {
         var Match = $resource('Matches/SubmitMatch');
         var promise = Match.save($scope.match).$promise;
 
         promise.then(function (response) {
-            // Reset the match form
-            angular.forEach($scope.match, function (value, key) {
-                $scope.match[key] = null;
-            });
-            $('option:disabled').removeAttr('disabled');
-            $scope.$parent.hideForm = true;
-
+            resetMatchForm($scope);
             if (response.success) {
                 var preparedMatch = prepareMatch(response.returnedMatch);
                 $scope.matches.unshift(preparedMatch);
             }
         });
     };
-}
 
-SubmitMatchController.$inject = ['$scope', '$resource'];
+    function resetMatchForm(scope) {
+        // Reset the match form
+        $('.score-prediction').find('.rating, .chance, .gain').text('');
+        angular.forEach(scope.match, function (value, key) {
+            scope.match[key] = null;
+        });
+        $('option:disabled').removeAttr('disabled');
+        scope.hideForm = true;
+    }
 
-function prepareMatch(match) {
-    var time = parseInt(match.GameOverTime.replace(/\D/g, ""));
-    var date = new Date(time);
+    function prepareMatch(match) {
+        var time = parseInt(match.GameOverTime.replace(/\D/g, ""));
+        var date = new Date(time);
 
-    match.UnixTime = time;
-    match.DistributedRating = match.DistributedRating.toString().replace(/(\d{1,2})(\.)(\d{2})(.*)/g, "$1,$3");
-    match.GameOverDate = date.toDateString().replace(/(\w{3}) (\w{3}) (\d{2}) (\d{2})(\d{2})/g, date.getDate() + " $2 " + " $5");
-    match.GameOverTime = date.toLocaleTimeString().replace(/(\d{2})(\.)(\d{2})(\.)(\d{2})/g, ", $1:$3");
-    return match;
-}
+        match.UnixTime = time;
+        match.DistributedRating = match.DistributedRating.toString().replace(/(\d{1,2})(\.)(\d{2})(.*)/g, "$1,$3");
+        match.GameOverDate = date.toDateString().replace(/(\w{3}) (\w{3}) (\d{2}) (\d{2})(\d{2})/g, date.getDate() + " $2 " + " $5");
+        match.GameOverTime = date.toLocaleTimeString().replace(/(\d{2})(\.)(\d{2})(\.)(\d{2})/g, ", $1:$3");
+        return match;
+    }
+    
+}]);

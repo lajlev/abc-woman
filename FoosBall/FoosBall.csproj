@@ -181,6 +181,7 @@
       <Minify>False</Minify>
     </Content>
     <Content Include="js\angular\base.controller.js" />
+    <Content Include="js\angular\signup.controller.js" />
     <Content Include="js\angular\getmatches.controller.js" />
     <Content Include="js\angular\login.controller.js" />
     <Content Include="js\angular\admin.controller.js" />
@@ -212,7 +213,7 @@
     <Content Include="js\Shared.js" />
     <Content Include="js\lib\highcharts.js" />
     <Content Include="partials\admin.html" />
-    <Content Include="partials\user-register.html" />
+    <Content Include="partials\_signup.html" />
     <Content Include="partials\_logon.html" />
     <Content Include="partials\user-profile.html" />
     <Content Include="partials\stats-player.html" />

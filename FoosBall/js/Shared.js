@@ -1,8 +1,4 @@
-﻿jQuery(document).ready(function () {
-    
-});
-
-function toggleOverlay() {
+﻿function toggleOverlay() {
     var overlay = $('#overlay');
 
     if (overlay.size() === 0) {
