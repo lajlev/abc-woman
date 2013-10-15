@@ -134,6 +134,9 @@
     <Compile Include="Models\Custom\Streak.cs" />
     <Compile Include="Models\Custom\Streaks.cs" />
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
+    <Content Include="js\angular\advstats.controller.js" />
+    <Content Include="partials\_advanced-stats.html" />
+    <Compile Include="ViewHelpers\Md5Extensions.cs" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
