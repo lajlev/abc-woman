@@ -1,18 +1,1 @@
-﻿@if (Session["IsLoggedIn"].ToString().ToLower() == "true")
-{
-    var user = (Player)Session["User"];
-    <div class="menu-account-info">
-        Hi @user.Name
-        [ @Html.ActionLink("Account", "Edit", "Account", new {id = user.Id}, null) &middot; @Html.ActionLink("Log Off", "LogOff", "Account") ]
-    </div>
-}
-else 
-{
-    <div class="menu-login-info">
-        @Html.ActionLink("Log on", "LogOn", "Account") or @Html.ActionLink("Sign up", "Register", "Account")
-    </div>
-}
-
-    <div class="menu-list-button">
-        <a href="#"></a>
-    </div>
+﻿

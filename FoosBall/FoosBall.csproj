@@ -145,7 +145,6 @@
     <Compile Include="Models\Custom\Streak.cs" />
     <Compile Include="Models\Custom\Streaks.cs" />
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
-    <Compile Include="ViewHelpers\Md5Extensions.cs" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
@@ -184,6 +183,7 @@
     <Content Include="js\app\foosball.services.js" />
     <Content Include="js\app\foosball.directives.js" />
     <Content Include="js\controllers\admin.controller.js" />
+    <Content Include="js\controllers\submitmatch.controller.js" />
     <Content Include="js\controllers\signup.controller.js" />
     <Content Include="js\controllers\login.controller.js" />
     <Content Include="js\controllers\user.controller.js" />

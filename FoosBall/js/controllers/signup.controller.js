@@ -14,8 +14,11 @@
         var newUserPromise = newUser.$save();
 
         newUserPromise.then(function(responseData) {
-            if (!!responseData && responseData.Success === true) {
-                $scope.getPlayer();
+            if (!responseData) {
+                return;
+            }
+
+            if (responseData.Success === true) {
                 var sessionPromise = session.getSession(true);
 
                 sessionPromise.then(function(sessionInfo) {
@@ -24,10 +27,23 @@
                     });
                 });
 
+                $scope.uiSettings.hideMainMenu = true;
+                $scope.uiSettings.hideSignupMenu = true;
+                $scope.uiSettings.hideLogonMenu = true;
+                
+                clearSignupForm($scope);
             }
 
             $scope.signupMessage = responseData.Message;
             $scope.showSignupMessage = true;
         });
     };
+    
+    function clearSignupForm(scope) {
+        scope.signupMessage;
+        scope.showSignupMessage = false;
+        scope.email = "";
+        scope.name = "";
+        scope.password = "";
+    }
 }]);

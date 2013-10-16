@@ -1,6 +1,9 @@
-﻿FoosBall.controller('PlayerStatsController', ['$scope', '$resource', '$location', function ($scope, $resource, $location) {
+﻿FoosBall.controller('PlayerStatsController', ['$scope', '$resource', '$location', '$q', function ($scope, $resource, $location, $q) {
+    var promises = [];
     $scope.playerStats = [];
+    $scope.playerStatsDataReady = false;
     $scope.hex_md5 = md5.hex_md5;
+    $scope.preparedChartData;
 
     // Start fetching player statistics, return a promise
     $scope.getPlayerStats = function() {
@@ -8,7 +11,7 @@
             PlayerStats = $resource('/Stats/GetPlayerStatistics' + search),
             promise = PlayerStats.get().$promise;
 
-
+        promises.push(promise);
         promise.then(function(playerStats) {
             $scope.playerStats = preparePlayerStats(playerStats);
         });
@@ -17,25 +20,24 @@
     $scope.getPlayerRatingData = function() {
         var search = "?playerId=" + $location.search()["playerId"],
             ChartData = $resource('/Stats/GetPlayerRatingData' + search),
-            promise = ChartData.get().$promise,
-            preparedChartData;
+            promise = ChartData.get().$promise;
 
-        promise.then(function(chartData) {
-            preparedChartData = prepareChartData(chartData);
-            renderChart(preparedChartData);
+        promises.push(promise);
+        promise.then(function (chartData) {
+            $scope.preparedChartData = prepareChartData(chartData);
         });
-    };
-
-    $scope.getPlayerStatsUrl = function(playerId) {
-        return '/#/playerstats?playerId=' + playerId;
     };
 
     $scope.getPlayerStats();
     $scope.getPlayerRatingData();
 
+    $q.all(promises).then(function () {
+        $scope.playerStatsDataReady = true;
+        setTimeout(function() { renderChart($scope.preparedChartData); }, 5);
+    });
+
     function preparePlayerStats(playerStats) {
         var statsUrl = '/#/playerstats?playerId=';
-        playerStats.Player.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(playerStats.Player.Email) + '?d=mm';
         playerStats.Player.Url = statsUrl + playerStats.Player.Id;
         playerStats.Bff.Player.Url = statsUrl + playerStats.Bff.Player.Id;
         playerStats.Rbff.Player.Url = statsUrl + playerStats.Rbff.Player.Id;

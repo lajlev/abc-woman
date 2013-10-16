@@ -238,6 +238,10 @@ header {
     padding: 80px 10px 5px;
 }
 
+.foosball-spinner {
+    @include foosball-spinner();
+}
+
 .button {
     -moz-box-shadow:inset 0px 1px 0px 0px #94c47c;
     -webkit-box-shadow:inset 0px 1px 0px 0px #94c47c;

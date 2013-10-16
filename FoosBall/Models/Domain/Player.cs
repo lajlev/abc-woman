@@ -38,6 +38,14 @@
             }
         }
 
+        public string StatsUrl
+        {
+            get
+            {
+                return string.Format("/#/playerstats?playerId={0}", Id);
+            }
+        }
+
         public string Name { get; set; }
         
         public string Password { get; set; }

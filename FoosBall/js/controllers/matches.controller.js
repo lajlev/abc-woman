@@ -3,6 +3,7 @@
         valueBeforeChange,
         currentUserTag = document.getElementById('current-user-id');
 
+    $scope.matchesDataReady = false;
     $scope.hideForm = true;
     $scope.pageSize = 10;
     $scope.matches = [];
@@ -53,6 +54,7 @@
 
         promise.then(function(players) {
             $scope.players = players;
+            $scope.matchesDataReady = true;
         });
     };
 
@@ -131,38 +133,16 @@
         }
     }
 
-    $scope.submitMatch = function () {
-        var Match = $resource('Matches/SubmitMatch');
-        var promise = Match.save($scope.match).$promise;
-
-        promise.then(function (response) {
-            resetMatchForm($scope);
-            if (response.success) {
-                var preparedMatch = prepareMatch(response.returnedMatch);
-                $scope.matches.unshift(preparedMatch);
-            }
-        });
-    };
-
-    function resetMatchForm(scope) {
-        // Reset the match form
-        $('.score-prediction').find('.rating, .chance, .gain').text('');
-        angular.forEach(scope.match, function (value, key) {
-            scope.match[key] = null;
-        });
-        $('option:disabled').removeAttr('disabled');
-        scope.hideForm = true;
-    }
-
-    function prepareMatch(match) {
-        var time = parseInt(match.GameOverTime.replace(/\D/g, ""));
-        var date = new Date(time);
-
-        match.UnixTime = time;
-        match.DistributedRating = match.DistributedRating.toString().replace(/(\d{1,2})(\.)(\d{2})(.*)/g, "$1,$3");
-        match.GameOverDate = date.toDateString().replace(/(\w{3}) (\w{3}) (\d{2}) (\d{2})(\d{2})/g, date.getDate() + " $2 " + " $5");
-        match.GameOverTime = date.toLocaleTimeString().replace(/(\d{2})(\.)(\d{2})(\.)(\d{2})/g, ", $1:$3");
-        return match;
-    }
-    
 }]);
+
+function prepareMatch(match) {
+    var time = parseInt(match.GameOverTime.replace(/\D/g, ""));
+    var date = new Date(time);
+
+    match.UnixTime = time;
+    match.DistributedRating = match.DistributedRating.toString().replace(/(\d{1,2})(\.)(\d{2})(.*)/g, "$1,$3");
+    match.GameOverDate = date.toDateString().replace(/(\w{3}) (\w{3}) (\d{2}) (\d{2})(\d{2})/g, date.getDate() + " $2 " + " $5");
+    match.GameOverTime = date.toLocaleTimeString().replace(/(\d{2})(\.)(\d{2})(\.)(\d{2})/g, ", $1:$3");
+    return match;
+}
+
