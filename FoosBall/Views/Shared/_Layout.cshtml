@@ -16,15 +16,7 @@
     </title>
 
     <link href="@Url.Content("~/css/minified/foosball.min.css")" rel="stylesheet" type="text/css" />
-    @*
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="/js/lib/jquery.signalR-1.0.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-    <script src="/js/lib/md.min5.js"></script>
-    <script src="/js/lib/highcharts.js"></script>
-    *@
+
     <script src="/js/lib/jquery.js"></script>
     <script src="/js/lib/jquery.signalR-1.0.0.js"></script>
     <script src="/js/lib/angular.js"></script>
@@ -35,20 +27,20 @@
     <script src="/js/lib/highcharts.js"></script>
     <script src="/js/lib/event.js"></script>
 
-    <script src="/js/foosBall.js"></script>
-    <script src="/js/angular/app.js"></script>
-    <script src="/js/angular/admin.controller.js"></script>
-    <script src="/js/angular/base.controller.js"></script> 
-    <script src="/js/angular/home.controller.js"></script> 
-    <script src="/js/angular/login.controller.js"></script> 
-    <script src="/js/angular/matches.controller.js"></script>
-    <script src="/js/angular/players.controller.js"></script>
-    <script src="/js/angular/playerstats.controller.js"></script>
-    <script src="/js/angular/stats.controller.js"></script> 
-    <script src="/js/angular/user.controller.js"></script> 
+    <script src="/js/app/jquery.foosBall.js"></script>
+    <script src="/js/app/foosball.js"></script>
+    <script src="/js/app/foosball.services.js"></script>
+    <script src="/js/app/foosball.directives.js"></script>
+    <script src="/js/controllers/base.controller.js"></script> 
+    <script src="/js/controllers/login.controller.js"></script> 
+    <script src="/js/controllers/signup.controller.js"></script> 
+    <script src="/js/controllers/matches.controller.js"></script>
+    <script src="/js/controllers/submitmatch.controller.js"></script>
+    <script src="/js/controllers/players.controller.js"></script>
+    <script src="/js/controllers/playerstats.controller.js"></script>
+    <script src="/js/controllers/stats.controller.js"></script> 
+    <script src="/js/controllers/user.controller.js"></script> 
     @*<script src="/js/minified/app.min.js"></script>*@
-
-    <!-- Test Get All Matches --><script src="/js/angular/getmatches.controller.js"></script> 
     
     <script src="/signalr/hubs"></script>
 
@@ -61,6 +53,7 @@
             <input id="current-user-id" type="hidden" value="@currentUser.Id"/>
         }
     }
+
     <div id="request-notification">
         Try the new Foosball Fighting desktop notifications - You'll love it!<br />
         <input class="button" id="notify-me" value="Ok, off we go!" />
@@ -84,23 +77,32 @@
             </div>
         </a>
 
-        <nav data-debug="{uiSettings.{hideMainMenu}}" >
+        <!-- MAIN MENU -->
+        <nav>
             <div class="main-menu-arrow menu-arrow" ng-hide="uiSettings.hideMainMenu"></div>
             <ul id="main-menu" class="menu" ng-hide="uiSettings.hideMainMenu">
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Home"><a ng-href="/#/">Home</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Scoreboard"><a ng-href="/#/players">Scoreboard</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Matches"><a ng-href="/#/matches">Matches</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Stats"><a ng-href="/#/stats">Stats</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Features"><a ng-href="/#/features">Features</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-if="session.IsLoggedIn && session.IsAdmin" ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin">@Html.ActionLink("Admin", "Index", "Admin")</li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Home"><a class="main-menu-item" ng-href="/#/">Home</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Scoreboard"><a class="main-menu-item" ng-href="/#/players">Scoreboard</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Matches"><a class="main-menu-item" ng-href="/#/matches">Matches</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Stats"><a class="main-menu-item" ng-href="/#/stats">Stats</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Features"><a class="main-menu-item" ng-href="/#/features">Features</a></li>
+                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" ng-if="session.IsLoggedIn && session.IsAdmin" ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin"><a class="main-menu-item" ng-href="/#/Admin">Admin</a></li>
             </ul> 
         </nav>
-
-        <div data-debug="{{uiSettings.hideLogonMenu}}" class="login-menu-arrow menu-arrow" ng-hide="uiSettings.hideLogonMenu"></div>
+        
+        <!-- LOGIN MENU -->
+        <div class="login-menu-arrow menu-arrow" ng-hide="uiSettings.hideLogonMenu"></div>
         <div id="login-menu" class="menu" ng-hide="uiSettings.hideLogonMenu">
             <div ng-include="'/partials/_logon.html'"></div>
         </div>
 
+        <!-- SIGN-UP MENU -->
+        <div class="signup-menu-arrow menu-arrow" ng-hide="uiSettings.hideSignupMenu"></div>
+        <div id="login-menu" class="menu" ng-hide="uiSettings.hideSignupMenu">
+            <div ng-include="'/partials/_signup.html'"></div>
+        </div>
+
+        <!-- LOGIN/ACCOUNT STATUS -->
         <div class="login-display">
             <div ng-if="session.IsLoggedIn" class="menu-account-info">
                 Hi {{session.User.Name}}
@@ -108,7 +110,7 @@
             </div>
 
             <div ng-if="!session.IsLoggedIn" class="menu-login-info">
-                <a href ng-click="showLogonMenu()">Log on</a> or <a ng-href="/#/sign-up">Sign up</a>
+                <a href ng-click="showLogonMenu()">Log on</a> or <a href ng-click="showSignupMenu()">Sign up</a>
             </div>
 
             <div class="menu-list-button">

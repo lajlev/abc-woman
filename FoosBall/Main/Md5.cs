@@ -20,10 +20,19 @@
             return CalculateMd5(input, Encoding.Default);
         }
 
-        public static string GetGravatarEmailHash(string email)
+        public static string GetGravatarUrl(string email)
         {
-            var gravatarUrl = "http://www.gravatar.com/avatar/" + CalculateMd5(email.ToLower().Trim(), Encoding.Default);
-            return gravatarUrl.ToLower();
+            var md5Email = CalculateMd5(email.ToLower().Trim(), Encoding.Default);
+            
+            var today = DateTime.Today;
+            var halloween = new DateTime(2013, 10, 31);
+
+            if (today == halloween)
+            {
+                return string.Format("http://www.gravatar.com/avatar/{0}?d=monsterid&r=x&f=y", md5Email).ToLower();
+            }
+
+            return string.Format("http://www.gravatar.com/avatar/{0}?d=mm", md5Email).ToLower();
         }
     }
 }

@@ -120,47 +120,6 @@
             {
                 httpCookie.Expires = DateTime.Now.AddDays(-1);
             }
-        }
-        
-        public bool Login(Player player)
-        {
-            // Set or remove cookie for future auto-login
-            if (player != null) 
-            {
-                if (player.RememberMe)
-                {
-                    // Save an autologin token as cookie and in the Db
-                    var playerCollection = this.Dbh.GetCollection<Player>("Players");
-                    var autoLoginCollection = this.Dbh.GetCollection<AutoLogin>("AutoLogin");
-                    var autoLogin = autoLoginCollection.FindOne(Query.EQ("Email", player.Email));
-
-                    if (autoLogin == null)
-                    {
-                        autoLogin = new AutoLogin
-                        {
-                            Email = player.Email,
-                            Token = GetAuthToken(player),
-                        };
-                        autoLoginCollection.Save(autoLogin);
-                    }
-
-                    CreateRememberMeCookie(player);
-                    player.RememberMe = player.RememberMe;
-                    playerCollection.Save(player);
-                }
-                else
-                {
-                    RemoveRememberMeCookie();
-                }
-
-                this.Session["Admin"] = Settings.AdminAccount.Contains(player.Email);
-                this.Session["IsLoggedIn"] = true;
-                this.Session["User"] = player;
-            
-                return true;
-            }
-
-            return false;
-        }
+        }        
     }
 }

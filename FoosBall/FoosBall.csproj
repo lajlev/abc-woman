@@ -145,7 +145,6 @@
     <Compile Include="Models\Custom\Streak.cs" />
     <Compile Include="Models\Custom\Streaks.cs" />
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
-    <Compile Include="ViewHelpers\Md5Extensions.cs" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
@@ -180,16 +179,18 @@
       <Compile>True</Compile>
       <Minify>False</Minify>
     </Content>
-    <Content Include="js\angular\base.controller.js" />
-    <Content Include="js\angular\getmatches.controller.js" />
-    <Content Include="js\angular\login.controller.js" />
-    <Content Include="js\angular\admin.controller.js" />
-    <Content Include="js\angular\user.controller.js" />
-    <Content Include="js\angular\playerstats.controller.js" />
-    <Content Include="js\angular\stats.controller.js" />
-    <Content Include="js\angular\players.controller.js" />
-    <Content Include="js\angular\home.controller.js" />
-    <Content Include="js\foosball.js">
+    <Content Include="js\controllers\base.controller.js" />
+    <Content Include="js\app\foosball.services.js" />
+    <Content Include="js\app\foosball.directives.js" />
+    <Content Include="js\controllers\admin.controller.js" />
+    <Content Include="js\controllers\submitmatch.controller.js" />
+    <Content Include="js\controllers\signup.controller.js" />
+    <Content Include="js\controllers\login.controller.js" />
+    <Content Include="js\controllers\user.controller.js" />
+    <Content Include="js\controllers\playerstats.controller.js" />
+    <Content Include="js\controllers\stats.controller.js" />
+    <Content Include="js\controllers\players.controller.js" />
+    <Content Include="js\app\jquery.foosball.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <IncludedFiles>Javascript\lib\md5.js|Javascript\lib\highcharts.js|Javascript\angular\app.js|Javascript\angular\matches.controllers.js|Javascript\Base.js|Javascript\Shared.js|Javascript\LogOn.js|Javascript\Home.js|Javascript\PlayerStats.js|Javascript\Register.js|Javascript\Stats.js|Javascript\Admin.js|Javascript\lib\jquery.signalR-1.0.0.js</IncludedFiles>
@@ -201,8 +202,8 @@
     <Content Include="js\lib\event.js" />
     <Content Include="js\lib\jquery.js" />
     <Content Include="js\lib\jquery.signalR-1.0.0.js" />
-    <Content Include="js\angular\matches.controller.js" />
-    <Content Include="js\angular\app.js">
+    <Content Include="js\controllers\matches.controller.js" />
+    <Content Include="js\app\foosball.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <IncludedFiles>js\lib\jquery.js|js\lib\jquery.signalR-1.0.0.js|js\lib\angular.js|js\lib\angular-resource.js|js\lib\angular-route.js|js\lib\md5.js|js\lib\highcharts.js|js\foosball.js|js\angular\base.controller.js|js\angular\account.controller.js|js\angular\home.controller.js|js\angular\matches.controller.js|js\angular\players.controller.js|js\angular\playerstats.controller.js|js\angular\stats.controller.js|js\angular\admin.controller.js</IncludedFiles>
@@ -212,7 +213,7 @@
     <Content Include="js\Shared.js" />
     <Content Include="js\lib\highcharts.js" />
     <Content Include="partials\admin.html" />
-    <Content Include="partials\user-register.html" />
+    <Content Include="partials\_signup.html" />
     <Content Include="partials\_logon.html" />
     <Content Include="partials\user-profile.html" />
     <Content Include="partials\stats-player.html" />
@@ -233,8 +234,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="css\modules\Admin.scss">
@@ -243,14 +242,17 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Stats\Player.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\lib\minified\" />
     <Folder Include="js\minified\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Matches\" />
+    <Folder Include="Views\Players\" />
+    <Folder Include="Views\Stats\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -259,18 +261,12 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_RegisterMatch.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="css\modules\Base.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_PlayerBaseData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\modules\Matches.scss">
@@ -308,9 +304,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_MatchTemplate.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="css\foosball.scss">
       <Compile>True</Compile>
       <Minify>True</Minify>
@@ -325,20 +318,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\Matches\Index.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\Stats\Index.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Players\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="js\lib\jquery.min.js.map">
       <DependentUpon>jquery.js</DependentUpon>
     </Content>
@@ -350,6 +329,9 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

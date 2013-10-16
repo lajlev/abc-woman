@@ -1,27 +1,67 @@
 ﻿namespace FoosBall.Controllers
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using ControllerHelpers;
     using Main;
     using Models.Base;
     using Models.Domain;
-    using Models.ViewModels;
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
     
     public class AccountController : BaseController
     {
         [HttpGet]
-        public ActionResult GetPlayer()
+        public ActionResult GetUser()
         {
             var currentUser = (Player)Session["User"];
 
             return Json(DbHelper.GetPlayer(currentUser.Id), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult LogOn()
+        public bool Login(Player player)
+        {
+            // Set or remove cookie for future auto-login
+            if (player != null)
+            {
+                if (player.RememberMe)
+                {
+                    // Save an autologin token as cookie and in the Db
+                    var playerCollection = Dbh.GetCollection<Player>("Players");
+                    var autoLoginCollection = Dbh.GetCollection<AutoLogin>("AutoLogin");
+                    var autoLogin = autoLoginCollection.FindOne(Query.EQ("Email", player.Email));
+
+                    if (autoLogin == null)
+                    {
+                        autoLogin = new AutoLogin
+                        {
+                            Email = player.Email,
+                            Token = GetAuthToken(player),
+                        };
+                        autoLoginCollection.Save(autoLogin);
+                    }
+
+                    CreateRememberMeCookie(player);
+                    player.RememberMe = player.RememberMe;
+                    playerCollection.Save(player);
+                }
+                else
+                {
+                    RemoveRememberMeCookie();
+                }
+
+                Session["Admin"] = Settings.AdminAccount.Contains(player.Email);
+                Session["IsLoggedIn"] = true;
+                Session["User"] = player;
+
+                return true;
+            }
+
+            return false;
+        }
+        
+        [HttpGet]
+        public void LogOn()
         {
             if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
             {
@@ -35,35 +75,17 @@
                     {
                         var playerCollection = this.Dbh.GetCollection<Player>("Players");
                         var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email.ToLower()));
-                    
-                        if (Login(player))
-                        {
-                            // Go back to where we were before logging in
-                            var referrer = this.Request.UrlReferrer;
-                            if (referrer != null)
-                            {
-                                return this.Redirect(referrer.ToString());
-                            }
-                        } 
+
+                        Login(player);
                     }
                 }
             }
-
-            var urlReferrer = this.Request.UrlReferrer;
-            var viewModel = new LogOnViewModel { RefUrl = urlReferrer.ToString(), Settings = this.Settings };
-
-            if (urlReferrer != null)
-            {
-                return this.View(viewModel);
-            }
-
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         public ActionResult LogOn(string email, string password, string refUrl, bool rememberMe = false)
         {
-            var loginEmail = (email + "@" + Settings.Domain).ToLower();
+            var loginEmail = email;
             var playerCollection = Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(Query.EQ("Email", loginEmail));
             var loginInfo = new AjaxResponse();
@@ -78,6 +100,11 @@
                         loginInfo.Data = GetSessionInfo();
                         loginInfo.Success = true;
                     }
+                }
+                else
+                {
+                    loginInfo.Message = "Wrong user name or password";
+                    loginInfo.Success = false;
                 }
             }
             else
@@ -96,54 +123,47 @@
             RemoveRememberMeCookie();
             
             // Go back to where we were before logging in
-            var urlReferrer = this.Request.UrlReferrer;
+            var urlReferrer = Request.UrlReferrer;
             if (urlReferrer != null)
             {
-                return this.Redirect(urlReferrer.ToString());
+                return Redirect(urlReferrer.ToString());
             } 
                 
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Register()
-        {
-            var viewModel = new PlayerBaseDataViewModel
-                                {
-                                    Player = new Player(),
-                                    Settings = this.Settings
-                                };
-            return View(viewModel);
-        }
-
         [HttpPost]
-        public ActionResult Register(PlayerBaseDataViewModel viewModel)
+        public ActionResult Register(string email, string name, string password)
         {
-            var email = viewModel.Player.Email.ToLower();
-            email += "@" + this.Settings.Domain;
+            var userEmail = email.ToLower();
+            var userName = name;
+            var userPassword = Md5.CalculateMd5(password);
 
-            var name = viewModel.Player.Name;
-            var password = Md5.CalculateMd5(viewModel.Player.Password);
-            
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+            var response = ValidateNewUserData(userEmail, userName, userPassword);
+            if (!response.Success)
+            {
+                return Json(response);
+            }
 
+            var playerCollection = Dbh.GetCollection<Player>("Players");
             var newPlayer = new Player
                                 {
                                     Id = BsonObjectId.GenerateNewId().ToString(),
-                                    Email = email,
-                                    Name = name,
-                                    Password = password,
+                                    Email = userEmail,
+                                    Name = userName,
+                                    Password = userPassword,
                                     Won = 0,
                                     Lost = 0,
                                     Played = 0
                                 };
 
             playerCollection.Save(newPlayer);
-
             Login(newPlayer);
-
             Events.SubmitEvent(EventType.PlayerCreate, newPlayer, newPlayer.Id);
 
-            return this.Redirect(Url.Action("Index", "Players") + "#" + newPlayer.Id);
+            response.Data = GetSession(refresh: true);
+
+            return Json(response);
         }
 
         [HttpPost]
@@ -190,51 +210,77 @@
             return Json(response);
         }
 
-        [HttpPost]
-        public JsonResult PlayerEmailIsValid(string email)
+        private AjaxResponse ValidateNewUserData(string email, string name, string password)
+        {
+            var response = new AjaxResponse { Success = false };
+
+            if (!ValidateEmail(email))
+            {
+                response.Message = "You must provide a valid trustpilot email";
+                return response;
+            }
+
+            if (PlayerEmailExists(email))
+            {
+                response.Message = "This email is already registered";
+                return response;
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                response.Message = "You must provide a name";
+                return response;
+            }
+
+            if (PlayerNameExists(name))
+            {
+                response.Message = "A player with this name is already registered";
+                return response;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                response.Message = "You must provide a password";
+                return response;
+            }
+
+            response.Message = "User created succesfully";
+            response.Success = true;
+         
+            return response;
+        }
+
+        private bool PlayerEmailExists(string email)
         {
             var query = Query.EQ("Email", email.ToLower());
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+            var playerCollection = Dbh.GetCollection<Player>("Players");
             var player = playerCollection.FindOne(query);
 
             if (player != null)
             {
-                return Json(new ExistsResponse { Exists = true, Name = player.Name, Email = player.Email });
+                return true;
             }
-    
-            return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
+
+            return false;
         }
 
-        [HttpPost]
-        public JsonResult PlayerNameExists(string name)
+        private bool PlayerNameExists(string name)
         {
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+            var playerCollection = Dbh.GetCollection<Player>("Players");
             var query = Query.EQ("Name", name);
             var player = playerCollection.FindOne(query);
 
             if (player != null)
             {
-                return Json(new ExistsResponse { Exists = true, Name = player.Name, Email = player.Email });
+                return true;
             }
 
-            return Json(new ExistsResponse { Exists = false, Name = null, Email = null });
-        }
-
-        [HttpGet]
-        public JsonResult GetGravatarUrl(string email)
-        {
-            if (!string.IsNullOrEmpty(email))
-            {
-                var gravatarUrl = Md5.GetGravatarEmailHash(email);
-                return Json(new { url = gravatarUrl }, JsonRequestBehavior.AllowGet);
-            }
-
-            return Json(new { url = string.Empty }, JsonRequestBehavior.AllowGet);
+            return false;
         }
 
         private bool ValidateEmail(string email)
         {
-            const string domain = "@trustpilot.com";
+            var domain = "@" + Settings.Domain;
 
             return !string.IsNullOrEmpty(email) &&
                    email.EndsWith(domain) &&

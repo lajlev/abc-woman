@@ -1,6 +1,9 @@
 ﻿<div ng-controller="MatchesController" >
-    <div ng-include="'/partials/_register-match.html'"></div>
-    <div id="match-list">
-        <div ng-include="'/partials/_match-list.html'"></div>
-    </div>
+    <div class="foosball-spinner" ng-show="!matchesDataReady" ></div>
+    <span ng-show="matchesDataReady" >
+        <div ng-include="'/partials/_register-match.html'"></div>
+        <div id="match-list">
+            <div ng-include="'/partials/_match-list.html'"></div>
+        </div>
+    </span>    
 </div>

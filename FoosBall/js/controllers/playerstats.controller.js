@@ -1,14 +1,17 @@
-﻿function PlayerStatsController($scope, $resource, $location) {
+﻿FoosBall.controller('PlayerStatsController', ['$scope', '$resource', '$location', '$q', function ($scope, $resource, $location, $q) {
+    var promises = [];
     $scope.playerStats = [];
+    $scope.playerStatsDataReady = false;
     $scope.hex_md5 = md5.hex_md5;
+    $scope.preparedChartData;
 
     // Start fetching player statistics, return a promise
     $scope.getPlayerStats = function() {
         var search = "?playerId=" + $location.search()["playerId"],
             PlayerStats = $resource('/Stats/GetPlayerStatistics' + search),
             promise = PlayerStats.get().$promise;
-        
 
+        promises.push(promise);
         promise.then(function(playerStats) {
             $scope.playerStats = preparePlayerStats(playerStats);
         });
@@ -17,25 +20,24 @@
     $scope.getPlayerRatingData = function() {
         var search = "?playerId=" + $location.search()["playerId"],
             ChartData = $resource('/Stats/GetPlayerRatingData' + search),
-            promise = ChartData.get().$promise,
-            preparedChartData;
-        
-        promise.then(function (chartData) {
-            preparedChartData = prepareChartData(chartData);
-            renderChart(preparedChartData);
-        });
-    };
+            promise = ChartData.get().$promise;
 
-    $scope.getPlayerStatsUrl = function (playerId) {
-        return '/#/playerstats?playerId=' + playerId;
+        promises.push(promise);
+        promise.then(function (chartData) {
+            $scope.preparedChartData = prepareChartData(chartData);
+        });
     };
 
     $scope.getPlayerStats();
     $scope.getPlayerRatingData();
 
+    $q.all(promises).then(function () {
+        $scope.playerStatsDataReady = true;
+        setTimeout(function() { renderChart($scope.preparedChartData); }, 5);
+    });
+
     function preparePlayerStats(playerStats) {
         var statsUrl = '/#/playerstats?playerId=';
-        playerStats.Player.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(playerStats.Player.Email) + '?d=mm';
         playerStats.Player.Url = statsUrl + playerStats.Player.Id;
         playerStats.Bff.Player.Url = statsUrl + playerStats.Bff.Player.Id;
         playerStats.Rbff.Player.Url = statsUrl + playerStats.Rbff.Player.Id;
@@ -47,7 +49,7 @@
     function prepareChartData(chartData) {
         var preparedChartData = { DataPoints: [] };
 
-        angular.forEach(chartData.DataPoints, function (value, key) {
+        angular.forEach(chartData.DataPoints, function(value, key) {
             preparedChartData.DataPoints.push([
                 new Date(Date.UTC(
                     value.TimeSet[0], // year
@@ -81,8 +83,8 @@
             },
             subtitle: {
                 text: document.ontouchstart === undefined
-                        ? 'Click and drag in the plot area to zoom in'
-                        : 'Drag your finger over the plot to zoom in'
+                    ? 'Click and drag in the plot area to zoom in'
+                    : 'Drag your finger over the plot to zoom in'
             },
             xAxis: {
                 title: {
@@ -138,6 +140,4 @@
             }]
         });
     }
-}
-
-PlayerStatsController.$inject = ['$scope', '$resource', '$location'];
+}]);

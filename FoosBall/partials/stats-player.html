@@ -1,4 +1,6 @@
 ﻿<div ng-cloak ng-controller="PlayerStatsController" class="statistics player clearfix">
+    <div class="foosball-spinner" ng-show="!playerStatsDataReady" ></div>
+    <span ng-show="playerStatsDataReady">
     <div class="avatar">
         <img class="gravatar" alt="{{playerStats.Player.Name}}" title="{{playerStats.Player.Name}}" ng-src="{{playerStats.Player.GravatarUrl}}" />
     </div>
@@ -58,7 +60,9 @@
         </span>
     </div>
     
-    <div class="column second">
-        <div id="player-rating-chart" data-subject-id="{{playerStats.Player.Id}}" data-subject-name="{{playerStats.Player.Name}}"></div>
-    </div>
+        <div class="column second">
+            <div id="player-rating-chart" data-subject-id="{{playerStats.Player.Id}}" data-subject-name="{{playerStats.Player.Name}}"></div>
+        </div>
+
+    </span>
 </div>

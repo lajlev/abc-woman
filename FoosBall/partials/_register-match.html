@@ -1,7 +1,7 @@
-﻿<input ng-hide="session.IsLoggedIn" ng-disabled="true" ng-cloak type="button" class="button" value="Please log in to create a Match" />
+﻿<input ng-hide="session.IsLoggedIn" ng-disabled="true" type="button" class="button" value="Please log in to create a Match" />
 <input ng-hide="!session.IsLoggedIn" ng-click="hideForm=!hideForm" type="button" class="button" value="Create a Match" />
 
-<form ng-if="session.IsLoggedIn" name="resolveMatchForm" ng-submit="submitMatch()" ng-controller="SubmitMatchController" ng-model="match">
+<form ng-cloak ng-if="session.IsLoggedIn" name="resolveMatchForm" ng-submit="submitMatch()" ng-model="match" ng-controller="SubmitMatchController">
     <div ng-hide="hideForm" id="match-form" class="clearfix">
         <div id="team-red-players" class="team">
             <div class="team-name">Red Team
