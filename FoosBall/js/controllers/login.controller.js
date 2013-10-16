@@ -1,34 +1,32 @@
-﻿FoosBall.controller('LoginController', ['$scope', '$resource', function($scope, $resource) {
+﻿FoosBall.controller('LoginController', ['$scope', 'session', function($scope, session) {
     $scope.loginMessage;
     $scope.showLoginMessage = false;
 
     $scope.submitLogin = function() {
-        var requestParameters = {
+        var loginPromise = session.login({
             email: $scope.email,
             password: $scope.password,
             rememberMe: $scope.rememberMe || false
-        };
-
-        var Login = $resource('Account/Logon');
-        var login = new Login(requestParameters);
-        var loginPromise = login.$save();
+        });
 
         loginPromise.then(function(responseData) {
-            if (!!responseData) {
-                if (responseData.Success === true) {
-                    angular.forEach(responseData.Data, function (value, key) {
-                        $scope.session[key] = value;
-                    });
-                    $scope.uiSettings.hideMainMenu = true;
-                    $scope.uiSettings.hideSignupMenu = true;
-                    $scope.uiSettings.hideLogonMenu = true;
+            if (!responseData) {
+                return;
+            }
+            
+            if (responseData.Success === true) {
+                angular.forEach(responseData.Data, function (value, key) {
+                    $scope.session[key] = value;
+                });
+                $scope.uiSettings.hideMainMenu = true;
+                $scope.uiSettings.hideSignupMenu = true;
+                $scope.uiSettings.hideLogonMenu = true;
 
-                    clearLogonForm($scope);
-                } else {
-                    $scope.loginMessage = responseData.Message;
-                    $scope.showLoginMessage = true;
-                }
-            } 
+                clearLogonForm($scope);
+            } else {
+                $scope.loginMessage = responseData.Message;
+                $scope.showLoginMessage = true;
+            }
         });
     };
     

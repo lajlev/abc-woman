@@ -20,10 +20,11 @@
             return CalculateMd5(input, Encoding.Default);
         }
 
-        public static string GetGravatarEmailHash(string email)
+        public static string GetGravatarUrl(string email)
         {
-            var gravatarUrl = "http://www.gravatar.com/avatar/" + CalculateMd5(email.ToLower().Trim(), Encoding.Default);
-            return gravatarUrl.ToLower();
+            var md5Email = CalculateMd5(email.ToLower().Trim(), Encoding.Default);
+
+            return string.Format("http://www.gravatar.com/avatar/{0}?d=smm", md5Email).ToLower();
         }
     }
 }

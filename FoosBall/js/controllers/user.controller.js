@@ -6,13 +6,13 @@
     getPlayer();
     
     function getPlayer() {
-        var Player = $resource('Account/GetPlayer');
-        var promise = Player.get().$promise;
+        var User = $resource('Account/GetUser');
+        var promise = User.get().$promise;
 
-        promise.then(function(player) {
-            $scope.user = preparePlayer(player);
+        promise.then(function(user) {
+            $scope.user = user;
         });
-    };
+    }
 
     $scope.submitUserDetails = function() {
         var User = $resource('Account/Edit', {
@@ -41,10 +41,4 @@
             $scope.showValidationMessage = true;
         });
     };
-
-    function preparePlayer(player) {
-        player.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(player.Email) + '?d=mm';
-        return player;
-    }
-
 }]);

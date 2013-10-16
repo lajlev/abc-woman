@@ -22,9 +22,17 @@ FoosBall.
 
             return promise;
         };
+        
+        this.login = function (requestParameters) {
+            var Login = $resource('Account/Logon');
+            var login = new Login(requestParameters);
+            var loginPromise = login.$save();
+
+            return loginPromise;
+        };
 
         this.autoLogin = function (scope) {
-            var AccountLogon = $resource('/Account/Logon'),
+                var AccountLogon = $resource('/Account/Logon'),
                 logonPromise = AccountLogon.get().$promise;
 
             logonPromise.then(function () {
