@@ -7,11 +7,11 @@
             </span>
             <span class="gravatars">
                 <a class="{{match.RedPlayer1.Id}}" href="/#/playerstats?playerId={{match.RedPlayer1.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" src="http://www.gravatar.com/avatar/{{hex_md5(match.RedPlayer1.Email)}}?d=mm"/>
+                    <img class="gravatar" alt="Gravatar picture" bg-src="{{match.RedPlayer1.GravatarUrl}}"/>
                 </a>
                 
                 <a ng-if="match.RedPlayer2.Id !== null" class="{{match.RedPlayer2.Id}}" href="/#/playerstats?playerId={{match.RedPlayer2.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" src="http://www.gravatar.com/avatar/{{hex_md5(match.RedPlayer2.Email)}}?d=mm"/>
+                    <img class="gravatar" alt="Gravatar picture" ng-src="{{match.RedPlayer2.GravatarUrl}}"/>
                 </a>
             </span>
             <span class="names">
@@ -50,10 +50,10 @@
             </span>
             <span class="gravatars">
                 <a class="{{match.BluePlayer1.Id}}" href="/#/playerstats?playerId={{match.BluePlayer1.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" src="http://www.gravatar.com/avatar/{{hex_md5(match.BluePlayer1.Email)}}?d=mm"/>
+                    <img class="gravatar" alt="Gravatar picture" ng-src="{{match.BluePlayer1.GravatarUrl}}"/>
                 </a>
                 <a ng-if="match.BluePlayer2.Id !== null" class="{{match.BluePlayer2.Id}}" href="/#/playerstats?playerId={{match.BluePlayer2.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" src="http://www.gravatar.com/avatar/{{hex_md5(match.BluePlayer2.Email)}}?d=mm"/>
+                    <img class="gravatar" alt="Gravatar picture" ng-src="{{match.BluePlayer2.GravatarUrl}}"/>
                 </a>
             </span>
             <span class="names">

@@ -3,7 +3,7 @@
 
     // Start fetching players, return a promise
     $scope.getPlayers = function() {
-        var Players = $resource('Players/GetPlayers');
+        var Players = $resource('Players/GetActiveExperiencedPlayers');
         var promise = Players.query().$promise;
 
         promise.then(function(players) {

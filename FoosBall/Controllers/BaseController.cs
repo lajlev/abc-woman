@@ -3,14 +3,12 @@
     using System;
     using System.Text;
     using System.Web;
-    using System.Web.Helpers;
     using System.Web.Mvc;
     using ControllerHelpers;
     using Main;
     using Models.Base;
     using Models.Domain;
     using MongoDB.Driver;
-    using MongoDB.Driver.Builders;
 
     public class BaseController : Controller
     {
@@ -77,7 +75,7 @@
                     var refreshedPlayer = DbHelper.GetPlayer(player.Id);
                     session = new SessionInfo()
                     {
-                        IsAdmin = Settings.AdminAccount.Contains(refreshedPlayer.Email),
+                        IsAdmin = Settings.AdminAccounts.Contains(refreshedPlayer.Email),
                         IsLoggedIn = (bool)Session["IsLoggedIn"],
                         User = refreshedPlayer
                     };

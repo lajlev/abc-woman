@@ -2,7 +2,6 @@
     var promises = [];
     $scope.playerStats = [];
     $scope.playerStatsDataReady = false;
-    $scope.hex_md5 = md5.hex_md5;
     $scope.preparedChartData;
 
     // Start fetching player statistics, return a promise

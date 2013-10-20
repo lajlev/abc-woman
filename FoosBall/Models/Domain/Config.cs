@@ -1,7 +1,7 @@
 ﻿namespace FoosBall.Models.Domain
 {
     using System.Collections.Generic;
-    using FoosBall.Models.Base;
+    using Base;
 
     using MongoDB.Bson.Serialization.Attributes;
 
@@ -12,7 +12,7 @@
         {
             this.Name = "FoosBall Fighting";
             this.Domain = "trustpilot.com";
-            this.AdminAccount = new List<string>()
+            this.AdminAccounts = new List<string>()
                 {
                     "jbe@trustpilot.com",
                     "olj@trustpilot.com"
@@ -23,7 +23,7 @@
 
         public string Domain { get; set; }
 
-        public List<string> AdminAccount { get; set; } 
+        public List<string> AdminAccounts { get; set; } 
 
         public Environment Environment { get; set; }
     }

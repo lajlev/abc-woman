@@ -15,7 +15,7 @@
             }
             
             if (responseData.Success === true) {
-                angular.forEach(responseData.Data, function (value, key) {
+                window.angular.forEach(responseData.Data, function (value, key) {
                     $scope.session[key] = value;
                 });
                 $scope.uiSettings.hideMainMenu = true;

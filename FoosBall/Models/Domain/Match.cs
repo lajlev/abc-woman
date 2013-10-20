@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using Base;
+    using MongoDB.Bson.Serialization.Attributes;
 
+    [BsonIgnoreExtraElements]
     public class Match : FoosBallDoc
     {
         public int RedScore { get; set; }
@@ -20,7 +22,13 @@
         
         public Player BluePlayer2 { get; set; }
 
-        public string PlayersHash { get; set; }
+        public string PlayersHash
+        {
+            get
+            {
+                return string.Concat(RedPlayer1.Id, RedPlayer2.Id, BluePlayer1.Id, BluePlayer2.Id);
+            }
+        }
         
         public DateTime CreationTime { get; set; }
         
@@ -109,23 +117,6 @@
             }
 
             return id == this.BluePlayer2.Id ? this.BluePlayer2 : null;
-        }
-
-        public List<Player> GetPlayers()
-        {
-            var listOfPlayers = new List<Player> { RedPlayer1, BluePlayer1 };
-
-            if (CountRedPlayers() == 2)
-            {
-                listOfPlayers.Add(this.RedPlayer2);
-            }
-
-            if (CountBluePlayers() == 2)
-            {
-                listOfPlayers.Add(this.BluePlayer2);
-            }
-
-            return listOfPlayers;
         }
 
         public List<Player> GetWinners()

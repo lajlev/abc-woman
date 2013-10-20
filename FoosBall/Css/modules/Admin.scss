@@ -1,18 +1,23 @@
-.admin {
+#admin {
+
     label {
-        margin: 5px 0 0 0;
         display: block;
-        float: left;
-        clear: left;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 15px 0px 5px 0px;
     }
-}
-
-#app-configuration {
-    .button {
-        margin-top: 5px;
+    input {
+        margin: 0px auto 10px auto;
+        &[type="text"] {
+            height: 25px;
+        }
     }
-}
-
-#list-of-emails textarea {
-    width: 100%;
+    .players-configuration {
+        .name-col {
+            width: 250px;
+        }
+        .email-col {
+            width: 200px;
+        }
+    }
 }

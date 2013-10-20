@@ -1,57 +1,44 @@
-﻿@model ConfigViewModel
-@{
-    ViewBag.Title = "Configuration";
-}
-
-@section Javascript
-{ 
-    <script async src="/js/Admin.js")"></script> 
-}
-
-<div>
-    <fieldset id="app-configuration">
-        <legend>Configuration</legend>
-        @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
-        {
-
-            @Html.LabelFor(m => m.Settings.Name, "Application name")
-            @Html.TextBoxFor(m => m.Settings.Name)
+﻿<div id="admin" ng-controller="AdminController">
+    <form name="appConfigForm" ng-submit="setConfig()" ng-model="config" ng-controller="AppConfigController">
+        <fieldset id="app-configuration">
+            <legend>Configuration</legend>
+        
+            <label>Application name</label>
+            <input ng-model="config.Name" type="text" />
             
-            //@Html.LabelFor(m => m.Settings.AdminAccount, "Administrator (email)")
-            //@Html.TextBoxFor(m => m.Settings.AdminAccount)
+            <label>Administrators</label>
+            <input ng-model="config.AdminAccounts"type="text"/>
             
-            <input name="save-config" type="submit" value="Save" class="button"/>
-        }
+            <input type="submit" class="button" value="Save configuration" />
+        </fieldset>
+    </form>
+
+    <fieldset id="matches-configuration">
+        <legend>Matches</legend>
+        
+        <label>Replay all matches</label>
+        <input ng-click="replayAllMatches()" type="button" class="button" value="Replay all matches" />
     </fieldset>
 
-    <fieldset id="data-migration">
-        <legend>Copy Mongo data</legend>
-        <button class="button" id="copy-prod-to-staging">Copy Production Data to Staging</button>
-    </fieldset>
-
-    <fieldset id="data-repair">
-        <legend>Replay Matches</legend>
-        <button class="button" id="replay-matches">Replay all FoosBall matches</button>
-    </fieldset>
-
-    <fieldset id="player-emails">
-        <legend>Player emails</legend>
-        <div id="list-of-emails"></div>
-        <button class="button" id="list-player-emails">List Player Emails</button>
-    </fieldset>
-
-    <fieldset id="player-editor">
-        <legend>Edit Players (experimental)</legend>
-    
-        @Html.LabelFor(m => Model.Users, "Choose a player")
-        <select id="select-player" name="select-player">
-            <option></option>
-            @foreach (var user in Model.Users)
-            {
-                <option id="@user.Value" value="@user.Value">@user.Text</option>
-            }
-        </select>
-    
-        <div id="player-data"></div>
+    <fieldset class="players-configuration">
+        <legend>Players</legend>
+        
+        <label>Edit a player</label>
+        <input type="text" value="" placeholder="Search for a player"/>
+        
+        <table id="player-list">
+            <tr>
+                <td class="name-col">Name</td>
+                <td class="email-col">Email</td>
+                <td class="password-col">Password</td>
+                <td class="retired-col">Retired</td>
+            </tr>
+            <tr ng-repeat="player in players">
+                <td class="name-col"><input type="text" name="name" ng-model="player.Name" /></td>
+                <td class="email-col"><input type="email" name="email" ng-model="player.Email" /></td>
+                <td class="password-col"><input type="password" name="password" ng-model="player.password" /></td>
+                <td class="retired-col"><input type="checkbox" name="Deactivated" ng-model="player.Deactivated" /></td>
+            </tr>
+        </table>
     </fieldset>
 </div>
