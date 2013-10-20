@@ -7,12 +7,29 @@
 
     public class PlayersController : BaseController
     {
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult GetAllPlayers()
         {
-            return View("Index");
+            var playerCollection = Dbh.GetCollection<Player>("Players")
+                                           .FindAll()
+                                           .SetSortOrder(SortBy.Ascending("Name"))
+                                           .ToList();
+
+            return Json(playerCollection, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetPlayers()
+        [HttpGet]
+        public ActionResult GetActivePlayers()
+        {
+            var playerCollection = Dbh.GetCollection<Player>("Players")
+                                           .Find(Query.EQ("Deactivated", false))
+                                           .SetSortOrder(SortBy.Ascending("Name"))
+                                           .ToList();
+
+            return Json(playerCollection, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetActiveExperiencedPlayers()
         {
             var playerCollection = Dbh.GetCollection<Player>("Players")
                                         .FindAll()

@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
     using ControllerHelpers;
     using Main;
@@ -50,7 +49,7 @@
                     RemoveRememberMeCookie();
                 }
 
-                Session["Admin"] = Settings.AdminAccount.Contains(player.Email);
+                Session["Admin"] = Settings.AdminAccounts.Contains(player.Email);
                 Session["IsLoggedIn"] = true;
                 Session["User"] = player;
 
@@ -63,23 +62,31 @@
         [HttpGet]
         public void LogOn()
         {
-            if (Session["IsLoggedIn"] == null || Session["IsLoggedIn"].ToString() == "false")
+            var autoLoginCollection = this.Dbh.GetCollection<AutoLogin>("AutoLogin");
+            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+            
+            if (Session["IsLoggedIn"] != null && Session["IsLoggedIn"].ToString() != "false")
             {
-                var authCookie = this.Request.Cookies.Get("FoosBallAuth");
-                if (authCookie != null && authCookie["Token"] != null)
-                {
-                    var autoLoginCollection = this.Dbh.GetCollection<AutoLogin>("AutoLogin");
-                    var autoLoginToken = autoLoginCollection.FindOne(Query.EQ("Token", authCookie["Token"]));
-
-                    if (autoLoginToken != null) 
-                    {
-                        var playerCollection = this.Dbh.GetCollection<Player>("Players");
-                        var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email.ToLower()));
-
-                        Login(player);
-                    }
-                }
+                return;
             }
+
+            var authCookie = this.Request.Cookies.Get("FoosBallAuth");
+
+            if (authCookie == null || authCookie["Token"] == null)
+            {
+                return;
+            }
+
+            var autoLoginToken = autoLoginCollection.FindOne(Query.EQ("Token", authCookie["Token"]));
+            
+            if (autoLoginToken == null)
+            {
+                return;
+            }
+
+            var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email.ToLower()));
+
+            Login(player);
         }
 
         [HttpPost]
@@ -138,8 +145,9 @@
             var userEmail = email.ToLower();
             var userName = name;
             var userPassword = Md5.CalculateMd5(password);
+            var validation = new Validation();
 
-            var response = ValidateNewUserData(userEmail, userName, userPassword);
+            var response = validation.ValidateNewUserData(userEmail, userName, userPassword);
             if (!response.Success)
             {
                 return Json(response);
@@ -167,12 +175,13 @@
         }
 
         [HttpPost]
-        public ActionResult Edit(string email, string name, string oldPassword = "", string newPassword = "")
+        public ActionResult Edit(string email, string name, string oldPassword = "", string newPassword = "", bool Deactivated = false)
         {
             var response = new AjaxResponse { Success = false };
             var currentUser = (Player)Session["User"];
             var player = DbHelper.GetPlayer(currentUser.Id);
             var newMd5Password = Md5.CalculateMd5(newPassword);
+            var validation = new Validation();
 
             if (player == null)
             {
@@ -180,7 +189,7 @@
                 return Json(response);
             }
 
-            if (!ValidateEmail(email))
+            if (!validation.ValidateEmail(email))
             {
                 response.Message = "You must provide a valid trustpilot email";
                 return Json(response);
@@ -208,84 +217,6 @@
             response.Data = GetSession(refresh: true);
 
             return Json(response);
-        }
-
-        private AjaxResponse ValidateNewUserData(string email, string name, string password)
-        {
-            var response = new AjaxResponse { Success = false };
-
-            if (!ValidateEmail(email))
-            {
-                response.Message = "You must provide a valid trustpilot email";
-                return response;
-            }
-
-            if (PlayerEmailExists(email))
-            {
-                response.Message = "This email is already registered";
-                return response;
-            }
-
-            if (string.IsNullOrEmpty(name))
-            {
-                response.Message = "You must provide a name";
-                return response;
-            }
-
-            if (PlayerNameExists(name))
-            {
-                response.Message = "A player with this name is already registered";
-                return response;
-            }
-
-            if (string.IsNullOrEmpty(password))
-            {
-                response.Message = "You must provide a password";
-                return response;
-            }
-
-            response.Message = "User created succesfully";
-            response.Success = true;
-         
-            return response;
-        }
-
-        private bool PlayerEmailExists(string email)
-        {
-            var query = Query.EQ("Email", email.ToLower());
-            var playerCollection = Dbh.GetCollection<Player>("Players");
-            var player = playerCollection.FindOne(query);
-
-            if (player != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool PlayerNameExists(string name)
-        {
-            var playerCollection = Dbh.GetCollection<Player>("Players");
-            var query = Query.EQ("Name", name);
-            var player = playerCollection.FindOne(query);
-
-            if (player != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool ValidateEmail(string email)
-        {
-            var domain = "@" + Settings.Domain;
-
-            return !string.IsNullOrEmpty(email) &&
-                   email.EndsWith(domain) &&
-                   email.Count(x => x == '@') == 1 &&
-                   email.Length > domain.Length;
         }
     }
 }

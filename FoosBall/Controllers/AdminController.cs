@@ -2,11 +2,9 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
-    using FoosBall.Main;
-    using FoosBall.Models.Domain;
-    using FoosBall.Models.ViewModels;
-
+    using Main;
+    using Models.Base;
+    using Models.Domain;
     using MongoDB.Bson;
     using MongoDB.Driver.Builders;
 
@@ -14,95 +12,67 @@
     {
         public ActionResult Index()
         {
-            var currentUser = (Player)Session["User"];
-
-            if (currentUser != null && Settings.AdminAccount.Contains(currentUser.Email))
-            {
-                var playerCollection = Dbh.GetCollection<Player>("Players")
-                        .FindAll()
-                        .SetSortOrder(SortBy.Ascending("Name"))
-                        .ToList()
-                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id })
-                        .ToList();
-
-                return View(new ConfigViewModel { Settings = this.Settings, Users = playerCollection });
-            }
-
-            return this.Redirect("/Home/Index");
+            return View();
         }
 
         [HttpGet]
-        public JsonResult GetConfig()
+        public JsonResult Config()
         {
             var currentUser = (Player)Session["User"];
 
-            if (currentUser != null && Settings.AdminAccount.Contains(currentUser.Email))
+            if (currentUser != null && Settings.AdminAccounts.Contains(currentUser.Email))
             {
-                var playerCollection = Dbh.GetCollection<Player>("Players")
-                        .FindAll()
-                        .SetSortOrder(SortBy.Ascending("Name"))
-                        .ToList()
-                        .Select(team => new SelectListItem { Selected = false, Text = team.Name, Value = team.Id })
-                        .ToList()
-                        .ToJson();
-
-                return Json(new { Settings = this.Settings.ToJson(), Users = playerCollection }, JsonRequestBehavior.AllowGet);
+                return Json(Dbh.GetCollection<Config>("Config").FindOne(), JsonRequestBehavior.AllowGet);
             }
 
-            return Json(null);
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public ActionResult Save(ConfigViewModel viewModel)
+        public JsonResult Config(Config config)
         {
-            if (ModelState.IsValid)
+            var currentUser = (Player)Session["User"];
+            var configCollection = Dbh.GetCollection<Config>("Config");
+            var currentConfig = configCollection.FindOne();
+            var validation = new Validation();
+
+            if (currentUser == null || !currentConfig.AdminAccounts.Contains(currentUser.Email))
             {
-                var configCollection = Dbh.GetCollection<Config>("Config");
-
-                this.Settings.Name = viewModel.Settings.Name;
-                this.Settings.Domain = viewModel.Settings.Domain;
-                this.Settings.AdminAccount = viewModel.Settings.AdminAccount;
-
-                configCollection.Save(this.Settings);
+                return Json(new AjaxResponse { Success = false, Message = "You must be logged in as an Admin to make changes in the app configuration" });
             }
-            
-            return RedirectToAction("Index", "Admin");
+
+            var invalidEmail = config.AdminAccounts.FindAll(x => !validation.ValidateEmail(x));
+            if (invalidEmail.Any())
+            {
+                return
+                    Json(new AjaxResponse
+                    {
+                        Success = false,
+                        Message = string.Format("One or more of the admin emails are invalid ({0})", string.Join(", ", invalidEmail))
+                    });
+            }
+
+            var nonExistingEmails = config.AdminAccounts.FindAll(x => !validation.PlayerEmailExists(x));
+            if (nonExistingEmails.Any())
+            {
+                return
+                    Json(new AjaxResponse
+                    {
+                        Success = false,
+                        Message = string.Format("One or more of the admin emails do not belong to a user ({0})", string.Join(", ", nonExistingEmails))
+                    });
+            }
+
+            configCollection.Save(config);
+            return Json(new AjaxResponse { Success = true, Message = "Configuration updated", Data = currentConfig });
         }
 
         [HttpPost]
-        public JsonResult CopyProdData()
-        {
-            var dbhTo = new Db(AppConfig.GetEnvironment()).Dbh;
-            var dbhFrom = new Db().Dbh;
-
-            var allMatches = dbhFrom.GetCollection<Match>("Matches").FindAll();
-            var allPlayers = dbhFrom.GetCollection<Player>("Players").FindAll();
-
-            var destinationMatches = dbhTo.GetCollection<Match>("Matches");
-            var destinationPlayers = dbhTo.GetCollection<Player>("Players");
-
-            destinationMatches.RemoveAll();
-            destinationPlayers.RemoveAll();
-
-            foreach (var match in allMatches)
-            {
-                destinationMatches.Save(match);
-            }
-
-            foreach (var player in allPlayers)
-            {
-                destinationPlayers.Save(player);
-            }
-
-            return Json(new { success = true });
-        }
-
-        [HttpPost]
-        public ActionResult ReplayMatches()
+        public void ReplayMatches()
         {
             var currentUser = (Player)Session["User"];
 
-            if (currentUser != null && Settings.AdminAccount.Contains(currentUser.Email))
+            if (currentUser != null && Settings.AdminAccounts.Contains(currentUser.Email))
             {
                 var allMatches = Dbh.GetCollection<Match>("Matches").FindAll().SetSortOrder(SortBy.Ascending("GameOverTime"));
                 var allPlayers = Dbh.GetCollection<Player>("Players").FindAll();
@@ -204,8 +174,6 @@
                     matches.Save(match);
                 }
             }
-
-            return RedirectToAction("Index", "Admin");
         }
 
         [HttpGet]

@@ -64,11 +64,6 @@
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Player(string playerId)
-        {
-            return View();
-        }
-
         public ActionResult GetPlayerStatistics(string playerId)
         {
             using (Profiler.Step("Calculating Player Statistics"))
@@ -148,8 +143,6 @@
                     return Json(stats, JsonRequestBehavior.AllowGet);
                 }
             }
-
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

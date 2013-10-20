@@ -7,7 +7,6 @@
     $scope.hideForm = true;
     $scope.pageSize = 10;
     $scope.matches = [];
-    $scope.hex_md5 = md5.hex_md5;
     $scope.currentUserId = currentUserTag ? currentUserTag.value : '';
 
     $scope.cancelMatch = function(index) {
@@ -49,7 +48,7 @@
 
     // Start fetching players, return a promise
     $scope.getPlayers = function() {
-        var Players = $resource('Matches/GetPlayers');
+        var Players = $resource('Players/GetActivePlayers');
         var promise = Players.query().$promise;
 
         promise.then(function(players) {
