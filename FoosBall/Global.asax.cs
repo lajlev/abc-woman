@@ -33,9 +33,6 @@
             // Initialize App configuration
             AppConfig.InitalizeConfig();
 
-            // Mapping SignalR Hubs
-            RouteTable.Routes.MapHubs();
-
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
