@@ -1,36 +1,42 @@
-﻿function advStatsController($scope, $resource) {
-    $scope.stats = [];
-    $scope.hex_md5 = md5.hex_md5;
+﻿function advStatsController($scope, api) {
+    // Define an array for the matches in the scope
+    $scope.matches = [];
 
-    // Start fetching statistics, return a promise
-    $scope.getStats = function () {
-        var Stats = $resource('Stats/GetStatistics');
-        var promise = Stats.get().$promise;
+    var promiseOfPlayers = api.getPlayers();
+    
+    promiseOfPlayers.then(function(players) {
+        $scope.players = players;
+    });
 
-        promise.then(function (stats) {
-            $scope.stats = prepareStats(stats);
+    $scope.submitAdvStats = function() {
+        console.log($scope.matchParticipants.player1Id);
+
+        // Get the promise of all matches from the api
+        var promiseOfMatches = api.getAllMatches();
+
+        // When matches are delivered assign the matches to the scope 
+        promiseOfMatches.then(function (arrayOfAllMatches) {
+            $scope.stats = calculateStats(arrayOfAllMatches, $scope.matchParticipants.player1Id, $scope.matchParticipants.player2Id, $scope.matchParticipants.player3Id, $scope.matchParticipants.player4Id);
         });
-    };
 
-    $scope.getPlayerStatsUrl = function (playerId) {
-        return '/#/playerstats?playerId=' + playerId;
-    };
-
-    $scope.getStats();
-
-    function prepareStats(stats) {
-        stats.MostFights.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.MostFights.Email) + '?d=mm';
-        stats.MostWins.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.MostWins.Email) + '?d=mm';
-        stats.MostLosses.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.MostLosses.Email) + '?d=mm';
-        stats.TopRanked.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.TopRanked.Email) + '?d=mm';
-        stats.BottomRanked.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.BottomRanked.Email) + '?d=mm';
-        stats.HighestRatingEver.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.HighestRatingEver.Email) + '?d=mm';
-        stats.LowestRatingEver.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.LowestRatingEver.Email) + '?d=mm';
-        stats.LongestWinningStreak.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.LongestWinningStreak.Player.Email) + '?d=mm';
-        stats.LongestLosingStreak.GravatarUrl = 'http://www.gravatar.com/avatar/' + md5.hex_md5(stats.LongestLosingStreak.Player.Email) + '?d=mm';
-
-        return stats;
     }
+
+    function calculateStats(matches, id1, id2, id3, id4) {
+        
+        angular.forEach(matches, function (match, index) {
+            if (match.RedPlayer2.Id == id2) {
+                return matches;
+            }
+        });
+    }
+    
+    $scope.addRotation = function () {
+        var target = angular.element('.stat-data-container');
+            target.addClass("active");
+    };
+
 }
 
-advStatsController.$inject = ['$scope', '$resource'];
+
+
+advStatsController.$inject = ['$scope', 'api'];
