@@ -135,7 +135,8 @@
     <Compile Include="Models\Custom\Streaks.cs" />
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
     <Content Include="js\angular\advstats.controller.js" />
-    <Content Include="partials\_advanced-stats.html" />
+    <Content Include="js\angular\getmatches.controller.js" />
+    <Content Include="partials\advanced-stats.html" />
     <Compile Include="ViewHelpers\Md5Extensions.cs" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
@@ -321,6 +322,14 @@
     <Content Include="css\modules\Account.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\modules\AdvStats.scss">
+      <Compile>False</Compile>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
