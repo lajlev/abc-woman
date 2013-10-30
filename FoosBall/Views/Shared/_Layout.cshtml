@@ -1,4 +1,5 @@
 ﻿@using StackExchange.Profiling
+@using System.Text.RegularExpressions
 <!DOCTYPE html>
 <html ng-app="FoosBall">
 <head>
@@ -28,7 +29,7 @@
     <script src="/js/lib/event.js"></script>
 
     <script src="/js/app/jquery.foosBall.js"></script>
-    <script src="/js/app/foosball.js"></script>
+    <script src="/js/app/foosball.app.js"></script>
     <script src="/js/app/foosball.services.js"></script>
     <script src="/js/app/foosball.directives.js"></script>
     <script src="/js/controllers/base.controller.js"></script>
@@ -42,97 +43,97 @@
     <script src="/js/controllers/submitmatch.controller.js"></script>
     <script src="/js/controllers/user.controller.js"></script>
     @*<script src="/js/minified/app.min.js"></script>*@
-    
-    <script src="/signalr/hubs"></script>
 
-</head>
-<body ng-controller="BaseController">
-    @{
-        var currentUser = (Player)HttpContext.Current.Session["User"];
-        if (currentUser != null && !string.IsNullOrWhiteSpace(currentUser.Id))
-        {
-            <input id="current-user-id" type="hidden" value="@currentUser.Id"/>
+        <script src="/signalr/hubs"></script>
+
+    </head>
+    <body ng-controller="BaseController">
+        @{
+            var currentUser = (Player)HttpContext.Current.Session["User"];
+            if (currentUser != null && !string.IsNullOrWhiteSpace(currentUser.Id))
+            {
+                <input id="current-user-id" type="hidden" value="@currentUser.Id"/>
+            }
         }
-    }
 
-    <div id="request-notification">
-        Try the new Foosball Fighting desktop notifications - You'll love it!<br />
-        <input class="button" id="notify-me" value="Ok, off we go!" />
-    </div>
+        <div id="request-notification">
+            Try the new Foosball Fighting desktop notifications - You'll love it!<br />
+            <input class="button" id="notify-me" value="Ok, off we go!" />
+        </div>
 
-    <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/background.jpg" id="bg" class="bgwidth" alt="background image"/>
-    
-    <header ng-cloak>
-        <a href ng-href="/#/">
-            <div id="app-title">
-                <div class="logo-picture">
-                    <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/icon_football.png" alt="logo"/>
+        <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/background.jpg" id="bg" class="bgwidth" alt="background image"/>
+
+        <header ng-cloak>
+            <a href ng-href="/#/">
+                <div id="app-title">
+                    <div class="logo-picture">
+                        <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/icon_football.png" alt="logo"/>
+                    </div>
+                    <div class="logo-text">
+                        @if (ViewBag.Settings.Environment.ToString() != "Production")
+                        {
+                            @ViewBag.Settings.Environment.ToString()
+                        }
+                        @ViewBag.Settings.Name
+                    </div>
                 </div>
-                <div class="logo-text">
-                    @if (ViewBag.Settings.Environment.ToString() != "Production")
-                    {
-                        @ViewBag.Settings.Environment.ToString()  
-                    }
-                    @ViewBag.Settings.Name
+            </a>
+
+            <!-- MAIN MENU -->
+            <nav>
+                <div class="main-menu-arrow menu-arrow" ng-hide="uiSettings.hideMainMenu"></div>
+                <ul id="main-menu" class="menu" ng-hide="uiSettings.hideMainMenu">
+                    <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Home"><a class="main-menu-item" ng-href="/#/">Home</a></li>
+                    <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Scoreboard"><a class="main-menu-item" ng-href="/#/players">Scoreboard</a></li>
+                    <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Matches"><a class="main-menu-item" ng-href="/#/matches">Matches</a></li>
+                    <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Stats"><a class="main-menu-item" ng-href="/#/stats">Stats</a></li>
+                    <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Features"><a class="main-menu-item" ng-href="/#/features">Features</a></li>
+                    <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin" ng-if="session.IsLoggedIn && session.IsAdmin" >
+                        <a class="main-menu-item" ng-href="/#/admin">Admin</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- LOGIN MENU -->
+            <div class="login-menu-arrow menu-arrow" ng-hide="uiSettings.hideLogonMenu"></div>
+            <div id="login-menu" class="menu" ng-hide="uiSettings.hideLogonMenu">
+                <div ng-include="'/partials/_logon.html'"></div>
+            </div>
+
+            <!-- SIGN-UP MENU -->
+            <div class="signup-menu-arrow menu-arrow" ng-hide="uiSettings.hideSignupMenu"></div>
+            <div id="login-menu" class="menu" ng-hide="uiSettings.hideSignupMenu">
+                <div ng-include="'/partials/_signup.html'"></div>
+            </div>
+
+            <!-- LOGIN/ACCOUNT STATUS -->
+            <div class="login-display">
+                <div ng-if="session.IsLoggedIn" class="menu-account-info">
+                    Hi {{session.User.Name}}
+                    [ <a href ng-href="/#/user-profile">Account</a> &middot; <a href ng-click="logout()">Log out</a> ]
+                </div>
+
+                <div ng-if="!session.IsLoggedIn" class="menu-login-info">
+                    <a href ng-click="showLogonMenu()">Log on</a> or <a href ng-click="showSignupMenu()">Sign up</a>
+                </div>
+
+                <div class="menu-list-button">
+                    <a href ng-click="showMainMenu()"></a>
                 </div>
             </div>
-        </a>
 
-        <!-- MAIN MENU -->
-        <nav>
-            <div class="main-menu-arrow menu-arrow" ng-hide="uiSettings.hideMainMenu"></div>
-            <ul id="main-menu" class="menu" ng-hide="uiSettings.hideMainMenu">
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Home"><a class="main-menu-item" ng-href="/#/">Home</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Scoreboard"><a class="main-menu-item" ng-href="/#/players">Scoreboard</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Matches"><a class="main-menu-item" ng-href="/#/matches">Matches</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Stats"><a class="main-menu-item" ng-href="/#/stats">Stats</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Features"><a class="main-menu-item" ng-href="/#/features">Features</a></li>
-                <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin" ng-if="session.IsLoggedIn && session.IsAdmin" >
-                    <a class="main-menu-item" ng-href="/#/admin">Admin</a>
-                </li>
-            </ul> 
-        </nav>
-        
-        <!-- LOGIN MENU -->
-        <div class="login-menu-arrow menu-arrow" ng-hide="uiSettings.hideLogonMenu"></div>
-        <div id="login-menu" class="menu" ng-hide="uiSettings.hideLogonMenu">
-            <div ng-include="'/partials/_logon.html'"></div>
+        </header>
+
+        <div ng-cloak id="page" class="clearfix">
+            <section id="main">
+                <div ng-view></div>
+                @RenderBody()
+            </section>
         </div>
 
-        <!-- SIGN-UP MENU -->
-        <div class="signup-menu-arrow menu-arrow" ng-hide="uiSettings.hideSignupMenu"></div>
-        <div id="login-menu" class="menu" ng-hide="uiSettings.hideSignupMenu">
-            <div ng-include="'/partials/_signup.html'"></div>
-        </div>
-
-        <!-- LOGIN/ACCOUNT STATUS -->
-        <div class="login-display">
-            <div ng-if="session.IsLoggedIn" class="menu-account-info">
-                Hi {{session.User.Name}}
-                [ <a href ng-href="/#/user-profile">Account</a> &middot; <a href ng-click="logout()">Log out</a> ]
-            </div>
-
-            <div ng-if="!session.IsLoggedIn" class="menu-login-info">
-                <a href ng-click="showLogonMenu()">Log on</a> or <a href ng-click="showSignupMenu()">Sign up</a>
-            </div>
-
-            <div class="menu-list-button">
-                <a href ng-click="showMainMenu()"></a>
-            </div>
-        </div>
-
-    </header>
-
-    <div ng-cloak id="page" class="clearfix">
-        <section id="main">
-            <div ng-view></div>
-            @RenderBody()
-        </section>
-    </div>
-
-    <!-- Deferred Javascript -->
-    <script src="/js/Shared.js"></script>
-    @RenderSection("Javascript", false)
-    @MiniProfiler.RenderIncludes()       
-</body>
-</html>
+        <!-- Deferred Javascript -->
+        <script src="/js/Shared.js"></script>
+        @RenderSection("Javascript", false)
+        @MiniProfiler.RenderIncludes()
+    </body>
+    </html>
