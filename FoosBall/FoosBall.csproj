@@ -134,6 +134,8 @@
     <Compile Include="Models\Custom\Streak.cs" />
     <Compile Include="Models\Custom\Streaks.cs" />
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
+    <Content Include="js\angular\advstats.controller.js" />
+    <Content Include="partials\advanced-stats.html" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
@@ -254,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewHelpers\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +321,14 @@
     <Content Include="css\modules\Account.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\modules\AdvStats.scss">
+      <Compile>False</Compile>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
