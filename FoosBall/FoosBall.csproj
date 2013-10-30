@@ -137,7 +137,6 @@
     <Content Include="js\angular\advstats.controller.js" />
     <Content Include="js\angular\getmatches.controller.js" />
     <Content Include="partials\advanced-stats.html" />
-    <Compile Include="ViewHelpers\Md5Extensions.cs" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
     <Compile Include="Models\Base\Environment.cs" />
@@ -258,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewHelpers\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
