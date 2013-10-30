@@ -7,7 +7,7 @@ FoosBall.config(['$routeProvider', function ($routeProvider) {
         .when('/features', { templateUrl: '/partials/features.html' })
         .when('/stats', { templateUrl: '/partials/stats.html', controller: 'StatsController' })
         .when('/playerstats', { templateUrl: '/partials/stats-player.html', controller: 'PlayerStatsController' })
-        .when('/advstats', { templateUrl: '/partials/advanced-stats.html', controller: 'advStatsController' })
+        //.when('/advstats', { templateUrl: '/partials/advanced-stats.html', controller: 'advStatsController' })
         .when('/matches', { templateUrl: '/partials/matches.html', controller: 'MatchesController' })
         .when('/players', { templateUrl: '/partials/players.html', controller: 'PlayersController' })
         .when('/user-profile', { templateUrl: '/partials/user-profile.html', controller: 'UserController' })
