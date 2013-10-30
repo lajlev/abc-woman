@@ -2,7 +2,7 @@
     // Define an array for the matches in the scope
     $scope.matches = [];
 
-    var promiseOfPlayers = api.getPlayers();
+    var promiseOfPlayers = api.getAllPlayers();
     
     promiseOfPlayers.then(function(players) {
         $scope.players = players;
