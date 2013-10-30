@@ -693,14 +693,14 @@ html[xmlns] .clearfix {
 .adv-statistics {
   padding: 15px; }
 
-.vs-container {
+.adv-statistics .vs-container {
   height: 100px;
   clear: both;
   background: none #fff;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 60px; }
-  .vs-container form {
+  .adv-statistics .vs-container form {
     text-align: center; }
 
 .fl {
@@ -725,7 +725,7 @@ html[xmlns] .clearfix {
   .vs-text p {
     margin: 15px 0; }
 
-.stat-data-container {
+.adv-statistics .stat-data-container {
   -webkit-perspective: 1000px;
   perspective: 1000px;
   margin-top: 10px;
@@ -733,11 +733,11 @@ html[xmlns] .clearfix {
   -moz-transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg); }
-  .stat-data-container.active {
+  .adv-statistics .stat-data-container.active {
     -moz-transform: rotateY(360deg);
     -webkit-transform: rotateY(360deg);
     transform: rotateY(360deg); }
-  .stat-data-container .data-row {
+  .adv-statistics .stat-data-container .data-row {
     width: 100%;
     height: 40px;
     border: 0px solid transparent;
@@ -749,7 +749,7 @@ html[xmlns] .clearfix {
     background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, white 25%, white 50%, white 75%, rgba(255, 255, 255, 0) 100%);
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 25%, white 50%, white 75%, rgba(255, 255, 255, 0) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 ); }
-  .stat-data-container .data-label {
+  .adv-statistics .stat-data-container .data-label {
     width: 110px;
     background: none #333;
     height: 40px;
@@ -758,17 +758,17 @@ html[xmlns] .clearfix {
     text-align: center;
     float: left;
     margin: 0; }
-    .stat-data-container .data-label.multiline {
+    .adv-statistics .stat-data-container .data-label.multiline {
       line-height: 15px;
       padding-top: 5px; }
-  .stat-data-container .data-cell {
+  .adv-statistics .stat-data-container .data-cell {
     width: calc(50% - 55px);
     text-align: center;
     float: left;
     margin: 0;
     padding: 13px 0 0 0; }
 
-input[type="submit"] {
+.adv-statistics input[type="submit"] {
   width: 110px;
   height: 40px;
   margin: 17px 0 0 0;

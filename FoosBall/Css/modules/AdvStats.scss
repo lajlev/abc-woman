@@ -2,7 +2,7 @@
     padding: 15px;
 }
 
-.vs-container {
+.adv-statistics .vs-container {
     height: 100px;
     clear: both;
     background: none #fff;
@@ -41,7 +41,7 @@
     }
 }
 
-.stat-data-container {
+.adv-statistics .stat-data-container {
     -webkit-perspective: 1000px;
     perspective: 1000px;
     margin-top: 10px;
@@ -93,7 +93,7 @@
     }
 }
 
-input[type="submit"] {
+.adv-statistics input[type="submit"] {
     width: 110px;
     height: 40px;
     margin: 17px 0 0 0;
