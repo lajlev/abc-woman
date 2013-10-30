@@ -164,6 +164,7 @@
     <Content Include="css\minified\foosball.css" />
     <Content Include="css\minified\foosball.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="js\app\foosball.app.js" />
     <Content Include="js\controllers\base.controller.js" />
     <Content Include="js\app\foosball.services.js" />
     <Content Include="js\app\foosball.directives.js" />
@@ -181,12 +182,6 @@
       <IncludedFiles>Javascript\lib\md5.js|Javascript\lib\highcharts.js|Javascript\angular\app.js|Javascript\angular\matches.controllers.js|Javascript\Base.js|Javascript\Shared.js|Javascript\LogOn.js|Javascript\Home.js|Javascript\PlayerStats.js|Javascript\Register.js|Javascript\Stats.js|Javascript\Admin.js|Javascript\lib\jquery.signalR-1.0.0.js</IncludedFiles>
     </Content>
     <Content Include="js\controllers\matches.controller.js" />
-    <Content Include="js\app\foosball.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <IncludedFiles>js\lib\jquery.js|js\lib\jquery.signalR-1.0.0.js|js\lib\angular.js|js\lib\angular-resource.js|js\lib\angular-route.js|js\lib\md5.js|js\lib\highcharts.js|js\foosball.js|js\angular\base.controller.js|js\angular\account.controller.js|js\angular\home.controller.js|js\angular\matches.controller.js|js\angular\players.controller.js|js\angular\playerstats.controller.js|js\angular\stats.controller.js|js\angular\admin.controller.js</IncludedFiles>
-      <OutputFolder>..\minified</OutputFolder>
-    </Content>
     <Content Include="js\Shared.js" />
     <Content Include="partials\admin.html" />
     <Content Include="partials\_signup.html" />
