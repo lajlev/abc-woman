@@ -32,7 +32,7 @@
                 return string.Format("http://www.gravatar.com/avatar/{0}?d=monsterid&r=x&f=y", md5Email).ToLower();
             }
 
-            return string.Format("http://www.gravatar.com/avatar/{0}?d=mm", md5Email).ToLower();
+            return string.Format("http://www.gravatar.com/avatar/{0}?d=wavatar", md5Email).ToLower();
         }
     }
 }
