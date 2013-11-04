@@ -19,7 +19,7 @@
     <link href="@Url.Content("~/css/minified/foosball.min.css")" rel="stylesheet" type="text/css" />
 
     <script src="/js/lib/jquery.js"></script>
-    <script src="Scripts/jquery.signalR-2.0.0.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.0.0.min.js"></script>
     <script src="/js/lib/angular.js"></script>
     <script src="/js/lib/angular-resource.js"></script>
     <script src="/js/lib/angular-route.js"></script>
@@ -42,8 +42,10 @@
     <script src="/js/controllers/stats.controller.js"></script>
     <script src="/js/controllers/submitmatch.controller.js"></script>
     <script src="/js/controllers/user.controller.js"></script>
-	<script src="/js/angular/advstats.controller.js"></script>
-    @*<script src="/js/minified/app.min.js"></script>*@
+    <script src="/js/controllers/advancedstats.controller.js"></script>
+@*
+    <script src="/js/minified/app.min.js"></script>
+*@
 
         <script src="/signalr/hubs"></script>
 
@@ -88,7 +90,7 @@
                     <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Scoreboard"><a class="main-menu-item" ng-href="/#/players">Scoreboard</a></li>
                     <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Matches"><a class="main-menu-item" ng-href="/#/matches">Matches</a></li>
                     <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Stats"><a class="main-menu-item" ng-href="/#/stats">Stats</a></li>
-                    <!--<li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="AdvStats"><a class="main-menu-item" ng-href="/#/advstats">AdvStats</a></li>-->
+                    <!--<li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="AdvStats"><a class="main-menu-item" ng-href="/#/advstats">Advanced Stats</a></li>-->
                     <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Features"><a class="main-menu-item" ng-href="/#/features">Features</a></li>
                     <li ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin" ng-if="session.IsLoggedIn && session.IsAdmin" >
                         <a class="main-menu-item" ng-href="/#/admin">Admin</a>

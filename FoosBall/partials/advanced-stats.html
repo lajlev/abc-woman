@@ -1,98 +1,107 @@
-﻿<div ng-cloak class="adv-statistics clearfix"> <!-- start -->
+﻿<div ng-cloak class="adv-statistics clearfix" ng-controller="AdvancedStatsController">
+    <!-- start -->
     <div class="vs-container">
-        <form name="resolveAdvStatsForm" ng-submit="submitAdvStats()" ng-model="matchParticipants" ng-controller="advStatsController" >
-            <div class="fl vs-team">
-                <select ng-model="matchParticipants.player1Id"  >
+        <form name="resolveAdvStatsForm" ng-submit="submitPlayers()" ng-model="participants">
+            <div class="team-a fl vs-team">
+                <select name="team-a-player-1" ng-model="participants.teamAPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                    <option></option>
                     <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
-                <select >
-                    <option ng-repeat="player in players">{{player.Name}}</option>
+                <select name="team-a-player-2" ng-model="participants.teamAPlayer2Id" ng-show="participants.teamAPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                    <option></option>
+                    <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
             </div>
             <div class="fl vs-text">
                 <p>VS</p>
             </div>
-            <div class="fl vs-team">
-                <select >
-                    <option ng-repeat="player in players">{{player.Name}}</option>
+            <div class="team-b fl vs-team">
+                <select name="team-b-player-1" ng-model="participants.teamBPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                    <option></option>
+                    <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
-                <select >
-                    <option ng-repeat="player in players">{{player.Name}}</option>
+                <select name="team-b-player-2" ng-model="participants.teamBPlayer2Id" ng-show="participants.teamBPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                    <option></option>
+                    <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
             </div>
-            <input type="submit" id="vs-stats-calc" ng-click="addRotation()" value="calculate" />
+            <input ng-disabled="!participants.teamAPlayer1Id || !participants.teamBPlayer1Id || !matchesAreReady" type="submit" id="vs-stats-calc" ng-click="addRotation()" value="calculate" />
         </form>
     </div>
 
-
-
     <div class="stat-data-container" ng-class="{active: isActive}">
+
         <div class="data-row">
-            <p class="data-cell">{{teamOne.playerOne.Rank}}, {{teamOne.playerTwo.Rank}}</p>
+            <p class="data-cell">{{stats.rank.teamAPlayer1}}<span ng-if="stats.rank.teamAPlayer2 !== 0">, {{stats.rank.teamAPlayer2}}</span></p>
             <p class="data-label">Rank</p>
-            <p class="data-cell">{{teamTwo.playerOne.Rank}}, {{teamTwo.playerTwo.Rank}}</p>
+            <p class="data-cell">{{stats.rank.teamBPlayer1}}<span ng-if="stats.rank.teamBPlayer2 !== 0">, {{stats.rank.teamBPlayer2}}</span></p>
         </div>
 
         <div class="data-row">
-            <p class="data-cell">{{matches.length}}</p>
-            <p class="data-label">Matches</p>
-            <p class="data-cell">{{matches.length}}</p>
+            <p class="data-cell">{{stats.matchesVersus}}</p>
+            <p class="data-label">Matches Versus</p>
+            <p class="data-cell">{{stats.matchesVersus}}</p>
         </div>
 
         <div class="data-row">
-            <p class="data-cell">{{matches.teamOne.won}}</p>  <!-- i.e 12 (52%) -->
+            <p class="data-cell">{{stats.matchesTotal.teamA}}</p>
+            <p class="data-label">Matches Total</p>
+            <p class="data-cell">{{stats.matchesTotal.teamB}}</p>
+        </div>
+
+        <div class="data-row">
+            <p class="data-cell">{{stats.fightsWon.teamA}}</p>  <!-- i.e 12 (52%) -->
             <p class="data-label">Fights won</p>
-            <p class="data-cell">{{matches.teamTwo.won}}</p>  <!-- i.e 10 (48%) -->
+            <p class="data-cell">{{stats.fightsWon.teamB}}</p>  <!-- i.e 10 (48%) -->
         </div>
 
         <div class="data-row">
-            <p class="data-cell">{{matches.teamOne.pointsWon}}</p>
+            <p class="data-cell">{{stats.pointsWon.teamA}}</p>
             <p class="data-label">Points won</p>
-            <p class="data-cell">{{matches.teamTwo.pointsWon}}</p>
+            <p class="data-cell">{{stats.pointsWon.teamB}}</p>
         </div>
         <div class="data-row">
-            <p class="data-cell">{{matches.teamOne.goalCount}}</p>
+            <p class="data-cell">{{stats.goalsScored.teamA}}</p>
             <p class="data-label">Goals scored</p>
-            <p class="data-cell">{{matches.teamTwo.goalCount}}</p>
+            <p class="data-cell">{{stats.goalsScored.teamB}}</p>
         </div>
         <div class="data-row">
-            <p class="data-cell">{{teamOne.teamColor}}</p>
-            <p class="data-label">Pref. color</p>
-            <p class="data-cell">{{teamTwo.teamColor}}</p>
+            <p class="data-cell">{{stats.preferredColor.teamA.color}} ({{stats.preferredColor.teamA.count}})</p>
+            <p class="data-label">Pref. color</p> 
+            <p class="data-cell">{{stats.preferredColor.teamB.color}} ({{stats.preferredColor.teamB.count}})</p>
         </div>
         <div class="data-row">
-            <p class="data-cell">{{matches.teamOne.biggestWin}}</p>
+            <p class="data-cell">{{stats.biggestWin.teamA.result}}</p>
             <p class="data-label">Biggest win</p>
-            <p class="data-cell">{{matches.teamTwo.biggestWin}}</p>
+            <p class="data-cell">{{stats.biggestWin.teamB.result}}</p>
         </div>
         <div class="data-row">
-            <p class="data-cell">{{matches.teamOne.FlawlessWins}}</p>
+            <p class="data-cell">{{stats.flawlessWins.teamA}}</p>
             <p class="data-label">Flawless wins</p>
-            <p class="data-cell">{{matches.teamTwo.FlawlessWins}}</p>
+            <p class="data-cell">{{stats.flawlessWins.teamB}}</p>
         </div>
         <div class="data-row">
-            <p class="data-cell">{{matches.teamOne.HighestPointScore}}</p>
+            <p class="data-cell">{{stats.mostPointsWon.teamA}}</p>
             <p class="data-label multiline">Most points won in a game</p>
-            <p class="data-cell">{{matches.teamTwo.HighestPointScore}}</p>
+            <p class="data-cell">{{stats.mostPointsWon.teamB}}</p>
         </div>
         <div class="data-row">
-            <p class="data-cell">{{teamOne.experience}}</p>  <!-- (playerOne.total.matches.length + playerTwo.total.matches.length) / 2  [ make case with val that outputs a string value ] -->
+            <p class="data-cell">{{stats.experience.teamA}}</p>  <!-- (playerOne.total.matches.length + playerTwo.total.matches.length) / 2  [ make case with val that outputs a string value ] -->
             <p class="data-label">Experience</p>
-            <p class="data-cell">{{teamTwo.experience}}</p>
-        <!-- Reference of blue/red team titles:
-            Jar Jar Binks(0)
-            Youngling (1-5), Sith minion(1-5)
-            Padawan(6-20), Acolyte(6-20)
-            Jedi Apprentice(21-50), Sith Apprentice(21-50)
-            Jedi Knight(51-100), Sith Knight(51-100)
-            Jedi Captain(101-150), Sith Lord(101-150)
-            Jedi Master(151-250), Sith Overlord(151-250)
-            Master Yoda(251-499), Lord Vader(251-499)
-            Luke Skywalker(500+), Darth Sidious(500+)
-        -->
+            <p class="data-cell">{{stats.experience.teamB}}</p>
+            <!-- Reference of blue/red team titles:
+                Jar Jar Binks(0)
+                Youngling (1-5), Sith minion(1-5)
+                Padawan(6-20), Acolyte(6-20)
+                Jedi Apprentice(21-50), Sith Apprentice(21-50)
+                Jedi Knight(51-100), Sith Knight(51-100)
+                Jedi Captain(101-150), Sith Lord(101-150)
+                Jedi Master(151-250), Sith Overlord(151-250)
+                Master Yoda(251-499), Lord Vader(251-499)
+                Luke Skywalker(500+), Darth Sidious(500+)
+                -->
         </div>
 
     </div>
 
 </div> <!-- end -->
-

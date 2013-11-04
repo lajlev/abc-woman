@@ -29,7 +29,19 @@
             return Json(playerCollection, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetActiveExperiencedPlayers()
+        [HttpGet]
+        public ActionResult GetExperiencedPlayers()
+        {
+            var playerCollection = Dbh.GetCollection<Player>("Players")
+                                            .FindAll()
+                                            .SetSortOrder(SortBy.Ascending("Name"))
+                                            .Where(x => x.Played > 0)
+                                            .ToList();
+
+            return Json(playerCollection, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetRankedPlayers()
         {
             var playerCollection = Dbh.GetCollection<Player>("Players")
                                         .FindAll()

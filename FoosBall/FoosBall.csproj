@@ -134,7 +134,29 @@
     <Compile Include="Models\Custom\Streak.cs" />
     <Compile Include="Models\Custom\Streaks.cs" />
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
-    <Content Include="js\angular\advstats.controller.js" />
+    <Content Include="js\app\foosball.app.combined.js">
+      <DependentUpon>foosball.app.js</DependentUpon>
+    </Content>
+    <Content Include="js\app\foosball.app.min.js">
+      <DependentUpon>foosball.app.js</DependentUpon>
+    </Content>
+    <Content Include="js\controllers\advancedstats.controller.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-bootstrap-prettify.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-bootstrap-prettify.min.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-bootstrap.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-bootstrap.min.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-cookies.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-cookies.min.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-loader.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-loader.min.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-mocks.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-resource.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-resource.min.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-sanitize.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-sanitize.min.js" />
+    <Content Include="js\lib\angular-1.0.8\angular-scenario.js" />
+    <Content Include="js\lib\angular-1.0.8\angular.js" />
+    <Content Include="js\lib\angular-1.0.8\angular.min.js" />
     <Content Include="partials\advanced-stats.html" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
@@ -166,7 +188,10 @@
     <Content Include="css\minified\foosball.css" />
     <Content Include="css\minified\foosball.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="js\app\foosball.app.js" />
+    <Content Include="js\app\foosball.app.js">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+    </Content>
     <Content Include="js\controllers\base.controller.js" />
     <Content Include="js\app\foosball.services.js" />
     <Content Include="js\app\foosball.directives.js" />
@@ -216,9 +241,6 @@
     <Content Include="partials\features.html" />
     <Content Include="js\lib\jquery.min.js.map" />
     <Content Include="js\lib\jquery.signalR-1.0.0.min.js.map" />
-    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.6.4.js" />
-    <Content Include="Scripts\jquery-1.6.4.min.js" />
     <Content Include="Scripts\jquery.signalR-2.0.0.js" />
     <Content Include="Scripts\jquery.signalR-2.0.0.min.js" />
     <Content Include="Views\Shared\Index.cshtml" />

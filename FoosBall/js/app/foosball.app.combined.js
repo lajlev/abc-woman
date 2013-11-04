@@ -1,4 +1,4 @@
-﻿var FoosBall = angular.module('FoosBall', ['ngRoute', 'ngResource']);
+var FoosBall = angular.module('FoosBall', ['ngRoute', 'ngResource']);
 
 // Configuration & Routing
 FoosBall.config(['$routeProvider', function ($routeProvider) {
