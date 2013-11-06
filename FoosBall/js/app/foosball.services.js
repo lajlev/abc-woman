@@ -42,8 +42,10 @@ FoosBall.
                 teamB: 0
             },
             experience: {
-                teamA: 0,
-                teamB: 0
+                teamAPlayer1: "",
+                teamAPlayer2: "",
+                teamBPlayer1: "",
+                teamBPlayer2: ""
             }
         };
 
@@ -62,9 +64,117 @@ FoosBall.
             this.stats.biggestWin = getBiggestWin(participants, elligibleMatches);
             this.stats.flawlessWins = getFlawlessWins(participants, elligibleMatches);
             this.stats.mostPointsWon = getMostPointsWon(participants, elligibleMatches);
-
+            this.stats.experience = getPlayerExperiences(participants, players, matches);
             return this.stats;
         };
+
+        function getPlayerExperiences(participants, players, allMatches) {
+            var counts = {
+                teamAPlayer1: { red: 0, blue: 0, total: 0},
+                teamAPlayer2: { red: 0, blue: 0, total: 0 },
+                teamBPlayer1: { red: 0, blue: 0, total: 0 },
+                teamBPlayer2: { red: 0, blue: 0, total: 0 }
+            };
+
+            var experience = {
+                teamAPlayer1: "",
+                teamAPlayer2: "",
+                teamBPlayer1: "",
+                teamBPlayer2: ""
+            };
+
+            var redTitles = {
+                "Tooka": 1,
+                "Tusken Raider": 5,
+                "Jawa": 25,
+                "Sith Acolyte": 50,
+                "Sith Apprentice": 100,
+                "Sith Knight": 150,
+                "Boba Fett": 200,
+                "Jabba the Hutt": 250,
+                "Sith Overlord": 300,
+                "Count Dooku": 350,
+                "Darth Maul": 400,
+                "Darth Revan": 450,
+                "Lord Vader": 500,
+                "Darth Sidious": Infinity
+            };
+
+            var blueTitles = {
+                "Jar Jar Binks": 1,
+                "Ewok": 5,
+                "R2-D2": 25,
+                "C-3PO": 50,
+                "Jedi Apprentice": 100,
+                "Jedi Knight": 150,
+                "Jedi Captain": 200,
+                "Admiral Ackbar": 250,
+                "Jedi Master": 300,
+                "Han Solo": 350,
+                "Qui-Gon Jinn": 400,
+                "Obi-Wan Kenobi": 450,
+                "Master Yoda": 500,
+                "Luke Skywalker": Infinity
+            };
+
+
+            angular.forEach(allMatches, function(match, index) {
+                var matchExt = new MatchExtension(match);
+                
+                if (matchExt.containsPlayer(participants.teamAPlayer1Id)) {
+                    if (matchExt.playerIsOnRedTeam(participants.teamAPlayer1Id)) {
+                        counts.teamAPlayer1.red++;
+                    } else {
+                        counts.teamAPlayer1.blue++;
+                    }
+                    counts.teamAPlayer1.total++;
+                }
+                if (participants.teamAPlayer2Id && matchExt.containsPlayer(participants.teamAPlayer2Id)) {
+                    if (matchExt.playerIsOnRedTeam(participants.teamAPlayer1Id)) {
+                        counts.teamAPlayer2.red++;
+                    } else {
+                        counts.teamAPlayer2.blue++;
+                    }
+                    counts.teamAPlayer2.total++;
+                }
+                if (matchExt.containsPlayer(participants.teamBPlayer1Id)) {
+                    if (matchExt.playerIsOnRedTeam(participants.teamAPlayer1Id)) {
+                        counts.teamBPlayer1.red++;
+                    } else {
+                        counts.teamBPlayer1.blue++;
+                    }
+                    counts.teamBPlayer1.total++;
+                }
+                if (participants.teamBPlayer2Id && matchExt.containsPlayer(participants.teamBPlayer2Id)) {
+                    if (matchExt.playerIsOnRedTeam(participants.teamAPlayer1Id)) {
+                        counts.teamBPlayer2.red++;
+                    } else {
+                        counts.teamBPlayer2.blue++;
+                    }
+                    counts.teamBPlayer2.total++;
+                }
+            });
+
+            angular.forEach(counts, function(player, playerIndex) {
+                var titles;
+                
+                if (player.red > player.blue) {
+                    titles = redTitles;
+                } else {
+                    titles = blueTitles;
+                }
+
+                for (var titleIndex in titles) {
+                    var title = titles[titleIndex];
+                    if (player.total && player.total <= title) {
+                        experience[playerIndex] = titleIndex + " (" + player.total + ")";
+                        break;
+                    }
+                };
+            });
+
+            return experience;
+        }
 
         function getBiggestWin(participants, matches) {
             var biggestWin = {
@@ -291,6 +401,7 @@ FoosBall.
             };
 
             return rankings;
+
         }
 
         function getMatchesWithTeam(player1Id, player2Id, matches) {
@@ -362,7 +473,7 @@ FoosBall.
             this.match = match;
 
             this.playerIsOnRedTeam = function (id) {
-                if (this.match.RedPlayer1.Id === id || this.match.RedPlayer2 === id) {
+                if (this.match.RedPlayer1.Id === id || this.match.RedPlayer2.Id === id) {
                     return true;
                 }
 
