@@ -1,5 +1,7 @@
 ﻿FoosBall.controller('AdvancedStatsController', ['$scope', 'api', 'advancedStats', function ($scope, api, advancedStats) {
     $scope.matchesAreReady = false;
+    $scope.isStatsCalculated = false;
+    
         
     // Get the promise of all players for the select drop downs
     var promiseOfPlayers = api.getExperiencedPlayers(),
@@ -22,6 +24,7 @@
     
     $scope.submitPlayers = function () {
         $scope.stats = advancedStats.get($scope.matches, $scope.participants, $scope.players);
+        $scope.isStatsCalculated = true;
     };
 
     // Save a value for later use
