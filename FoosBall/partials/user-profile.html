@@ -1,13 +1,13 @@
 ﻿<div class="user-profile" class="user-profile">
-    <form ng-if="session.IsLoggedIn" name="editUserForm" ng-submit="submitUserDetails()" ng-controller="UserController" ng-model="user">
+    <form ng-if="session.IsLoggedIn" name="editUserForm" ng-submit="submitUserDetails(editUserForm)" ng-controller="UserController" ng-model="user">
         <fieldset>
             <legend>{{user.Name}}'s account</legend>
 
-            <a href ng-href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" ng-src="{{user.GravatarUrl}}"/></a>
+            <a href ng-href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" ng-src="{{user.GravatarUrl}}" /></a>
             <br />
             <br />
             <label for="email">Email:</label>
-            <input ng-model="user.Email" type="email" name="email" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email"/>
+            <input ng-model="user.Email" type="email" name="email" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email" />
             <br />
             <br />
             <label for="name">Name:</label>
@@ -16,7 +16,7 @@
             <br />
 
             <label for="new-password">New password:</label>
-            <input ng-model="user.NewPassword" type="password" name="new-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="New password"/>
+            <input ng-model="user.NewPassword" type="password" name="new-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="New password" />
             <br />
             <br />
 
@@ -27,11 +27,12 @@
                 <br />
             </span>
 
-            <span ng-hide="!showValidationMessage" class="error validation-message">{{updateMessage}}</span>
+            <span ng-show="showErrorMessage" class="error validation-message">{{updateMessage}}</span>
+            <span ng-show="showValidationMessage" class="validation-message">{{updateMessage}}</span>
             <br />
             <br />
-            
-            <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button"/>
+
+            <input type="submit" value="Save Player" class="submit-button button" id="edit-player-button" />
         </fieldset>
     </form>
 </div>
