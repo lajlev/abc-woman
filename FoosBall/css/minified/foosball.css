@@ -351,18 +351,21 @@ html[xmlns] .clearfix {
   height: 1%; }
 
 /* Errors and Validation */
-.error, .validation-message {
-  background: rgba(255, 0, 0, 0.3);
-  border: 2px solid red;
+.validation-message {
+  background: rgba(0, 255, 0, 0.3);
+  border: 1px dotted green;
   color: black;
   margin: 10px 0 0 0;
-  padding: 2px;
+  padding: 2px 5px;
   width: 98%; }
-  .error.small, .validation-message.small {
+  .validation-message.small {
     font-size: .85em;
     margin: 2px 0 0 0; }
-  .error.show, .validation-message.show {
+  .validation-message.show {
     display: block; }
+  .validation-message.error {
+    border: 2px solid red;
+    background: rgba(255, 0, 0, 0.3); }
 
 .field-validation-error {
   font-size: .85em;
