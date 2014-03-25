@@ -14,12 +14,10 @@
     };
 
     function resetMatchForm(scope) {
-        // Reset the match form
         $('.score-prediction').find('.rating, .chance, .gain').text('');
         angular.forEach(scope.match, function (value, key) {
             scope.match[key] = null;
         });
         $('option:disabled').removeAttr('disabled');
-        scope.hideForm = true;
     }
 }]);
