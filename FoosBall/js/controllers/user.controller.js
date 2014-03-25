@@ -14,31 +14,40 @@
         });
     }
 
-    $scope.submitUserDetails = function() {
-        var User = $resource('Account/Edit', {
-            email: $scope.user.Email,
-            name: $scope.user.Name,
-            oldPassword: $scope.user.OldPassword,
-            newPassword: $scope.user.NewPassword,
-        });
+    $scope.submitUserDetails = function (editUserForm) {
+        $scope.showValidationMessage = false;
+        $scope.showErrorMessage = false;
+        $scope.updateMessage = '';
 
-        var promise = User.save().$promise;
+        if (editUserForm && !editUserForm.$pristine) {
+            var User = $resource('Account/Edit', {
+                email: $scope.user.Email,
+                name: $scope.user.Name,
+                oldPassword: $scope.user.OldPassword,
+                newPassword: $scope.user.NewPassword,
+            });
 
-        promise.then(function(responseData) {
-            if (!!responseData && responseData.Success === true) {
-                $scope.getPlayer();
-                var sessionPromise = session.getSession(true);
+            var promise = User.save().$promise;
 
-                sessionPromise.then(function(sessionInfo) {
-                    angular.forEach(sessionInfo, function(value, key) {
-                        $scope.$parent.session[key] = value;
+            promise.then(function(responseData) {
+                if (!!responseData && responseData.Success === true) {
+                    getPlayer();
+                    var sessionPromise = session.getSession(true);
+
+                    sessionPromise.then(function(sessionInfo) {
+                        angular.forEach(sessionInfo, function(value, key) {
+                            $scope.$parent.session[key] = value;
+                        });
                     });
-                });
 
-            }
-
-            $scope.updateMessage = responseData.Message;
-            $scope.showValidationMessage = true;
-        });
+                    $scope.editUserForm.$setPristine();
+                    $scope.updateMessage = responseData.Message;
+                    $scope.showValidationMessage = true;
+                } else {
+                    $scope.updateMessage = responseData.Message;
+                    $scope.showErrorMessage = true;
+                }
+            });
+        }
     };
 }]);
