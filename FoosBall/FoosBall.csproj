@@ -126,6 +126,7 @@
     <Compile Include="Main\EventHub.cs" />
     <Compile Include="Main\Startup.cs" />
     <Compile Include="Main\Validation.cs" />
+    <Compile Include="Main\WebHookNotification.cs" />
     <Compile Include="Models\Base\LoginInfo.cs" />
     <Compile Include="Models\Base\EventType.cs" />
     <Compile Include="Models\Base\SessionInfo.cs" />
