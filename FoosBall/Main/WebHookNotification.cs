@@ -66,7 +66,7 @@
             return new Player { Name = mongoPlayer.Name, Email = mongoPlayer.Email, Rating = mongoPlayer.Rating };
         }
 
-        public class Match
+        private class Match
         {
             public DateTime CreationTime { get; set; }
             public DateTime GameOverTime { get; set; }
@@ -75,14 +75,14 @@
             public Team BlueTeam { get; set; }
         }
 
-        public class Player
+        private class Player
         {
             public string Name { get; set; }
             public string Email { get; set; }
             public double Rating { get; set; }
         }
 
-        public class Team
+        private class Team
         {
             public int Score { get; set; }
             public Player Player1 { get; set; }
