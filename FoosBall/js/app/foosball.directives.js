@@ -2,6 +2,7 @@
 FoosBall.
     directive('foosballScore', function () {
         return {
+            require: 'ngModel',
             link: function (scope, elm, attrs, ctrl) {
                 ctrl.$parsers.unshift(function (viewValue) {
                     var otherScore = document.querySelector('.team-score:not(#' + elm.attr('id') + ')');
