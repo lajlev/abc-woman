@@ -141,22 +141,31 @@
       <DependentUpon>foosball.app.js</DependentUpon>
     </Content>
     <Content Include="js\controllers\advancedstats.controller.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-bootstrap-prettify.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-bootstrap-prettify.min.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-bootstrap.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-bootstrap.min.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-cookies.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-cookies.min.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-loader.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-loader.min.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-mocks.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-resource.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-resource.min.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-sanitize.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-sanitize.min.js" />
-    <Content Include="js\lib\angular-1.0.8\angular-scenario.js" />
-    <Content Include="js\lib\angular-1.0.8\angular.js" />
-    <Content Include="js\lib\angular-1.0.8\angular.min.js" />
+    <Content Include="js\directives\foosball-score.directive.js" />
+    <Content Include="js\directives\time-left-to-edit.directive.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-animate.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-animate.min.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-cookies.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-cookies.min.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-csp.css" />
+    <Content Include="js\lib\angular-1.2.15\angular-loader.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-loader.min.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-mocks.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-resource.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-resource.min.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-route.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-route.min.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-sanitize.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-sanitize.min.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-scenario.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-touch.js" />
+    <Content Include="js\lib\angular-1.2.15\angular-touch.min.js" />
+    <Content Include="js\lib\angular-1.2.15\angular.js" />
+    <Content Include="js\lib\angular-1.2.15\angular.min.js" />
+    <Content Include="js\lib\angular-1.2.15\version.txt" />
+    <Content Include="js\services\advancedstats.service.js" />
+    <Content Include="js\services\session.service.js" />
+    <Content Include="js\services\api.service.js" />
     <Content Include="partials\advanced-stats.html" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
@@ -193,8 +202,6 @@
       <Minify>True</Minify>
     </Content>
     <Content Include="js\controllers\base.controller.js" />
-    <Content Include="js\app\foosball.services.js" />
-    <Content Include="js\app\foosball.directives.js" />
     <Content Include="js\controllers\admin.controller.js" />
     <Content Include="js\controllers\submitmatch.controller.js" />
     <Content Include="js\controllers\signup.controller.js" />
@@ -354,6 +361,18 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="js\lib\angular-1.2.15\angular-animate.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\angular-cookies.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\angular-loader.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\angular-resource.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\angular-route.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\angular-sanitize.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\angular-touch.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\angular.min.js.map" />
+    <Content Include="js\lib\angular-1.2.15\errors.json" />
+    <Content Include="js\lib\angular-1.2.15\version.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
