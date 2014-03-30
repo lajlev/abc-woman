@@ -141,6 +141,8 @@
       <DependentUpon>foosball.app.js</DependentUpon>
     </Content>
     <Content Include="js\controllers\advancedstats.controller.js" />
+    <Content Include="js\directives\foosball-score.directive.js" />
+    <Content Include="js\directives\time-left-to-edit.directive.js" />
     <Content Include="js\lib\angular-1.0.8\angular-bootstrap-prettify.js" />
     <Content Include="js\lib\angular-1.0.8\angular-bootstrap-prettify.min.js" />
     <Content Include="js\lib\angular-1.0.8\angular-bootstrap.js" />
@@ -157,6 +159,9 @@
     <Content Include="js\lib\angular-1.0.8\angular-scenario.js" />
     <Content Include="js\lib\angular-1.0.8\angular.js" />
     <Content Include="js\lib\angular-1.0.8\angular.min.js" />
+    <Content Include="js\services\advancedstats.service.js" />
+    <Content Include="js\services\session.service.js" />
+    <Content Include="js\services\api.service.js" />
     <Content Include="partials\advanced-stats.html" />
     <Compile Include="Main\AppConfig.cs" />
     <Compile Include="Main\Events.cs" />
@@ -193,8 +198,6 @@
       <Minify>True</Minify>
     </Content>
     <Content Include="js\controllers\base.controller.js" />
-    <Content Include="js\app\foosball.services.js" />
-    <Content Include="js\app\foosball.directives.js" />
     <Content Include="js\controllers\admin.controller.js" />
     <Content Include="js\controllers\submitmatch.controller.js" />
     <Content Include="js\controllers\signup.controller.js" />
