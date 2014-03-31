@@ -138,6 +138,7 @@
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
     <Content Include="css\foosball-background.jpg" />
     <Content Include="css\icon_football.png" />
+    <Content Include="css\minified\foosball.min.css" />
     <Content Include="js\app\foosball.app.combined.js">
       <DependentUpon>foosball.app.js</DependentUpon>
     </Content>
@@ -168,6 +169,7 @@
     <Content Include="js\lib\angular-1.2.15\angular.min.js" />
     <Content Include="js\lib\angular-1.2.15\version.txt" />
     <Content Include="js\services\advancedstats.service.js" />
+    <Content Include="js\services\staticresources.service.js" />
     <Content Include="js\services\appsettings.service.js" />
     <Content Include="js\services\session.service.js" />
     <Content Include="js\services\api.service.js" />
@@ -200,11 +202,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\minified\foosball.css" />
-    <Content Include="css\minified\foosball.min.css" />
     <Content Include="Global.asax" />
     <Content Include="js\app\foosball.app.js">
       <Compile>True</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
     </Content>
     <Content Include="js\controllers\base.controller.js" />
     <Content Include="js\controllers\admin.controller.js" />
@@ -269,7 +270,7 @@
     </Content>
     <Content Include="css\modules\Admin.scss">
       <Compile>False</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
@@ -288,7 +289,7 @@
   <ItemGroup>
     <Content Include="css\modules\Base.scss">
       <Compile>False</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
@@ -296,7 +297,7 @@
   <ItemGroup>
     <Content Include="css\modules\Matches.scss">
       <Compile>False</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
@@ -304,7 +305,7 @@
   <ItemGroup>
     <Content Include="css\modules\Players.scss">
       <Compile>False</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
@@ -312,18 +313,23 @@
   <ItemGroup>
     <Content Include="css\modules\Home.scss">
       <Compile>False</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\_mixins.scss" />
+    <Content Include="css\_mixins.scss">
+      <Compile>False</Compile>
+      <Minify>False</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\modules\Stats.scss">
       <Compile>False</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
@@ -340,7 +346,7 @@
   <ItemGroup>
     <Content Include="css\modules\Account.scss">
       <Compile>False</Compile>
-      <Minify>True</Minify>
+      <Minify>False</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>

@@ -1,6 +1,7 @@
-﻿FoosBall.controller('BaseController', ['$scope', 'session', 'appSettings', function ($scope, session, appSettings) {
+﻿FoosBall.controller('BaseController', ['$scope', 'session', 'appSettings', 'staticResources', function ($scope, session, appSettings, staticResources) {
     $scope.session = {};
     $scope.appSettings = {};
+    $scope.staticResources = {};
     $scope.uiSettings = {};
     $scope.uiSettings.hideMainMenu = true;
     $scope.uiSettings.hideLogonMenu = true;
@@ -35,27 +36,9 @@
         $scope.uiSettings.hideSignupMenu = true;
     };
 
-    $scope.getBackgroundImage = function () {
-        var remoteUrl = 'https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/background.jpg';
-        var localUrl = '/css/foosball-background.jpg';
-
-        if (!$scope.appSettings.Environment || $scope.appSettings.Environment === 'Local') {
-            return localUrl;
-        } else {
-            return remoteUrl;
-        }
-    };
-
-    $scope.getFootballIcon = function () {
-        var remoteUrl = 'https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/icon_football.png';
-        var localUrl = '/css/icon_football.png';
-
-        if (!$scope.appSettings.Environment || $scope.appSettings.Environment === 'Local') {
-            return localUrl;
-        } else {
-            return remoteUrl;
-        }
-    };
+    $scope.staticResources.backgroundImageUrl = staticResources.getBackgroundImageUrl($scope);
+    $scope.staticResources.footballIconUrl = staticResources.getFootballIconUrl($scope);
+    $scope.staticResources.cssUrl = staticResources.getCssUrl($scope);
 
     function getAppNameWithEnvironment(appName, environment) {
         var env = environment.toLowerCase() === 'production' ? "" : (environment + " ");

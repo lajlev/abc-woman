@@ -18,11 +18,6 @@
     {
         protected readonly MiniProfiler Profiler = MiniProfiler.Current;
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult GetStatistics()
         {
             var viewModel = new StatsAggregateViewModel

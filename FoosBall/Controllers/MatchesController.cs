@@ -13,12 +13,6 @@
     {       
         private const int PageSize = 30;
         
-        // GET: /Matches/
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult GetMatches(int numberOfMatches = PageSize, int startFromMatch = 0)
         {
