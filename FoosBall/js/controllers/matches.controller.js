@@ -1,13 +1,12 @@
 ﻿FoosBall.controller('MatchesController', ['$scope', '$resource', function($scope, $resource) {
     var $thisSelect,
-        valueBeforeChange,
-        currentUserTag = document.getElementById('current-user-id');
+        valueBeforeChange;
 
     $scope.matchesDataReady = false;
     $scope.hideForm = true;
     $scope.pageSize = 10;
     $scope.matches = [];
-    $scope.currentUserId = currentUserTag ? currentUserTag.value : '';
+    $scope.currentUserId;
 
     $scope.cancelMatch = function(index) {
         var match = $scope.matches[index],

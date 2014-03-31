@@ -1,6 +1,6 @@
 ﻿FoosBall.directive('timeLeftToEdit', function ($timeout) {
     return function (scope, element, attributes) {
-        if (scope.currentUserId) {
+        if (scope.session.User) {
             var timeoutId,
                 matchTime = attributes.timeLeftToEdit;
 
@@ -47,7 +47,7 @@
             });
 
             // Only update if the user is logged in and participated in the match
-            if (scope.match.PlayersHash.indexOf(scope.currentUserId) > -1) {
+            if (scope.match.PlayersHash.indexOf(scope.session.User.Id) > -1) {
                 updateLater();
             }
         }

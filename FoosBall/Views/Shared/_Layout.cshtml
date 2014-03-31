@@ -1,22 +1,14 @@
-﻿@using StackExchange.Profiling
-@using System.Text.RegularExpressions
-<!DOCTYPE html>
-<html ng-app="FoosBall">
+﻿<!DOCTYPE html>
+<html data-ng-app="FoosBall" data-ng-controller="BaseController">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="robots" content="noindex">
     <link rel="shortcut icon" href="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/favicon.ico" type="image/x-icon" />
-    <title>
-        @if (ViewBag.Settings.Environment.ToString() != "Production")
-        {
-            @ViewBag.Settings.Environment.ToString()
-        }
-        @ViewBag.Title
-    </title>
-    <link href="@Url.Content("~/css/minified/foosball.min.css")" rel="stylesheet" type="text/css" />
+    <title ng-bind="appSettings.AppNameWithEnvironment"></title>
+    <link href="/css/minified/foosball.min.css" rel="stylesheet" type="text/css" />
 </head>
-<body ng-controller="BaseController">
+<body>
     @{
         var currentUser = (Player)HttpContext.Current.Session["User"];
         if (currentUser != null && !string.IsNullOrWhiteSpace(currentUser.Id))
@@ -30,21 +22,15 @@
         <input class="button" id="notify-me" value="Ok, off we go!" />
     </div>
 
-    <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/background.jpg" id="bg" class="bgwidth" alt="background image" />
+    <img src="/css/foosball-background.jpg" ng-src="{{getBackgroundImage()}}" id="bg" class="bgwidth" alt="background image" />
 
-    <header ng-cloak>
-        <a href ng-href="/#/">
+    <header>
+        <a href="#" ng-href="/#/">
             <div id="app-title">
                 <div class="logo-picture">
-                    <img src="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/icon_football.png" alt="logo" />
+                    <img src="/css/icon_football.png" ng-src="{{getFootballIcon()}}" alt="logo" />
                 </div>
-                <div class="logo-text">
-                    @if (ViewBag.Settings.Environment.ToString() != "Production")
-                    {
-                        @ViewBag.Settings.Environment.ToString()
-                    }
-                    @ViewBag.Settings.Name
-                </div>
+                <div class="logo-text" ng-bind="appSettings.AppNameWithEnvironment"></div>
             </div>
         </a>
 
@@ -78,17 +64,17 @@
 
         <!-- LOGIN/ACCOUNT STATUS -->
         <div class="login-display">
-            <div ng-if="session.IsLoggedIn" class="menu-account-info">
+            <div ng-cloak ng-if="session.IsLoggedIn" class="menu-account-info">
                 Hi {{session.User.Name}}
-                [ <a href ng-href="/#/user-profile">Account</a> &middot; <a href ng-click="logout()">Log out</a> ]
+                [ <a href="#" ng-href="/#/user-profile">Account</a> &middot; <a href="#" ng-click="logout()">Log out</a> ]
             </div>
 
             <div ng-if="!session.IsLoggedIn" class="menu-login-info">
-                <a href ng-click="showLogonMenu()">Log on</a> or <a href ng-click="showSignupMenu()">Sign up</a>
+                <a href="#" ng-click="showLogonMenu()">Log on</a> or <a href="#" ng-click="showSignupMenu()">Sign up</a>
             </div>
 
             <div class="menu-list-button">
-                <a href ng-click="showMainMenu()"></a>
+                <a href="#" ng-click="showMainMenu()"></a>
             </div>
         </div>
 
@@ -97,7 +83,7 @@
     <div ng-cloak id="page" class="clearfix">
         <section id="main">
             <div ng-view></div>
-            @RenderBody()
+            <!-- .NET MVC: RenderBody() method must be called @RenderBody()-->
         </section>
     </div>
 
@@ -115,6 +101,7 @@
     <script src="/js/app/jquery.foosBall.js"></script>
     <script src="/js/app/foosball.app.js"></script>
     <script src="/js/services/api.service.js"></script>
+    <script src="/js/services/appsettings.service.js"></script>
     <script src="/js/services/session.service.js"></script>
     <script src="/js/services/advancedstats.service.js"></script>
     <script src="/js/directives/time-left-to-edit.directive.js"></script>
