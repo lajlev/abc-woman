@@ -253,7 +253,6 @@
     <Content Include="js\lib\jquery.signalR-1.0.0.min.js.map" />
     <Content Include="Scripts\jquery.signalR-2.0.0.js" />
     <Content Include="Scripts\jquery.signalR-2.0.0.min.js" />
-    <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -274,23 +273,11 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Matches\Index.cshtml" />
-    <Content Include="Views\Players\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-    <Content Include="Views\Shared\_MatchTemplate.cshtml" />
-    <Content Include="Views\Shared\_PlayerBaseData.cshtml" />
-    <Content Include="Views\Shared\_RegisterMatch.cshtml" />
-    <Content Include="Views\Stats\Index.cshtml" />
-    <Content Include="Views\Stats\Player.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\minified\" />
     <Folder Include="ViewHelpers\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -377,6 +364,9 @@
     <Content Include="js\lib\angular-1.2.15\angular.min.js.map" />
     <Content Include="js\lib\angular-1.2.15\errors.json" />
     <Content Include="js\lib\angular-1.2.15\version.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
