@@ -20,7 +20,7 @@
 }]);
 
 FoosBall.controller('AppConfigController', ['$scope', 'api', function ($scope, api) {
-    $scope.config;
+    $scope.config = {};
 
     var getConfig = function () {
         var promiseOfConfig = api.getConfig();
