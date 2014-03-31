@@ -12,6 +12,7 @@
             if (eventType == EventType.MatchResolve)
             {
                 EventHub.Send(targetObject);
+                WebHookNotification.Send((Match)targetObject);
             }
 
             SaveEvent(eventType, targetObject, userId);

@@ -23,6 +23,8 @@
 
         public string Domain { get; set; }
 
+        public string NotificationUrl { get; set; }
+
         public List<string> AdminAccounts { get; set; } 
 
         public Environment Environment { get; set; }

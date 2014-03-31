@@ -8,6 +8,10 @@
             
             <label>Administrators</label>
             <input ng-model="config.AdminAccounts"type="text"/>
+
+            <label>Notification url</label>
+            <div>This url will get a POST request with match details after every match.</div>
+            <input ng-model="config.NotificationUrl" type="text" />
             
             <input type="submit" class="button" value="Save configuration" />
         </fieldset>
