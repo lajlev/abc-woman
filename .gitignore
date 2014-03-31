@@ -6,5 +6,6 @@ FoosBall/Migration/*.json
 *.suo
 *.orig
 *.ncrunchsolution
-*.DotSettings.user
+*.user
+FoosBall.sln.DotSettings.user
 .sass-cache/

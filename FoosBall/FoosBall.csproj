@@ -129,12 +129,15 @@
     <Compile Include="Main\WebHookNotification.cs" />
     <Compile Include="Models\Base\LoginInfo.cs" />
     <Compile Include="Models\Base\EventType.cs" />
+    <Compile Include="Models\Base\AppSettings.cs" />
     <Compile Include="Models\Base\SessionInfo.cs" />
     <Compile Include="Models\Custom\CustomSelectListItem.cs" />
     <Compile Include="Models\Custom\RatingDifference.cs" />
     <Compile Include="Models\Custom\Streak.cs" />
     <Compile Include="Models\Custom\Streaks.cs" />
     <Compile Include="Models\ViewModels\EventViewModel.cs" />
+    <Content Include="css\foosball-background.jpg" />
+    <Content Include="css\icon_football.png" />
     <Content Include="js\app\foosball.app.combined.js">
       <DependentUpon>foosball.app.js</DependentUpon>
     </Content>
@@ -165,6 +168,7 @@
     <Content Include="js\lib\angular-1.2.15\angular.min.js" />
     <Content Include="js\lib\angular-1.2.15\version.txt" />
     <Content Include="js\services\advancedstats.service.js" />
+    <Content Include="js\services\appsettings.service.js" />
     <Content Include="js\services\session.service.js" />
     <Content Include="js\services\api.service.js" />
     <Content Include="partials\advanced-stats.html" />
@@ -232,8 +236,6 @@
     <Content Include="js\lib\minified\jquery.min.js" />
     <Content Include="js\lib\minified\jquery.signalR-1.0.0.min.js" />
     <Content Include="js\lib\minified\md5.min.js" />
-    <Content Include="js\minified\app.combined.js" />
-    <Content Include="js\minified\app.min.js" />
     <Content Include="js\Shared.js" />
     <Content Include="partials\admin.html" />
     <Content Include="partials\_signup.html" />
@@ -286,6 +288,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="js\minified\" />
     <Folder Include="ViewHelpers\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>

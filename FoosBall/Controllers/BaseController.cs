@@ -49,6 +49,17 @@
             return Md5.CalculateMd5(player.Id + player.Email + "FoosBall4Ever");
         }
 
+        public JsonResult GetAppSettings(bool refresh = false)
+        {
+            var appSettings = new AppSettings
+            {
+                AppName = this.Settings.Name,
+                Environment = this.Settings.Environment.ToString()
+            };
+
+            return Json(appSettings, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetSession(bool refresh = false)
         {
             return Json(GetSessionInfo(refresh), JsonRequestBehavior.AllowGet);
