@@ -1,17 +1,17 @@
 ﻿<div id="match-list">
-    <div ng-cloak ng-repeat="match in matches" class="match clearfix">
+    <div data-ng-cloak data-ng-repeat="match in matches" class="match clearfix">
         <!-- Selects for team red -->
-        <div class="team-names red" ng-class="{winner: match.RedScore>match.BlueScore}">
+        <div class="team-names red" data-ng-class="{winner: match.RedScore>match.BlueScore}">
             <span class="red rating-distribution">
                 {{match.DistributedRating}}
             </span>
             <span class="gravatars">
                 <a class="{{match.RedPlayer1.Id}}" href="/#/playerstats?playerId={{match.RedPlayer1.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" ng-src="{{match.RedPlayer1.GravatarUrl}}"/>
+                    <img class="gravatar" alt="Gravatar picture" data-ng-src="{{match.RedPlayer1.GravatarUrl}}"/>
                 </a>
                 
-                <a ng-if="match.RedPlayer2.Id !== null" class="{{match.RedPlayer2.Id}}" href="/#/playerstats?playerId={{match.RedPlayer2.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" ng-src="{{match.RedPlayer2.GravatarUrl}}"/>
+                <a data-ng-if="match.RedPlayer2.Id !== null" class="{{match.RedPlayer2.Id}}" href="/#/playerstats?playerId={{match.RedPlayer2.Id}}">
+                    <img class="gravatar" alt="Gravatar picture" data-ng-src="{{match.RedPlayer2.GravatarUrl}}"/>
                 </a>
             </span>
             <span class="names">
@@ -27,11 +27,11 @@
         <!-- Team scores -->
         <div class="team-scores">
             <div class="score">
-                <span class="red" ng-class="{winner: match.RedScore>match.BlueScore}">
+                <span class="red" data-ng-class="{winner: match.RedScore>match.BlueScore}">
                     {{match.RedScore}}
                 </span>
                 -
-                <span class="blue" ng-class="{winner: match.BlueScore>match.RedScore}">
+                <span class="blue" data-ng-class="{winner: match.BlueScore>match.RedScore}">
                     {{match.BlueScore}}
                 </span>
             </div>
@@ -40,20 +40,20 @@
                 <span class="long-time" title="{{match.GameOverDate + ' ' + match.GameOverTime}}">
                     {{match.GameOverDate + ' ' + match.GameOverTime}}
                 </span>
-                <input ng-click="cancelMatch($index)" type="button" time-left-to-edit="{{match.UnixTime}}" class="hide button" value=""/>
+                <input data-ng-click="cancelMatch($index)" type="button" time-left-to-edit="{{match.UnixTime}}" class="hide button" value=""/>
             </div>
         </div>
         <!-- Selects for team blue -->
-        <div class="team-names blue" ng-class="{winner: match.BlueScore>match.RedScore}">
+        <div class="team-names blue" data-ng-class="{winner: match.BlueScore>match.RedScore}">
             <span class="blue rating-distribution">
                 {{match.DistributedRating}}
             </span>
             <span class="gravatars">
                 <a class="{{match.BluePlayer1.Id}}" href="/#/playerstats?playerId={{match.BluePlayer1.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" ng-src="{{match.BluePlayer1.GravatarUrl}}"/>
+                    <img class="gravatar" alt="Gravatar picture" data-ng-src="{{match.BluePlayer1.GravatarUrl}}"/>
                 </a>
-                <a ng-if="match.BluePlayer2.Id !== null" class="{{match.BluePlayer2.Id}}" href="/#/playerstats?playerId={{match.BluePlayer2.Id}}">
-                    <img class="gravatar" alt="Gravatar picture" ng-src="{{match.BluePlayer2.GravatarUrl}}"/>
+                <a data-ng-if="match.BluePlayer2.Id !== null" class="{{match.BluePlayer2.Id}}" href="/#/playerstats?playerId={{match.BluePlayer2.Id}}">
+                    <img class="gravatar" alt="Gravatar picture" data-ng-src="{{match.BluePlayer2.GravatarUrl}}"/>
                 </a>
             </span>
             <span class="names">
@@ -68,5 +68,5 @@
         </div>
     </div>
     
-    <input type="button" class="fetch button" value="Show more matches" ng-click="getMatches($scope.pageSize,matches.length)"/>
+    <input type="button" class="fetch button" value="Show more matches" data-ng-click="getMatches($scope.pageSize,matches.length)"/>
 </div>

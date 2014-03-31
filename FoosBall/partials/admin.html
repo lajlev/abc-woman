@@ -1,17 +1,17 @@
-﻿<div id="admin" ng-controller="AdminController">
-    <form name="appConfigForm" ng-submit="setConfig()" ng-model="config" ng-controller="AppConfigController">
+﻿<div id="admin" data-ng-controller="AdminController">
+    <form name="appConfigForm" data-ng-submit="setConfig()" data-ng-model="config" data-ng-controller="AppConfigController">
         <fieldset id="app-configuration">
             <legend>Configuration</legend>
         
             <label>Application name</label>
-            <input ng-model="config.Name" type="text" />
+            <input data-ng-model="config.Name" type="text" />
             
             <label>Administrators</label>
-            <input ng-model="config.AdminAccounts"type="text"/>
+            <input data-ng-model="config.AdminAccounts"type="text"/>
 
             <label>Notification url</label>
             <div>This url will get a POST request with match details after every match.</div>
-            <input ng-model="config.NotificationUrl" type="text" />
+            <input data-ng-model="config.NotificationUrl" type="text" />
             
             <input type="submit" class="button" value="Save configuration" />
         </fieldset>
@@ -21,7 +21,7 @@
         <legend>Matches</legend>
         
         <label>Replay all matches</label>
-        <input ng-click="replayAllMatches()" type="button" class="button" value="Replay all matches" />
+        <input data-ng-click="replayAllMatches()" type="button" class="button" value="Replay all matches" />
     </fieldset>
 
     <fieldset class="players-configuration">
@@ -37,11 +37,11 @@
                 <td class="password-col">Password</td>
                 <td class="retired-col">Retired</td>
             </tr>
-            <tr ng-repeat="player in players">
-                <td class="name-col"><input type="text" name="name" ng-model="player.Name" /></td>
-                <td class="email-col"><input type="email" name="email" ng-model="player.Email" /></td>
-                <td class="password-col"><input type="password" name="password" ng-model="player.password" /></td>
-                <td class="retired-col"><input type="checkbox" name="Deactivated" ng-model="player.Deactivated" /></td>
+            <tr data-ng-repeat="player in players">
+                <td class="name-col"><input type="text" name="name" data-ng-model="player.Name" /></td>
+                <td class="email-col"><input type="email" name="email" data-ng-model="player.Email" /></td>
+                <td class="password-col"><input type="password" name="password" data-ng-model="player.password" /></td>
+                <td class="retired-col"><input type="checkbox" name="Deactivated" data-ng-model="player.Deactivated" /></td>
             </tr>
         </table>
     </fieldset>

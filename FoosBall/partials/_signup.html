@@ -1,18 +1,18 @@
-﻿<div ng-controller="SignupController" class="signup clearfix">
-    <form name="signupForm" ng-submit="submitSignup()">
+﻿<div data-ng-controller="SignupController" class="signup clearfix">
+    <form name="signupForm" data-ng-submit="submitSignup()">
         <div>
-            <input ng-model="email" name="email" required="true" type="text" placeholder="Email" value="" />
+            <input data-ng-model="email" name="email" required="true" type="text" placeholder="Email" value="" />
         </div>
         <br>
         <div>
-            <input ng-model="name" name="name" required="true" type="text" placeholder="Your name" value="" />
+            <input data-ng-model="name" name="name" required="true" type="text" placeholder="Your name" value="" />
         </div>
         <br>
         <div>
-            <input ng-model="password" name="password" required="true" type="password" name="password" value="" placeholder="Password" autocapitalize="off" autocorrect="off"/>
+            <input data-ng-model="password" name="password" required="true" type="password" name="password" value="" placeholder="Password" autocapitalize="off" autocorrect="off"/>
         </div>
         <br>
-        <div ng-hide="!showSignupMessage" class="error validation-message">{{signupMessage}}</div>
+        <div data-ng-hide="!showSignupMessage" class="error validation-message">{{signupMessage}}</div>
         <input class="button" type="submit" value="Sign up" />
     </form>
 </div>

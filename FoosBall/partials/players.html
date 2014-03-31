@@ -1,9 +1,9 @@
-﻿<div class="players" ng-controller="PlayersController">
+﻿<div class="players" data-ng-controller="PlayersController">
     
-    <div ng-repeat="player in players" id="{{player.Id}}" class="player clearfix">
+    <div data-ng-repeat="player in players" id="{{player.Id}}" class="player clearfix">
         <div class="avatar">
             <a href="/#/playerstats?playerId={{player.Id}}">
-                <img class="gravatar" title="Players ranking: {{player.Ranking}}" ng-src="{{player.GravatarUrl}}" />
+                <img class="gravatar" title="Players ranking: {{player.Ranking}}" data-ng-src="{{player.GravatarUrl}}" />
             </a>
         </div>
         <div class="info">

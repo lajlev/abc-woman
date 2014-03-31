@@ -1,34 +1,34 @@
-﻿<div class="user-profile" class="user-profile">
-    <form ng-if="session.IsLoggedIn" name="editUserForm" ng-submit="submitUserDetails(editUserForm)" ng-controller="UserController" ng-model="user">
+﻿<div class="user-profile">
+    <form data-ng-if="session.IsLoggedIn" name="editUserForm" data-ng-submit="submitUserDetails(editUserForm)" data-ng-controller="UserController" data-ng-model="user">
         <fieldset>
             <legend>{{user.Name}}'s account</legend>
 
-            <a href ng-href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" ng-src="{{user.GravatarUrl}}" /></a>
+            <a href="#" data-ng-href="http://www.gravatar.com"><img id="profile-gravatar" alt="Gravatar picture" data-ng-src="{{user.GravatarUrl}}" /></a>
             <br />
             <br />
             <label for="email">Email:</label>
-            <input ng-model="user.Email" type="email" name="email" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email" />
+            <input data-ng-model="user.Email" type="email" name="email" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email" />
             <br />
             <br />
             <label for="name">Name:</label>
-            <input ng-model="user.Name" value="{{user.Name}}" type="text" name="name" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Name" />
+            <input data-ng-model="user.Name" value="{{user.Name}}" type="text" name="name" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Name" />
             <br />
             <br />
 
             <label for="new-password">New password:</label>
-            <input ng-model="user.NewPassword" type="password" name="new-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="New password" />
+            <input data-ng-model="user.NewPassword" type="password" name="new-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="New password" />
             <br />
             <br />
 
-            <span ng-show="user.NewPassword">
+            <span data-ng-show="user.NewPassword">
                 <label for="old-password">Old password:</label>
-                <input ng-model="user.OldPassword" type="password" name="old-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Old password" />
+                <input data-ng-model="user.OldPassword" type="password" name="old-password" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Old password" />
                 <br />
                 <br />
             </span>
 
-            <span ng-show="showErrorMessage" class="error validation-message">{{updateMessage}}</span>
-            <span ng-show="showValidationMessage" class="validation-message">{{updateMessage}}</span>
+            <span data-ng-show="showErrorMessage" class="error validation-message">{{updateMessage}}</span>
+            <span data-ng-show="showValidationMessage" class="validation-message">{{updateMessage}}</span>
             <br />
             <br />
 
