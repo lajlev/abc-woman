@@ -22,12 +22,18 @@
         $scope.uiSettings.hideLogonMenu = !$scope.uiSettings.hideLogonMenu;
         $scope.uiSettings.hideSignupMenu = true;
         $scope.uiSettings.hideMainMenu = true;
+        setTimeout(function () {
+            $('input[name="email"]', 'form[name="loginForm"]').focus();
+        }, 5);
     };
 
     $scope.showSignupMenu = function() {
         $scope.uiSettings.hideSignupMenu = !$scope.uiSettings.hideSignupMenu;
         $scope.uiSettings.hideLogonMenu = true;
         $scope.uiSettings.hideMainMenu = true;
+        setTimeout(function () {
+            $('input[name="email"]', 'form[name="signupForm"]').focus();
+        }, 5);
     };
 
     $scope.showMainMenu = function() {
