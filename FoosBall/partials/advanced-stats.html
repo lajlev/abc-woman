@@ -1,39 +1,39 @@
-﻿<div ng-cloak class="adv-statistics clearfix" ng-controller="AdvancedStatsController">
+﻿<div data-ng-cloak class="adv-statistics clearfix" data-ng-controller="AdvancedStatsController">
     <!-- start -->
     <div class="vs-container">
-        <form name="resolveAdvStatsForm" ng-submit="submitPlayers()" ng-model="participants">
+        <form name="resolveAdvStatsForm" data-ng-submit="submitPlayers()" data-ng-model="participants">
             <div class="team-a fl vs-team">
-                <select name="team-a-player-1" ng-model="participants.teamAPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                <select name="team-a-player-1" data-ng-model="participants.teamAPlayer1Id" data-ng-focus="onPlayerSelectFocus($event)" data-ng-change="onPlayerSelectChange()">
                     <option></option>
-                    <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
+                    <option data-ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
-                <select name="team-a-player-2" ng-model="participants.teamAPlayer2Id" ng-show="participants.teamAPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                <select name="team-a-player-2" data-ng-model="participants.teamAPlayer2Id" data-ng-show="participants.teamAPlayer1Id" data-ng-focus="onPlayerSelectFocus($event)" data-ng-change="onPlayerSelectChange()">
                     <option></option>
-                    <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
+                    <option data-ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
             </div>
             <div class="fl vs-text">
                 <p>VS</p>
             </div>
             <div class="team-b fl vs-team">
-                <select name="team-b-player-1" ng-model="participants.teamBPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                <select name="team-b-player-1" data-ng-model="participants.teamBPlayer1Id" data-ng-focus="onPlayerSelectFocus($event)" data-ng-change="onPlayerSelectChange()">
                     <option></option>
-                    <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
+                    <option data-ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
-                <select name="team-b-player-2" ng-model="participants.teamBPlayer2Id" ng-show="participants.teamBPlayer1Id" ng-focus="onPlayerSelectFocus($event)" ng-change="onPlayerSelectChange()">
+                <select name="team-b-player-2" data-ng-model="participants.teamBPlayer2Id" data-ng-show="participants.teamBPlayer1Id" data-ng-focus="onPlayerSelectFocus($event)" data-ng-change="onPlayerSelectChange()">
                     <option></option>
-                    <option ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
+                    <option data-ng-repeat="player in players" value="{{player.Id}}">{{player.Name}}</option>
                 </select>
             </div>
-            <input ng-disabled="!participants.teamAPlayer1Id || !participants.teamBPlayer1Id || !matchesAreReady" type="submit" id="vs-stats-calc" ng-click="addRotation()" value="calculate" />
+            <input data-ng-disabled="!participants.teamAPlayer1Id || !participants.teamBPlayer1Id || !matchesAreReady" type="submit" id="vs-stats-calc" data-ng-click="addRotation()" value="calculate" />
         </form>
     </div>
 
-    <div class="stat-data-container" ng-class="{active: isStatsCalculated}">
+    <div class="stat-data-container" data-ng-class="{active: isStatsCalculated}">
         <div class="data-row">
-            <p class="data-cell">{{stats.rank.teamAPlayer1}}<span ng-if="stats.rank.teamAPlayer2 !== 0">, {{stats.rank.teamAPlayer2}}</span></p>
+            <p class="data-cell">{{stats.rank.teamAPlayer1}}<span data-ng-if="stats.rank.teamAPlayer2 !== 0">, {{stats.rank.teamAPlayer2}}</span></p>
             <p class="data-label">Rank</p>
-            <p class="data-cell">{{stats.rank.teamBPlayer1}}<span ng-if="stats.rank.teamBPlayer2 !== 0">, {{stats.rank.teamBPlayer2}}</span></p>
+            <p class="data-cell">{{stats.rank.teamBPlayer1}}<span data-ng-if="stats.rank.teamBPlayer2 !== 0">, {{stats.rank.teamBPlayer2}}</span></p>
         </div>
 
         <div class="data-row">
@@ -65,9 +65,9 @@
             <p class="data-cell">{{stats.goalsScored.teamB}}</p>
         </div>
         <div class="data-row team-color">
-            <p class="data-cell" ng-class="{red: stats.preferredColor.teamA.color.match('red'), blue: stats.preferredColor.teamA.color.match('blue')}" class="team-a-color">{{stats.preferredColor.teamA.color}} ({{stats.preferredColor.teamA.count}})</p>
+            <p class="data-cell" data-ng-class="{red: stats.preferredColor.teamA.color.match('red'), blue: stats.preferredColor.teamA.color.match('blue')}" class="team-a-color">{{stats.preferredColor.teamA.color}} ({{stats.preferredColor.teamA.count}})</p>
             <p class="data-label">Pref. color</p> 
-            <p class="data-cell" ng-class="{red: stats.preferredColor.teamB.color.match('red'), blue: stats.preferredColor.teamB.color.match('blue')}"  class="team-b-color">{{stats.preferredColor.teamB.color}} ({{stats.preferredColor.teamB.count}})</p>
+            <p class="data-cell" data-ng-class="{red: stats.preferredColor.teamB.color.match('red'), blue: stats.preferredColor.teamB.color.match('blue')}"  class="team-b-color">{{stats.preferredColor.teamB.color}} ({{stats.preferredColor.teamB.count}})</p>
         </div>
         <div class="data-row">
             <p class="data-cell">{{stats.biggestWin.teamA.result}}</p>
@@ -85,9 +85,9 @@
             <p class="data-cell">{{stats.mostPointsWon.teamB | number:2}}</p>
         </div>
         <div class="data-row">
-            <p class="data-cell" >{{stats.experience.teamAPlayer1}}<span ng-if="stats.experience.teamAPlayer2 !== ''"> / {{stats.experience.teamAPlayer2}}</span></p>  <!-- (playerOne.total.matches.length + playerTwo.total.matches.length) / 2  [ make case with val that outputs a string value ] -->
+            <p class="data-cell" >{{stats.experience.teamAPlayer1}}<span data-ng-if="stats.experience.teamAPlayer2 !== ''"> / {{stats.experience.teamAPlayer2}}</span></p>  <!-- (playerOne.total.matches.length + playerTwo.total.matches.length) / 2  [ make case with val that outputs a string value ] -->
             <p class="data-label">Experience</p>
-            <p class="data-cell">{{stats.experience.teamBPlayer1}}<span ng-if="stats.experience.teamBPlayer2 !== ''"> / {{stats.experience.teamBPlayer2}}</span></p>
+            <p class="data-cell">{{stats.experience.teamBPlayer1}}<span data-ng-if="stats.experience.teamBPlayer2 !== ''"> / {{stats.experience.teamBPlayer2}}</span></p>
         </div>
 
     </div>

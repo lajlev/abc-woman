@@ -1,8 +1,8 @@
-﻿<div ng-cloak ng-controller="PlayerStatsController" class="statistics player clearfix">
-    <div class="foosball-spinner" ng-show="!playerStatsDataReady" ></div>
-    <span ng-show="playerStatsDataReady">
+﻿<div data-ng-cloak data-ng-controller="PlayerStatsController" class="statistics player clearfix">
+    <div class="foosball-spinner" data-ng-show="!playerStatsDataReady" ></div>
+    <span data-ng-show="playerStatsDataReady">
     <div class="avatar">
-        <img class="gravatar" alt="{{playerStats.Player.Name}}" title="{{playerStats.Player.Name}}" ng-src="{{playerStats.Player.GravatarUrl}}" />
+        <img class="gravatar" alt="{{playerStats.Player.Name}}" title="{{playerStats.Player.Name}}" data-ng-src="{{playerStats.Player.GravatarUrl}}" />
     </div>
     
     <div class="column first">
@@ -31,20 +31,20 @@
         <div class="label">Lowest Rating Ever:</div>
         <div class="info splitline" title="{{playerStats.LowestRating}}">{{playerStats.LowestRating.toFixed(2)}}</div>
 
-        <span ng-if="playerStats.Played > 0">
+        <div data-ng-if="playerStats.Played > 0">
             <div class="label" title="The BFF (Best Friend Forever) is the player together with whom {{playerStats.Player.Name}} has fought most often">Best Friend Forever:</div>
             <div class="info">
-                <a ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Bff.Player.Name}}</a> - {{playerStats.Bff.Occurrences}} fights
+                <a data-ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Bff.Player.Name}}</a> - {{playerStats.Bff.Occurrences}} fights
             </div>
     
             <div class="label" title="The RBFF (Real Best Friend Forever) is the player together with whom {{playerStats.Player.Name}} has won most fights">Real Best Friend Forever:</div>
             <div class="info">
-                <a ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Rbff.Player.Name}}</a> - {{playerStats.Rbff.Occurrences}} wins
+                <a data-ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Rbff.Player.Name}}</a> - {{playerStats.Rbff.Occurrences}} wins
             </div>
     
             <div class="label">Evil Arch Enemy:</div>
             <div class="info">
-                <a ng-href="{{playerStats.Eae.Player.Url}}">{{playerStats.Eae.Player.Name}}</a> - {{playerStats.Eae.Occurrences}} losses
+                <a data-ng-href="{{playerStats.Eae.Player.Url}}">{{playerStats.Eae.Player.Name}}</a> - {{playerStats.Eae.Occurrences}} losses
             </div>
     
             <div class="label">Preferred Color:</div>
@@ -57,7 +57,7 @@
                 {{playerStats.WinningColor.Color}} - {{playerStats.WinningColor.Occurrences}} wins
             </div>
 
-        </span>
+        </div>
     </div>
     
         <div class="column second">
