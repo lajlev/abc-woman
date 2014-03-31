@@ -6,23 +6,15 @@
     <meta name="robots" content="noindex">
     <link rel="shortcut icon" href="https://s3-eu-west-1.amazonaws.com/images.trustpilot.com/static/foosball/favicon.ico" type="image/x-icon" />
     <title ng-bind="appSettings.AppNameWithEnvironment"></title>
-    <link href="/css/minified/foosball.min.css" rel="stylesheet" type="text/css" />
+    <link ng-href="{{staticResources.cssUrl}}" href="/css/minified/foosball.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    @{
-        var currentUser = (Player)HttpContext.Current.Session["User"];
-        if (currentUser != null && !string.IsNullOrWhiteSpace(currentUser.Id))
-        {
-            <input id="current-user-id" type="hidden" value="@currentUser.Id" />
-        }
-    }
-
     <div id="request-notification">
         Try the new Foosball Fighting desktop notifications - You'll love it!<br />
         <input class="button" id="notify-me" value="Ok, off we go!" />
     </div>
 
-    <img src="/css/foosball-background.jpg" ng-src="{{getBackgroundImage()}}" id="bg" class="bgwidth" alt="background image" />
+    <img src="/css/foosball-background.jpg" ng-src="{{staticResources.backgroundImageUrl}}" id="bg" class="bgwidth" alt="background image" />
 
     <header>
         <a href="#" ng-href="/#/">
@@ -33,8 +25,7 @@
                 <div class="logo-text" ng-bind="appSettings.AppNameWithEnvironment"></div>
             </div>
         </a>
-
-        <!-- MAIN MENU -->
+        @* MAIN MENU *@
         <nav>
             <div class="main-menu-arrow menu-arrow" ng-hide="uiSettings.hideMainMenu"></div>
             <ul id="main-menu" class="menu" ng-hide="uiSettings.hideMainMenu">
@@ -50,19 +41,19 @@
             </ul>
         </nav>
 
-        <!-- LOGIN MENU -->
+        @* LOGIN MENU *@
         <div class="login-menu-arrow menu-arrow" ng-hide="uiSettings.hideLogonMenu"></div>
         <div id="login-menu" class="menu" ng-hide="uiSettings.hideLogonMenu">
             <div ng-include="'/partials/_logon.html'"></div>
         </div>
 
-        <!-- SIGN-UP MENU -->
+        @* SIGN-UP MENU *@
         <div class="signup-menu-arrow menu-arrow" ng-hide="uiSettings.hideSignupMenu"></div>
         <div id="login-menu" class="menu" ng-hide="uiSettings.hideSignupMenu">
             <div ng-include="'/partials/_signup.html'"></div>
         </div>
 
-        <!-- LOGIN/ACCOUNT STATUS -->
+        @* LOGIN/ACCOUNT STATUS *@
         <div class="login-display">
             <div ng-cloak ng-if="session.IsLoggedIn" class="menu-account-info">
                 Hi {{session.User.Name}}
@@ -89,7 +80,7 @@
 
     @* Thirdparty Javascript *@
     <script src="/js/lib/jquery.js"></script>
-    <script src="/Scripts/jquery.signalR-2.0.0.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.0.0.js"></script>
     <script src="/js/lib/angular.js"></script>
     <script src="/js/lib/angular-resource.js"></script>
     <script src="/js/lib/angular-route.js"></script>
@@ -104,6 +95,7 @@
     <script src="/js/services/appsettings.service.js"></script>
     <script src="/js/services/session.service.js"></script>
     <script src="/js/services/advancedstats.service.js"></script>
+    <script src="/js/services/staticresources.service.js"></script>
     <script src="/js/directives/time-left-to-edit.directive.js"></script>
     <script src="/js/directives/foosball-score.directive.js"></script>
     <script src="/js/controllers/base.controller.js"></script>
