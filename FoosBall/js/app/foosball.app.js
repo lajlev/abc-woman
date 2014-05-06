@@ -4,7 +4,6 @@
 FoosBall.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', { templateUrl: '/partials/home.html' })
-        .when('/features', { templateUrl: '/partials/features.html' })
         .when('/stats', { templateUrl: '/partials/stats.html', controller: 'StatsController' })
         .when('/playerstats', { templateUrl: '/partials/stats-player.html', controller: 'PlayerStatsController' })
         .when('/advancedstats', { templateUrl: '/partials/advanced-stats.html', controller: 'AdvancedStatsController' })
