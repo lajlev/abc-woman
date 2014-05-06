@@ -29,18 +29,11 @@
             </div>
         </a>
         @* MAIN MENU *@
-        <nav>
-            <div class="main-menu-arrow menu-arrow" data-ng-hide="uiSettings.hideMainMenu"></div>
-            <ul id="main-menu" class="menu" data-ng-hide="uiSettings.hideMainMenu">
-                <li data-ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Home"><a class="main-menu-item" data-ng-href="/#/">Home</a></li>
-                <li data-ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Scoreboard"><a class="main-menu-item" data-ng-href="/#/players">Scoreboard</a></li>
-                <li data-ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Matches"><a class="main-menu-item" data-ng-href="/#/matches">Matches</a></li>
-                <li data-ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Stats"><a class="main-menu-item" data-ng-href="/#/stats">Stats</a></li>
-                <li data-ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="AdvStats"><a class="main-menu-item" data-ng-href="/#/advancedstats">Advanced Stats</a></li>
-                <li data-ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Features"><a class="main-menu-item" data-ng-href="/#/features">Features</a></li>
-                <li data-ng-click="uiSettings.hideMainMenu = !uiSettings.hideMainMenu" class="Admin" data-ng-if="session.IsLoggedIn && session.IsAdmin">
-                    <a class="main-menu-item" data-ng-href="/#/admin">Admin</a>
-                </li>
+        <nav class="main-menu">
+            <ul>
+                <li class="Scoreboard"><a data-ng-href="/#/players">Scoreboard</a>&nbsp;&nbsp;&#x2022;&nbsp;</li>
+                <li class="Matches"><a data-ng-href="/#/matches">Matches</a>&nbsp;&nbsp;&#x2022;&nbsp;</li>
+                <li class="Stats"><a data-ng-href="/#/stats">Stats</a></li>
             </ul>
         </nav>
 
