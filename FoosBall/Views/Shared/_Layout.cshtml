@@ -53,7 +53,7 @@
         <div class="login-display">
             <div data-ng-cloak data-ng-if="session.IsLoggedIn" class="menu-account-info">
                 Hi {{session.User.Name}}
-                [ <a href="#" data-ng-href="/#/user-profile">Account</a> &middot; <a href="#" data-ng-click="logout()">Log out</a> ]
+                [ <a href="#" data-ng-href="/#/user-profile">Account</a> <span data-ng-if="session.IsAdmin">&middot; <a data-ng-href="/#/admin">Admin</a></span> &middot; <a href="#" data-ng-click="logout()">Log out</a> ]
             </div>
 
             <div data-ng-if="!session.IsLoggedIn" class="menu-login-info">
