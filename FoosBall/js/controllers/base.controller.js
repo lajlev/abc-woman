@@ -37,7 +37,8 @@
         }, 5);
     };
 
-    $scope.showMainMenu = function() {
+    $scope.showMainMenu = function ($event) {
+        $event.preventDefault();
         $scope.uiSettings.hideMainMenu = !$scope.uiSettings.hideMainMenu;
         $scope.uiSettings.hideLogonMenu = true;
         $scope.uiSettings.hideSignupMenu = true;
