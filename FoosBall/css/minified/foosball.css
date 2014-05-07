@@ -5,12 +5,13 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #dddddd;
+  background-color: #222222;
   color: #222222;
   font-size: 0.75em;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  width: 100%; }
 
 a {
   color: black;
@@ -61,6 +62,9 @@ page width. Or, you can specify an exact pixel width. */
       margin-left: auto;
       margin-right: auto; } }
 
+#main-view {
+  margin-top: 10px; }
+
 /* TAB MENU
 ----------------------------------------------------------*/
 .menu {
@@ -78,66 +82,29 @@ page width. Or, you can specify an exact pixel width. */
     padding: 15px 20px; }
     .menu#login-menu .button {
       margin-top: 10px; }
-  .menu#main-menu {
-    width: 150px;
-    border-radius: 0px 0px 10px 10px;
-    box-shadow: 5px 0px 20px 3px; }
-    .menu#main-menu li {
-      border-bottom: 1px solid #efefef;
-      list-style: none;
-      display: list-item;
-      margin: 0;
-      width: 100%;
-      cursor: pointer; }
-      .menu#main-menu li:hover {
-        background: #f2f2f2;
-        text-decoration: none; }
-      .menu#main-menu li.selected {
-        font-weight: bold; }
-      .menu#main-menu li:last-child {
-        border-bottom: none; }
-      .menu#main-menu li a, .menu#main-menu li a:hover {
-        display: block;
-        text-decoration: none;
-        padding: 10px 15px; }
 
-.menu-arrow {
-  z-index: 1;
-  position: absolute;
-  top: 45px;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid white; }
-  .menu-arrow.main-menu-arrow {
-    right: 18px; }
-  .menu-arrow.login-menu-arrow {
-    right: 120px; }
-  .menu-arrow.signup-menu-arrow {
-    right: 60px; }
-
-.menu-list-button {
-  position: relative;
-  padding-left: 1.25em;
-  float: left;
-  margin: 2px 15px 0 15px; }
-  .menu-list-button a:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 14px;
-    height: 2px;
-    border-top: 6px double #fff;
-    border-bottom: 2px solid #fff; }
+.main-menu {
+  margin-top: -40px;
+  margin-left: 60px;
+  float: left; }
+  .main-menu li {
+    color: #fff;
+    font-size: 17px;
+    display: inline; }
+  .main-menu a {
+    color: #fff;
+    font-size: 17px; }
+    .main-menu a:hover {
+      text-decoration: none;
+      color: #DDD; }
 
 .menu-login-info, .menu-account-info {
   float: left; }
 
 .login-display {
+  font-size: 15px;
   float: right;
-  margin: 20px 0 0 0;
+  margin: 20px 10px 0 0;
   color: #999999; }
   .login-display a {
     color: #fff;
@@ -180,7 +147,7 @@ header {
         float: left;
         margin: 10px 0 0 0; } }
 
-#main {
+#page {
   clear: both;
   min-height: 280px;
   padding: 80px 10px 5px; }
@@ -415,7 +382,7 @@ html[xmlns] .clearfix {
 #admin .players-configuration .email-col {
   width: 200px; }
 
-.home, .features {
+.home {
   background: none #fff;
   border-radius: 5px;
   padding: 15px 20px; }
@@ -436,12 +403,6 @@ html[xmlns] .clearfix {
   .event-feed-items a {
     font-weight: normal;
     font-size: 1.0em;
-    text-decoration: underline; }
-
-.feature-list {
-  list-style: none;
-  padding-left: 20px; }
-  .feature-list li ul li a {
     text-decoration: underline; }
 
 #match-list {

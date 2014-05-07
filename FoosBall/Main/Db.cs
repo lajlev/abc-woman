@@ -8,21 +8,8 @@
     {
         public Db(Environment environment = Environment.Production)
         {
-            // Determine environment
-            switch (environment)
-            {
-                case Environment.Local:
-                    this.ConnectionString = ConfigurationManager.AppSettings["Foosball.localhost"];
-                    break;
-                case Environment.Staging:
-                    this.ConnectionString = ConfigurationManager.AppSettings["FoosBallStaging.MongoLab"];
-                    break;
-                case Environment.Production:
-                    this.ConnectionString = ConfigurationManager.AppSettings["Database"];
-                    break;
-            }
-
             // Try to connect to server
+            this.ConnectionString = ConfigurationManager.AppSettings["Database"];
             this.DatabaseName = MongoUrl.Create(this.ConnectionString).DatabaseName;
             this.Server = MongoServer.Create(this.ConnectionString);
 

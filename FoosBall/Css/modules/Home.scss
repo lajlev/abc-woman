@@ -1,4 +1,4 @@
-.home, .features {
+.home {
     background: none #fff;
     border-radius: 5px;
     padding: 15px 20px;
@@ -27,14 +27,6 @@
     }
 }
 
-.feature-list {
-    list-style: none;
-    padding-left: 20px;
-
-    li {
-
-        ul li a {
-            text-decoration: underline;
-        }
-    }
+.month-left {
+    float: left;
 }

@@ -1,17 +1,20 @@
+@import "../_mixins";
+
 /* The box-model */
 * {
     -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    -webkit-box-sizing: border-box; 
     box-sizing: border-box;
-}
+}  
 
 body {
-    background-color: $light;
+    background-color: $dark;
     color: $dark;
     font-size: 0.75em;
     font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+    width: 100%;    
 }
 
 a {
@@ -78,6 +81,10 @@ page width. Or, you can specify an exact pixel width. */
     }
 }
 
+#main-view {
+    margin-top: 10px;
+}
+
 /* TAB MENU
 ----------------------------------------------------------*/
 .menu {
@@ -97,76 +104,26 @@ page width. Or, you can specify an exact pixel width. */
             margin-top: 10px;
         }
     }
-    &#main-menu {
-        width: 150px;
-        border-radius: 0px 0px 10px 10px;
-        box-shadow: 5px 0px 20px 3px;
+}
 
-        li {
-            border-bottom: 1px solid $seperator-color;
-            list-style: none;
-            display: list-item; 
-            margin: 0;
-            width: 100%;
-            cursor: pointer;
+.main-menu {
+    margin-top: -5px;
+    float: left; 
 
-            &:hover {
-                background: darken(#fff, 5);
-                text-decoration: none;
-            }
+    li {
+        color: #fff;
+        font-size: 17px;
+        display: inline;
+    }
 
-            &.selected { 
-                font-weight: bold;
-            }
+    a {
+        color: #fff;
+        font-size: 17px;
 
-            &:last-child {
-                border-bottom: none;
-            }
-
-            a, a:hover {
-                display: block;
-                text-decoration: none;
-                padding: 10px 15px;
-            }
+        &:hover {
+            text-decoration: none;
+            color: #DDD;
         }
-    }
-}
-
-.menu-arrow {
-    z-index: 1;
-    position: absolute;
-    top: 45px;
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid white;
-    &.main-menu-arrow {
-        right: 18px;
-    }
-    &.login-menu-arrow {
-        right: 120px;
-    }
-    &.signup-menu-arrow {
-        right: 60px;
-    }
-}
-
-.menu-list-button {
-    position: relative;
-    padding-left: 1.25em;
-    float: left;
-    margin: 2px 15px 0 15px;
-
-    a:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width:14px;
-        height:2px;
-        border-top: 6px double #fff;
-        border-bottom: 2px solid #fff;
     }
 }
 
@@ -175,9 +132,10 @@ page width. Or, you can specify an exact pixel width. */
 }
 
 .login-display {
+    font-size: 15px;
     float: right;
-    margin: 20px 0 0 0;
-    color: $font-color-dimmed;
+    margin: 20px 10px 0 0;
+    color: $font-color-dimmed;  
 
     a {
         color: #fff;
@@ -232,7 +190,7 @@ header {
     }
 }
 
-#main {
+#page {
     clear: both;
     min-height: 280px;
     padding: 80px 10px 5px;

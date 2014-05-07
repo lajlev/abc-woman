@@ -9,6 +9,7 @@
             if (response.success) {
                 var preparedMatch = prepareMatch(response.returnedMatch);
                 $scope.matches.unshift(preparedMatch);
+                mixpanel.track("Match registered");
             }
         });
     };

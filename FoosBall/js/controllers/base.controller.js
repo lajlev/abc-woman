@@ -15,6 +15,7 @@
     var promiseOfAppSettings = appSettings.getAppSettings();
     promiseOfAppSettings.then(function(response) {
         $scope.appSettings = response;
+        $scope.appSettings.ready = true;
         $scope.appSettings.AppNameWithEnvironment = getAppNameWithEnvironment($scope.appSettings.AppName, $scope.appSettings.Environment);
     });
 
@@ -36,7 +37,8 @@
         }, 5);
     };
 
-    $scope.showMainMenu = function() {
+    $scope.showMainMenu = function ($event) {
+        $event.preventDefault();
         $scope.uiSettings.hideMainMenu = !$scope.uiSettings.hideMainMenu;
         $scope.uiSettings.hideLogonMenu = true;
         $scope.uiSettings.hideSignupMenu = true;

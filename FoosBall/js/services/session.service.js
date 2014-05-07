@@ -27,8 +27,8 @@
         });
     };
     this.logout = function (scope, callback) {
-        var AccoutLogoff = $resource('/Account/LogOff'),
-            logoffPromise = AccoutLogoff.get().$promise;
+        var AccountLogoff = $resource('/Account/LogOff'),
+            logoffPromise = AccountLogoff.get().$promise;
         logoffPromise.then(function () {
             var sessionPromise = self.getSession();
             sessionPromise.then(function (sessionInfo) {

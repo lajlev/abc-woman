@@ -1,68 +1,69 @@
 ﻿<div data-ng-cloak data-ng-controller="PlayerStatsController" class="statistics player clearfix">
-    <div class="foosball-spinner" data-ng-show="!playerStatsDataReady" ></div>
-    <span data-ng-show="playerStatsDataReady">
-    <div class="avatar">
-        <img class="gravatar" alt="{{playerStats.Player.Name}}" title="{{playerStats.Player.Name}}" data-ng-src="{{playerStats.Player.GravatarUrl}}" />
-    </div>
-    
-    <div class="column first">
-        <div class="label">Player ranking</div>
-        <div class="info">{{playerStats.Ranking}} <span class="thin">of</span> {{playerStats.TotalNumberOfPlayers}}</div>
+    <div class="foosball-spinner" data-ng-show="!playerStatsDataReady"></div>
 
-        <div class="label">Elo rating:</div>
-        <div class="info">{{playerStats.Player.Rating.toFixed(2)}}</div>
-        <div class="label">Winning ratio:</div>
-        <div class="info splitline">{{playerStats.Player.Ratio.toFixed(2)}}%</div>
-        
-        <div class="label">Fights Total:</div>
-        <div class="info">{{playerStats.Played}}</div>
-        <div class="label">Won Fights:</div>
-        <div class="info">{{playerStats.Won}}</div>
-        <div class="label">Lost Fights:</div>
-        <div class="info splitline">{{playerStats.Lost}}</div>
-        
-        <div class="label">Longest Winning Streak:</div>
-        <div class="info splitline">{{playerStats.LongestWinningStreak}}</div>
-        <div class="label">Longest Losing Streak:</div>
-        <div class="info splitline">{{playerStats.LongestLosingStreak}}</div>
-        
-        <div class="label">Highest Rating Ever:</div>
-        <div class="info splitline" title="{{playerStats.HighestRating}}">{{playerStats.HighestRating.toFixed(2)}}</div>
-        <div class="label">Lowest Rating Ever:</div>
-        <div class="info splitline" title="{{playerStats.LowestRating}}">{{playerStats.LowestRating.toFixed(2)}}</div>
-
-        <div data-ng-if="playerStats.Played > 0">
-            <div class="label" title="The BFF (Best Friend Forever) is the player together with whom {{playerStats.Player.Name}} has fought most often">Best Friend Forever:</div>
-            <div class="info">
-                <a data-ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Bff.Player.Name}}</a> - {{playerStats.Bff.Occurrences}} fights
-            </div>
-    
-            <div class="label" title="The RBFF (Real Best Friend Forever) is the player together with whom {{playerStats.Player.Name}} has won most fights">Real Best Friend Forever:</div>
-            <div class="info">
-                <a data-ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Rbff.Player.Name}}</a> - {{playerStats.Rbff.Occurrences}} wins
-            </div>
-    
-            <div class="label">Evil Arch Enemy:</div>
-            <div class="info">
-                <a data-ng-href="{{playerStats.Eae.Player.Url}}">{{playerStats.Eae.Player.Name}}</a> - {{playerStats.Eae.Occurrences}} losses
-            </div>
-    
-            <div class="label">Preferred Color:</div>
-            <div class="info">
-                {{playerStats.PreferredColor.Color}} - {{playerStats.PreferredColor.Occurrences}} fights
-            </div>
-
-            <div class="label">Winning Color:</div>
-            <div class="info">
-                {{playerStats.WinningColor.Color}} - {{playerStats.WinningColor.Occurrences}} wins
-            </div>
-
+    <div data-ng-show="playerStatsDataReady">
+        <div class="avatar">
+            <img class="gravatar" alt="{{playerStats.Player.Name}}" title="{{playerStats.Player.Name}}" data-ng-src="{{playerStats.Player.GravatarUrl}}" />
         </div>
-    </div>
-    
+
+        <div class="column first">
+            <div>Player ranking</div>
+            <div class="info">{{playerStats.Ranking}} <span class="thin">of</span> {{playerStats.TotalNumberOfPlayers}}</div>
+
+            <div>Elo rating:</div>
+            <div class="info">{{playerStats.Player.Rating.toFixed(2)}}</div>
+            <div>Winning ratio:</div>
+            <div class="info splitline">{{playerStats.Player.Ratio.toFixed(2)}}%</div>
+
+            <div>Fights Total:</div>
+            <div class="info">{{playerStats.Played}}</div>
+            <div>Won Fights:</div>
+            <div class="info">{{playerStats.Won}}</div>
+            <div>Lost Fights:</div>
+            <div class="info splitline">{{playerStats.Lost}}</div>
+
+            <div>Longest Winning Streak:</div>
+            <div class="info splitline">{{playerStats.LongestWinningStreak}}</div>
+            <div>Longest Losing Streak:</div>
+            <div class="info splitline">{{playerStats.LongestLosingStreak}}</div>
+
+            <div>Highest Rating Ever:</div>
+            <div class="info splitline" title="{{playerStats.HighestRating}}">{{playerStats.HighestRating.toFixed(2)}}</div>
+            <div>Lowest Rating Ever:</div>
+            <div class="info splitline" title="{{playerStats.LowestRating}}">{{playerStats.LowestRating.toFixed(2)}}</div>
+
+            <div data-ng-if="playerStats.Played > 0">
+                <div title="The BFF (Best Friend Forever) is the player together with whom {{playerStats.Player.Name}} has fought most often">Best Friend Forever:</div>
+                <div class="info">
+                    <a data-ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Bff.Player.Name}}</a> - {{playerStats.Bff.Occurrences}} fights
+                </div>
+
+                <div title="The RBFF (Real Best Friend Forever) is the player together with whom {{playerStats.Player.Name}} has won most fights">Real Best Friend Forever:</div>
+                <div class="info">
+                    <a data-ng-href="{{playerStats.Bff.Player.Url}}">{{playerStats.Rbff.Player.Name}}</a> - {{playerStats.Rbff.Occurrences}} wins
+                </div>
+
+                <div>Evil Arch Enemy:</div>
+                <div class="info">
+                    <a data-ng-href="{{playerStats.Eae.Player.Url}}">{{playerStats.Eae.Player.Name}}</a> - {{playerStats.Eae.Occurrences}} losses
+                </div>
+
+                <div>Preferred Color:</div>
+                <div class="info">
+                    {{playerStats.PreferredColor.Color}} - {{playerStats.PreferredColor.Occurrences}} fights
+                </div>
+
+                <div>Winning Color:</div>
+                <div class="info">
+                    {{playerStats.WinningColor.Color}} - {{playerStats.WinningColor.Occurrences}} wins
+                </div>
+
+            </div>
+        </div>
+
         <div class="column second">
             <div id="player-rating-chart" data-subject-id="{{playerStats.Player.Id}}" data-subject-name="{{playerStats.Player.Name}}"></div>
         </div>
 
-    </span>
+    </div>
 </div>
