@@ -1,4 +1,5 @@
 bin/
+packages/
 obj/
 _ReSharper.FoosBall/
 FoosBall/Migration/*.json
