@@ -38,18 +38,6 @@
             </ul>
         </nav>
 
-        @* LOGIN MENU *@
-        <div class="login-menu-arrow menu-arrow" data-ng-hide="uiSettings.hideLogonMenu"></div>
-        <div id="login-menu" class="menu" data-ng-hide="uiSettings.hideLogonMenu">
-            <div data-ng-include="'/partials/_logon.html'"></div>
-        </div>
-
-        @* SIGN-UP MENU *@
-        <div class="signup-menu-arrow menu-arrow" data-ng-hide="uiSettings.hideSignupMenu"></div>
-        <div id="login-menu" class="menu" data-ng-hide="uiSettings.hideSignupMenu">
-            <div data-ng-include="'/partials/_signup.html'"></div>
-        </div>
-
         @* LOGIN/ACCOUNT STATUS *@
         <div class="login-display">
             <div data-ng-cloak data-ng-if="session.IsLoggedIn" class="menu-account-info">
@@ -58,7 +46,7 @@
             </div>
 
             <div data-ng-if="!session.IsLoggedIn" class="menu-login-info">
-                <a href="#" data-ng-click="showLogonMenu()">Log on</a> or <a href="#" data-ng-click="showSignupMenu()">Sign up</a>
+                <a href="#" ng-href="/#/login">Log on</a> or <a href="#" ng-href="/#/signup">Sign up</a>
             </div>
         </div>
 

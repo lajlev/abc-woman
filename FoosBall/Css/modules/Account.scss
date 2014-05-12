@@ -3,3 +3,12 @@
         display: block;
     }
 }
+
+.login, .signup {
+    background: none #fff;
+    border-radius: 5px;
+    padding: 15px;
+    .button {
+        margin-top: 10px;
+    }
+}
