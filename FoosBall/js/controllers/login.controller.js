@@ -1,5 +1,5 @@
 ﻿FoosBall.controller('LoginController', ['$scope', 'session', function($scope, session) {
-    $scope.loginMessage;
+    $scope.loginMessage = "";
     $scope.showLoginMessage = false;
 
     $scope.submitLogin = function() {
@@ -18,9 +18,6 @@
                 window.angular.forEach(responseData.Data, function (value, key) {
                     $scope.session[key] = value;
                 });
-                $scope.uiSettings.hideMainMenu = true;
-                $scope.uiSettings.hideSignupMenu = true;
-                $scope.uiSettings.hideLogonMenu = true;
 
                 clearLogonForm($scope);
             } else {
@@ -31,7 +28,7 @@
     };
     
     function clearLogonForm(scope) {
-        scope.loginMessage;
+        scope.loginMessage = "";
         scope.showLoginMessage = false;
         scope.email = "";
         scope.name = "";

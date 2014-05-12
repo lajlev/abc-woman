@@ -1,4 +1,4 @@
-﻿<div class="signup" data-ng-controller="LoginController">
+﻿<div class="login" data-ng-controller="LoginController">
     <form name="loginForm" data-ng-submit="submitLogin()">
         <div>
             <input data-ng-model="email" name="email" required="true" type="text" placeholder="Email" value="" />
@@ -13,7 +13,7 @@
             <label for="rememberMe">Remember me</label>
         </div>
 
-        <div class="error validation-message">{{loginMessage}}</div>
+        <div ng-hide="!showLoginMessage" class="error validation-message">{{loginMessage}}</div>
         <input class="button" type="submit" value="Log On" />
     </form>
 </div>
