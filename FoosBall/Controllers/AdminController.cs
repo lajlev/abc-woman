@@ -13,7 +13,7 @@
         [HttpGet]
         public JsonResult Config()
         {
-            var currentUser = (Player)Session["User"];
+            var currentUser = (User)Session["User"];
 
             if (currentUser != null && Settings.AdminAccounts.Contains(currentUser.Email))
             {
@@ -26,7 +26,7 @@
         [HttpPost]
         public JsonResult Config(Config config)
         {
-            var currentUser = (Player)Session["User"];
+            var currentUser = (User)Session["User"];
             var configCollection = Dbh.GetCollection<Config>("Config");
             var currentConfig = configCollection.FindOne();
             var validation = new Validation();
@@ -47,7 +47,7 @@
                     });
             }
 
-            var nonExistingEmails = config.AdminAccounts.FindAll(x => !validation.PlayerEmailExists(x));
+            var nonExistingEmails = config.AdminAccounts.FindAll(x => !validation.UserEmailExists(x));
             if (nonExistingEmails.Any())
             {
                 return
@@ -61,11 +61,11 @@
             configCollection.Save(config);
             return Json(new AjaxResponse { Success = true, Message = "Configuration updated", Data = currentConfig });
         }
-
-        [HttpPost]
+        
+        /*[HttpPost]
         public void ReplayMatches()
         {
-            var currentUser = (Player)Session["User"];
+            var currentUser = (User)Session["User"];
 
             if (currentUser != null && Settings.AdminAccounts.Contains(currentUser.Email))
             {
@@ -170,11 +170,12 @@
                 }
             }
         }
+        */
 
         [HttpGet]
-        public JsonResult GetPlayerEmails()
+        public JsonResult GetUserEmails()
         {
-            var allEmails = Dbh.GetCollection<Player>("Players").FindAll().Select(x => x.Email).ToList();
+            var allEmails = Dbh.GetCollection<User>("Users").FindAll().Select(x => x.Email).ToList();
             return Json(allEmails, JsonRequestBehavior.AllowGet);
         }
     }

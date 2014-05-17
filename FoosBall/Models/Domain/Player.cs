@@ -1,7 +1,6 @@
 ﻿namespace FoosBall.Models.Domain
 {
     using Base;
-    using Main;
     using MongoDB.Bson.Serialization.Attributes;
 
     [BsonIgnoreExtraElements]
@@ -10,8 +9,6 @@
         public Player()
         {
             Rating = 1000;
-            Deactivated = false;
-            RememberMe = true;
             Won = 0;
             Lost = 0;
             Played = 0;
@@ -21,22 +18,16 @@
         {
             Id = id;
             Rating = 1000;
-            Deactivated = false;
-            RememberMe = true;
             Won = 0;
             Lost = 0;
             Played = 0;
         }
 
+        public string Name { get; set; }
+
         public string Email { get; set; }
 
-        public string GravatarUrl
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(Email) ? Md5.GetGravatarUrl(Email) : string.Empty;
-            }
-        }
+        public bool Deactivated { get; set; }
 
         public string StatsUrl
         {
@@ -46,10 +37,6 @@
             }
         }
 
-        public string Name { get; set; }
-        
-        public string Password { get; set; }
-        
         public int Won { get; set; }
         
         public int Lost { get; set; }
@@ -57,10 +44,6 @@
         public int Played { get; set; }
 
         public double Rating { get; set; }
-
-        public bool Deactivated { get; set; }
-        
-        public bool RememberMe { get; set; }
 
         public double Ratio
         {

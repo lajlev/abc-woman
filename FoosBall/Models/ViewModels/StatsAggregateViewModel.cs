@@ -1,6 +1,5 @@
 ﻿namespace FoosBall.Models.ViewModels
 {
-    using System.Collections.Generic;
     using Custom;
     using Domain;
 

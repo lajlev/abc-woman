@@ -42,7 +42,7 @@
                 return response;
             }
 
-            if (this.PlayerEmailExists(email))
+            if (this.UserEmailExists(email))
             {
                 response.Message = "This email is already registered";
                 return response;
@@ -54,9 +54,9 @@
                 return response;
             }
 
-            if (this.PlayerNameExists(name))
+            if (this.UserNameExists(name))
             {
-                response.Message = "A player with this name is already registered";
+                response.Message = "A user with this name is already registered";
                 return response;
             }
 
@@ -72,13 +72,13 @@
             return response;
         }
 
-        public bool PlayerEmailExists(string email)
+        public bool UserEmailExists(string email)
         {
             var query = Query.EQ("Email", email.ToLower());
-            var playerCollection = Dbh.GetCollection<Player>("Players");
-            var player = playerCollection.FindOne(query);
+            var userCollection = Dbh.GetCollection<User>("Users");
+            var user = userCollection.FindOne(query);
 
-            if (player != null)
+            if (user != null)
             {
                 return true;
             }
@@ -86,13 +86,13 @@
             return false;
         }
 
-        public bool PlayerNameExists(string name)
+        public bool UserNameExists(string name)
         {
-            var playerCollection = Dbh.GetCollection<Player>("Players");
+            var userCollection = Dbh.GetCollection<User>("Users");
             var query = Query.EQ("Name", name);
-            var player = playerCollection.FindOne(query);
+            var user = userCollection.FindOne(query);
 
-            if (player != null)
+            if (user != null)
             {
                 return true;
             }

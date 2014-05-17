@@ -44,9 +44,9 @@
             return CalculateMd5(input, Encoding.Default);
         }
 
-        public static string GetAuthToken(Player player)
+        public static string GetAuthToken(User user)
         {
-            return Md5.CalculateMd5(player.Id + player.Email + "FoosBall4Ever");
+            return Md5.CalculateMd5(user.Id + user.Email + "FoosBall4Ever");
         }
 
         public JsonResult GetAppSettings(bool refresh = false)
@@ -82,13 +82,13 @@
 
                 if (refresh)
                 {
-                    var player = (Player) Session["User"];
-                    var refreshedPlayer = DbHelper.GetPlayer(player.Id);
+                    var user = (User)Session["User"];
+                    var refreshedUser = DbHelper.GetUser(user.Id);
                     session = new SessionInfo()
                     {
-                        IsAdmin = Settings.AdminAccounts.Contains(refreshedPlayer.Email),
+                        IsAdmin = Settings.AdminAccounts.Contains(refreshedUser.Email),
                         IsLoggedIn = (bool)Session["IsLoggedIn"],
-                        User = refreshedPlayer
+                        User = refreshedUser
                     };
                 }
                 else
@@ -97,7 +97,7 @@
                     {
                         IsAdmin = (bool)Session["Admin"],
                         IsLoggedIn = (bool)Session["IsLoggedIn"],
-                        User = (Player)Session["User"]
+                        User = (User)Session["User"]
                     };
                 }
             }
@@ -106,13 +106,13 @@
         }
 
         // COOKIE DOUGH
-        public void CreateRememberMeCookie(Player player)
+        public void CreateRememberMeCookie(User user)
         {
             HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
             var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
             if (httpCookie != null)
             {
-                httpCookie["Token"] = GetAuthToken(player);
+                httpCookie["Token"] = GetAuthToken(user);
             }
 
             if (httpCookie != null)

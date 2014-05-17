@@ -13,45 +13,45 @@
         [HttpGet]
         public ActionResult GetUser()
         {
-            var currentUser = (Player)Session["User"];
+            var currentUser = (User)Session["User"];
 
-            return Json(DbHelper.GetPlayer(currentUser.Id), JsonRequestBehavior.AllowGet);
+            return Json(DbHelper.GetUser(currentUser.Id), JsonRequestBehavior.AllowGet);
         }
 
-        public bool Login(Player player)
+        public bool Login(User user)
         {
             // Set or remove cookie for future auto-login
-            if (player != null)
+            if (user != null)
             {
-                if (player.RememberMe)
+                if (user.RememberMe)
                 {
                     // Save an autologin token as cookie and in the Db
-                    var playerCollection = Dbh.GetCollection<Player>("Players");
+                    var userCollection = Dbh.GetCollection<User>("Users");
                     var autoLoginCollection = Dbh.GetCollection<AutoLogin>("AutoLogin");
-                    var autoLogin = autoLoginCollection.FindOne(Query.EQ("Email", player.Email));
+                    var autoLogin = autoLoginCollection.FindOne(Query.EQ("Email", user.Email));
 
                     if (autoLogin == null)
                     {
                         autoLogin = new AutoLogin
                         {
-                            Email = player.Email,
-                            Token = GetAuthToken(player),
+                            Email = user.Email,
+                            Token = GetAuthToken(user),
                         };
                         autoLoginCollection.Save(autoLogin);
                     }
 
-                    CreateRememberMeCookie(player);
-                    player.RememberMe = player.RememberMe;
-                    playerCollection.Save(player);
+                    CreateRememberMeCookie(user);
+                    user.RememberMe = user.RememberMe;
+                    userCollection.Save(user);
                 }
                 else
                 {
                     RemoveRememberMeCookie();
                 }
 
-                Session["Admin"] = Settings.AdminAccounts.Contains(player.Email);
+                Session["Admin"] = Settings.AdminAccounts.Contains(user.Email);
                 Session["IsLoggedIn"] = true;
-                Session["User"] = player;
+                Session["User"] = user;
 
                 return true;
             }
@@ -63,7 +63,7 @@
         public void LogOn()
         {
             var autoLoginCollection = this.Dbh.GetCollection<AutoLogin>("AutoLogin");
-            var playerCollection = this.Dbh.GetCollection<Player>("Players");
+            var userCollection = this.Dbh.GetCollection<User>("Users");
             
             if (Session["IsLoggedIn"] != null && Session["IsLoggedIn"].ToString() != "false")
             {
@@ -84,24 +84,24 @@
                 return;
             }
 
-            var player = playerCollection.FindOne(Query.EQ("Email", autoLoginToken.Email.ToLower()));
+            var user = userCollection.FindOne(Query.EQ("Email", autoLoginToken.Email.ToLower()));
 
-            Login(player);
+            Login(user);
         }
 
         [HttpPost]
         public ActionResult LogOn(string email, string password, string refUrl, bool rememberMe = false)
         {
             var loginEmail = email;
-            var playerCollection = Dbh.GetCollection<Player>("Players");
-            var player = playerCollection.FindOne(Query.EQ("Email", loginEmail));
+            var userCollection = Dbh.GetCollection<User>("Users");
+            var user = userCollection.FindOne(Query.EQ("Email", loginEmail));
             var loginInfo = new AjaxResponse();
 
-            if (player != null)
+            if (user != null)
             {
-                if (player.Password == Md5.CalculateMd5(password))
+                if (user.Password == Md5.CalculateMd5(password))
                 {
-                    if (Login(player))
+                    if (Login(user))
                     {
                         loginInfo.Message = "Success";
                         loginInfo.Data = GetSessionInfo();
@@ -153,19 +153,16 @@
                 return Json(response);
             }
 
-            var playerCollection = Dbh.GetCollection<Player>("Players");
-            var newPlayer = new Player
+            var userCollection = Dbh.GetCollection<User>("Users");
+            var newPlayer = new User
                                 {
                                     Id = BsonObjectId.GenerateNewId().ToString(),
                                     Email = userEmail,
                                     Name = userName,
                                     Password = userPassword,
-                                    Won = 0,
-                                    Lost = 0,
-                                    Played = 0
                                 };
 
-            playerCollection.Save(newPlayer);
+            userCollection.Save(newPlayer);
             Login(newPlayer);
             Events.SubmitEvent(EventType.PlayerCreate, newPlayer, newPlayer.Id);
 
@@ -178,12 +175,12 @@
         public ActionResult Edit(string email, string name, string oldPassword = "", string newPassword = "", bool Deactivated = false)
         {
             var response = new AjaxResponse { Success = false };
-            var currentUser = (Player)Session["User"];
-            var player = DbHelper.GetPlayer(currentUser.Id);
+            var currentUser = (User)Session["User"];
+            var user = DbHelper.GetUser(currentUser.Id);
             var newMd5Password = Md5.CalculateMd5(newPassword);
             var validation = new Validation();
 
-            if (player == null)
+            if (user == null)
             {
                 response.Message = "You have to be logged in to change user information";
                 return Json(response);
@@ -195,14 +192,14 @@
                 return Json(response);
             }
 
-            player.Email = string.IsNullOrEmpty(email) ? player.Email : email;
-            player.Name = string.IsNullOrEmpty(name) ? player.Name : name;
+            user.Email = string.IsNullOrEmpty(email) ? user.Email : email;
+            user.Name = string.IsNullOrEmpty(name) ? user.Name : name;
 
             if (!string.IsNullOrEmpty(newPassword))
             {
-                if (Md5.CalculateMd5(oldPassword) == player.Password)
+                if (Md5.CalculateMd5(oldPassword) == user.Password)
                 {
-                    player.Password = newMd5Password;
+                    user.Password = newMd5Password;
                 }
                 else
                 {
@@ -211,7 +208,7 @@
                 }
             }
 
-            DbHelper.SavePlayer(player);
+            DbHelper.SaveUser(user);
             response.Success = true;
             response.Message = "User updated succesfully";
             response.Data = GetSession(refresh: true);

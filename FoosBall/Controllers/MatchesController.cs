@@ -59,7 +59,7 @@
         [HttpPost]
         public ActionResult Delete(string id)
         {
-            var currentUser = (Player)Session["User"];
+            var currentUser = (User)Session["User"];
 
             if (currentUser != null)
             {
@@ -77,7 +77,7 @@
         // POST: /Matches/RegisterMatch
         private Match RegisterMatch(Match newMatch)
         {
-            var currentUser = (Player)Session["User"];
+            var currentUser = (User)Session["User"];
             var basicMatch = CreateMatch(currentUser, newMatch);
             var resolvedMatch = ResolveMatch(basicMatch);
             var matchCollection = Dbh.GetCollection<Match>("Matches");
@@ -88,7 +88,7 @@
         }
 
         // POST: /Matches/Create/{FormCollection}
-        private Match CreateMatch(Player user, Match newMatch)
+        private Match CreateMatch(User user, Match newMatch)
         {
             Match match = null;
 
@@ -170,7 +170,7 @@
                         playerCollection.FindOne(Query.EQ("_id", BsonObjectId.Parse(match.BluePlayer2.Id)));
                 }
 
-                var currentUser = (Player)Session["User"];
+                var currentUser = (User)Session["User"];
                 if (currentUser != null)
                 {
                     // Get the scores

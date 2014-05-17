@@ -4,7 +4,7 @@
 
     public class SessionInfo
     {
-        public Player User { get; set; }
+        public User User { get; set; }
 
         public bool IsLoggedIn { get; set; }
         

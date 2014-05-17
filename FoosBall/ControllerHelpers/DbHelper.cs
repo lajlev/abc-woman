@@ -11,6 +11,16 @@
     {
         private static readonly MongoDatabase Dbh = new Db(AppConfig.GetEnvironment()).Dbh;
 
+        public static User GetUser(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new Exception("id parameter cannot be null or empty");
+            }
+
+            return Dbh.GetCollection<User>("Users").FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
+        }
+
         public static Player GetPlayer(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -21,14 +31,14 @@
             return Dbh.GetCollection<Player>("Players").FindOne(Query.EQ("_id", BsonObjectId.Parse(id)));
         }
 
-        public static SafeModeResult SavePlayer(Player player)
+        public static SafeModeResult SaveUser(User user)
         {
-            if (player == null)
+            if (user == null)
             {
-                throw new Exception("player parameter cannot be null");
+                throw new Exception("user parameter cannot be null");
             }
 
-            return Dbh.GetCollection<Player>("Players").Save(player);
+            return Dbh.GetCollection<User>("Users").Save(user);
         }
     }
 }

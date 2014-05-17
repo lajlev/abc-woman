@@ -146,7 +146,7 @@
     <Compile Include="Models\Custom\RatingDifference.cs" />
     <Compile Include="Models\Custom\Streak.cs" />
     <Compile Include="Models\Custom\Streaks.cs" />
-    <Compile Include="Models\ViewModels\EventViewModel.cs" />
+    <Compile Include="Models\Domain\User.cs" />
     <Content Include="css\foosball-background.jpg" />
     <Content Include="css\icon_football.png" />
     <Content Include="css\minified\foosball.min.css" />
@@ -197,19 +197,12 @@
     <Compile Include="Models\ViewModels\StatsAggregateViewModel.cs" />
     <Compile Include="Models\PlayerStatsAggregate.cs" />
     <Compile Include="Models\ViewModels\PlayerStatsViewModel.cs" />
-    <Compile Include="Models\ViewModels\ConfigViewModel.cs" />
-    <Compile Include="Models\ViewModels\ExistsResponse.cs" />
     <Compile Include="Models\Base\FoosBallDoc.cs" />
-    <Compile Include="Models\ViewModels\MatchTableViewModel.cs" />
     <Compile Include="Models\Domain\AutoLogin.cs" />
-    <Compile Include="Models\ViewModels\LogOnViewModel.cs" />
-    <Compile Include="Models\ViewModels\MatchesViewModel.cs" />
     <Compile Include="Models\Domain\Match.cs" />
     <Compile Include="Models\Domain\Player.cs" />
     <Compile Include="Models\Domain\Team.cs" />
-    <Compile Include="Models\ViewModels\PlayersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\ViewModels\PlayerBaseDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\minified\foosball.css" />
