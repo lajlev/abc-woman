@@ -1,7 +1,6 @@
 bin/
 packages/
 obj/
-FoosBallTools/
 _ReSharper.FoosBall/
 FoosBall/Migration/*.json
 *.cache
