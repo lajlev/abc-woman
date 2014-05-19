@@ -1,6 +1,7 @@
 ﻿namespace FoosBall.Models.Domain
 {
     using Base;
+    using Main;
     using MongoDB.Bson.Serialization.Attributes;
 
     [BsonIgnoreExtraElements]
@@ -38,6 +39,14 @@
             get
             {
                 return string.Format("/#/playerstats?playerId={0}", Id);
+            }
+        }
+
+        public string GravatarUrl
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Email) ? Md5.GetGravatarUrl(Email) : string.Empty;
             }
         }
 
