@@ -1,12 +1,11 @@
 ﻿namespace FoosBall.Main
 {
     using System.Configuration;
-    using FoosBall.Models.Base;
     using MongoDB.Driver;
     
     public class Db
     {
-        public Db(Environment environment = Environment.Production)
+        public Db()
         {
             // Try to connect to server
             this.ConnectionString = ConfigurationManager.AppSettings["Database"];

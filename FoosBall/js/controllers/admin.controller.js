@@ -1,5 +1,4 @@
 ﻿FoosBall.controller('AdminController', ['$scope', 'api', function ($scope, api) {
-
     $scope.replayAllMatches = function () {
         var promiseOfReplay = api.replayAllMatches();
 
@@ -7,16 +6,6 @@
             alert("All matches have been replayed");
         });
     };
-
-    var getAllPlayers = function () {
-        var promiseOfPlayers = api.getAllPlayers();
-
-        promiseOfPlayers.then(function (players) {
-            $scope.players = players;
-        });
-    };
-
-    getAllPlayers();
 }]);
 
 FoosBall.controller('AppConfigController', ['$scope', 'api', function ($scope, api) {

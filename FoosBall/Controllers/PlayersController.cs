@@ -8,17 +8,6 @@
     public class PlayersController : BaseController
     {
         [HttpGet]
-        public ActionResult GetAllPlayers()
-        {
-            var playerCollection = Dbh.GetCollection<Player>("Players")
-                                           .FindAll()
-                                           .SetSortOrder(SortBy.Ascending("Name"))
-                                           .ToList();
-
-            return Json(playerCollection, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
         public ActionResult GetActivePlayers()
         {
             var playerCollection = Dbh.GetCollection<Player>("Players")

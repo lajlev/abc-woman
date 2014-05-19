@@ -5,12 +5,6 @@
         var promise = AllMatches.query().$promise;
         return promise;
     };
-    this.getAllPlayers = function () {
-        var url = '/Players/GetAllPlayers';
-        var AllPlayers = $resource(url);
-        var promise = AllPlayers.query().$promise;
-        return promise;
-    };
     this.getExperiencedPlayers = function () {
         var url = '/Players/GetExperiencedPlayers';
         var ExperiencedPlayers = $resource(url);

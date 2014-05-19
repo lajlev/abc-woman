@@ -10,8 +10,7 @@
     {
         public static void InitalizeConfig()
         {
-            var environment = GetEnvironment();
-            var configCollection = new Db(environment).Dbh.GetCollection<Config>("Config");
+            var configCollection = new Db().Dbh.GetCollection<Config>("Config");
             var config = configCollection.FindAll().FirstOrDefault();
 
             if (config == null)

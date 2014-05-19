@@ -15,7 +15,7 @@
     {
         private const string Blue = "blue";
         private const string Red = "red";
-        private static readonly MongoDatabase Dbh = new Db(AppConfig.GetEnvironment()).Dbh;
+        private static readonly MongoDatabase Dbh = new Db().Dbh;
 
         public static Player GetStatMostFights()
         {

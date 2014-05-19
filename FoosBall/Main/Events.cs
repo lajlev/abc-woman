@@ -22,7 +22,7 @@
         {
             if (eventType != EventType.Default && targetObject != null)
             {
-                var dbh = new Db(AppConfig.GetEnvironment()).Dbh;
+                var dbh = new Db().Dbh;
                 var eventCollection = dbh.GetCollection<Event>("Events");
 
                 var newEvent = new Event

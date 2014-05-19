@@ -9,7 +9,7 @@
 
     public static class DbHelper
     {
-        private static readonly MongoDatabase Dbh = new Db(AppConfig.GetEnvironment()).Dbh;
+        private static readonly MongoDatabase Dbh = new Db().Dbh;
 
         public static User GetUser(string id)
         {

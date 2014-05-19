@@ -15,9 +15,7 @@
                 {
                     try
                     {
-                        var environment = AppConfig.GetEnvironment();
-
-                        var db = new Db(environment).Dbh;
+                        var db = new Db().Dbh;
                         var config = db.GetCollection<Config>("Config").FindOne();
 
                         if (string.IsNullOrEmpty(config.NotificationUrl))

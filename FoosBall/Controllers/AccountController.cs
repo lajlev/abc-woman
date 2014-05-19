@@ -154,7 +154,7 @@
             }
 
             var userCollection = Dbh.GetCollection<User>("Users");
-            var newPlayer = new User
+            var newUser = new User
                                 {
                                     Id = BsonObjectId.GenerateNewId().ToString(),
                                     Email = userEmail,
@@ -162,9 +162,9 @@
                                     Password = userPassword,
                                 };
 
-            userCollection.Save(newPlayer);
-            Login(newPlayer);
-            Events.SubmitEvent(EventType.PlayerCreate, newPlayer, newPlayer.Id);
+            userCollection.Save(newUser);
+            Login(newUser);
+            Events.SubmitEvent(EventType.PlayerCreate, newUser, newUser.Id);
 
             response.Data = GetSession(refresh: true);
 

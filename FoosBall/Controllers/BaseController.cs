@@ -16,11 +16,9 @@
 
         public BaseController()
         {
-            var environment = AppConfig.GetEnvironment();
-
-            this.Dbh = new Db(environment).Dbh;
+            this.Dbh = new Db().Dbh;
             this.Settings = this.Dbh.GetCollection<Config>("Config").FindOne();
-            this.Settings.Environment = environment;
+            this.Settings.Environment = AppConfig.GetEnvironment();
 
             ViewBag.Settings = this.Settings;
         }
@@ -65,6 +63,32 @@
             return Json(GetSessionInfo(refresh), JsonRequestBehavior.AllowGet);
         }
 
+        // COOKIE DOUGH
+        public void CreateRememberMeCookie(User user)
+        {
+            HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
+            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
+            if (httpCookie != null)
+            {
+                httpCookie["Token"] = GetAuthToken(user);
+            }
+
+            if (httpCookie != null)
+            {
+                httpCookie.Expires = DateTime.Now.AddDays(30);
+            }
+        }
+
+        public void RemoveRememberMeCookie()
+        {
+            ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
+            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
+            if (httpCookie != null)
+            {
+                httpCookie.Expires = DateTime.Now.AddDays(-1);
+            }
+        }
+
         protected SessionInfo GetSessionInfo(bool refresh = false)
         {
             SessionInfo session;
@@ -104,31 +128,5 @@
 
             return session;
         }
-
-        // COOKIE DOUGH
-        public void CreateRememberMeCookie(User user)
-        {
-            HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
-            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
-            if (httpCookie != null)
-            {
-                httpCookie["Token"] = GetAuthToken(user);
-            }
-
-            if (httpCookie != null)
-            {
-                httpCookie.Expires = DateTime.Now.AddDays(30);
-            }
-        }
-
-        public void RemoveRememberMeCookie()
-        {
-            ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie("FoosBallAuth"));
-            var httpCookie = ControllerContext.HttpContext.Response.Cookies["FoosBallAuth"];
-            if (httpCookie != null)
-            {
-                httpCookie.Expires = DateTime.Now.AddDays(-1);
-            }
-        }        
     }
 }

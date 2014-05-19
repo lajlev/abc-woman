@@ -14,7 +14,7 @@
         {
             var environment = AppConfig.GetEnvironment();
 
-            this.Dbh = new Db(environment).Dbh;
+            this.Dbh = new Db().Dbh;
             this.Settings = this.Dbh.GetCollection<Config>("Config").FindOne();
             this.Settings.Environment = environment;
         }
