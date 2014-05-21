@@ -62,7 +62,7 @@
             return Json(new AjaxResponse { Success = true, Message = "Configuration updated", Data = currentConfig });
         }
         
-        /*[HttpPost]
+        [HttpPost]
         public void ReplayMatches()
         {
             var currentUser = (User)Session["User"];
@@ -170,8 +170,7 @@
                 }
             }
         }
-        */
-
+        
         [HttpGet]
         public JsonResult GetUserEmails()
         {
