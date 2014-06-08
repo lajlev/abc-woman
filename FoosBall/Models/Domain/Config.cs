@@ -10,12 +10,11 @@
     {
         public Config()
         {
-            this.Name = "FoosBall Fighting";
-            this.Domain = "trustpilot.com";
+            this.Name = "FoosBall";
+            this.Domain = string.Empty;
             this.AdminAccounts = new List<string>()
                 {
-                    "jbe@trustpilot.com",
-                    "olj@trustpilot.com"
+                    "jbe@trustpilot.com"
                 };
         }
 
