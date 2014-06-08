@@ -12,10 +12,14 @@
         {
             var configCollection = new Db().Dbh.GetCollection<Config>("Config");
             var config = configCollection.FindAll().FirstOrDefault();
+            var environment = GetEnvironment();
 
             if (config == null)
             {
-                config = new Config();
+                config = new Config
+                {
+                    Environment = environment
+                };
                 configCollection.Save(config);
             }
         }
