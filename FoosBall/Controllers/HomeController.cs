@@ -6,7 +6,7 @@
     {
         public ActionResult Index()
         {
-            return View("Index");
+            return View("Index"); 
         }
     }
 }
