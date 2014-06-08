@@ -25,11 +25,19 @@
         {
             var domain = "@" + this.Settings.Domain;
 
+            if (string.IsNullOrWhiteSpace(this.Settings.Domain))
+            {
+                return !string.IsNullOrEmpty(email) &&
+                       email.Count(x => x == '@') == 1 &&
+                       !email.Contains(" ");                
+            } 
+
             return !string.IsNullOrEmpty(email) &&
                    email.EndsWith(domain) &&
                    email.Count(x => x == '@') == 1 &&
                    email.Length > domain.Length &&
                    !email.Contains(" ");
+
         }
 
         public AjaxResponse ValidateNewUserData(string email, string name, string password)
