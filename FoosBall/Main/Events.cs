@@ -33,7 +33,7 @@
 
                 if (eventType == EventType.PlayerLogin || eventType == EventType.PlayerCreate)
                 {   
-                    newEvent.Player = (Player)targetObject;
+                    newEvent.User = (User)targetObject;
                 }
 
                 if (eventType == EventType.MatchResolve)
