@@ -1,5 +1,5 @@
 ﻿FoosBall.controller('SignupController', ['$scope', '$resource', 'session', function ($scope, $resource, session) {
-    $scope.signupMessage;
+    $scope.signupMessage = "";
     $scope.showSignupMessage = false;
 
     $scope.submitSignup = function() {
@@ -27,10 +27,6 @@
                     });
                 });
 
-                $scope.uiSettings.hideMainMenu = true;
-                $scope.uiSettings.hideSignupMenu = true;
-                $scope.uiSettings.hideLogonMenu = true;
-                
                 clearSignupForm($scope);
             }
 
@@ -40,7 +36,7 @@
     };
     
     function clearSignupForm(scope) {
-        scope.signupMessage;
+        scope.signupMessage = "";
         scope.showSignupMessage = false;
         scope.email = "";
         scope.name = "";

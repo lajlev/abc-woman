@@ -155,13 +155,23 @@
 
             var userCollection = Dbh.GetCollection<User>("Users");
             var newUser = new User
-                                {
-                                    Id = BsonObjectId.GenerateNewId().ToString(),
-                                    Email = userEmail,
-                                    Name = userName,
-                                    Password = userPassword,
-                                };
+            {
+                Id = BsonObjectId.GenerateNewId().ToString(),
+                Email = userEmail,
+                Name = userName,
+                Password = userPassword,
+            };
 
+            var playerCollection = Dbh.GetCollection<Player>("Players");
+            var newPlayer = new Player
+            {
+                Id = BsonObjectId.GenerateNewId().ToString(),
+                Email = userEmail,
+                Name = userName,
+                Password = userPassword,
+            };
+
+            playerCollection.Save(newPlayer);
             userCollection.Save(newUser);
             Login(newUser);
             Events.SubmitEvent(EventType.PlayerCreate, newUser, newUser.Id);
@@ -188,7 +198,7 @@
 
             if (!validation.ValidateEmail(email))
             {
-                response.Message = "You must provide a valid trustpilot email";
+                response.Message = "You must provide a valid email";
                 return Json(response);
             }
 

@@ -13,7 +13,7 @@
 
         public EventType EventType { get; set; }
 
-        public Player Player { get; set; }
+        public User User { get; set; }
 
         public Match Match { get; set; }
     }
