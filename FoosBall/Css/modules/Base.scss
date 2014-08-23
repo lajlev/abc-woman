@@ -402,6 +402,6 @@ html[xmlns] .clearfix {
 }
 
 /* Background */
-#bg { position: fixed; top: 0; left: 0; z-index: -1; }
+#bg { display:none }
 .bgwidth { width: 100%; }
 .bgheight { height: 100%; }
